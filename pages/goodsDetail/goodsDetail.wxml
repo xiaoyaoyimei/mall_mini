@@ -1,0 +1,50 @@
+<import src="../../wxParse/wxParse.wxml" />
+<view class="detail_container">
+  <scroll-view scroll-y="true" scroll-x="false" class="scroll-view">
+    <swiper class="detail_swiper" indicator-dots="{{indicatorDots}}"  interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{detailData.productItemList}}" wx:key="item.id">
+        <swiper-item>
+          <image src="https://image-shop.dxracer.com.cn/{{item.listImg}}" mode="scaleToFill"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="detail_title">{{detailData.product.modelName}}</view>
+    <view class="detail_price">￥{{detailData.product.salePrice}}</view>
+
+    <view   bindtap="showDialogBtn" class="kind-list-item-hd">
+            <view class="kind-list-text">已选</view>
+            <image class="kind-list-img" src="../../images/nav.png"></image>
+     </view>
+
+    <!--这里data中article为bindName-->
+    <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+    <view class="detail_footer">
+      <view class="tips">{{tips}}</view>
+      <view class="detail_footer_btn" bindtap="buyNow">
+        <text>立即购买</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+  <view class="modal-title"></view>
+  <view class="modal-content">
+      <block wx:for="{{detailData.productAttrList}}" wx:key="item.id">
+       <view class="attr_title">{{item.attrKey.catalogAttrValue}}</view>
+        <block wx:for="{{item.attrValues}}" wx:key="item.id">
+        <text class="attr_value">{{item.modelAttrValue}}</text>
+        </block>
+          <!-- <image src="https://image-shop.dxracer.com.cn/{{item.listImg}}" mode="scaleToFill"></image> -->
+        
+      </block>
+    <view class="modal-input">
+      <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入数量"></input>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
+  </view>
+</view>

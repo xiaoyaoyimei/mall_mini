@@ -1,0 +1,41 @@
+/**index.wxss**/
+.slide-image{
+  width: 100%;
+}
+
+.index_search_btn {
+  height: 70rpx;
+  width: 90%;
+  background-color: white;
+  color: #a1a1a1;
+  font-size: 30rpx;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top:10rpx;
+  left: 5%;
+  border-radius: 35px;
+  z-index: 2;
+}
+
+.index_search {
+  margin-right: 3px;
+  width: 16px;
+  height: 16px;
+}
+.newpro{
+  width: 100%;
+  overflow: hidden;
+}
+.newpro navigator image{
+    max-width:50%;
+    float: left;
+    height: 180rpx;
+}
+/*每个item样式*/
+
+
+
+

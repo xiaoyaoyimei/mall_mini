@@ -1,0 +1,36 @@
+
+    <view class="index_search_btn" bindtap="click">
+      <image class="index_search" src="../../images/searchLogo.png"></image>
+      <text>搜索商品</text>
+    </view>
+<!--index.wxml-->
+<swiper indicator-dots='true'>
+  <block wx:for="{{poster}}" wx:key="{{id}}">
+    <swiper-item >
+      <image src="https://image-shop.dxracer.com.cn/{{item.phoneUrl}}" class="slide-image" />
+    </swiper-item>
+  </block>
+</swiper>
+
+    	<view class="newpro">
+    		  <navigator url="/pages/secKill/secKill" >
+    			<image src="../../images/xppd.png" />
+    				</navigator>
+    	  <navigator url="/pages/secKill/secKill">
+    			<image src="../../images/miao.png"/>
+    				</navigator>
+    	  </view>
+
+    <!--为你推荐-->
+    <!-- <view class="Recommend ">为你推荐</view> -->
+
+    <!--列表list组件 -->
+    <!-- <view class="list">
+      <block wx:for-items="{{list}}" wx:key="">
+        <view class="item" catchtap="itemclick" data-specId="{{item.specId}}">
+          <view class="item-text1">{{item.gcName}}</view>
+          <view class="item-text2">{{item.goodsName}}</view>
+          <image class="img" src="http://testbbcimage.leimingtech.com{{item.goodsImage}}" mode='scaleToFill' />
+        </view>
+      </block>
+    </view> -->

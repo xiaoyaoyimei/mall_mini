@@ -1,0 +1,31 @@
+<import src="../common/nav.wxml" />
+<loading hidden="{{loadingHidden}}">正在加载...</loading>
+
+<!-- 整体 -->
+<view class="containsView">
+
+  <!-- 顶部导航栏 -->
+  <view class="headerView">
+    <block wx:for="{{navList}}" wx:key="">
+      <view catchtap="onTapTag" data-index="{{index}}" id="{{item.id}}" class="top-bar-item {{index == activeIndex ? 'top-bar-active' : ''}}">
+        {{item.title}}
+      </view>
+    </block>
+  </view>
+
+  <!--scrollview-->
+  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height:750px">
+    <block wx:for-items="{{list}}" wx:key="id">
+
+      <!-- item-->
+      <view data-specId="{{item.id}}" catchtap="clickitem" class="topContainsView">
+        <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}"        mode='scaleToFill' />
+        <view class="topRightView">
+          <text class="topRightName">{{item.model_name}} </text>
+          <text>{{item.model_no}}</text>
+          <text class="topRightTime">{{item.sale_price}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</view>

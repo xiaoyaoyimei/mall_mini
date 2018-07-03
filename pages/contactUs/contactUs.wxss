@@ -1,0 +1,11 @@
+/* pages/contactUs/contactUs.wxss */
+.flex-center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding:20rpx;
+}
+.flex-center p{
+  font-size: 32rpx;
+  line-height: 60rpx
+}
