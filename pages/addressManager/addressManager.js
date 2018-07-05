@@ -8,19 +8,13 @@ Page({
     addressData:[],
   },
   addressClick:function(e){
-    wx.navigateBack({
-      delta: 1, // 回退前 delta(默认为1) 页面
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-        var addr = {};
-        addr = e.currentTarget.dataset.item;
-        wx.setStorageSync('address', addr);
+    var addr = {};
+    addr = e.currentTarget.dataset.item;
+    wx.setStorage({
+      key: 'address',
+      data: addr,
+      success() {
+        wx.navigateBack();
       }
     })
   },
@@ -41,39 +35,33 @@ Page({
     })
   },
   addrDelete:function(e){
-    console.log('ffffff',e);
+
     var that = this;
+    var addressId = e.currentTarget.dataset.item.id;
+    var CuserInfo = wx.getStorageSync('CuserInfo');
     wx.showModal({
       title: '确认删除该地址吗？',
       success: function(res) {
         if (res.confirm) {
-          request.req(uri_address_delete,{
-            addressId: e.currentTarget.dataset.item.addressId
-          },(err,res) =>{
-            request.req(uri_address_list,{
-            },(err,res) =>{
-              console.log('aaaaaaaaaa',res);
-              if (res.data.result == 1) {
-                var addresss = wx.getStorageSync('address');
-                if(addresss.addressId == e.currentTarget.dataset.item.addressId){
-                  try {
-                    wx.removeStorageSync('address')
-                  } catch (e) {
-                    // Do something when catch error
-                  } 
-                }
-                if(res.data.msg == '无数据'){
-                  that.setData({
-                    addressData: [],//接数组
-                  })
-                }else{
-                  that.setData({
-                    addressData: res.data.data,//接数组
-                  })
-                }
+          wx.request({
+            url: 'https://m.shop.dxracer.cn/mall/wap/address/delete?id=' + addressId,
+            method: 'POST',    //大写
+            header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
+            success(res) {
+              if (res.data.code == 401) {  //token失效 用code换下token
+                wx.redirectTo({   
+                  url: '../login/login',
+                })
               }
-            });
-          });
+              if (res.data.code == 200) {
+                that.getAddressList();
+               }
+            },
+            fail(e) {
+              console.error(e)
+              callback(e)
+            }
+          })
         }
       }
     })
@@ -84,20 +72,23 @@ Page({
     })
   },
   onLoad:function(options){
-    
+    this.getAddressList();
   },
   onReady: function() {
     // Do something when page ready.
   },
-  onShow: function() {
+  getAddressList(){
     var that = this;
-    // 生命周期函数--监听页面加载
-    request.req(uri_address_list,'POST',{
-    },(err,res) =>{
-     
-          that.setData({
-            addressData: res.data,//接数组
-          })
+    request.req(uri_address_list, 'POST', {
+    }, (err, res) => {
+
+      that.setData({
+        addressData: res.data,//接数组
+      })
     });
+  },
+  onShow: function() {
+    // 生命周期函数--监听页面加载
+    this.getAddressList();
   },
 })

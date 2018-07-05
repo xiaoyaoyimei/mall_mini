@@ -139,7 +139,7 @@ Page({
     }
     if(goumai.length<1){
       wx.showToast({
-        title: "您尚未选择任何商品"
+        title: "您尚未选择商品"
       })
       return;
     }else{

@@ -16,15 +16,14 @@
       </view>
       <image class="kind-list-img" src="../../images/nav.png"></image>
     </view>
-
-    <!--这里data中article为bindName-->
-    <!-- <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
-    <view class="detail_footer">
-      <view class="tips">{{tips}}</view>
-      <view class="detail_footer_btn" bindtap="buyNow">
+  <view class="detail_footer">
+      <view class="detail_footer_btn" bindtap="showbynow">
         <text>立即购买</text>
       </view>
-    </view> -->
+    </view>
+    <!--这里data中article为bindName-->
+    <!-- <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
+   -->
   </scroll-view>
 </view>
 

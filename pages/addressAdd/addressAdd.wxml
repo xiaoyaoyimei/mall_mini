@@ -8,31 +8,28 @@
         <text class="item_text">手机号:</text>
         <input class="item_input" bindinput="bindPhoneInput" placeholder="请输入手机号" value="{{addressInfo.mobPhone}}"/>
     </view>
-    <view class="add_item">
-        <text class="item_text">邮政编码:</text>
-        <input class="item_input_1" bindinput="bindZipCodeInput" placeholder="请输入邮政编码" value="{{addressInfo.zipCode}}"/>
-    </view>
+
     <view class="add_item">
         <text class="item_text">省:</text>
-        <picker class="item_picker" model="selector" bindchange="bindProvinceChange" value="{{index}}" range="{{array}}" range-key="areaName">
+        <picker class="item_picker" model="selector" bindchange="bindProvinceChange" value="{{index}}" range="{{array}}" range-key="key">
             <view class="picker">
-                {{array[index].areaName}}
+                {{array[index].label}}
             </view>
         </picker>
     </view>
     <view class="add_item">
         <text class="item_text">市:</text>
-        <picker class="item_picker" model="selector" bindchange="bindCityChange" value="{{indexC}}" range="{{arrayCity}}" range-key="areaName">
+        <picker class="item_picker" model="selector" bindchange="bindCityChange" value="{{indexC}}" range="{{arrayCity}}" range-key="key">
             <view class="picker">
-                {{arrayCity[indexC].areaName}}
+                {{arrayCity[indexC].label}}
             </view>
         </picker>
     </view>
     <view class="add_item">
         <text class="item_text">区/县:</text>
-        <picker class="item_picker1" model="selector" bindchange="bindDistrictChange" value="{{indexD}}" range="{{arrayDistrict}}" range-key="areaName">
+        <picker class="item_picker1" model="selector" bindchange="bindDistrictChange" value="{{indexD}}" range="{{arrayDistrict}}" range-key="key">
             <view class="picker_1">
-                {{arrayDistrict[indexD].areaName}}
+                {{arrayDistrict[indexD].label}}
             </view>
         </picker>
     </view>

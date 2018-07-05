@@ -2,7 +2,7 @@
 <view>
     <view class="main_view">
         <scroll-view>
-            <block wx:for-items="{{addressData}}">
+            <block wx:for-items="{{addressData}}" wx:key="{{index}}">
                 <view data-item="{{item}}" catchtap="addressClick" class="top_background">
                     <view class="top_view">
                         <text>{{item.person}}　{{item.phone}}</text>

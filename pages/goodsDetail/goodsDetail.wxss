@@ -49,7 +49,7 @@ swiper-item image {
 }
 
 .detail_footer {
-  z-index: 100;
+  z-index: 2;
   flex-direction: column;
   width: 100%;
   position: fixed;

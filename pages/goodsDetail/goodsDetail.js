@@ -117,6 +117,11 @@ Page({
   onShow: function () {
 
   },
+  showbynow:function(){
+    this.setData({
+      showModal: true
+    })
+  },
   showDialogBtn: function () {
     this.setData({
       showModal: true

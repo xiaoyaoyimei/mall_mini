@@ -3,9 +3,12 @@
     <scroll-view scroll-y="true" scroll-x="false">
         <view bindtap="addressClick">
             <view class="top_view">
-            <text>{{addressInfo.trueName}}  {{addressInfo.mobPhone}}</text>
+            <text>{{addressInfo.person}}  {{addressInfo.phone}}</text>
         </view>
-        <view class="address_view"><text>{{addressInfo.areaInfo}} {{addressInfo.address}}</text></view>
+        <view class="address_view">
+        <text> {{addressInfo.receiveProvince}}{{addressInfo.receiveCity}}{{addressInfo.receiveDistrict}}{{addressInfo.address}}
+        </text>
+        </view>
         </view>
         <view wx:for="{{orderData}}" wx:key="{{index}}">
         <view class="goods_info">
@@ -38,7 +41,7 @@
             <text class="right_text">－ ¥ 0.0</text>
         </view>
         <view class="true_pay">
-            <text class="true_pay_right">¥{{orderData.goodsTotalPrice}}</text>
+            <text class="true_pay_right">¥{{total}}</text>
             <text>实付金额:　</text>
         </view>
         <button class="bottom_btn" bindtap="paynow" type="primary">微信支付</button>
