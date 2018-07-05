@@ -45,7 +45,6 @@ Page({
     var that = this
     //广告位轮播
     request.req('index/poster', 'GET',{},(err, res) => {
-        console.log(res.data)
         if (res.data.code == 200) {
           that.setData({
             poster: res.data.object

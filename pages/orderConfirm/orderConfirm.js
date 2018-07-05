@@ -1,8 +1,7 @@
 var cartId = ''
 var addressId = ''
 var request = require('../../utils/https.js')
-var uri_order_confirm = 'cartapi/subToOrder' //确认订单
-var uri_saveorder = 'orderapi/saveorder'  //保存订单
+var uri_order_confirm = 'order/shopping/confirm' //确认订单
 var uri_pay = 'wxh5pay/api/towxpayInfo'
 Page({
   data: {
@@ -15,22 +14,13 @@ Page({
     })
   },
   // 生命周期函数--监听页面加载
-  onLoad: function (options) {
+  onLoad: function () {
     var that = this;
-    cartId = options.cartIds;
-    request.req(uri_order_confirm, {
-      cartId: options.cartIds,
-    }, (err, res) => {
-      console.log(res.data);
-      if (res.data.result == 1) {
-        that.setData({
-          //orderData: that.data.orderData.concat(res.data.data[0].cartVoList[0]),//接数组
-          orderData: res.data.data[0].cartVoList[0],//接字典
-          addressInfo: res.data.data[0].addressList[0],
-
-        })
-      }
-    });
+    var orderData = wx.getStorageSync('cart');
+    this.setData({
+      orderData: orderData,
+    })
+    console.log(orderData);
   },
   onShow: function () {
     // 生命周期函数--监听页面显示
@@ -53,7 +43,7 @@ Page({
     var codeinfo = wx.getStorageSync('codeinfo');
     var code = codeinfo.code; //保存订单接口获取ordercode
     var that = this;
-    request.req(uri_saveorder, {
+    request.req(uri_order_confirm, 'POST',{
       invoiceId: '', //发票id
       isPd: 0, //是否使用余额支付,0:不使用,1:使用
       cartIds: cartId,  // 购物车id

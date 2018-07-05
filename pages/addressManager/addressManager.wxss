@@ -46,7 +46,7 @@
 .add{
     width: 90%;
     height: 44px;
-    background-color: #dd3a40;
+    background-color: #0099ff;
     color: white;
     text-align: center;
     align-items: center;

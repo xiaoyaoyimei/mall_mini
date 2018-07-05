@@ -1,4 +1,4 @@
-<!-- <view class="top_line"></view>
+ <view class="top_line"></view>
 <view>
     <view class="add_item">
         <text class="item_text">收货人:</text>
@@ -45,4 +45,4 @@
             <text>保存</text>
         </view>
     </view>
-</view> -->
+</view> 

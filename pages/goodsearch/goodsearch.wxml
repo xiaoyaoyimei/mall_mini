@@ -4,7 +4,7 @@
   <view class="headView">
     <input id="keysearch" bindinput="bindKeyInput" placeholder="请输入需要搜索的商品"
     value="{{hotsearch}}" class="input" placeholder-style="font-size:18px" focus></input>
-    <button class="btn-search" bindtap="click" type="default" size="default" >{{cancelValue}}</button>
+    <button class="btn-search" bindtap="click" type="default" size="mini" >{{cancelValue}}</button>
   </view>
   <view class="divLine"></view>
 
@@ -15,5 +15,5 @@
   <view class="seachlist" wx:for="{{list}}" wx:for-item="itemWord" wx:for-index="idx" wx:key="idx">
     <button data-name="{{itemWord}}" type="default"  class="button" wx:if="{{itemWord != ''}}" bindtap="clickName">{{itemWord}}</button>
   </view>
-  <button style="display:block;margin-top:20rpx" bindtap="clearSearchStorage">清空浏览记录</button>
+  <button style="display:block;margin-top:20rpx;margin-left:40rpx;margin-right:30rpx" bindtap="clearSearchStorage">清空浏览记录</button>
 </view>

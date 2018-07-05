@@ -83,7 +83,6 @@ swiper-item image {
 
 .tips {
   background-color: rgba(255, 255, 255, 0.5);
-  /*opacity: 0.2;*/
   text-align: center;
   line-height: 22px;
   font-size: 18px;
@@ -131,40 +130,11 @@ swiper-item image {
   z-index: 12;
   background: #ffffff;
 }
-
-.modal-title {
-  padding-top: 50rpx;
-  font-size: 36rpx;
-  color: #030303;
-  text-align: center;
-}
-
 .modal-content {
-  padding: 50rpx 32rpx;
+  padding: 40rpx 32rpx;
 }
-
-.modal-input {
-  display: flex;
-  background: #fff;
-  border: 2rpx solid #ddd;
-  border-radius: 4rpx;
-  font-size: 28rpx;
-}
-
-
-.input {
-  width: 100%;
-  height: 82rpx;
-  font-size: 28rpx;
-  line-height: 28rpx;
-  padding: 0 20rpx;
-  box-sizing: border-box;
-  color: #333;
-}
-
-input-holder {
-  color: #666;
-  font-size: 28rpx;
+.image-xq{
+  margin-right: 20rpx;
 }
 
 .modal-footer {
@@ -188,13 +158,98 @@ input-holder {
   color: #ec5300;
   text-align: center;
 }
-.modal-content .attr_title{
-  margin-bottom:20rpx;
+/*每组属性的主盒子*/
+.attr_box { 
+ width: 100%; 
+ overflow: hidden; 
+ border-bottom: 1rpx solid #ececec; 
+ display: flex;
+ flex-direction: column;
+ font-size: 14px;
+} 
+/*属性名*/
+.attr_name { 
+ padding: 10rpx 0; 
+} 
+/*属性值*/
+.attr_value_box { 
+ padding: 15rpx 0; 
+} 
+/*每个属性值*/
+.attr_value { 
+ float: left; 
+ padding: 0 30rpx; 
+ margin: 10rpx 10rpx; 
+ border: 1rpx solid #ececec; 
+ border-radius:5px;
+ line-height:30px;
+} 
+/*每个属性选中的当前样式*/
+.attr_value_active { 
+ border-radius: 10rpx; 
+ color: #0089dc; 
+ padding: 0 30rpx; 
+ border: 1rpx solid #0099ff; 
+ /* background: #fff;   */
+} 
+/*使屏幕变暗  */
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
 }
-.attr_value{
-  border:1px solid #eee;
-  padding:10rpx 16rpx;
-  margin-right: 10rpx;
-   margin-bottom:20rpx;
-   display: inline-block;
+/*对话框 */
+.commodity_attr_box {
+  height: 300rpx;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+}
+.select_pro{
+  height: 200rpx;
+}
+.chooseproduct{
+  display: flex;
+}
+.chooseproduct image{
+  width:100rpx;
+  height:100rpx;
+}
+
+.color-dx{
+  color:#0099ff
+}
+.num_wrap{
+  display: flex;
+  margin-top:20rpx;
+  margin-bottom:20rpx;
+  
+}
+.num_right .add,.num_right .min,.num_right .num{
+  width: 100rpx;
+  display: inline-block;
+  text-align: center;
+  height:60rpx;
+}
+.num_wrap .add{
+  border-left:1px solid #ccc;
+}
+.num_wrap .min{
+  border-right:1px solid #ccc;
+}
+.num_right{
+  border:1px solid #ccc;
+  margin-left:60rpx;
 }

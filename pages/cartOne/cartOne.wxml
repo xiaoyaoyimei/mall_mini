@@ -1,0 +1,50 @@
+<view class="main">
+    <view wx:if="{{hasList}}">
+        <view class="cart-box">
+            <view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
+            	<!-- <Col class='cartcheckbok' span="2">
+        			<Checkbox  :label="index" :key="index"></Checkbox></Col>
+					<Col span="4" ><img class='cartImg' :src="imageSrc+x.image"></Col>
+					<Col span="18">
+						<p class='cart_black'>{{x.productName}}</p>
+						<p class='cart_gray'>{{x.productAttr}}</p>
+						<p><label v-if="x.promotionTitle !=null" class="promotion">{{x.promotionTitle}}</label></p>
+						<div class='cart_price'>
+							￥{{x.salePrice |pricefilter}}
+							<div class="min-add">
+						    	<Icon type="minus-round" @click.native="jian(x,index)" class="min"  ></Icon>
+						     	 <input class="text-box" name="pricenum"  type="text" v-model.lazy="x.quantity" v-on:blur="changeNumber($event,x,index)" placeholder="数量" data-max="50" />
+						 		 <Icon type="plus-round" @click.native="jia(x,index)" class="add"></Icon>
+							</div>
+						</div>
+					</Col> -->
+                <icon wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+                <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
+           
+                <image class="cart-thumb" src="https://image-shop.dxracer.com.cn/{{item.image}}"></image>
+                <text class="cart-pro-name">{{item.productName}}</text>
+                <text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
+                <text class="cart-pro-price">￥{{item.salePrice}}</text>
+                <view class="cart-count-box">
+                    <text class="cart-count-down" bindtap="minusCount" data-obj="{{obj}}" data-index="{{index}}">-</text>
+                    <text class="cart-count-num">{{item.quantity}}</text>
+                    <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
+                </view>
+                <text class="cart-del" bindtap="deleteList" data-index="{{index}}" data-id="{{item.id}}">×</text>
+            </view>
+        </view>
+
+        <view class="cart-footer">
+            <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select" bindtap="selectAll"/>
+            <icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll"/>
+            <view class="order-icon" bindtap="paymoney">
+               <image src="/images/icon3.png"></image>
+            </view>
+            <text>全选</text>
+            <text class="cart-toatl-price">￥{{totalPrice}}</text>
+        </view>
+    </view>
+    <view wx:else>
+        <view class="cart-no-data">购物车是空的哦~</view>
+    </view>
+</view>

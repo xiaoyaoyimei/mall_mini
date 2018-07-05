@@ -1,5 +1,3 @@
-
-
 <!-- 整体 -->
 <view class="containsView">
 
@@ -18,7 +16,7 @@
 
       <!-- item-->
       <view data-specId="{{item.id}}" catchtap="clickitem" class="topContainsView">
-        <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}"        mode='scaleToFill' />
+        <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode='scaleToFill' />
         <view class="topRightView">
           <text class="topRightName">{{item.model_name}} </text>
           <text>{{item.model_no}}</text>

@@ -1,7 +1,7 @@
 
 var request = require('../../utils/https.js')
-var uri_address_list = 'address/api/addressList' //地址列表
-var uri_address_delete = 'address/api/delAddress' //删除地址
+var uri_address_list = 'address' //地址列表
+var uri_address_delete = 'address/delete' //删除地址
 
 Page({
   data:{
@@ -92,13 +92,12 @@ Page({
   onShow: function() {
     var that = this;
     // 生命周期函数--监听页面加载
-    request.req(uri_address_list,{
+    request.req(uri_address_list,'POST',{
     },(err,res) =>{
-      if (res.data.result == 1) {
+     
           that.setData({
-            addressData: res.data.data,//接数组
+            addressData: res.data,//接数组
           })
-      }
     });
   },
 })

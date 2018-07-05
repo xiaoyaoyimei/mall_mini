@@ -5,10 +5,10 @@
             <block wx:for-items="{{addressData}}">
                 <view data-item="{{item}}" catchtap="addressClick" class="top_background">
                     <view class="top_view">
-                        <text>{{item.trueName}}　{{item.mobPhone}}</text>
+                        <text>{{item.person}}　{{item.phone}}</text>
                     </view>
                     <view class="address_view">
-                        <text>{{item.areaInfo}} {{item.address}}</text>
+                        <text>{{item.receiveProvince}} {{item.receiveCity}} {{item.receiveDistrict}}{{item.address}}</text>
                     </view>
                 </view>
                 <view class="bottom_view">

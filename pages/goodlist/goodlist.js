@@ -85,11 +85,8 @@ console.log(id);
     onLoad: function (options) {
 
         // 页面初始化 options为页面跳转所带来的参数
-      if (JSON.stringify(options) == "{}"){
-          id = '';
-        }else{
+   
           id = options.id;
-        }
         
         var that = this;
         //封装https请求

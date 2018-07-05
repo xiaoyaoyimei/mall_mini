@@ -39,6 +39,9 @@
   margin-top: 22rpx;
   width: 80%;
 }
+.histroysearch{
+   margin-left: 30rpx;
+}
 
 .histroysearch .seachlist {
   margin-top: 15rpx;
@@ -48,7 +51,7 @@
 .button {
   margin-top: 20rpx;
   font-size: 30rpx;
-  margin-left: 10px;
+  margin-left: 30rpx;
 }
 
 .seachlist {

@@ -7,28 +7,20 @@
         </view>
         <view class="address_view"><text>{{addressInfo.areaInfo}} {{addressInfo.address}}</text></view>
         </view>
+        <view wx:for="{{orderData}}" wx:key="{{index}}">
         <view class="goods_info">
-            <view>
-                <image class="image_icon" src="http://testbbcimage.leimingtech.com{{orderData.list[0].goodsImages}}" mode="aspectFit"></image>
+            <view class="iamge-wrap">
+
+                <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
             </view>
             <view class="goods_infos">
-                <text class="text_style_1">{{orderData.list[0].goodsName}}</text>
-                <text class="text_style_2">{{orderData.list[0].specInfo}}</text>
-                <text class="text_style_3">¥ {{orderData.goodsTotalPrice}}</text>
+                <text class="text_style_1">{{item.productName}}</text>
+                <text class="text_style_2">{{item.productAttr}}</text>
+                <text class="text_style_3">¥ {{item.salePrice}}    x   {{item.quantity}}
+                      </text>
             </view>
         </view>
-        <view class="order_info">
-            <text>购买数量</text>
-            <text class="order_info_right_color">{{orderData.goodsNum}}</text>
-        </view>
-        <view class="order_info">
-            <text>送货时间</text>
-            <text class="order_info_right_color">节假日均可送货</text>
-        </view>
-        <view class="order_info">
-            <text>发票信息</text>
-            <text class="order_info_right_color">个人－明细　普通发票</text>
-        </view>
+      </view>
         <view class="coupon">
             <text>优惠券</text>
             <text class="order_info_right_color">无可用</text>

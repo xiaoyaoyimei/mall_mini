@@ -38,3 +38,7 @@
 text{
   font-size: 32rpx;
 }
+.bg-dx{
+  background: #0099ff;
+  color: #ffffff;
+}
