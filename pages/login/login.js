@@ -53,7 +53,7 @@ Page({
       loginName: username,
       passWord: psword
     }, (err, res) => {
-      console.log(res);
+    
       this.setData({
         loading: false,
         disabled: false,
@@ -67,7 +67,7 @@ Page({
           userId: result.userId,
         };
 
-        console.log(CuserInfo)
+      
         wx.setStorageSync('CuserInfo', CuserInfo);
         //登陆成功 跳转
         if (option.specId && option.goodsId) { //立即购买
@@ -98,13 +98,13 @@ Page({
                 }), 2000)
             }
           })
-        } else if (option.id == 3) {
-          wx.redirectTo({   //加个参数  
-            url: '../service/service'
+        } else if (option.id == 2) {
+          wx.navigateTo({   //加个参数  
+            url: '../addressManager/addressManager'
           })
           console.log("跳转到售后界面")
         } else {
-          wx.redirectTo({
+          wx.navigateTo({
             url: '../ordertotal/ordertotal?id=' + option.id,
           })
           console.log("跳转到ordertotal界面")

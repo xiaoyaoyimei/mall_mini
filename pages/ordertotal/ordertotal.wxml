@@ -3,13 +3,16 @@
 
   <!--列表list组件 需要修改-->
   <scroll-view  class="scrollview-list" scroll-y="true" style="height:750px" >
+
     <view class="list" wx:for="{{newlist}}"  wx:key="id">
+    <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}" >
       <view class="item-headerview">
-        <view class="statusandprice">
           <view class="item-text">
-          <span>订单号:{{item.order.orderNo}}</span>
-          <span>状态:{{item.order.orderStatus}}</span></view>
-          <view class="item-text">总价:{{item.order.orderTotalFee}}</view>
+          <text>订单号:{{item.order.orderNo}}</text>
+          </view>
+           <view class="item-text"> 
+            <text class="fr">{{item.order.orderStatus}}</text>
+           <text>总价:￥{{item.order.orderTotalFee}}</text>
         </view>
       </view>
   
@@ -21,12 +24,16 @@
            <text class="goodsnum">数量:{{item.quantity}}</text>
         </view>
         </view>
-    
-       <button data-button="{{item.button}}"class="status" bindtap="orderbutton">查看详情</button>
+    </navigator>
+
+			<view class="cz" wx:if="{{x.order.orderStatus=='01'||x.order.orderStatus=='02'}}"> 
+				<button  type="button"  class="btn "  click="cancel" wx:if="x.order.orderStatus=='01'||x.order.orderStatus=='02'">取消订单</button>
+				<button  type="button"  class="btn btn-dx"  bindtap="quzhifu" wx:if="x.order.orderStatus=='01'">去支付</button>
+        </view>
     </view>
   </scroll-view>
-  <!-- <loading class="loading" hidden="{{hidden}}">
+   <loading class="loading" hidden="{{hidden}}">
     <text class="loading-font">加载中...</text>
-  </loading> -->
+  </loading> 
   <view class="tips">{{tips}}</view>
 </view>

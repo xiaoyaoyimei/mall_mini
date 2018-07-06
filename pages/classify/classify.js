@@ -20,7 +20,9 @@ Page({
     list: [],
     num: 1,
     limt: 20,
-    tab: ''
+    tab: '',
+    tips: '', //无数据
+    total:0
   },
   //切换TAB
   onTapTag: function (e) {
@@ -47,34 +49,49 @@ Page({
   getData: function () {
     var that = this;
     var tab = that.data.tab;
-    console.log(id);
-    var pageNo = that.data.pageNo;
+
     that.setData({ loadingHidden: false });
-    if (pageNo == 1) {
-      that.setData({ list: [] });
-    }
     request.req(uri, 'GET', {
       //搜索过滤     
       keyWord: id,
       startRow: that.data.startRow,
       pageSize: that.data.pageSize,
     }, (err, res) => {
-      that.setData({
-        loadingHidden: true,
-        list: that.data.list.concat(res.data.itemsList)
-      });
-      console.log(res);
+
+      if (res.data.total>0){
+        that.setData({
+          loadingHidden: true,
+          list: that.data.list.concat(res.data.itemsList),
+          total: res.data.total
+        });
+      }
+    else {
+        that.setData({
+          loadingHidden: true,
+          tips: "ff~"
+        }) 
+      }
     })
 
   },
   //加载更多
   bindscrolltolower: function () {
-    console.log("加载更多");
     var that = this;
+    var tempstart = that.data.startRow;
+     tempstart = that.data.startRow + that.data.pageSize;
+    if (that.data.startRow > that.data.total) {
+      that.setData({
+        loadingHidden: true,
+        tips: "没有更多数据了~"
+      });
+      return ;
+    }else{
     that.setData({
-      startRow: that.data.startRow + that.data.pageSize
+      startRow: tempstart
     });
-    that.getData();  //pageNo++,并传到数组中
+
+    that.getData(); 
+    } //pageNo++,并传到数组中
   },
   clickitem: function (e) {   //带着specId 去详情界面
     var specId = e.currentTarget.dataset.specid;

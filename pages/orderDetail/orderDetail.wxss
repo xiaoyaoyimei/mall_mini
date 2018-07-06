@@ -1,0 +1,135 @@
+.fixbottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10rpx 0;
+  box-sizing: content-box;
+  background: #fff;
+  text-align: right;
+  border-top: 1px solid #09f;
+}
+
+.btn-white {
+  background: #fff;
+  border: 1px solid #eee;
+  margin-right: 20rpx;
+}
+.btn-red {
+  background: #09f;
+  border: 1px solid #09f;
+  color: #fff;
+   margin-right: 20rpx;
+}
+.stext{
+  font-size: 14px;
+  line-height: 60rpx;
+}
+.detail {
+  padding:0 20rpx;
+  color:#666;
+}
+
+.detail		.address {
+  background: #fff;
+}
+
+.detail			li {
+  display: flex;
+}
+
+.detail		img {
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-right: 1rem;
+}
+
+.mini-cart {
+  margin-top: 1rem;
+  background: #fff;
+  display: flex;
+}
+
+.mini-cart	image {
+  width:60px;
+  height:60px;
+}
+
+.mini-cart .mini-attr{
+  flex: 1
+}
+
+.mini-cart	.title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 270px;
+}
+
+.mini-cart		.price {
+  color: #222;
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.sp {
+  margin-top: 1rem;
+  background: #fff;
+  padding: 1rem 1rem 0;
+}
+
+
+.sptotal {
+  border-top: 1px solid #eee;
+  background: #fff;
+}
+.total_wrap{
+  display: flex;
+  text-align: right;
+  padding-bottom:10rpx;
+}
+.sptotal		.border {
+  border-top: 1px solid #eee;
+}
+.total_wrap		.t {
+  flex: 1;
+ 
+}
+
+.total_wrap	.s {
+  color: #222;
+  font-weight: bold;
+   width:100px;
+}
+
+.sptotal		.zjg {
+  color: #09f;
+  font-size: 18px;
+}
+
+.pb15 {
+  padding-bottom: 15px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.btn-invoice {
+  float: right;
+}
+
+.btn-invoice:hover {
+  color: #fff;
+}
+
+.status {
+  background: #f60;
+  height: 80rpx;
+  color: #fff;
+  font-size: 16px;
+  padding-top:20rpx;
+  padding-left: 40rpx;
+}

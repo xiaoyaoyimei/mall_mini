@@ -16,14 +16,25 @@
       </view>
       <image class="kind-list-img" src="../../images/nav.png"></image>
     </view>
-  <view class="detail_footer">
+    <view class="nav bc_white">
+      <view class="{{selected?'red':'default'}}" bindtap="selected">长图描述</view>
+      <view class="{{selected1?'red':'default'}}" bindtap="selected1">产品详细</view>
+    </view>
+    <view class="{{selected?'show':'hidden'}}">
+    <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
+    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"></image>
+    </view>
+    </view>
+    <view class="{{selected1?'show':'hidden'}}">	
+    <view wx:for="{{productDesc}}"  wx:key="index" class="pro_detail">
+	   <text class="title">{{item.attrCode}}:</text> <text class="neirong">{{item.attrValue}}</text></view>
+  </view>
+    <view class="detail_footer">
       <view class="detail_footer_btn" bindtap="showbynow">
         <text>立即购买</text>
       </view>
     </view>
-    <!--这里data中article为bindName-->
-    <!-- <template is="wxParse" data="{{wxParseData:goodsDetail.nodes}}" />
-   -->
+
   </scroll-view>
 </view>
 
@@ -32,13 +43,13 @@
 <view class="modal-dialog" wx:if="{{showModal}}">
   <view class="modal-content">
     <view class="select_pro">
-         <view wx:if="{{xiajia}}" class="xiajia">
-         	 	该商品已下架
-         	 </view>
-       	 <view wx:if="{{!xiajia&&!firstshow}}" class="xiajia">
-       	 	请选择商品 
-         	 </view>
-            <view wx:if="{{firstshow}}" class='chooseproduct'>
+      <view wx:if="{{xiajia}}" class="xiajia">
+        该商品已下架
+      </view>
+      <view wx:if="{{!xiajia&&!firstshow}}" class="xiajia">
+        请选择商品
+      </view>
+      <view wx:if="{{firstshow}}" class='chooseproduct'>
         <view class="image-xq">
           <image src="https://image-shop.dxracer.com.cn/{{choosesp.img}}"></image>
         </view>
@@ -55,7 +66,7 @@
       </view>
     </view>
     <!--选择商品结束 -->
-    <view class="attr_box" wx:for="{{detailData.productAttrList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex"  wx:key="attrValueObj.id">
+    <view class="attr_box" wx:for="{{detailData.productAttrList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex" wx:key="attrValueObj.id">
       <!--属性名-->
       <view class="attr_name">{{attrValueObj.attrKey.catalogAttrValue}}</view>
 
@@ -65,12 +76,7 @@
         <!--   -->
         <!-- <view class="attr_value {{value.id==attrValueObj.selectedValue?'attr_value_active':''}}" bindtap="selectAttrValue" data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}"
           wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value.modelAttrValue}}</view> -->
-             <view class="attr_value {{valueIndex==attrValueObj.selectedValue?'attr_value_active':''}}" 
-              bindtap="selectAttrValue"
-              data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" 
-              data-column-index="{{valueIndex}}"
-              data-index="{{attrIndex}}" 
-              data-selectedvalue="{{attrValueObj.selectedValue}}"
+        <view class="attr_value {{valueIndex==attrValueObj.selectedValue?'attr_value_active':''}}" bindtap="selectAttrValue" data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-column-index="{{valueIndex}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}"
           wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex" wx:key="value.id">{{value.modelAttrValue}}</view>
       </view>
     </view>
@@ -86,9 +92,9 @@
     <view class="num_wrap">
       <view>数量:</view>
       <view class="num_right">
-            <text bindtap="minusCount" class="min">-</text>
-            <text class="num">{{quantity}}</text>
-            <text bindtap="addCount" class="add">+</text>
+        <text bindtap="minusCount" class="min">-</text>
+        <text class="num">{{quantity}}</text>
+        <text bindtap="addCount" class="add">+</text>
       </view>
       <!-- <input placeholder-class="input-holder" type="number" maxlength="10" bindinput="inputChange" class="input" placeholder="请输入数"></input> -->
     </view>

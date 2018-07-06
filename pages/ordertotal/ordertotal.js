@@ -27,14 +27,10 @@ Page({
     request.req(statusuri, 'GET', {
     }, (err, res) => {
       if (res.data.code == 200) {
-        if (!res.data) {   //无数据
-          that.setData({ hidden: true, tips: "没有数据~" })
-        } else {
           that.setData({
             hidden: true,
             statusenums: res.data.object,
           }) 
-      }
       }
     })
   },

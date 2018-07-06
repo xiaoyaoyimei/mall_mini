@@ -82,13 +82,22 @@ function req(url, methodway, data, callback) {
 
 //不需要token的请求
 function req2(url, methodway, data, callback) {
+  var CuserInfo = wx.getStorageSync('CuserInfo');
     wx.request({
       url: rootDocment + url+'/'+data,
      // data: data,
       method: methodway,    //大写
-      header: { 'Content-Type': 'application/json'},
+      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {
-        callback(null, res)
+        if (res.data.code == 401) {  //token失效 用code换下token
+          console.log(res.data.msg)
+          wx.redirectTo({   //不一定走
+            url: '../login/login',
+          })
+          }else{
+          callback(null, res)
+          }
+       
       },
       fail(e) {
         console.error(e)

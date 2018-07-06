@@ -27,52 +27,18 @@ Page({
 
     })
   },
-  already_shipped: function () {
+  address_manager: function () {
     if (!Info.token) {
-      //跳转到login
-      wx.navigateTo({
-        url: '../login/login?id=' + 1
-      })
-    }
-    //待付款
-    wx.navigateTo({
-      url: '../ordertotal/ordertotal?id=' + 1
-    })
-  },
-  no_comment: function () {
-    if (!Info.token) {
-      //跳转到login
+  
       wx.navigateTo({
         url: '../login/login?id=' + 2
       })
     }
-    //待收货
     wx.navigateTo({
-      url: '../ordertotal/ordertotal?id=' + 2
+      url: '../addressManager/addressManager?id=' + 2
     })
   },
-  //售后
-  contact_us: function () {
-    // if (!Info.token) {
-    //   //跳转到login
-    //   wx.navigateTo({   //加个参数  
-    //     url: '../login/login?id=' + 3
-    //   })
-    // }else{
-    //     wx.navigateTo({   //加个参数  
-    //     url: '../service/service'
-    //   })
-    // }
-    wx.navigateTo({   //加个参数  
-      url: '../contactUs/contactUs'
-    })
-  },
-  coupon: function () {
-    //优惠券
-     wx.navigateTo({   //加个参数  
-        url: '../coupon/coupon'
-      })
-  },
+
   //账户管理
   mimeinfo: function () {
     wx.navigateTo({
@@ -83,15 +49,22 @@ Page({
     var that = this
     //判断是否登陆，如果没登陆走微信的
     var CuserInfo = wx.getStorageSync('CuserInfo');
+    console.log(CuserInfo);
     Info = CuserInfo
     if (CuserInfo.token) {
       //获取照片和用户名
-      var photo = 'http://testbbcimage.leimingtech.com' + CuserInfo.avatar_url;
-      var name = CuserInfo.loginname;
-      var user = {}
-      user.avatarUrl = photo;
-      user.nickName = name;
-      that.setData({ userInfo: user })
+      request.req('account', 'POST', {}, (err, res) => {
+     
+          var name = res.data.nickName;
+          var user = {}
+          user.avatarUrl = 'https://image-shop.dxracer.com.cn/'+res.data.iconUrl;
+          user.nickName = name;
+          user.phone = res.data.customerMobile;
+          that.setData({
+            userInfo: user
+          })
+        
+      })
     } else {
       //调用应用实例的方法获取全局数据
       app.getUserInfo(function (userInfo) {

@@ -44,6 +44,22 @@ Page({
     quantity: 1,
     max: 100,
     firstshow: false,
+    productDesc: [],
+    productimg: [],
+    selected: true,
+    selected1: false
+  },
+  selected: function (e) {
+    this.setData({
+      selected1: false,
+      selected: true
+    })
+  },
+  selected1: function (e) {
+    this.setData({
+      selected: false,
+      selected1: true
+    })
   },
   buyNow: function (event) {  //获取cartId
     //判断是否登陆,如果未登陆跳到登陆界面，如果登陆就调接口，跳转确认订单界面
@@ -71,7 +87,7 @@ Page({
           that.setData({
             tips: res.data.msg
           })
-          console.log(res.data.msg)
+       
         }
       })
     }
@@ -80,6 +96,22 @@ Page({
     // 生命周期函数--监听页面加载
     var that = this;
     this.requestData(options);
+    this.getimgdetail(options);
+  },
+  getimgdetail(oo){
+    specId = oo.specId;
+    var that=this;
+    request.req2('product/desc', 'POST', specId, (err, res) => {
+        that.setData({
+          productDesc: res.data,
+        })
+    });
+    console.log(that.data.productDesc);
+    request.req2('product/img', 'POST', specId, (err, res) => {
+        that.setData({
+          productimg: res.data,
+        })
+      });
   },
   //数据请求*(直接带post参数)
   requestData: function (oo) {

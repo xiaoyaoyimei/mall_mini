@@ -25,4 +25,8 @@
       </view>
     </block>
   </scroll-view>
+    <loading class="loading" hidden="{{loadingHidden}}">
+    <text class="loading-font">加载中...</text>
+  </loading>
+  <view class="tips">{{tips}}</view>
 </view>
