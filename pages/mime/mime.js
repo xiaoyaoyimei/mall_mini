@@ -1,7 +1,6 @@
 //mime.js
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
-var uri = 'memberapi/memberDetail'
 var app = getApp()
 var Info = {}
 Page({
@@ -13,6 +12,7 @@ Page({
 
   },
   onLoad: function () {
+
   },
   no_payment: function () {
     //全部订单
@@ -50,7 +50,7 @@ Page({
     //判断是否登陆，如果没登陆走微信的
     var CuserInfo = wx.getStorageSync('CuserInfo');
     Info = CuserInfo
-    if (CuserInfo.token) {
+    if (!CuserInfo.token) {
       //获取照片和用户名
       request.req('index','account', 'POST', {}, (err, res) => {
      

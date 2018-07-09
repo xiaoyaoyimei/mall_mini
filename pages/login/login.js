@@ -71,8 +71,10 @@ Page({
         wx.setStorageSync('CuserInfo', CuserInfo);
         console.log('loginoption'+option.fromurl);
         //登陆成功 跳转
-        if (option.fromurl=='cart') { //立即购买
-          wx.navigateTo({   //加个参数  
+
+        if (option.fromurl=="cart") { //立即购买
+   
+          wx.switchTab({   //加个参数  
             url: '../cartOne/cartOne'
           })
         } else if (option.fromurl == 'addresslist') {

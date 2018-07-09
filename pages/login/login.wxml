@@ -8,7 +8,7 @@
       <input placeholder="请输入密码" class="login-item-input" password placeholder-style="color:gray; font-size: 16px; " bindinput="bindpsdInput" />
     </view>
     <view class="login-item-button">
-      <button type="warn" size="default" plain="{{plain}}" loading="{{loading}}" disabled="{{disabled}}" class="login-button" bindtap="loginbutton"> 登录 </button>
+      <button type="primary" size="default" plain="{{plain}}" loading="{{loading}}" disabled="{{disabled}}" class="login-button" bindtap="loginbutton"> 登录 </button>
     </view>
     <view class="error-msg" wx:if="{{error}}">{{error}}</view>
   </view>

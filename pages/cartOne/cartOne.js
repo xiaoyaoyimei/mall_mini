@@ -11,7 +11,8 @@ Page({
       this.data.cartList = [];
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
         if (res.data.code == 200) {
-                self.setData({
+
+            self.setData({
               hasList: true,
               cartList: res.data.object,
             })
@@ -24,10 +25,10 @@ Page({
       });
   },
   onLoad(){
-    this.getCartList();
-
+  
   },
   onShow() {
+    this.getCartList();
     this.getTotalPrice();
   },
   /**
