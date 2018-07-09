@@ -1,4 +1,5 @@
 <view class="main">
+
     <view wx:if="{{hasList}}">
         <view class="cart-box">
             <view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
@@ -18,10 +19,10 @@
 							</div>
 						</div>
 					</Col> -->
-                <icon wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+                <icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
                 <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
            
-                <image class="cart-thumb" src="https://image-shop.dxracer.com.cn/{{item.image}}"></image>
+                <image class="cart-thumb" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="widthFix"></image>
                 <text class="cart-pro-name">{{item.productName}}</text>
                 <text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
                 <text class="cart-pro-price">￥{{item.salePrice}}</text>

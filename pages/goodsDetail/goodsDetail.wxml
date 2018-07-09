@@ -42,7 +42,7 @@
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}">
   <view class="modal-content">
-    <view class="select_pro">
+
       <view wx:if="{{xiajia}}" class="xiajia">
         该商品已下架
       </view>
@@ -64,7 +64,7 @@
           </view>
         </view>
       </view>
-    </view>
+  
     <!--选择商品结束 -->
     <view class="attr_box" wx:for="{{detailData.productAttrList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex" wx:key="attrValueObj.id">
       <!--属性名-->

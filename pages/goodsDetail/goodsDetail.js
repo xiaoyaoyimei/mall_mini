@@ -1,6 +1,5 @@
 //商品分类页传来的商品Id
 var specId = ''
-var goodsId = ''
 var app = getApp();
 var request = require('../../utils/https.js')
 var uribuy = 'order/shopping/add'; //立即购买
@@ -62,14 +61,17 @@ Page({
     })
   },
   buyNow: function (event) {  //获取cartId
+
     //判断是否登陆,如果未登陆跳到登陆界面，如果登陆就调接口，跳转确认订单界面
     var CuserInfo = wx.getStorageSync('CuserInfo');
     console.log(CuserInfo.token)
+    console.log(specId)
     if (!CuserInfo.token) {
       //跳转到login
       wx.navigateTo({
-        url: '../login/login?goodsId=' + goodsId + '&specId=' + specId,
+        url: '../login/login?specId=' + specId ,
       })
+      
     } else {
       var that = this;
       request.req(uribuy, 'POST', {
@@ -106,7 +108,6 @@ Page({
           productDesc: res.data,
         })
     });
-    console.log(that.data.productDesc);
     request.req2('product/img', 'POST', specId, (err, res) => {
         that.setData({
           productimg: res.data,
@@ -321,31 +322,33 @@ Page({
     });
   },
   atc() {
+
     if (this.data.productItemId == "") {
       wx.showToast({
         title: "请选择商品属性"
       })
       return;
     }else{
-    request.req('/order/shopping/add', 'POST', 
-     {
-      productItemId: this.data.productItemId,
-      quantity: this.data.quantity
-    }, (err, res) => {
-      if (res.data.code == 200) {
-        wx.switchTab({
-          url: '../cartOne/cartOne',
-        })
-        }
-        else {
-        wx.showToast({
-          title: res.data.msg
-        })
-          return;
-        }
 
-    })
-  }
-  }
+      request.req(this.data.productItemId,'order/shopping/add', 'POST', {
+          productItemId: this.data.productItemId,
+          quantity: this.data.quantity
+        }, (err, res) => {
+          if (res.data.code == 200) {
+            wx.switchTab({
+              url: '../cartOne/cartOne',
+            })
+            }
+            else {
+            wx.showToast({
+              title: res.data.msg
+            })
+              return;
+            }
+
+        })
+      }
+    }
+
 
 })

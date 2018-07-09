@@ -1,49 +1,59 @@
 <view>
-    <view class="top_line"></view>
-    <scroll-view scroll-y="true" scroll-x="false">
-        <view bindtap="addressClick">
-            <view class="top_view">
-            <text>{{addressInfo.person}}  {{addressInfo.phone}}</text>
-        </view>
-        <view class="address_view">
-        <text> {{addressInfo.receiveProvince}}{{addressInfo.receiveCity}}{{addressInfo.receiveDistrict}}{{addressInfo.address}}
-        </text>
-        </view>
-        </view>
-        <view wx:for="{{orderData}}" wx:key="{{index}}">
-        <view class="goods_info">
-            <view class="iamge-wrap">
+  <view class="top_line"></view>
+  <scroll-view scroll-y="true" scroll-x="false">
+  <navigator url="../addressManager/addressManager">
+    <view wx:if="{{hasAddress}}">
+      <view bindtap="addressClick">
+        <view class="top_view">
+          <text>{{addressInfo.person}}  {{addressInfo.phone}}</text> </view>
+          <view class="address_view">
+            <text> {{addressInfo.receiveProvince}}{{addressInfo.receiveCity}}{{addressInfo.receiveDistrict}}{{addressInfo.address}}
+           </text>
+          </view>
+      </view>
+      </view>
 
-                <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
-            </view>
-            <view class="goods_infos">
-                <text class="text_style_1">{{item.productName}}</text>
-                <text class="text_style_2">{{item.productAttr}}</text>
-                <text class="text_style_3">¥ {{item.salePrice}}    x   {{item.quantity}}
+      <view wx:else class="orders-no-address"><text>添加收货地址</text><text> > </text></view>
+      </navigator>
+    <view wx:for="{{cartList}}" wx:key="{{index}}">
+      <view class="goods_info">
+        <view class="iamge-wrap">
+
+          <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
+        </view>
+        <view class="goods_infos">
+          <text class="text_style_1">{{item.productName}}</text>
+          <text class="text_style_2">{{item.productAttr}}</text>
+          <text class="text_style_3">¥ {{item.salePrice}}    x   {{item.quantity}}
                       </text>
-            </view>
         </view>
       </view>
-        <view class="coupon">
-            <text>优惠券</text>
-            <text class="order_info_right_color">无可用</text>
-        </view>
-        <view class="bottom_text_1">
-            <text>商品金额</text>
-            <text class="right_text">¥ {{orderData.goodsTotalPrice}}</text>
-        </view>
-        <view class="bottom_text_2">
-            <text>运费</text>
-            <text class="right_text">＋ ¥ {{orderData.goodsTotalFreight}}</text>
-        </view>
-        <view class="bottom_text_3">
-            <text>优惠券</text>
-            <text class="right_text">－ ¥ 0.0</text>
-        </view>
-        <view class="true_pay">
-            <text class="true_pay_right">¥{{total}}</text>
-            <text>实付金额:　</text>
-        </view>
-        <button class="bottom_btn" bindtap="paynow" type="primary">微信支付</button>
-    </scroll-view>
+    </view>
+    <view class="coupon-wrap">
+    <view class="coupon">  
+      <text>优惠券</text>
+      <button catchtap='usecoupon' size="mini">使用</button>  
+    </view>
+     <view class="weui-cell ">
+      <input placeholder="优惠券" auto-focus type="text" class="weui-input" bindinput="bindcouponInput"/>
+      </view> 
+      </view>
+    <view class="bottom_text_1">
+      <text>商品金额</text>
+      <text class="right_text">¥ {{origintotalprice}}</text>
+    </view>
+    <view class="bottom_text_2">
+      <text>商品件数</text>
+      <text class="right_text"> {{total.num}}</text>
+    </view>
+    <view class="bottom_text_3">
+      <text>优惠券</text>
+      <text class="right_text">－ ¥ 0.0</text>
+    </view>
+    <view class="true_pay">
+      <text class="true_pay_right">¥{{total.price}}</text>
+      <text>实付金额:　</text>
+    </view>
+    <button class="bottom_btn" bindtap="paynow" type="primary">微信支付</button>
+  </scroll-view>
 </view>

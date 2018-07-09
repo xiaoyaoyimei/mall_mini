@@ -51,7 +51,7 @@ Page({
     var tab = that.data.tab;
 
     that.setData({ loadingHidden: false });
-    request.req(uri, 'GET', {
+    request.req('searchpage',uri, 'GET', {
       //搜索过滤     
       keyWord: id,
       startRow: that.data.startRow,

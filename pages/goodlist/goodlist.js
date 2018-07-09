@@ -47,13 +47,12 @@ Page({
     getData: function () {
         var that = this;
         var tab = that.data.tab;
-console.log(id);
         var pageNo = that.data.pageNo;
         that.setData({ loadingHidden: false });
         if (pageNo == 1) {
             that.setData({ list: [] });
         }
-        request.req(uri,'GET', {
+        request.req('searchpage',uri,'GET', {
              //搜索过滤     
             keyWord: id,
             startRow: that.data.startRow,

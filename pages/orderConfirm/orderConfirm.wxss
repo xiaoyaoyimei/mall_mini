@@ -58,12 +58,14 @@
     font-size: 12px;
     padding-top: 1px;
 }
-.coupon{
+.coupon-wrap{
+    border-top: 10px solid #EFEFF4;
+    border-bottom: 10px solid #EFEFF4;
     font-size: 13px;
-    border-top: 10px solid silver;
-    border-top-color: #EFEFF4;
-    border-bottom: 10px solid silver;
-    border-bottom-color: #EFEFF4;
+}
+.coupon{
+    
+
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -101,4 +103,25 @@
 }
 .right_text{
     color: red;
+}
+.orders-no-address{
+  font-size:13px;
+border-top:10px solid silver;
+border-top-color:#EFEFF4;
+border-bottom:10px solid silver;
+border-bottom-color:#EFEFF4;
+padding:10px;
+display:flex;
+justify-content:space-between;
+}
+.weui-cell{
+padding:10px 15px;
+position:relative;
+display:flex;
+align-items:center;
+}
+.weui-input{
+height:2.58823529em;
+min-height:2.58823529em;
+line-height:2.58823529em;
 }

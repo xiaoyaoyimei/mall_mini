@@ -58,7 +58,7 @@ swiper-item image {
 
 .detail_footer_btn {
   width: 100%;
-  height: 58px;
+  height: 50px;
   background-color: #0099ff;
   color: white;
   text-align: center;
@@ -133,11 +133,9 @@ swiper-item image {
   background: #ffffff;
 }
 .modal-content {
-  padding: 40rpx 32rpx;
+  padding: 30rpx;
 }
-.image-xq{
-  margin-right: 20rpx;
-}
+
 
 .modal-footer {
   display: flex;
@@ -171,7 +169,7 @@ swiper-item image {
 } 
 /*属性名*/
 .attr_name { 
- padding: 10rpx 0; 
+ padding: 10rpx 0 0 0; 
 } 
 /*属性值*/
 .attr_value_box { 
@@ -219,15 +217,23 @@ swiper-item image {
   background: #fff;
   padding-top: 20rpx;
 }
-.select_pro{
-  height: 200rpx;
-}
+
 .chooseproduct{
-  display: flex;
+  position: relative;
+  overflow: visible;
 }
-.chooseproduct image{
-  width:100rpx;
-  height:100rpx;
+.image-xq{
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow:visible;
+}
+.small-xq{
+  padding-left: 160rpx;
+}
+.image-xq image{
+  width:160rpx;
+  height:160rpx;
 }
 
 .color-dx{
@@ -271,5 +277,5 @@ swiper-item image {
 }
 .pro_detail{
   padding:0 30rpx;
-  line-height: 50rpx;
+  line-height: 60rpx;
 }

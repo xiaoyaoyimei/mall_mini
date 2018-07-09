@@ -9,23 +9,25 @@ Page({
   getCartList() {
     var self=this;
       this.data.cartList = [];
-      request.req('order/shopping/list', 'POST', {}, (err, res) => {
-        if (res.data.code == '200') {
+      request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
+        if (res.data.code == 200) {
+                self.setData({
+              hasList: true,
+              cartList: res.data.object,
+            })
+            self.getTotalPrice();
+        }else{
           self.setData({
-            cartList: res.data.object,
-          })
+            hasList: false
+          });
         }
       });
-      console.log(this.data.cartList)
   },
   onLoad(){
     this.getCartList();
+
   },
   onShow() {
-
-    this.setData({
-      hasList: true,
-    });
     this.getTotalPrice();
   },
   /**
@@ -48,10 +50,10 @@ Page({
   deleteList(e) {
     var ids = [];
     ids[0] = e.currentTarget.dataset.id;
-      request.req('order/shopping/deleByIds', 'POST', ids, (err, res) => {
+      request.req('cart','order/shopping/deleByIds', 'POST', ids, (err, res) => {
       if (res.data.code == 200) {
         this.getCartList();
-        this.getTotalPrice();
+      
       }
     })
  

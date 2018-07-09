@@ -62,3 +62,15 @@
 .my .my-item:last-child .myitem-name{
   border-bottom: none;
 }
+.logout{
+ height:80rpx;
+display:block;
+line-height:80rpx;
+background:#fff;
+width:100%;
+text-align:center;
+margin-top:40rpx;
+margin-bottom:20rpx;
+color:red;
+
+}

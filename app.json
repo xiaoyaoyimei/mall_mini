@@ -48,8 +48,8 @@
       {
         "pagePath": "pages/classify/classify",
         "text": "分类",
-        "iconPath": "images/classify_nomal.png",
-        "selectedIconPath": "images/classify_pressed.png"
+        "iconPath": "images/icon_sort.png",
+        "selectedIconPath": "images/icon_sort_HL.png"
       },
       {
           "pagePath": "pages/cartOne/cartOne",

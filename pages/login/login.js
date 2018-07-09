@@ -49,7 +49,7 @@ Page({
     var username = that.data.username;
     var psword = that.data.psword;
     //访问网络
-    request.req(uri,'POST', {
+    request.req(option.fromurl,uri,'POST', {
       loginName: username,
       passWord: psword
     }, (err, res) => {
@@ -67,47 +67,28 @@ Page({
           userId: result.userId,
         };
 
-      
+     
         wx.setStorageSync('CuserInfo', CuserInfo);
+        console.log('loginoption'+option.fromurl);
         //登陆成功 跳转
-        if (option.specId && option.goodsId) { //立即购买
-          var that = this;
-          request.req(uribuy,'POST', {
-            specId: option.specId,
-            count: '1',
-            saveType: '1',
-            goodsId: option.goodsId
-          }, (err, res) => {
-            var result = res.data;
-            console.log(result);
-            if (result.result == 1) { //获取cartId
-              //拿着cartId跳转到确认订单界面
-              console.log("哈哈")
-              var cartIds = result.data[0].cartIds;
-              wx.redirectTo({   //获取cartId
-                url: '../orderConfirm/orderConfirm?cartIds=' + cartIds,
-              })
-
-            } else {
-              console.log(res.data.msg)
-              that.setData({ showToast: res.data.msg })
-              //跳转到goodsDetail**
-              setTimeout(
-                wx.redirectTo({   //获取cartId
-                  url: '../goodsDetail/goodsDetail?specId=' + option.specId,
-                }), 2000)
-            }
+        if (option.fromurl=='cart') { //立即购买
+          wx.navigateTo({   //加个参数  
+            url: '../cartOne/cartOne'
           })
-        } else if (option.id == 2) {
+        } else if (option.fromurl == 'addresslist') {
           wx.navigateTo({   //加个参数  
             url: '../addressManager/addressManager'
           })
-          console.log("跳转到售后界面")
-        } else {
+         
+        } else if (option.fromurl == 'orderlist'){
           wx.navigateTo({
-            url: '../ordertotal/ordertotal?id=' + option.id,
+            url: '../ordertotal/ordertotal',
           })
-          console.log("跳转到ordertotal界面")
+        
+        }else{
+          wx.navigateTo({
+            url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
+          })
         }
 
       } else {
@@ -121,8 +102,8 @@ Page({
     })
   },
   onLoad: function (options) {  //id==1 从商品详情跳转过来的，到确认订单界面
-    console.log(options)
     option = options;  //存储options
+    console.log('登录页' + options.fromurl)
   },
 
 })

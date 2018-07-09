@@ -5,59 +5,229 @@ var uri_order_confirm = 'order/shopping/confirm' //确认订单
 var uri_pay = 'wxh5pay/api/towxpayInfo'
 Page({
   data: {
-    orderData: {},
+    cartList: [],
     addressInfo: {},
-    total:0,
-    productItemIds:[]
+    hasAddress: false,
+    productItemIds:[],
+    couponshow: true,
+    //商品原总价
+    origintotalprice: 0,
+
+    couponmsg: {
+      availableSku: '',
+      availableCatalog: '',
+      modeValue: '',
+      couponMode: ''
+    },
+    xscoupon: false,
+    couponCode: '',
+    total: {
+      price: 0,
+      num: 0
+    },
+  },
+  //优惠券
+  bindcouponInput: function (e) {
+    this.setData({
+      couponCode: e.detail.value,
+    })
   },
   addressClick: function () {
     wx.navigateTo({
       url: '../addressManager/addressManager',
     })
   },
+  //总价计算
+  jisuan(value) {
+    let _this = this;
+    var num = _this.data.total.num;
+    var totalPrice = _this.data.total.price;
+    var origintotalprice = _this.data.origintotalprice;
+    //刚进入购物车页面
+    if (value == undefined) {
+      this.data.cartList.forEach(function (item, index) {
+        origintotalprice += item.salePrice * item.quantity;
+        totalPrice += item.salePrice * item.quantity;
+        num += item.quantity;
+      });
+    }
+    //使用优惠券
+    else {
+
+      let couponmethod = value;
+      if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "") {
+        totalPrice = 0;
+        if (couponmethod.couponMode == 'rate') {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
+              totalPrice += item.salePrice * item.quantity;
+            } else {
+              totalPrice += item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+            }
+          });
+        } else {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
+              totalPrice += item.salePrice * item.quantity;
+            } else {
+              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+            }
+          });
+        }
+      } else if (couponmethod.availableSku != "") {
+        totalPrice = 0;
+        if (couponmethod.couponMode == 'rate') {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.id == couponmethod.availableCatalog) {
+              totalPrice += item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+            } else {
+              totalPrice += item.salePrice * item.quantity;
+            }
+          });
+        } else {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.id == couponmethod.availableCatalog) {
+              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+            } else {
+              totalPrice += item.salePrice * item.quantity;
+            }
+          });
+        }
+      } else {
+        totalPrice = 0;
+        if (couponmethod.couponMode == 'rate') {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.productType == couponmethod.availableSku) {
+              totalPrice+= item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+            } else {
+              totalPrice += item.salePrice * item.quantity;
+            }
+          });
+        } else {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.productType == couponmethod.availableSku) {
+              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+            } else {
+              totalPrice += item.salePrice * item.quantity;
+            }
+          });
+        }
+      }
+    }
+    this.setData({
+      total: { num: num, price: totalPrice},
+      origintotalprice: origintotalprice
+    })
+  },
+  usecoupon() {
+    this.data.xscoupon = false
+    if (this.data.couponCode==''){
+    wx.showToast({
+      title: '优惠码不能为空',
+      icon: 'error',
+      duration: 1000,
+      mask: true,
+      success: function () {return; }
+      })
+    }else{
+    let para = {
+      addressId: this.data.addressInfo.id,
+      productItemIds: this.data.productItemIds,
+      couponCode: this.data.couponCode
+    };
+    request.req('cart', 'promotion/coupon', 'POST', para, (err, res) => {
+
+      if (res.data.code == '200') {
+        this.setData({
+          xscoupon:true,
+          couponmsg: Object.assign({}, res.data.object),
+        })
+        this.jisuan(this.data.couponmsg);
+      }else{
+        this.setData({
+          xscoupon: false,
+        })
+        wx.showToast({
+          title: res.data.object,
+          icon: 'error',
+          duration: 1000,
+          mask: true
+        })
+      }
+    });
+    }
+  },
+  couponprice(value) {
+    let couponmsg = this.couponmsg;
+    if (couponmsg.couponMode == 'rate') {
+      return value * (1 - couponmsg.modeValue)
+    }
+    else {
+      return value - couponmsg.modeValue
+    }
+  },
   // 生命周期函数--监听页面加载
   onLoad: function () {
     var that = this;
-    var orderData = wx.getStorageSync('cart');
-
+    // this.cartList = JSON.parse(sessionStorage.getItem('cart'));
+    // var _this = this;
+    // _this.productItemIds = [];
+    // let n = 0;
+    // this.cartList.forEach(function (item, index) {
+    //   if (item.promotionTitle != '' && item.promotionTitle != null) {
+    //     n += 1;
+    //   }
+    //   _this.productItemIds.push(item.id);
+    // });
+    // if (this.cartList.length == n) {
+    //   this.couponshow = false
+    // } else {
+    //   this.couponshow = true
+    // }
+    var cartList = wx.getStorageSync('cart');
+    var _this = this;
+    _this.data.productItemIds = [];
+    let n = 0;
+    _this.data.cartList.forEach(function (item, index) {
+      if (item.promotionTitle != '' && item.promotionTitle != null) {
+        n += 1;
+      }
+      _this.data.productItemIds.push(item.id);
+    });
+    if (this.data.cartList.length == n) {
+      this.setData({
+        couponshow: false,
+      })
+    } else {
+      this.setData({
+        couponshow: true,
+        productItemIds: productItemIds
+      })
+    }
     this.setData({
-      orderData: orderData,
+      cartList: cartList,
     })
-    this.getTotalPrice();
-
+    
+    this.jisuan();
   },
   onShow: function () {
     // 生命周期函数--监听页面显示
 
     var addresss = wx.getStorageSync('address');
+    console.log(addresss)
     if(addresss.phone != null){
       this.setData({
         addressInfo: addresss,
+        hasAddress:true
       })
     }else{
       this.setData({
-        addressInfo : {'trueName':'请选择收货地址'},
+        hasAddress:false
       })
     }
   },
 
-  /**
-   * 计算总价
-   */
-  getTotalPrice() {
-    let orders = this.data.orderData;
-    console.log(orders);
-    let total = 0;
-    var productItemIds=[];
-    for (let i = 0; i < orders.length; i++) {
-      total += orders[i].quantity * orders[i].salePrice;
-      productItemIds[i] = orders[i].id
-    }
-    this.setData({
-      total: total,
-      productItemIds: productItemIds
-    })
-  },
+
   paynow: function () { //先跳转到支付成功界面界面  拿到code
     this.saveOrder();
 

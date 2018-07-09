@@ -19,11 +19,11 @@ Page({
     if (!Info.token) {
       //跳转到login
       wx.navigateTo({
-        url: '../login/login?id=' + 0
+        url: '../login/login?fromurl=orderlist' 
       })
     }
     wx.navigateTo({
-      url: '../ordertotal/ordertotal?id=' + 0
+      url: '../ordertotal/ordertotal' 
 
     })
   },
@@ -31,11 +31,11 @@ Page({
     if (!Info.token) {
   
       wx.navigateTo({
-        url: '../login/login?id=' + 2
+        url: '../login/login?fromurl=addresslist'
       })
     }
     wx.navigateTo({
-      url: '../addressManager/addressManager?id=' + 2
+      url: '../addressManager/addressManager?fromurl='
     })
   },
 
@@ -49,11 +49,10 @@ Page({
     var that = this
     //判断是否登陆，如果没登陆走微信的
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    console.log(CuserInfo);
     Info = CuserInfo
     if (CuserInfo.token) {
       //获取照片和用户名
-      request.req('account', 'POST', {}, (err, res) => {
+      request.req('index','account', 'POST', {}, (err, res) => {
      
           var name = res.data.nickName;
           var user = {}
@@ -74,5 +73,31 @@ Page({
         })
       })
     }
+  },
+  logout:function(){
+    var that = this
+    //判断是否登陆，如果没登陆走微信的
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    console.log(CuserInfo);
+    Info = CuserInfo
+    if (CuserInfo.token) {
+      request.req('index','customer/logout', 'POST', {}, (err, res) => {
+        if(res.code==200){
+          wx.showToast({
+            title: res.msg,
+            icon: 'success',
+            duration: 2000
+          })
+          wx.clearStorage({
+            success: function (res) {
+              that.setData({
+                CuserInfo: ''
+              })
+            }
+          })
+        
+        }
+    })
+  }
   }
 })
