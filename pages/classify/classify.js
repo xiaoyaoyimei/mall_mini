@@ -1,8 +1,8 @@
 // pages/goodlist/goodlist.js
+var app = getApp()
 var request = require('../../utils/https.js')
 var uri = 'product/search' //商品列表的的uri
-var app = getApp();
-var id = '';
+var keyword = '';
 var navlist = [
   { id: " ", title: "综合", icon: "" },
   { id: "salenum", title: "销量", icon: "" },
@@ -22,7 +22,29 @@ Page({
     limt: 20,
     tab: '',
     tips: '', //无数据
-    total:0
+    total:0,
+    showResult: false,
+    showKeywords: false,
+    value: '',
+  },
+  cancelSearch() {
+    this.setData({
+      showResult: false,
+      showKeywords: false,
+      value:''
+    })
+    keyword='';
+  },
+  search(){
+    this.getData();
+    this.setData({
+      showKeywords: false,
+      showResult: true
+    })
+  },
+  searchInput(e) {
+    var that=this;
+      keyword=e.detail.value
   },
   //切换TAB
   onTapTag: function (e) {
@@ -53,29 +75,30 @@ Page({
     that.setData({ loadingHidden: false });
     request.req('searchpage',uri, 'GET', {
       //搜索过滤     
-      keyWord: id,
+      keyWord: keyword,
       startRow: that.data.startRow,
       pageSize: that.data.pageSize,
     }, (err, res) => {
-
-      if (res.data.total>0){
-        that.setData({
-          loadingHidden: true,
-          list: that.data.list.concat(res.data.itemsList),
-          total: res.data.total
-        });
-      }
-    else {
-        that.setData({
-          loadingHidden: true,
-          tips: "ff~"
-        }) 
-      }
-    })
+        if (res.data.total>0){
+          app.globalData.keyword = ""
+          that.setData({
+            loadingHidden: true,
+            list: that.data.list.concat(res.data.itemsList),
+            total: res.data.total
+          });
+        }
+      else {
+          that.setData({
+            list:[],
+            loadingHidden: true,
+          }) 
+        }
+      })
 
   },
   //加载更多
   bindscrolltolower: function () {
+    debugger
     var that = this;
     var tempstart = that.data.startRow;
      tempstart = that.data.startRow + that.data.pageSize;
@@ -99,7 +122,10 @@ Page({
       url: '../goodsDetail/goodsDetail?specId=' + specId,
     })
   },
-  onLoad: function () {
+  onLoad: function (options) {
+
+    keyword = app.globalData.keyword;
+    console.log(keyword)
     var that = this;
     //封装https请求
     that.getData();

@@ -12,7 +12,8 @@ Page({
     couponshow: true,
     //商品原总价
     origintotalprice: 0,
-
+    //已优惠价格
+    preferential:0,
     couponmsg: {
       availableSku: '',
       availableCatalog: '',
@@ -53,7 +54,6 @@ Page({
     }
     //使用优惠券
     else {
-
       let couponmethod = value;
       if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "") {
         totalPrice = 0;
@@ -114,9 +114,11 @@ Page({
         }
       }
     }
+    var preferential = origintotalprice - totalPrice;
     this.setData({
       total: { num: num, price: totalPrice},
-      origintotalprice: origintotalprice
+      origintotalprice: origintotalprice,
+      preferential:preferential
     })
   },
   usecoupon() {
@@ -147,11 +149,10 @@ Page({
         this.setData({
           xscoupon: false,
         })
-        wx.showToast({
-          title: res.data.object,
-          icon: 'error',
-          duration: 1000,
-          mask: true
+        wx.showModal({
+          content: res.data.object,
+          confirmText: "确定",
+          showCancel: false
         })
       }
     });
@@ -168,27 +169,12 @@ Page({
   },
   // 生命周期函数--监听页面加载
   onLoad: function () {
-    var that = this;
-    // this.cartList = JSON.parse(sessionStorage.getItem('cart'));
-    // var _this = this;
-    // _this.productItemIds = [];
-    // let n = 0;
-    // this.cartList.forEach(function (item, index) {
-    //   if (item.promotionTitle != '' && item.promotionTitle != null) {
-    //     n += 1;
-    //   }
-    //   _this.productItemIds.push(item.id);
-    // });
-    // if (this.cartList.length == n) {
-    //   this.couponshow = false
-    // } else {
-    //   this.couponshow = true
-    // }
+    
     var cartList = wx.getStorageSync('cart');
     var _this = this;
     _this.data.productItemIds = [];
     let n = 0;
-    _this.data.cartList.forEach(function (item, index) {
+    cartList.forEach(function (item, index) {
       if (item.promotionTitle != '' && item.promotionTitle != null) {
         n += 1;
       }
@@ -214,7 +200,6 @@ Page({
     // 生命周期函数--监听页面显示
 
     var addresss = wx.getStorageSync('address');
-    console.log(addresss)
     if(addresss.phone != null){
       this.setData({
         addressInfo: addresss,

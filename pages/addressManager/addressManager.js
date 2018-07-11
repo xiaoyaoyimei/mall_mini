@@ -79,7 +79,7 @@ Page({
   },
   getAddressList(){
     var that = this;
-    request.req('address',uri_address_list, 'POST', {
+    request.req('addresslist',uri_address_list, 'POST', {
     }, (err, res) => {
 
       that.setData({

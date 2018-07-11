@@ -1,12 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/search/search",
     "pages/goodsearch/goodsearch",
     "pages/classify/classify",
-    "pages/goodshop/goodshop",
     "pages/goodsDetail/goodsDetail",
     "pages/login/login",
-    "pages/logs/logs",
     "pages/mime/mime",
     "pages/orderConfirm/orderConfirm",
     "pages/goodlist/goodlist",
@@ -24,7 +23,9 @@
     "pages/test/test",
     "pages/cartOne/cartOne",
     "pages/aboutUs/aboutUs",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/invoice/invoice",
+    "pages/modelTest/modelTest"
   ],
   "window": {
     "enablePullDownRefresh": true,

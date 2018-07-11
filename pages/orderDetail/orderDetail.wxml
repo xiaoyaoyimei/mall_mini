@@ -1,61 +1,57 @@
-<view class="status">{{orderdetail.shippingOrder.orderStatus}}</view>
+<view class="status">{{orderStatus}}</view>
 <view class="detail">
   <view class="address">
-    <view>
-      <!-- <image src="../../../assets/img/地址.textng"> -->
-      <view>
-        <text>{{orderdetail.shippingAddress.receiverName}} <b>{{orderdetail.shippingAddress.receiverMobile}}</b></text>
-        <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
+
+    <!-- <image src="../../../assets/img/地址.textng"> -->
+
+    <text>{{orderdetail.shippingAddress.receiverName}} <b>{{orderdetail.shippingAddress.receiverMobile}}</b></text>
+    <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
         {{orderdetail.shippingAddress.receiverDistrict}}{{orderdetail.shippingAddress.receiverAddress}}</text>
-      </view>
-    </view>
+
+
   </view>
-   <view class="mini-cart" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="{{index}}">
+  <view class="mini-cart" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="{{index}}">
     <view class="mini-img">
       <image src="https://image-shop.dxracer.com.cn/{{item.productItemImg}}"></image>
     </view>
     <view class="mini-attr">
       <text class="title">{{item.productTitle}}</text>
       <text>{{item.textroductAttrs}} 数量:{{item.quantity}}</text>
-      <text class="price">￥{{textroductFeejun(item)}}   </text>
+      <text class="price">￥{{item.productFee}}   </text>
     </view>
-  </view> 
+  </view>
 
 
   <view class="stext">
     <view>订单编号：{{orderdetail.shippingOrder.orderNo}}</view>
     <view>下单时间：{{orderdetail.shippingOrder.createTime | formatDate}}</view>
-    <view>收票人：{{orderdetail.shippingInvoice.receivetexterson}}</view>
+    <view>收票人：{{orderdetail.shippingInvoice.receivePerson}}</view>
     <view>发票抬头：{{orderdetail.shippingInvoice.invoiceTitle}}</view>
-    <text class="mb10 clearfix textb15">发票类型：{{orderdetail.shippingInvoice.invoiceTytexte}}  
-		   			<text wx:if="orderdetail.shippingOrder.orderStatus!='04'">
-		   			<!-- <router-viewnk class="btn btn-dx btn-invoice" 
-		   				:to="{ name: '/addInvoice',
-		   				query:{orderNo:orderdetail.shippingOrder.orderNo},
-		   				textarams:{shippingInvoice:orderdetail.shippingInvoice} }" 
-               wx:if="{{orderdetail.shippingInvoice==''||orderdetail.shippingInvoice.invoiceStatus=='created'}}">
-		   		     	编辑发票</router-viewnk> -->
-                  </text>
-    </text>
+    <view>发票类型：{{orderdetail.shippingInvoice.invoiceType}} </view>
+    <button size='mini' type='primary' 
+    wx:if="{{orderdetail.shippingOrder.orderStatus!='04'}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
+      编辑发票信息
+    </button>
+
 
   </view>
 
   <view class="stexttotal">
-      <view class="total_wrap">
-        <text class="t">商品总额</text>
-        <text class="s">￥{{orderdetail.shippingOrder.textroductFee}}</text>
-        </view>
-       <view class="total_wrap">
-        <text class="t">商品优惠</text>
-        <text class="s">￥{{orderdetail.shippingOrder.discountFee}}</text>
-      </view>
-       <view class="total_wrap">
-        <text class="t">实付款：</text>
-        <text class="s">￥{{orderdetail.shippingOrder.orderTotalFee}}</text>
-      </view>  
-  </view>  
- <view class="fixbottom" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">
+    <view class="total_wrap">
+      <text class="t">商品总额</text>
+      <text class="s">￥{{orderdetail.shippingOrder.productFee}}</text>
+    </view>
+    <view class="total_wrap">
+      <text class="t">商品优惠</text>
+      <text class="s">￥{{orderdetail.shippingOrder.discountFee}}</text>
+    </view>
+    <view class="total_wrap">
+      <text class="t">实付款：</text>
+      <text class="s">￥{{orderdetail.shippingOrder.orderTotalFee}}</text>
+    </view>
+  </view>
+  <view class="fixbottom" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">
     <button class="btn-white" bindtatext="cancel" size="mini">取消订单</button>
     <button class="btn-red" bindtatext="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}">去支付</button>
-  </view>   
+  </view>
 </view>

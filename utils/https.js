@@ -11,7 +11,6 @@ function req(fromurl,url, methodway, data, callback) {
       method: methodway,    //大写
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
       success(res) {
-        console.log(fromurl)
         if (res.data.code == 401) {  //token失效 用code换下token
           console.log(res.data.msg)
           wx.navigateTo({   //不一定走

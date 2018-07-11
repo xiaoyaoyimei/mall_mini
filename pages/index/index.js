@@ -12,7 +12,7 @@ Page({
 
   click: function () {
     wx.navigateTo({
-      url: '../goodsearch/goodsearch',
+      url: '../search/search',
     })
   },
   //跳转到goodsdetail

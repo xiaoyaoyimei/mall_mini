@@ -1,3 +1,5 @@
+ <import src="../../model/model.wxml"/>
+ 
  <view class="top_line"></view>
 <view>
     <view class="add_item">
@@ -8,30 +10,11 @@
         <text class="item_text">手机号:</text>
         <input class="item_input" bindinput="bindPhoneInput" placeholder="请输入手机号" value="{{addressInfo.mobPhone}}"/>
     </view>
+    <view class="add_item">
+        <text class="item_text">省市区:</text>
+        <input class="item_input" bindtap="translate"   placeholder="请选择城市" value="{{province}} {{city}} {{county}}"/>
 
-    <view class="add_item">
-        <text class="item_text">省:</text>
-        <picker class="item_picker" model="selector" bindchange="bindProvinceChange" value="{{index}}" range="{{array}}" range-key="key">
-            <view class="picker">
-                {{array[index].label}}
-            </view>
-        </picker>
-    </view>
-    <view class="add_item">
-        <text class="item_text">市:</text>
-        <picker class="item_picker" model="selector" bindchange="bindCityChange" value="{{indexC}}" range="{{arrayCity}}" range-key="key">
-            <view class="picker">
-                {{arrayCity[indexC].label}}
-            </view>
-        </picker>
-    </view>
-    <view class="add_item">
-        <text class="item_text">区/县:</text>
-        <picker class="item_picker1" model="selector" bindchange="bindDistrictChange" value="{{indexD}}" range="{{arrayDistrict}}" range-key="key">
-            <view class="picker_1">
-                {{arrayDistrict[indexD].label}}
-            </view>
-        </picker>
+        <template is="areaData" data="{{...item}}"/>
     </view>
     <view class="add_item">
         <text class="item_text">详细地址:</text>
@@ -42,4 +25,6 @@
             <text>保存</text>
         </view>
     </view>
+
+
 </view> 

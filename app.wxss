@@ -42,3 +42,6 @@ text{
   background: #0099ff;
   color: #ffffff;
 }
+.dx-color{
+  color:#0099ff
+}

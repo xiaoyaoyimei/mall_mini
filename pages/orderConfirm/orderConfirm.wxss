@@ -64,11 +64,7 @@
     font-size: 13px;
 }
 .coupon{
-    
-
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+    padding: 10px 15px 0;
 }
 .bottom_text_1{
     padding: 10px 10px 0px 10px;
@@ -124,4 +120,9 @@ align-items:center;
 height:2.58823529em;
 min-height:2.58823529em;
 line-height:2.58823529em;
+width:100%;
+border:1px solid #ccc
+}
+.right{
+  float: right
 }

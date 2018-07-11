@@ -15,23 +15,29 @@
   border: 1px solid #eee;
   margin-right: 20rpx;
 }
+
 .btn-red {
   background: #09f;
   border: 1px solid #09f;
   color: #fff;
-   margin-right: 20rpx;
+  margin-right: 20rpx;
 }
-.stext{
+
+.stext {
   font-size: 14px;
   line-height: 60rpx;
+  padding: 10px;
+  border-bottom: 10px solid #f0f4f3;
 }
+
 .detail {
-  padding:0 20rpx;
-  color:#666;
+  color: #666;
 }
 
 .detail		.address {
   background: #fff;
+  border-bottom: 10px solid #f0f4f3;
+  padding: 20rpx;
 }
 
 .detail			li {
@@ -48,15 +54,17 @@
   margin-top: 1rem;
   background: #fff;
   display: flex;
+  padding-bottom: 20rpx;
+  border-bottom: 10px solid #f0f4f3;
 }
 
 .mini-cart	image {
-  width:60px;
-  height:60px;
+  width: 60px;
+  height: 60px;
 }
 
-.mini-cart .mini-attr{
-  flex: 1
+.mini-cart .mini-attr {
+  flex: 1;
 }
 
 .mini-cart	.title {
@@ -64,7 +72,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 270px;
+  width: 240px;
 }
 
 .mini-cart		.price {
@@ -80,28 +88,29 @@
   padding: 1rem 1rem 0;
 }
 
-
 .sptotal {
   border-top: 1px solid #eee;
   background: #fff;
 }
-.total_wrap{
+
+.total_wrap {
   display: flex;
   text-align: right;
-  padding-bottom:10rpx;
+  padding-bottom: 10rpx;
 }
+
 .sptotal		.border {
   border-top: 1px solid #eee;
 }
+
 .total_wrap		.t {
   flex: 1;
- 
 }
 
 .total_wrap	.s {
   color: #222;
   font-weight: bold;
-   width:100px;
+  width: 100px;
 }
 
 .sptotal		.zjg {
@@ -113,10 +122,6 @@
   padding-bottom: 15px;
 }
 
-.mb10 {
-  margin-bottom: 10px;
-}
-
 .btn-invoice {
   float: right;
 }
@@ -126,10 +131,15 @@
 }
 
 .status {
-  background: #f60;
-  height: 80rpx;
+  background: #454545;
+  height: 100rpx;
   color: #fff;
   font-size: 16px;
-  padding-top:20rpx;
+  padding-top: 20rpx;
   padding-left: 40rpx;
+}
+
+.stexttotal {
+  padding: 15px;
+  border-bottom: 10px solid #f0f4f3;
 }

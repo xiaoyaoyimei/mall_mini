@@ -173,7 +173,7 @@ swiper-item image {
 } 
 /*属性值*/
 .attr_value_box { 
- padding: 15rpx 0; 
+ padding: 10rpx 0; 
 } 
 /*每个属性值*/
 .attr_value { 

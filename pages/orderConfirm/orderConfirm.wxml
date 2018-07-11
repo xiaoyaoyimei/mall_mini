@@ -18,21 +18,23 @@
     <view wx:for="{{cartList}}" wx:key="{{index}}">
       <view class="goods_info">
         <view class="iamge-wrap">
-
           <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
         </view>
         <view class="goods_infos">
           <text class="text_style_1">{{item.productName}}</text>
           <text class="text_style_2">{{item.productAttr}}</text>
-          <text class="text_style_3">¥ {{item.salePrice}}    x   {{item.quantity}}
-                      </text>
+          	   <view class="text_style_3">
+						   	<text class="promotion" wx:if="{{item.promotionTitle !=null}}">{{item.promotionTitle}} </text>
+					      <text class="color-dx">￥{{item.salePrice}} x {{item.quantity}}</text>
+					      <!-- <text wx:if="{{item.promotionTitle ==null&&xscoupon}}" class="color-dx"> ￥	{{item.salePrice}} x {{item.quantity}} </text> -->
+					    </view>
         </view>
       </view>
     </view>
     <view class="coupon-wrap">
     <view class="coupon">  
       <text>优惠券</text>
-      <button catchtap='usecoupon' size="mini">使用</button>  
+      <button catchtap='usecoupon' size="mini" type="primary" class="right">使用</button>  
     </view>
      <view class="weui-cell ">
       <input placeholder="优惠券" auto-focus type="text" class="weui-input" bindinput="bindcouponInput"/>
@@ -48,7 +50,7 @@
     </view>
     <view class="bottom_text_3">
       <text>优惠券</text>
-      <text class="right_text">－ ¥ 0.0</text>
+      <text class="right_text">-￥{{preferential}}</text>
     </view>
     <view class="true_pay">
       <text class="true_pay_right">¥{{total.price}}</text>

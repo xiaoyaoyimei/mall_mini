@@ -1,4 +1,5 @@
 // pages/goodsearch/goodsearch.js
+var app = getApp()
 Page({
   data: {
     goodsearch: '搜索界面',
@@ -38,8 +39,9 @@ Page({
           wx.setStorageSync('searchData', searchData)
         }
       }
-      wx.redirectTo({
-        url: '../goodlist/goodlist?id=' + this.data.searchName,
+      app.globalData.keyword = this.data.searchName; 
+      wx.switchTab({
+        url: '../classify/classify',
       })
     } else {
       wx.navigateBack({

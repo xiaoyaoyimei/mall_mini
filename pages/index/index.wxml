@@ -7,11 +7,11 @@
 <swiper indicator-dots='true'>
   <block wx:for="{{poster}}" wx:key="{{id}}">
     <swiper-item >
-      <image src="https://image-shop.dxracer.com.cn/{{item.phoneUrl}}" class="slide-image" />
+       <navigator url="/pages/goodsDetail/goodsDetail?specId={{item.id}}"> <image src="https://image-shop.dxracer.com.cn/{{item.phoneUrl}}" class="slide-image" /></navigator>
     </swiper-item>
   </block>
 </swiper>
-
+<!-- 
     	<view class="newpro">
     		  <navigator url="/pages/secKill/secKill" >
     			<image src="../../images/xppd.png" />
@@ -19,7 +19,7 @@
     	  <navigator url="/pages/secKill/secKill">
     			<image src="../../images/miao.png"/>
     				</navigator>
-    	  </view>
+    	  </view> -->
 
     <!--为你推荐-->
     <!-- <view class="Recommend ">为你推荐</view> -->

@@ -1,6 +1,12 @@
 <!-- 整体 -->
 <view class="containsView">
-
+    <view class="search-box">
+        <input class="search-input" placeholder="搜索" value="{{value}}" bindinput="searchInput" />
+        <icon class="weui-icon-search_in-box search-icon" type="search" size="14"></icon>
+       
+        <text class="search-btn" wx:if="{{showResult}}" bindtap="cancelSearch">取消</text>
+          <text class="search-btn" wx:else bindtap="search">搜索</text>
+    </view>
   <!-- 顶部导航栏 -->
   <view class="headerView">
     <block wx:for="{{navList}}" wx:key="">
@@ -11,7 +17,7 @@
   </view>
 
   <!--scrollview-->
-  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height:750px">
+  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height:750px" wx:if="{{list.length > 0}}">
     <block wx:for-items="{{list}}" wx:key="id">
 
       <!-- item-->
@@ -25,7 +31,10 @@
       </view>
     </block>
   </scroll-view>
-    <loading class="loading" hidden="{{loadingHidden}}">
+        <view class="result-null" wx:else>
+          <view class="null-tips">Oh~~ 搜索结果为空！</view>
+          </view>
+  <loading class="loading" hidden="{{loadingHidden}}">
     <text class="loading-font">加载中...</text>
   </loading>
   <view class="tips">{{tips}}</view>

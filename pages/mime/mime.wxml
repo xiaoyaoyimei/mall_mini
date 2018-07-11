@@ -38,6 +38,14 @@
         <text>联系我们</text>
     </view>
     </navigator>
+      <navigator url="../modelTest/modelTest" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/icon_customer_service.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>地址三级联动测试</text>
+    </view>
+    </navigator>
       <navigator url="../aboutUs/aboutUs" class="my-item flex-wrp" >
       <view class="myitem-icon flex-item">
         <image src="../../images/book.png"></image>

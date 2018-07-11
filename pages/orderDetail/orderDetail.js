@@ -9,14 +9,19 @@ Page({
         shippingOrderItems: []
       },
       orderNo: '',
+      //状态由orderlist页面带来。以免二次处理
+      orderStatus:'',
   },
   onLoad(options) {
-    console.log(options.orderNo)
     this.setData({
-      orderNo: options.orderNo
+      orderNo: options.orderNo,
+        orderStatus: options.orderStatus
     })
     this.getOrder();
     this.getStatusEnum();
+  },
+  onshow(){
+    this.getOrder();
   },
     formatDate(time) {
       var date = new Date(time);
@@ -24,7 +29,7 @@ Page({
     },
 
     getStatusEnum() {
-      request.req('order/enums', 'GET', {}, (err, res) => {
+      request.req('order','order/enums', 'GET', {}, (err, res) => {
         if (res.code == '200') {  
           this.setData({
           statusList: res.object
@@ -46,7 +51,7 @@ Page({
         content: '确定取消该订单?',
         success: function (res) {
           if (res.confirm) {
-            request.req2('order/cancel', 'POST', {orderNo}, (err, res) => {
+            request.req2('order','order/cancel', 'POST', {orderNo}, (err, res) => {
               if (res.code == '200') {
                 self.getOrder();
               }else{
@@ -71,6 +76,12 @@ Page({
     quzhifu() {
 
       //this.$router.push({ name: '/cartthree', query: { orderNo: this.orderNo } });
+    },
+    editInvoice(e){
+      var order = e.currentTarget.dataset.order
+      wx.navigateTo({
+        url: "../invoice/invoice?orderNo=" + order
+      })
     },
     productFeejun(item) {
       return item.productFee / item.quantity

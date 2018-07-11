@@ -22,7 +22,7 @@
     </view>
     <view class="{{selected?'show':'hidden'}}">
     <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
-    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"></image>
+    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"  mode="aspectFit"></image>
     </view>
     </view>
     <view class="{{selected1?'show':'hidden'}}">	

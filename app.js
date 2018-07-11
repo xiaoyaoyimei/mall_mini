@@ -40,6 +40,7 @@ App({
 
   globalData:{
     userInfo:null,
-    imgsrc:'//image-shop.dxracer.com.cn/'
+    imgsrc:'//image-shop.dxracer.com.cn/',
+    keyword:''
   }
 })

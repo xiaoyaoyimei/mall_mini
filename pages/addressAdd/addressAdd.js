@@ -1,9 +1,15 @@
 
 var request = require('../../utils/https.js')
+//地址模板
+var model = require('../../model/model.js')
 var uri_save_address = 'address/insert' //确认订单
-
+var show = false;
+var item = {};
 Page({
   data: {
+    item: {
+      show: show
+    },
   array:[],
     arrayCity: [],
     arrayDistrict: [],
@@ -14,39 +20,36 @@ Page({
     phoneNum: '',
     zipCode: '',
     detailAddress: '',
-    pId: '',
-    cId: '',
-    dId: '',
-    pName: '',
-    cName: '',
-    dName: '',
     addressInfo: {},
+    province:'请选择省市区',
+    city:'',
+    county:'',
   },
-  //省
-  bindProvinceChange: function (e) {
-    this.setData({
-      index: e.detail.value,
-      arrayCity: this.data.array[e.detail.value].children,
-      pId: this.data.array[e.detail.value].code,
-      pName: this.data.array[e.detail.value].label,
-    })
+  //生命周期函数--监听页面初次渲染完成
+  onReady: function (e) {
+    var that = this;
+    //请求数据
+    model.updateAreaData(that, 0, e);
   },
-  //市
-  bindCityChange: function (e) {
-    this.setData({
-      indexC: e.detail.value,
-      arrayDistrict: this.data.arrayCity[e.detail.value].children,
-      cId: this.data.arrayCity[e.detail.value].code,
-      cName: this.data.arrayCity[e.detail.value].label,
-    })
+  //点击选择城市按钮显示picker-view
+  translate: function (e) {
+    model.animationEvents(this, 0, true, 400);
   },
-  //区
-  bindDistrictChange: function (e) {
+  //隐藏picker-view
+  hiddenFloatView: function (e) {
+    model.animationEvents(this, 200, false, 400);
+  },
+  //滑动事件
+  bindChange: function (e) {
+    model.updateAreaData(this, 1, e);
+
+    item = this.data.item;
+    console.log(item.provinces[item.value[0]])
     this.setData({
-      indexD: e.detail.value,
-      dId: this.data.arrayDistrict[e.detail.value].code,
-      dName: this.data.arrayDistrict[e.detail.value].label,
-    })
+      province: item.provinces[item.value[0]],
+      city: item.citys[item.value[1]],
+      county: item.countys[item.value[2]]
+    });
   },
   //收货人赋值
   bindNameInput: function (e) {
@@ -82,19 +85,19 @@ Page({
         icon: 'loading',
         mask: true
       })
-    }  else if (that.data.pId.length == 0) {
+    } else if (that.data.province == 0) {
       wx.showToast({
         title: '请选所在省份',
         icon: 'loading',
         mask: true
       })
-    } else if (that.data.cId.length == 0) {
+    } else if (that.data.city == 0) {
       wx.showToast({
         title: '请选择所在市',
         icon: 'loading',
         mask: true
       })
-    } else if (that.data.dId.length == 0) {
+    } else if (that.data.county == 0) {
       wx.showToast({
         title: '请选择所在区县',
         icon: 'loading',
@@ -102,17 +105,17 @@ Page({
       })
     } else if (that.data.detailAddress.length == 0) {
       wx.showToast({
-        title: '详细地址不能为空',
+        title: '详细地址不为空',
         icon: 'loading',
         mask: true
       })
     } else {
-      request.req(uri_save_address,'POST', {
+      request.req('addresslist',uri_save_address,'POST', {
         person: that.data.name,
         phone: that.data.phoneNum,
-        receiveProvince: that.data.pName,
-        receiveCity: that.data.cName,
-        receiveDistrict: that.data.dName,
+        receiveProvince: that.data.province,
+        receiveCity: that.data.city,
+        receiveDistrict: that.data.county,
         address: that.data.detailAddress,
       }, (err, res) => {
 
@@ -142,11 +145,7 @@ Page({
   onLoad: function () {
     // 生命周期函数--监听页面加载
     var that = this;
-    // 生命周期函数--监听页面加载
-    request.req('common/address', 'POST', {}, (err, res) => {
-      that.setData({
-        array: res.data,//接数组
-      })
-    });
+
   },
+  
 })

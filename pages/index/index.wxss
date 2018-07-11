@@ -6,7 +6,7 @@
 .index_search_btn {
   height: 70rpx;
   width: 90%;
-  background-color: white;
+  background: #fff;
   color: #a1a1a1;
   font-size: 30rpx;
   text-align: center;

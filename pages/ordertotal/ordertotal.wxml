@@ -5,14 +5,14 @@
   <scroll-view  class="scrollview-list" scroll-y="true" style="height:750px" >
 
     <view class="list" wx:for="{{newlist}}"  wx:key="id">
-    <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}" >
+    <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.orderStatus}}" >
       <view class="item-headerview">
           <view class="item-text">
           <text>订单号:{{item.order.orderNo}}</text>
           </view>
            <view class="item-text"> 
             <text class="fr">{{item.order.orderStatus}}</text>
-           <text>总价:￥{{item.order.orderTotalFee}}</text>
+           <text class="dx-color">总价:￥{{item.order.orderTotalFee}}</text>
         </view>
       </view>
   
@@ -21,19 +21,16 @@
         <view class="goodsinfo">
           <text class="goodsname">{{item.productTitle}}</text>
            <text>{{item.productItemNo}}</text>
-           <text class="goodsnum">数量:{{item.quantity}}</text>
+           <view class="goodsnum">数量:{{item.quantity}}</view>
         </view>
         </view>
     </navigator>
 
 			<view class="cz" wx:if="{{x.order.orderStatus=='01'||x.order.orderStatus=='02'}}"> 
-				<button  type="button"  class="btn "  click="cancel" wx:if="x.order.orderStatus=='01'||x.order.orderStatus=='02'">取消订单</button>
-				<button  type="button"  class="btn btn-dx"  bindtap="quzhifu" wx:if="x.order.orderStatus=='01'">去支付</button>
+				<button  type="button"  class="btn "  click="cancel" wx:if="{{x.order.orderStatus=='01'||x.order.orderStatus=='02'}}">取消订单</button>
+				<button  type="button"  class="btn btn-dx"  bindtap="quzhifu" wx:if="{{x.order.orderStatus=='01'}}">去支付</button>
         </view>
     </view>
   </scroll-view>
-   <loading class="loading" hidden="{{hidden}}">
-    <text class="loading-font">加载中...</text>
-  </loading> 
-  <view class="tips">{{tips}}</view>
+
 </view>
