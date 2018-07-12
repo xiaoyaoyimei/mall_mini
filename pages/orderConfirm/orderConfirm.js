@@ -232,33 +232,28 @@ Page({
             wx.login({
               success: function (res) {
                 request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
-                  console.log(res);
-                });            
-    // wx.requestPayment({
-            //   timeStamp: weval.timeStamp,
-            //   nonceStr: weval.nonceStr,
-            //   package: weval.package,
-            //   signType: weval.signType,
-            //   paySign: weval.paySign,
-            //   success: function (res) { //跳转
-            //     wx.redirectTo({
-            //       url: '../paycomplete/paycomplete',
-            //     })
-            //   },
-            //   fail: function () {
-            //     console.log('fail')
-            //   },
-            //   complete: function () {
-            //     console.log('complete')
-            //   }
-            // })
-              }
-              });
-            // wx.redirectTo({
-            //   url: '/pages/ordertotal/ordertotal',
-            //    })
-            //调用微信支付
-        
+                  var weval = res.data.object;
+                  wx.requestPayment({
+                    timeStamp: weval.timeStamp,
+                    nonceStr: weval.nonceStr,
+                    package: weval.package,
+                    signType: weval.signType,
+                    paySign: weval.paySign,
+                    success: function (res) { //跳转
+                      wx.redirectTo({
+                        url: '../paycomplete/paycomplete',
+                      })
+                    },
+                    fail: function () {
+                      console.log('fail')
+                    },
+                    complete: function () {
+                      console.log('complete')
+                    }
+                  })
+                });      
+               }
+            })
           }
           else {
             wx.showToast({
