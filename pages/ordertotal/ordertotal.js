@@ -28,6 +28,35 @@ Page({
       }
     })
   },
+  quzhifu(e){
+    var orderNo = e.currentTarget.dataset.orderno;
+    wx.login({
+      success: function (res) {
+        console.log(res.code)
+        request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
+          var weval=res.data.object;
+            wx.requestPayment({
+              timeStamp: weval.timeStamp,
+              nonceStr: weval.nonceStr,
+              package: weval.package,
+              signType: weval.signType,
+              paySign: weval.paySign,
+              success: function (res) { //跳转
+                wx.redirectTo({
+                  url: '../paycomplete/paycomplete',
+                })
+              },
+              fail: function () {
+                console.log('fail')
+              },
+              complete: function () {
+                console.log('complete')
+              }
+            })
+        }); 
+      } 
+      }) 
+  },
   statusfilter(value) {
     for (var i = 0; i < this.data.statusenums.length; i++) {
       if (this.data.statusenums[i].key == value) {
@@ -54,9 +83,8 @@ Page({
           var list = that.data.list;
          
           for (var i = 0; i < list.length; i++) {
-            list[i].order.orderStatus = that.statusfilter(list[i].order.orderStatus);
+            list[i].order.znStatus = that.statusfilter(list[i].order.orderStatus);
            }
-          console.log(list)
            that.setData({
              newlist: list
            })
@@ -65,19 +93,39 @@ Page({
       }
     })
   },
-  //点击到相应的页面
-  orderbutton: function (options) {
-    var type = options.currentTarget.dataset.button;
-    console.log(type)
-    if (type == "去支付") {
-      
-    } else if (type == "查看详情") {
 
-    } else if (type == "确认收货") {
-
-    }
+  cancel(e) {
+    var self=this;
+    var orderNo = e.currentTarget.dataset.orderno;
+    wx.showModal({
+      title: '温馨提示',
+      content: '确定取消该订单?',
+      success: function (res) {
+        if (res.confirm) {
+          request.req2('order/cancel', 'POST', orderNo, (err, res) => {
+            if (res.data.code == 200) {
+              wx.showToast({
+                title: '取消成功',
+                icon: 'success',
+                duration: 1000,
+                mask: true
+              })
+              self.getData();
+            } else {
+              wx.showToast({
+                title: '取消失败',
+                icon: 'loading',
+                duration: 1000,
+                mask: true
+              })
+            }
+          });
+        }
+      },
+      fail(e) {
+        callback(e)
+      }
+    })
   },
-
-
 
 })

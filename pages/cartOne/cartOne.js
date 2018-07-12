@@ -4,7 +4,7 @@ Page({
     cartList: [],               // 购物车列表
     hasList: false,          // 列表是否有数据
     totalPrice: 0,           // 总价，初始为0
-    selectAllStatus: true,    // 全选状态，默认全选
+    selectAllStatus: false,    // 全选状态，默认全选
   },
   getCartList() {
     var self=this;
@@ -17,12 +17,14 @@ Page({
               cartList: res.data.object,
             })
             self.getTotalPrice();
+            console.log(this.data.cartList);
         }else{
           self.setData({
             hasList: false
           });
         }
       });
+     
   },
   onLoad(){
   
@@ -50,14 +52,24 @@ Page({
    */
   deleteList(e) {
     var ids = [];
+    var that=this;
     ids[0] = e.currentTarget.dataset.id;
-      request.req('cart','order/shopping/deleByIds', 'POST', ids, (err, res) => {
-      if (res.data.code == 200) {
-        this.getCartList();
-      
+    wx.showModal({
+      title: '确认删除该商品吗？',
+      success: function (res) {
+        if (res.confirm) {
+        request.req('cart','order/shopping/deleByIds', 'POST', ids, (err, res) => {
+            if (res.data.code == 200) {
+              that.getCartList();
+            }
+        })
       }
+      },
+        fail(e) {
+          console.error(e)
+              callback(e)
+        }
     })
- 
   },
 
   /**

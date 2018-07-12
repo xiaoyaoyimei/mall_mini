@@ -41,6 +41,7 @@ Page({
   },
   //确定--登陆
   loginbutton: function () {
+
     var that = this;
     that.setData({
       loading: true,
@@ -69,7 +70,7 @@ Page({
 
      
         wx.setStorageSync('CuserInfo', CuserInfo);
-        console.log('loginoption'+option.fromurl);
+
         //登陆成功 跳转
 
         if (option.fromurl=="cart") { //立即购买
@@ -87,7 +88,12 @@ Page({
             url: '../ordertotal/ordertotal',
           })
         
-        }else{
+        } else if (option.fromurl == 'account'){
+          wx.switchTab({
+            url: '../mime/mime',
+          })
+
+        } else{
           wx.navigateTo({
             url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
           })
@@ -95,9 +101,8 @@ Page({
 
       } else {
         //提示
-        console.log(res)
         that.setData({
-          showToast: res.data.msg,
+          showToast: res.data.object,
           backcolor: 'red',
         })
       }
@@ -105,7 +110,6 @@ Page({
   },
   onLoad: function (options) {  //id==1 从商品详情跳转过来的，到确认订单界面
     option = options;  //存储options
-    console.log('登录页' + options.fromurl)
   },
 
 })

@@ -46,30 +46,37 @@ Page({
     },
     cancel() {
       var orderNo = this.data.orderNo;
+      
       wx.showModal({
-        title: '提示',
+        title: '温馨提示',
         content: '确定取消该订单?',
         success: function (res) {
+
           if (res.confirm) {
-            request.req2('order','order/cancel', 'POST', {orderNo}, (err, res) => {
-              if (res.code == '200') {
+
+            request.req2('order/cancel', 'POST', orderNo, (err, res) => {
+              if (res.code == 200) {
                 self.getOrder();
-              }else{
                 wx.showToast({
                   title: '取消成功',
-                  icon: 'succes',
+                  icon: 'success',
+                  duration: 1000,
+                  mask: true
+                })
+              }else{
+                wx.showToast({
+                  title: '取消失败',
+                  icon: 'loading',
                   duration: 1000,
                   mask: true
                 })
               }
             });
-          } else if (res.cancel) {
-            wx.showToast({
-              title: '取消失败',
-              duration: 1000,
-              mask: true
-            })
-          }
+          } 
+        },
+        fail(e) {
+          console.error(e)
+          callback(e)
         }
       }) 
     },

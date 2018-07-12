@@ -215,55 +215,60 @@ Page({
 
   paynow: function () { //先跳转到支付成功界面界面  拿到code
     this.saveOrder();
-
   },
   saveOrder: function (e) {
     var codeinfo = wx.getStorageSync('codeinfo');
     var code = codeinfo.code; //保存订单接口获取ordercode
     var that = this;
-    request.req(uri_order_confirm, 'POST',{
+    request.req('zhifu',uri_order_confirm, 'POST',{
       productItemIds: that.data.productItemIds,  // 购物车id
       addressId: that.data.addressInfo.id, //地址id
       couponCode: '',  //暂时为空  优惠券id
       warehouse: '' //如果订单有运费,则传字符串,运费信息用"|"隔开,前边是运费的类型,后边是店铺id,多个用","隔开,若没有运费则不传或者穿""空串
     }, (err, res) => {
-      console.log(res.data)
-      if (res.data.result == 1) {
-        //获取paySn
-        var orderCode = res.data.data[0].paySn;
-        request.req(uri_pay, {
-          orderCode: orderCode,
-          code: code
-        }, (err, res) => {
-          console.log(res.data)
-          //res.data.msg
-          var weval = res.data.Weval;
-
           if (res.data.code == 200) {
-            //调用微信支付
-            wx.requestPayment({
-              timeStamp: weval.timeStamp,
-              nonceStr: weval.nonceStr,
-              package: weval.package,
-              signType: weval.signType,
-              paySign: weval.paySign,
-              success: function (res) { //跳转
-                wx.redirectTo({
-                  url: '../paycomplete/paycomplete',
-                })
-              },
-              fail: function () {
-                console.log('fail')
-              },
-              complete: function () {
-                console.log('complete')
+            var orderNo=res.data.msg;
+            wx.removeStorageSync('cart');
+            wx.login({
+              success: function (res) {
+                request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
+                  console.log(res);
+                });            
+    // wx.requestPayment({
+            //   timeStamp: weval.timeStamp,
+            //   nonceStr: weval.nonceStr,
+            //   package: weval.package,
+            //   signType: weval.signType,
+            //   paySign: weval.paySign,
+            //   success: function (res) { //跳转
+            //     wx.redirectTo({
+            //       url: '../paycomplete/paycomplete',
+            //     })
+            //   },
+            //   fail: function () {
+            //     console.log('fail')
+            //   },
+            //   complete: function () {
+            //     console.log('complete')
+            //   }
+            // })
               }
+              });
+            // wx.redirectTo({
+            //   url: '/pages/ordertotal/ordertotal',
+            //    })
+            //调用微信支付
+        
+          }
+          else {
+            wx.showToast({
+              icon: 'none',
+              title: res.data.msg,
+              duration: 2000
             })
           }
         })
-      } else {
+      } 
 
-      }
-    })
-  },
+  
 })

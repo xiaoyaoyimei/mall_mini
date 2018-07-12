@@ -22,30 +22,10 @@ Page({
     limt: 20,
     tab: '',
     tips: '', //无数据
-    total:0,
-    showResult: false,
-    showKeywords: false,
-    value: '',
+    total:0
   },
-  cancelSearch() {
-    this.setData({
-      showResult: false,
-      showKeywords: false,
-      value:''
-    })
-    keyword='';
-  },
-  search(){
-    this.getData();
-    this.setData({
-      showKeywords: false,
-      showResult: true
-    })
-  },
-  searchInput(e) {
-    var that=this;
-      keyword=e.detail.value
-  },
+
+
   //切换TAB
   onTapTag: function (e) {
     var that = this;
@@ -61,8 +41,6 @@ Page({
       wx.navigateTo({
         url: '../specValue/specValue',    //加参数
         //获取specValue
-
-
       })
     } else {
       that.getData();
@@ -98,7 +76,6 @@ Page({
   },
   //加载更多
   bindscrolltolower: function () {
-    debugger
     var that = this;
     var tempstart = that.data.startRow;
      tempstart = that.data.startRow + that.data.pageSize;
@@ -123,24 +100,10 @@ Page({
     })
   },
   onLoad: function (options) {
-
     keyword = app.globalData.keyword;
-    console.log(keyword)
     var that = this;
     //封装https请求
     that.getData();
   },
 
-  onReady: function () {
-    // 页面渲染完成
-  },
-  onShow: function () {
-    // 页面显示
-  },
-  onHide: function () {
-    // 页面隐藏
-  },
-  onUnload: function () {
-    // 页面关闭
-  }
 })

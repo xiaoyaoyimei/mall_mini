@@ -18,22 +18,7 @@ Page({
       }
     })
   },
-  addrEdit:function(e){
-    wx.navigateTo({
-      url: '../addressAdd/addressAdd?address='+e.currentTarget.dataset.item.address + '&addressId='+e.currentTarget.dataset.item.addressId +'&areaId='+e.currentTarget.dataset.item.areaId +'&areaInfo='+e.currentTarget.dataset.item.areaInfo +'&cityId='+e.currentTarget.dataset.item.cityId +'&mobPhone='+e.currentTarget.dataset.item.mobPhone +'&provinceId='+e.currentTarget.dataset.item.provinceId + '&trueName='+e.currentTarget.dataset.item.trueName + '&zipCode='+e.currentTarget.dataset.item.zipCode,
-      success: function(res){
-        // success
-      },
-      fail: function() {
-        // fail
-      },
-      complete: function() {
-        // complete
-        // console.log('kkkkkkk');
-        // console.log(e.currentTarget.dataset.item);
-      }
-    })
-  },
+
   addrDelete:function(e){
 
     var that = this;

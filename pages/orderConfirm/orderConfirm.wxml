@@ -40,13 +40,13 @@
       <input placeholder="优惠券" auto-focus type="text" class="weui-input" bindinput="bindcouponInput"/>
       </view> 
       </view>
+        <view class="bottom_text_2">
+      <text>商品件数</text>
+      <text class="right_text"> {{total.num}}</text>
+    </view>
     <view class="bottom_text_1">
       <text>商品金额</text>
       <text class="right_text">¥ {{origintotalprice}}</text>
-    </view>
-    <view class="bottom_text_2">
-      <text>商品件数</text>
-      <text class="right_text"> {{total.num}}</text>
     </view>
     <view class="bottom_text_3">
       <text>优惠券</text>

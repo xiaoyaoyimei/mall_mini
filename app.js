@@ -22,6 +22,7 @@ App({
           })
         }
       })
+ 
     }
   },
   getSystemInfo:function(cb){ 

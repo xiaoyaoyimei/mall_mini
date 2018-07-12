@@ -6,11 +6,11 @@
     <text class="search-btn" wx:else bindtap="search">搜索</text>
   </view>
    <view class="result" wx:if="{{showResult}}"> 
-    <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height:500px" wx:if="{{result.length > 0}}">
+    <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" wx:if="{{result.length > 0}}">
       <view class="result-box">
         <view class="result-list" wx:for="{{result}}" wx:key="index">
           <navigator url="../goodsDetail/goodsDetail/{{item.id}}">
-            <image src="https://image-shop.dxracer.com.cn/{{item.model_img}}"></image>
+            <image src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode="widthFix"></image>
             <view class="result-text">
               <text>{{item.model_no}}</text>
             </view>
@@ -21,28 +21,13 @@
         </view>
     </view>
     </scroll-view>
-
+    <view class="tips" wx:if="{{moreshow}}">{{tips}}</view>
   
     <view class="result-null" wx:else>
       <view class="null-tips">Oh~~ 搜索结果为空！</view>
-      <view class="recommend-title">
-        <text>相关推荐</text>
-      </view>
-      <view class="recommend-box">
-        <view class="result-list" wx:for="{{result}}" wx:key="index">
-          <navigator url="{{item.url}}">
-            <image src="{{item.thumb}}"></image>
-            <view class="result-text">
-              <text>{{item.title}}</text>
-            </view>
-            <view class="result-text">
-              <text>￥ {{item.price}}</text>
-            </view>
-          </navigator>
-        </view>
-      </view>
     </view>
    </view> 
+
    <view class="init-page" wx:else>
     <view wx:if="{{history.length > 0}}">
       <view class="title">
@@ -58,6 +43,8 @@
     <view class="tags">
       <text wx:for="{{hot}}" wx:key="index" data-text="{{item}}" bindtap="keywordHandle">{{item}}</text>
     </view>
+
+
   </view> 
 
   <view class="keywords" wx:if="{{showKeywords}}">
@@ -67,6 +54,6 @@
   <loading class="loading" hidden="{{loadingHidden}}">
     <text class="loading-font">加载中...</text>
   </loading>
-  <view class="tips">{{tips}}</view>
+  
 
 </view>

@@ -29,7 +29,6 @@ Page({
   },
   address_manager: function () {
     if (!Info.token) {
-  
       wx.navigateTo({
         url: '../login/login?fromurl=addresslist'
       })
@@ -52,7 +51,7 @@ Page({
     Info = CuserInfo
     if (!CuserInfo.token) {
       //获取照片和用户名
-      request.req('index','account', 'POST', {}, (err, res) => {
+      request.req('account','account', 'POST', {}, (err, res) => {
      
           var name = res.data.nickName;
           var user = {}
@@ -78,10 +77,10 @@ Page({
     var that = this
     //判断是否登陆，如果没登陆走微信的
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    console.log(CuserInfo);
+   
     Info = CuserInfo
     if (CuserInfo.token) {
-      request.req('index','customer/logout', 'POST', {}, (err, res) => {
+      request.req('account','customer/logout', 'POST', {}, (err, res) => {
         if(res.code==200){
           wx.showToast({
             title: res.msg,

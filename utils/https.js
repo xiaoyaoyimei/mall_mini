@@ -12,7 +12,6 @@ function req(fromurl,url, methodway, data, callback) {
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
       success(res) {
         if (res.data.code == 401) {  //token失效 用code换下token
-          console.log(res.data.msg)
           wx.navigateTo({   //不一定走
             url: '../login/login?fromurl=' + fromurl,
                })
@@ -82,7 +81,7 @@ function req(fromurl,url, methodway, data, callback) {
 
 //
 function req2(url, methodway, data, callback) {
-  
+
   var CuserInfo = wx.getStorageSync('CuserInfo');
     wx.request({
       url: rootDocment + url+'/'+data,

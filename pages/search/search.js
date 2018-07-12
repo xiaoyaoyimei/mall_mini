@@ -13,13 +13,16 @@ Page({
         showResult: false,
         startRow:0,
         pageSize:10,
-        tips: '', //无数据
+        tips: '没有更多数据了~', //无数据
         loadingHidden: true,
+        moreshow:false,
+        clientHeight:0
     },
     cancelSearch() {
         this.setData({
             showResult: false,
             showKeywords: false,
+            moreshow: false,
             value: ''
         })
     },
@@ -68,7 +71,7 @@ Page({
         this.setData({
           value: that.data.value,
           showKeywords: false,
-          showResult: true
+          showResult: true,
         }) 
         this.historyHandle(that.data.value);  
       })
@@ -109,7 +112,7 @@ Page({
       if (tempstart > that.data.total) {
         that.setData({
           loadingHidden: true,
-          tips: "没有更多数据了~"
+          moreshow:true
         });
         return;
       } else {
@@ -122,12 +125,27 @@ Page({
     }, 
 
     onLoad() {
+      var that=this;
         const history = wx.getStorageSync('history');
         if (history) {
-            this.setData({
+          that.setData({
                 history: JSON.parse(history)
             })
-            console.log(this.data.history);
+          console.log(that.data.history);
         }
+        wx.getSystemInfo({
+
+          success: function (res) {
+            let height = res.windowHeight;
+            wx.createSelectorQuery().selectAll('.search-box').boundingClientRect(function (rects) {
+              rects.forEach(function (rect) {
+                that.setData({
+                  clientHeight: res.windowHeight - rect.bottom
+                });
+              })
+            }).exec();
+          }
+        });
+
     }
 })

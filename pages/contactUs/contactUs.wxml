@@ -1,6 +1,6 @@
 
-		<view class="flex-center"><p><strong>售前电话：400-990-5033</strong></p>
-		<p><strong>售后电话：400-829-6033</strong></p>
+		<view class="flex-center"><p><strong>售前电话：400-990-5033</strong><button catchtap='calling' data-attr="1"  type="primary" size="mini">拨打售前电话</button></p>
+		<p><strong>售后电话：400-829-6033</strong> <button catchtap='calling' data-attr="2" type="primary" size="mini">拨打售后电话</button></p>
 		<p><strong>邮箱：sales@dxracer.com.cn</strong></p>
 		<p><strong>地址：江苏省无锡惠山经济开发区智慧路19号404室</strong></p>
 		</view>

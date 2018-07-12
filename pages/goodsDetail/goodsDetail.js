@@ -60,48 +60,49 @@ Page({
       selected1: true
     })
   },
-  buyNow: function (event) {  //获取cartId
+  // buyNow: function (event) {  //获取cartId
 
-    //判断是否登陆,如果未登陆跳到登陆界面，如果登陆就调接口，跳转确认订单界面
-    var CuserInfo = wx.getStorageSync('CuserInfo');
-    console.log(CuserInfo.token)
-    console.log(specId)
-    if (!CuserInfo.token) {
-      //跳转到login
-      wx.navigateTo({
-        url: '../login/login?specId=' + specId ,
-      })
+  //   //判断是否登陆,如果未登陆跳到登陆界面，如果登陆就调接口，跳转确认订单界面
+  //   var CuserInfo = wx.getStorageSync('CuserInfo');
+  //   console.log(CuserInfo.token)
+  //   console.log(specId)
+  //   if (!CuserInfo.token) {
+  //     //跳转到login
+  //     wx.navigateTo({
+  //       url: '../login/login?specId=' + specId ,
+  //     })
       
-    } else {
-      var that = this;
-      request.req(uribuy, 'POST', {
-        productItemId: this.data.productItemId,
-        quantity: this.data.quantity
-      }, (err, res) => {
-        var result = res.data;
-        console.log(result);
-        if (result.result == 1) { //获取cartId
-          //拿着cartId跳转到确认订单界面
-          wx.navigateTo({   //获取cartId
-            url: '../orderConfirm/orderConfirm?cartIds=' + result.data[0].cartIds,
-          })
-        } else {
-          that.setData({
-            tips: res.data.msg
-          })
+  //   } else {
+  //     var that = this;
+  //     request.req(uribuy, 'POST', {
+  //       productItemId: this.data.productItemId,
+  //       quantity: this.data.quantity
+  //     }, (err, res) => {
+  //       var result = res.data;
+  //       console.log(result);
+  //       if (result.result == 1) { //获取cartId
+  //         //拿着cartId跳转到确认订单界面
+  //         wx.navigateTo({   //获取cartId
+  //           url: '../orderConfirm/orderConfirm?cartIds=' + result.data[0].cartIds,
+  //         })
+  //       } else {
+  //         that.setData({
+  //           tips: res.data.msg
+  //         })
        
-        }
-      })
-    }
-  },
+  //       }
+  //     })
+  //   }
+  // },
   onLoad: function (options) {
     // 生命周期函数--监听页面加载
     var that = this;
-    this.requestData(options);
-    this.getimgdetail(options);
+    specId = options.specId;
+    this.requestData(specId);
+    this.getimgdetail(specId);
   },
   getimgdetail(oo){
-    specId = oo.specId;
+    specId = oo;
     var that=this;
     request.req2('product/desc', 'POST', specId, (err, res) => {
         that.setData({
@@ -116,7 +117,7 @@ Page({
   },
   //数据请求*(直接带post参数)
   requestData: function (oo) {
-    specId = oo.specId;
+    specId = oo;
     var that = this;
     request.req2(uri, 'POST',specId, (err, res) => {
       if (res.data.code == 200) {
@@ -322,7 +323,14 @@ Page({
     });
   },
   atc() {
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    if (!CuserInfo.token) {
+      //跳转到login
+      wx.navigateTo({
+        url: '../login/login?specId=' + specId ,
+      })
 
+    } else {
     if (this.data.productItemId == "") {
       wx.showToast({
         title: "请选择商品属性"
@@ -330,7 +338,7 @@ Page({
       return;
     }else{
 
-      request.req(this.data.productItemId,'order/shopping/add', 'POST', {
+      request.req(specId,'order/shopping/add', 'POST', {
           productItemId: this.data.productItemId,
           quantity: this.data.quantity
         }, (err, res) => {
@@ -349,6 +357,6 @@ Page({
         })
       }
     }
-
+}
 
 })

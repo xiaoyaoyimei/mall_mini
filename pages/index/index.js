@@ -9,7 +9,14 @@ Page({
     list: [],
     poster:[]
   },
-
+  onShareAppMessage: function () {
+    // 用户点击右上角分享
+    return {
+      title: 'dxracer官方商城', // 分享标题
+      desc: 'O(∩_∩)O哈哈~活捉一只电竞椅', // 分享描述
+      path: '/pages/index/index' // 分享路径
+    }
+  },
   click: function () {
     wx.navigateTo({
       url: '../search/search',
@@ -20,7 +27,6 @@ Page({
     var specId = e.currentTarget.dataset.specid;
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?specId=' + specId,
-
     })
   },
   onLoad: function () {

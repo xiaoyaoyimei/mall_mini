@@ -51,7 +51,7 @@
     </view>
   </view>
   <view class="fixbottom" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">
-    <button class="btn-white" bindtatext="cancel" size="mini">取消订单</button>
-    <button class="btn-red" bindtatext="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}">去支付</button>
+    <button class="btn-white" bindtap="cancel" size="mini">取消订单</button>
+    <button class="btn-red" bindtap="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}">去支付</button>
   </view>
 </view>

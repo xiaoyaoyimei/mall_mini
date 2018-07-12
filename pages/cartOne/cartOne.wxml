@@ -31,7 +31,7 @@
                     <text class="cart-count-num">{{item.quantity}}</text>
                     <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
                 </view>
-                <text class="cart-del" bindtap="deleteList" data-index="{{index}}" data-id="{{item.id}}">×</text>
+                <image src="/images/delete.png"  class="cart-del" bindtap="deleteList" data-index="{{index}}" data-id="{{item.id}}"></image>
             </view>
         </view>
 

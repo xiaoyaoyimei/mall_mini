@@ -5,7 +5,29 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    phoneNumber:'400-990-5033'
+  },
+  calling: function (event) {
+    var attr = event.currentTarget.dataset.attr;
+    var that=this;
+    if(attr=="2"){
+      that.setData({
+        phoneNumber:'400-829-6033'
+      })
+    }else{
+      that.setData({
+        phoneNumber: '400-990-5033'
+      })
+    }
+    wx.makePhoneCall({
+      phoneNumber: that.data.phoneNumber, //此号码并非真实电话号码，仅用于测试
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
   },
 
   /**

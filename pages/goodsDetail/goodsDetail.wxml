@@ -22,7 +22,7 @@
     </view>
     <view class="{{selected?'show':'hidden'}}">
     <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
-    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"  mode="aspectFit"></image>
+    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"  mode="widthFix"></image>
     </view>
     </view>
     <view class="{{selected1?'show':'hidden'}}">	
@@ -39,8 +39,8 @@
 </view>
 
 <!--弹窗-->
-<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-<view class="modal-dialog" wx:if="{{showModal}}">
+<view class="modal-mask" bindtap="hideModal"  catchtouchmove="preventTouchMove"  wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}"  catchtouchmove="preventTouchMove" >
   <view class="modal-content">
 
       <view wx:if="{{xiajia}}" class="xiajia">
@@ -55,7 +55,7 @@
         </view>
         <view class="small-xq">
           <view class="color-dx">￥{{choosesp.price}}</view>
-          <view>商品编号:{{choosesp.itemNo}}</view>
+          <view>{{choosesp.itemNo}}</view>
           <view>库存:{{choosesp.kucun}}</view>
           <!--促销-->
           <view class="cx" wx:if="{{cxshow}}">
