@@ -26,7 +26,7 @@
           	   <view class="text_style_3">
 						   	<text class="promotion" wx:if="{{item.promotionTitle !=null}}">{{item.promotionTitle}} </text>
 					      <text class="color-dx">￥{{item.salePrice}} x {{item.quantity}}</text>
-					      <!-- <text wx:if="{{item.promotionTitle ==null&&xscoupon}}" class="color-dx"> ￥	{{item.salePrice}} x {{item.quantity}} </text> -->
+					       <!-- <text wx:if="{{item.promotionTitle ==null&&xscoupon}}" class="color-dx"> ￥	{{item.salePrice}} x {{item.quantity}} </text>  -->
 					    </view>
         </view>
       </view>
@@ -37,7 +37,7 @@
       <button catchtap='usecoupon' size="mini" type="primary" class="right">使用</button>  
     </view>
      <view class="weui-cell ">
-      <input placeholder="优惠券" auto-focus type="text" class="weui-input" bindinput="bindcouponInput"/>
+      <input placeholder="优惠券"  type="text" class="weui-input" bindinput="bindcouponInput"/>
       </view> 
       </view>
         <view class="bottom_text_2">
@@ -56,6 +56,6 @@
       <text class="true_pay_right">¥{{total.price}}</text>
       <text>实付金额:　</text>
     </view>
-    <button class="bottom_btn" bindtap="paynow" type="primary">微信支付</button>
+    <button class="bottom_btn" bindtap="paynow" type="primary" disabled='{{disabled}}'>微信支付</button>
   </scroll-view>
 </view>

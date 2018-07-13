@@ -2,8 +2,8 @@
 
 
   <!--列表list组件 需要修改-->
-  <scroll-view  class="scrollview-list" scroll-y="true" style="height:750px" >
 
+<view  wx:if="{{newlist.length>0}}">
     <view class="list" wx:for="{{newlist}}"  wx:key="id">
     <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.znStatus}}" >
       <view class="item-headerview">
@@ -29,6 +29,9 @@
 				<button  type="primary"  size="mini" bindtap="quzhifu"  wx:if="{{item.order.orderStatus=='01'}}"  data-orderno="{{item.order.orderNo}}">去支付</button> 
 
     </view>
-  </scroll-view>
-
+</view>
+<view wx:else class="tips">
+<text>暂时还没有任何订单哦</text>
+<text class="color-dx" catchtap='goindex'> 去首页</text>
+</view>
 </view>

@@ -26,6 +26,7 @@ Page({
       price: 0,
       num: 0
     },
+    disabled:false
   },
   //优惠券
   bindcouponInput: function (e) {
@@ -211,24 +212,28 @@ Page({
       })
     }
   },
-
-
-  paynow: function () { //先跳转到支付成功界面界面  拿到code
-    this.saveOrder();
-  },
-  saveOrder: function (e) {
-    var codeinfo = wx.getStorageSync('codeinfo');
-    var code = codeinfo.code; //保存订单接口获取ordercode
+  paynow: function (e) {
+   //保存订单接口获取ordercode
     var that = this;
+    if (that.data.productItemIds == undefined) {
+      wx.showToast({
+        title: '收货地址不能为空',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     request.req('zhifu',uri_order_confirm, 'POST',{
       productItemIds: that.data.productItemIds,  // 购物车id
       addressId: that.data.addressInfo.id, //地址id
-      couponCode: '',  //暂时为空  优惠券id
-      warehouse: '' //如果订单有运费,则传字符串,运费信息用"|"隔开,前边是运费的类型,后边是店铺id,多个用","隔开,若没有运费则不传或者穿""空串
+      couponCode: that.data.couponCode,  //暂时为空  优惠券id
     }, (err, res) => {
           if (res.data.code == 200) {
             var orderNo=res.data.msg;
             wx.removeStorageSync('cart');
+            this.setData({
+              disabled: true
+            })
             wx.login({
               success: function (res) {
                 request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
@@ -245,10 +250,19 @@ Page({
                       })
                     },
                     fail: function () {
-                      console.log('fail')
+                      wx.showToast({
+                        title: '支付失败',
+                        icon: 'none',
+                        duration: 2000
+                      })
+                      wx.switchTab({
+                        url: '../mine/mine',
+                      })
                     },
                     complete: function () {
-                      console.log('complete')
+                      wx.switchTab({
+                        url: '../mine/mine',
+                      })
                     }
                   })
                 });      

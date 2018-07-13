@@ -1,21 +1,21 @@
 <!-- 整体 -->
 <view class="containsView">
   <!-- 顶部导航栏 -->
-  <view class="headerView">
+  <!-- <view class="headerView">
     <block wx:for="{{navList}}" wx:key="">
       <view catchtap="onTapTag" data-index="{{index}}" id="{{item.id}}" class="top-bar-item {{index == activeIndex ? 'top-bar-active' : ''}}">
         {{item.title}}
       </view>
     </block>
-  </view>
+  </view> -->
 
   <!--scrollview-->
-  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height:750px" wx:if="{{list.length > 0}}">
+  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" enable-back-to-top="true" wx:if="{{list.length > 0}}"  scroll-top="{{scrollTop}}" bindscroll="scroll">
     <block wx:for-items="{{list}}" wx:key="id">
 
       <!-- item-->
       <view data-specId="{{item.id}}" catchtap="clickitem" class="topContainsView">
-        <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode='scaleToFill' />
+        <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode='widthFix' />
         <view class="topRightView">
           <text class="topRightName">{{item.model_name}} </text>
           <text>{{item.model_no}}</text>
@@ -31,4 +31,7 @@
     <text class="loading-font">加载中...</text>
   </loading>
   <view class="tips">{{tips}}</view>
+  <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}"> 
+      <image src="/images/gotop.png"></image>
+    </view>
 </view>

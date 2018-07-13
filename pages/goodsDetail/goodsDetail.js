@@ -120,9 +120,10 @@ Page({
     specId = oo;
     var that = this;
     request.req2(uri, 'POST',specId, (err, res) => {
+      console.log(res.data.object)
       if (res.data.code == 200) {
         that.setData({
-          detailData: res.data.object,
+          detailData: Object.assign(that.data.detailData, res.data.object),
         })
      
         var temp = that.data.detailData;
@@ -198,9 +199,6 @@ Page({
   selectAttrValue: function (e) {
 
 //点击过，修改属性
-    console.log(e.currentTarget.dataset); 
-    //选中的哪个属性(哪一行)
-
     var selectIndex = e.currentTarget.dataset.index;//属性索引 
     var columnIndex = e.currentTarget.dataset.columnIndex;
     var detailData = this.data.detailData;
@@ -210,20 +208,17 @@ Page({
     var key = e.currentTarget.dataset.key;
     //当前属性item
     var itemvalue = e.currentTarget.dataset.value;
-    console.log(itemvalue)
     e.currentTarget.dataset.selectedvalue = itemvalue.id;
   
     var count = detailData.productAttrList[selectIndex].attrValues.length;
-    // for(var i=0;i<count;i++){
-    //   detailData.productAttrList[selectIndex].selectedValue = itemvalue.id;
-    // }
+
     //点击过，修改属性
     var selectName = "";
     //点击过，修改属性
     selectIndexArray[selectIndex] = itemvalue.modelAttrValue;
     selectAttrid[selectIndex] = itemvalue.id;
     //将数组的所有属性名拼接起来
-    for (var i = 0; i < selectIndexArray.length; i++) {
+    for (var i = 0; i < selectIndexArray.length; i++) {  
       selectName += ' "' + selectIndexArray[i] + '" ';
     }
     
@@ -232,9 +227,15 @@ Page({
       selectName: selectName,
       selectAttrid: selectAttrid
     });
-
-
-    this.showpro(selectAttrid)
+    var jishu = 0;
+    for (var i = 0; i < selectAttrid.length; i++) {
+      if (selectAttrid[i]!=undefined) {
+        jishu += 1;
+      }
+    }
+    if (jishu == selectAttrid.length) {
+      this.showpro(selectAttrid);
+    } 
   },
   showpro: function (selectAttrid){
         //将选中的数组ID转换成字符串
@@ -242,6 +243,7 @@ Page({
     for (let n = 0; n < selectAttrid.length; n++) {
       chooseId += selectAttrid[n] + ',';
     }
+
     chooseId = (chooseId.slice(chooseId.length - 1) == ',') ? chooseId.slice(0, -1) : chooseId;
     var chooseId = chooseId;
     var flag = false;

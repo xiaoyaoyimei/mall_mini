@@ -1,3 +1,5 @@
+
+var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 Page({
   data: {
@@ -85,6 +87,10 @@ Page({
     getOrder() {
       var orderNo = this.data.orderNo;
       request.req2('order', 'GET', orderNo, (err, res) => {
+        res.data.shippingOrder.createTime=util.formatTime(res.data.shippingOrder.createTime, 'Y/M/D h:m:s');
+        res.data.shippingOrder.orderTotalFee = util.pricefilter(res.data.shippingOrder.orderTotalFee);
+        res.data.shippingOrder.productFee = util.pricefilter(res.data.shippingOrder.productFee);
+        res.data.shippingOrder.discountFee = util.pricefilter(res.data.shippingOrder.discountFee);
           this.setData({
             orderdetail: res.data
           })    

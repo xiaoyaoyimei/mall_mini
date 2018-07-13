@@ -6,7 +6,7 @@
   align-items: center;
   margin-top: 10rpx;
   margin-bottom: 25rpx;
-  border-bottom: solid 2px #ebebeb;
+  border-bottom: solid 3px #ebebeb;
 }
 
 /**
@@ -108,44 +108,25 @@
 
 .tips{
   text-align: center;
-  margin-top:20rpx;
-  margin-bottom:20rpx;
+position:fixed;
+bottom:0;
+color:#ff9900;
+left:30%;
 }
 .topRightName{
   padding-right:30rpx
 }
-/* 搜索样式 */
-.search-box {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 26rpx;
-}
-.search-input {
-    flex: 1;
-    height: 60rpx;
-    line-height: 60rpx;
-    padding: 0 20rpx 0 54rpx;
-    background: #f8f8f8;
-    border-radius: 10rpx;
-    font-size: 32rpx;
-    border: 2rpx solid #ddd;
-}
 
-.search-icon {
-    position: absolute;
-    left: 15rpx;
-    top: 44rpx;
-    width: 35rpx;
-    height: 35rpx;
-}
-.search-btn{
-    font-size: 32rpx;
-    padding: 0 20rpx;
-    line-height: 64rpx;
-}
-.null-tips{
-    padding: 200rpx 0;
-    text-align: center;
-    color: #787878;
+.com-widget-goTop { 
+        position: fixed; 
+        bottom: 100px; 
+        right: 10px; 
+        border-radius: 50%; 
+        overflow: hidden; 
+        z-index: 500; 
+} 
+
+.com-widget-goTop image{
+  width:50px;
+  height: 50px
 }

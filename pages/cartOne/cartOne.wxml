@@ -25,9 +25,9 @@
                 <image class="cart-thumb" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="widthFix"></image>
                 <text class="cart-pro-name">{{item.productName}}</text>
                 <text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
-                <text class="cart-pro-price">￥{{item.salePrice}}</text>
+                <text class="cart-pro-price">￥{{item.gshsalePrice}}</text>
                 <view class="cart-count-box">
-                    <text class="cart-count-down" bindtap="minusCount" data-obj="{{obj}}" data-index="{{index}}">-</text>
+                    <text class="cart-count-down" bindtap="minusCount"  data-index="{{index}}">-</text>
                     <text class="cart-count-num">{{item.quantity}}</text>
                     <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
                 </view>

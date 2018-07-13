@@ -1,0 +1,23 @@
+<view class="body login">
+  <view class="login-item">
+    <view class="toastview" style=" line-height: 70rpx;  background: {{backcolor}};width: 100% ;color:#fff">{{showToast}}</view>
+    <view class="login-item-section">
+      <input placeholder="请输入手机号" type="number" class="login-item-input" bindinput="bindusnInput" />
+      <view class="img-code">
+        <image src="/images/refresh.png" catchtap='getimgcode' class="refresh"> </image>
+        <image src="{{verimg}}" class="img"> </image>
+        <input placeholder="请输入图形码" bindinput="bindimgInput" />
+      </view>
+      <view class="img-code">
+        <button size="mini" catchtap='getdxcode' type="primary">获取验证码</button>
+        <input placeholder="请输入短信验证码" bindinput="bindmesInput" />
+
+      </view>
+      <input placeholder="请输入密码" class="login-item-input"  bindinput="bindpsdInput" />
+    </view>
+    <view class="login-item-button">
+      <button type="primary" size="default" plain="{{plain}}" loading="{{loading}}" disabled="{{disabled}}" class="login-button" bindtap="loginbutton"> 注册 </button>
+    </view>
+    <view class="error-msg" wx:if="{{error}}">{{error}}</view>
+  </view>
+</view>

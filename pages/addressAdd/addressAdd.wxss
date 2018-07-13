@@ -12,8 +12,7 @@
     padding-top: 3px;
 }
 .item_input{
-    padding-left: 30px;
-    width: 70%;
+    padding-left: 20px;
 }
 .item_input_1{
     padding-left: 15px;

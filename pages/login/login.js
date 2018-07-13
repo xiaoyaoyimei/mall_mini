@@ -93,7 +93,11 @@ Page({
             url: '../mime/mime',
           })
 
-        } else{
+        } else if (option.fromurl == 'index'){
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }else{
           wx.navigateTo({
             url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
           })

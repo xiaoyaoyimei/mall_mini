@@ -1,3 +1,4 @@
+var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 Page({
   data: {
@@ -11,23 +12,24 @@ Page({
       this.data.cartList = [];
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
         if (res.data.code == 200) {
-
+          if (res.data.object.length>0){
+            for (var val of res.data.object) {
+              val.gshsalePrice = util.pricefilter(val.salePrice);
+            }
+          }
             self.setData({
               hasList: true,
               cartList: res.data.object,
             })
             self.getTotalPrice();
-            console.log(this.data.cartList);
         }else{
           self.setData({
             hasList: false
           });
         }
-      });
-     
+      }); 
   },
   onLoad(){
-  
   },
   onShow() {
     this.getCartList();
@@ -79,7 +81,6 @@ Page({
     let selectAllStatus = this.data.selectAllStatus;
     selectAllStatus = !selectAllStatus;
     let carts = this.data.cartList;
-
     for (let i = 0; i < carts.length; i++) {
       carts[i].selected = selectAllStatus;
     }
@@ -103,7 +104,6 @@ Page({
       cartList: carts
     });
     this.getTotalPrice();
-    console.log(this.data.cartList);
   },
 
   /**
@@ -150,9 +150,7 @@ Page({
       }
     }
     if(goumai.length<1){
-      wx.showToast({
-        title: "您尚未选择商品"
-      })
+      util.showModel('提示','您尚未选择商品')
       return;
     }else{
       wx.setStorageSync('cart', goumai);
@@ -161,17 +159,6 @@ Page({
       });
 
     }
-    // if (this.checkAllGroup.length < 1) {
-    //   this.$Message.warning('您尚未选择任何商品');
-    //   return false;
-    // }
-    // var goumai = [];
-    // this.checkAllGroup.forEach((i) => {
-    //   goumai.push(this.cartList[i])
-    // });
-    // sessionStorage.removeItem('cart');
-    // sessionStorage.setItem('cart', JSON.stringify(goumai));
-    // this.$router.push({ name: '/carttwo' });
   },
 
 })

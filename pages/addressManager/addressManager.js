@@ -57,7 +57,7 @@ Page({
     })
   },
   onLoad:function(options){
-    this.getAddressList();
+    //this.getAddressList();
   },
   onReady: function() {
     // Do something when page ready.

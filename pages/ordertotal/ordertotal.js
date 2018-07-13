@@ -11,7 +11,12 @@ Page({
     newlist: [],
     statusenums:[],
   },
-  onLoad: function () {
+  goindex(){
+    wx.switchTab({
+      url: '../index/index',
+    })
+  },
+  onShow: function () {
     //刷新数据
     this.getData();
     this.getStatus()
@@ -29,6 +34,7 @@ Page({
     })
   },
   quzhifu(e){
+    var that=this;
     var orderNo = e.currentTarget.dataset.orderno;
     wx.login({
       success: function (res) {
@@ -46,10 +52,14 @@ Page({
                 })
               },
               fail: function () {
-                console.log('fail')
+                wx.showToast({
+                  title: '支付失败',
+                  icon: 'none',
+                  duration: 2000
+                })
               },
               complete: function () {
-                console.log('complete')
+                that.getData();
               }
             })
         }); 
@@ -80,7 +90,6 @@ Page({
           })
           //处理数据
           var list = that.data.list;
-         
           for (var i = 0; i < list.length; i++) {
             list[i].order.znStatus = that.statusfilter(list[i].order.orderStatus);
            }

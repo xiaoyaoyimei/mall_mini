@@ -22,9 +22,27 @@ Page({
     limt: 20,
     tab: '',
     tips: '', //无数据
-    total:0
+    total:0,
+    clientHeight:0,
+    scrollTop:0,
   },
-
+  goTop: function (e) {
+    this.setData({
+      scrollTop: 0
+    });
+  },
+  scroll: function (e, res) {
+    // 容器滚动时将此时的滚动距离赋值给 this.data.scrollTop
+    if (e.detail.scrollTop > 500) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
 
   //切换TAB
   onTapTag: function (e) {
@@ -104,6 +122,13 @@ Page({
     var that = this;
     //封装https请求
     that.getData();
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          clientHeight: res.windowHeight
+        });
+      }
+    });
   },
 
 })
