@@ -23,11 +23,6 @@ Page({
   onshow(){
     this.getOrder();
   },
-    formatDate(time) {
-      var date = new Date(time);
-      return formatDate(date, 'yyyy-MM-dd hh:mm:ss');
-    },
-
     getStatusEnum() {
       request.req('order','order/enums', 'GET', {}, (err, res) => {
         if (res.code == '200') {  
@@ -36,13 +31,6 @@ Page({
         })
         }
       });
-    },
-    statusfilter(value) {
-      for (var i = 0; i < this.statusList.length; i++) {
-        if (this.statusList[i].key == value) {
-          return this.statusList[i].value;
-        }
-      }
     },
     cancel() {
       var orderNo = this.data.orderNo;

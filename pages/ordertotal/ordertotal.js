@@ -32,7 +32,6 @@ Page({
     var orderNo = e.currentTarget.dataset.orderno;
     wx.login({
       success: function (res) {
-        console.log(res.code)
         request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
           var weval=res.data.object;
             wx.requestPayment({
