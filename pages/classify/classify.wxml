@@ -8,11 +8,9 @@
       </view>
     </block>
   </view> -->
-
   <!--scrollview-->
-  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" enable-back-to-top="true" wx:if="{{list.length > 0}}"  scroll-top="{{scrollTop}}" bindscroll="scroll">
+  <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" enable-back-to-top="true" wx:if="{{list.length > 0}}" scroll-top="{{scrollTop}}" bindscroll="scroll">
     <block wx:for-items="{{list}}" wx:key="id">
-
       <!-- item-->
       <view data-specId="{{item.id}}" catchtap="clickitem" class="topContainsView">
         <image class="goodsImage" src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode='widthFix' />
@@ -24,14 +22,15 @@
       </view>
     </block>
   </scroll-view>
-        <view class="result-null" wx:else>
-          <view class="null-tips">Oh~~ 搜索结果为空！</view>
-          </view>
+
+  <view class="result-null" wx:if="{{list.length==0&&loadingHidden}}">
+    <view class="null-tips">Oh~~ 搜索结果为空！</view>
+  </view>
   <loading class="loading" hidden="{{loadingHidden}}">
     <text class="loading-font">加载中...</text>
   </loading>
   <view class="tips">{{tips}}</view>
-  <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}"> 
-      <image src="/images/gotop.png"></image>
-    </view>
+  <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}">
+    <image src="/images/gotop.png"></image>
+  </view>
 </view>

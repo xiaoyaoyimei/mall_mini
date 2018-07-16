@@ -1,5 +1,4 @@
 /**app.wxss**/
-@import "/wxParse/wxParse.wxss";
 
 .container {
   height: 100%;
@@ -43,5 +42,8 @@ text{
   color: #ffffff;
 }
 .dx-color{
-  color:#0099ff
+  color:#0099ff;
+}
+.bold{
+  font-weight: 600;
 }

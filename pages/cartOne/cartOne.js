@@ -41,11 +41,28 @@ Page({
   selectList(e) {
     const index = e.currentTarget.dataset.index;
     let carts = this.data.cartList;
+   
     const selected = carts[index].selected;
     carts[index].selected = !selected;
     this.setData({
       cartList: carts
     });
+    var alllength = this.data.cartList.length;
+    var length = 0;
+    for (let i = 0; i < alllength; i++) {
+      if (carts[i].selected) {
+        length += 1
+      }
+    }
+    if (length == alllength) {
+      this.setData({
+        selectAllStatus: true,
+      });
+    } else {
+      this.setData({
+        selectAllStatus: false,
+      });
+    }
     this.getTotalPrice();
   },
 

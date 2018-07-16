@@ -3,7 +3,7 @@
   <scroll-view scroll-y="true" scroll-x="false">
   <navigator url="../addressManager/addressManager">
     <view wx:if="{{hasAddress}}">
-      <view bindtap="addressClick">
+      <view catchtap='addressClick'>
         <view class="top_view">
           <text>{{addressInfo.person}}  {{addressInfo.phone}}</text> </view>
           <view class="address_view">
@@ -20,7 +20,7 @@
         <view class="iamge-wrap">
           <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
         </view>
-        <view class="goods_infos">
+        <view class="info_wrap">
           <text class="text_style_1">{{item.productName}}</text>
           <text class="text_style_2">{{item.productAttr}}</text>
           	   <view class="text_style_3">

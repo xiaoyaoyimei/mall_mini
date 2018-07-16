@@ -54,7 +54,7 @@ Page({
       loginName: username,
       passWord: psword
     }, (err, res) => {
-    
+
       this.setData({
         loading: false,
         disabled: false,
@@ -79,12 +79,12 @@ Page({
             url: '../cartOne/cartOne'
           })
         } else if (option.fromurl == 'addresslist') {
-          wx.navigateTo({   //加个参数  
+          wx.navigateBack({   //加个参数  
             url: '../addressManager/addressManager'
           })
          
         } else if (option.fromurl == 'orderlist'){
-          wx.navigateTo({
+          wx.navigateBack({
             url: '../ordertotal/ordertotal',
           })
         
@@ -98,7 +98,7 @@ Page({
             url: '../index/index',
           })
         }else{
-          wx.navigateTo({
+          wx.navigateBack({
             url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
           })
         }

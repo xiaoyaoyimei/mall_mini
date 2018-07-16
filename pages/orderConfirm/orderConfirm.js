@@ -215,7 +215,7 @@ Page({
   paynow: function (e) {
    //保存订单接口获取ordercode
     var that = this;
-    if (that.data.productItemIds == undefined) {
+    if (that.data.addressInfo.id == undefined) {
       wx.showToast({
         title: '收货地址不能为空',
         icon: 'none',
@@ -256,12 +256,12 @@ Page({
                         duration: 2000
                       })
                       wx.switchTab({
-                        url: '../mine/mine',
+                        url: '../mime/mime',
                       })
                     },
                     complete: function () {
                       wx.switchTab({
-                        url: '../mine/mine',
+                        url: '../mime/mime',
                       })
                     }
                   })

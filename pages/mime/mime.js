@@ -15,11 +15,6 @@ Page({
     })
   },
   address_manager: function () {
-    if (!Info.token) {
-      wx.navigateTo({
-        url: '../login/login?fromurl=addresslist'
-      })
-    }
     wx.navigateTo({
       url: '../addressManager/addressManager?fromurl='
     })
@@ -47,26 +42,17 @@ Page({
   logout:function(){
     var that = this
     //判断是否登陆，如果没登陆走微信的
-    // var CuserInfo = wx.getStorageSync('CuserInfo');
-    // Info = CuserInfo
-    // if (CuserInfo.token) {
+
       request.req('account','customer/logout', 'POST', {}, (err, res) => {
-        if(res.code==200){
+        if(res.data.code==200){
           wx.showToast({
-            title: res.msg,
+            title: res.data.msg,
             icon: 'success',
             duration: 2000
           })
-          wx.clearStorage({
-            success: function (res) {
-              that.setData({
-                CuserInfo: ''
-              })
-            }
-          })
-        
+          wx.removeStorageSync('CuserInfo')
         }
     })
-  //}
+
   }
 })

@@ -10,6 +10,7 @@
 }
 .item_text{
     padding-top: 3px;
+    width:100px
 }
 .item_input{
     padding-left: 20px;

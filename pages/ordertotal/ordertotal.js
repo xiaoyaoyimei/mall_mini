@@ -16,10 +16,13 @@ Page({
       url: '../index/index',
     })
   },
+  onLoad(){
+    this.getStatus()
+  },
   onShow: function () {
     //刷新数据
     this.getData();
-    this.getStatus()
+   
   },
   getStatus:function(){
     var that = this;
@@ -96,7 +99,7 @@ Page({
            that.setData({
              newlist: list
            })
-     
+           console.log(that.data.newlist)
         }
       }
     })
@@ -111,9 +114,9 @@ Page({
       success: function (res) {
         if (res.confirm) {
           request.req2('order/cancel', 'POST', orderNo, (err, res) => {
-            if (res.data.code == 200) {
+            if (res.data.code == 200 || res.data.code==503) {
               wx.showToast({
-                title: '取消成功',
+                title: res.data.msg,
                 icon: 'success',
                 duration: 1000,
                 mask: true

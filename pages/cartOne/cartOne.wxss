@@ -32,6 +32,7 @@
 }
 .cart-list .cart-pro-price{
     display: inline-block;
+    color:#0099ff;
 }
 .cart-list .cart-count-box{
     position: absolute;

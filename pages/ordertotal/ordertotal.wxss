@@ -41,7 +41,6 @@
   background: white;
 }
 .list button{
-  float: right;
   margin-right: 50rpx;
   margin-top: 10rpx;
 }
@@ -71,7 +70,6 @@
 }
 
 .goodsnum {
-  margin-left: 30rpx;
   font-size: 14px;
   margin-top: 15rpx;
 }
@@ -115,4 +113,7 @@ height: 100vh
 .color-dx{
   color: #0099ff;
   margin-top: 50rpx
+}
+.opt-bottom{
+  text-align: right
 }

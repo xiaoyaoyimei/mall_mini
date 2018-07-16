@@ -18,9 +18,7 @@ Page({
       }
     })
   },
-
   addrDelete:function(e){
-
     var that = this;
     var addressId = e.currentTarget.dataset.item.id;
     var CuserInfo = wx.getStorageSync('CuserInfo');
@@ -65,7 +63,6 @@ Page({
     var that = this;
     request.req('addresslist',uri_address_list, 'POST', {
     }, (err, res) => {
-
       that.setData({
         addressData: res.data,//接数组
       })

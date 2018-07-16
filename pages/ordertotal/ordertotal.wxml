@@ -8,10 +8,11 @@
     <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.znStatus}}" >
       <view class="item-headerview">
           <view class="item-text">
+            <text class="fr">{{item.order.znStatus}}</text>
           <text>订单号:{{item.order.orderNo}}</text>
           </view>
            <view class="item-text"> 
-            <text class="fr">{{item.order.znStatus}}</text>
+          
            <text class="dx-color">总价:￥{{item.order.orderTotalFee}}</text>
         </view>
       </view>
@@ -25,9 +26,11 @@
         </view>
         </view>
     </navigator>
-			<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>
+		
+    <view class="opt-bottom">
 				<button  type="primary"  size="mini" bindtap="quzhifu"  wx:if="{{item.order.orderStatus=='01'}}"  data-orderno="{{item.order.orderNo}}">去支付</button> 
-
+        	<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>
+</view>
     </view>
 </view>
 <view wx:else class="tips">

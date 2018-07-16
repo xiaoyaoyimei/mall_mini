@@ -2,7 +2,6 @@
 var app = getApp()
 var request = require('../../utils/https.js')
 var uri = 'product/search' //商品列表的的uri
-var keyword = '';
 var navlist = [
   { id: " ", title: "综合", icon: "" },
   { id: "salenum", title: "销量", icon: "" },
@@ -69,14 +68,12 @@ Page({
     var tab = that.data.tab;
 
     that.setData({ loadingHidden: false });
-    request.req('searchpage',uri, 'GET', {
+    request.req3(uri, 'GET', {
       //搜索过滤     
-      keyWord: keyword,
       startRow: that.data.startRow,
       pageSize: that.data.pageSize,
     }, (err, res) => {
         if (res.data.total>0){
-          app.globalData.keyword = ""
           that.setData({
             loadingHidden: true,
             list: that.data.list.concat(res.data.itemsList),
@@ -117,8 +114,7 @@ Page({
       url: '../goodsDetail/goodsDetail?specId=' + specId,
     })
   },
-  onLoad: function (options) {
-    keyword = app.globalData.keyword;
+  onLoad: function () {
     var that = this;
     //封装https请求
     that.getData();

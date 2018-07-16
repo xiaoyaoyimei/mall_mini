@@ -52,7 +52,7 @@ Page({
         if (pageNo == 1) {
             that.setData({ list: [] });
         }
-        request.req('searchpage',uri,'GET', {
+        request.req3(uri,'GET', {
              //搜索过滤     
             keyWord: id,
             startRow: that.data.startRow,
@@ -62,7 +62,7 @@ Page({
                 loadingHidden: true,
                 list: that.data.list.concat(res.data.itemsList)
             });
-            console.log(res); 
+           
         })
 
     },

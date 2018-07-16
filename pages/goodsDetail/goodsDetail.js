@@ -6,7 +6,6 @@ var uribuy = 'order/shopping/add'; //立即购买
 var uri = 'product';
 var selectAttrid = [];//选择的属性id
 var selectIndexArray=[];//选中属性的名称
-
 Page({
   data: {
     showModal: false,
@@ -60,40 +59,18 @@ Page({
       selected1: true
     })
   },
-  // buyNow: function (event) {  //获取cartId
-
-  //   //判断是否登陆,如果未登陆跳到登陆界面，如果登陆就调接口，跳转确认订单界面
-  //   var CuserInfo = wx.getStorageSync('CuserInfo');
-  //   console.log(CuserInfo.token)
-  //   console.log(specId)
-  //   if (!CuserInfo.token) {
-  //     //跳转到login
-  //     wx.navigateTo({
-  //       url: '../login/login?specId=' + specId ,
-  //     })
-      
-  //   } else {
-  //     var that = this;
-  //     request.req(uribuy, 'POST', {
-  //       productItemId: this.data.productItemId,
-  //       quantity: this.data.quantity
-  //     }, (err, res) => {
-  //       var result = res.data;
-  //       console.log(result);
-  //       if (result.result == 1) { //获取cartId
-  //         //拿着cartId跳转到确认订单界面
-  //         wx.navigateTo({   //获取cartId
-  //           url: '../orderConfirm/orderConfirm?cartIds=' + result.data[0].cartIds,
-  //         })
-  //       } else {
-  //         that.setData({
-  //           tips: res.data.msg
-  //         })
-       
-  //       }
-  //     })
-  //   }
-  // },
+  onShareAppMessage: function (res) {
+    var that=this;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    console.log(that.data.detailData.product.modelTitle);
+    return {
+      title: that.data.detailData.product.modelTitle,
+      path: `/pages/goodsDetail/goodsDetail?specId=${specId}`
+    }
+  },
   onLoad: function (options) {
     // 生命周期函数--监听页面加载
     var that = this;
@@ -125,13 +102,15 @@ Page({
         that.setData({
           detailData: Object.assign(that.data.detailData, res.data.object),
         })
-     
         var temp = that.data.detailData;
         var jishu=0;
+        var selectName = "";
+
         for (var i = 0; i < temp.productAttrList.length; i++) {
           if (temp.productAttrList[i].attrValues.length==1){
             temp.productAttrList[i].selectedValue =0;
-            selectAttrid[i] = temp.productAttrList[i].attrValues[0].id;            
+            selectAttrid[i] = temp.productAttrList[i].attrValues[0].id;   
+            selectName += ' "' + temp.productAttrList[i].attrValues[0].modelAttrValue + '" ';         
             jishu+=1;
           }
          // temp.productAttrList[i].selectedValue = temp.productAttrList[i].attrValues[0].id;
@@ -141,7 +120,8 @@ Page({
         }
         that.setData({
           detailData: temp,
-          selectAttrid: selectAttrid
+          selectAttrid: selectAttrid,
+          selectName: selectName,
         })
       }
     })
@@ -171,11 +151,6 @@ Page({
     })
   },
   /**
-   * 弹出框蒙层截断touchmove事件
-   */
-  preventTouchMove: function () {
-  },
-  /**
    * 隐藏模态对话框
    */
   hideModal: function () {
@@ -183,18 +158,14 @@ Page({
       showModal: false
     });
   },
+
   /**
-   * 对话框取消按钮点击事件
+   * 弹出框蒙层截断touchmove事件
    */
-  onCancel: function () {
-    this.hideModal();
+  preventTouchMove: function () {
   },
-  /**
-   * 对话框确认按钮点击事件
-   */
-  onConfirm: function () {
-    this.hideModal();
-  },
+  
+
   /* 选择属性值事件 */
   selectAttrValue: function (e) {
 
@@ -325,14 +296,7 @@ Page({
     });
   },
   atc() {
-    var CuserInfo = wx.getStorageSync('CuserInfo');
-    if (!CuserInfo.token) {
-      //跳转到login
-      wx.navigateTo({
-        url: '../login/login?specId=' + specId ,
-      })
 
-    } else {
     if (this.data.productItemId == "") {
       wx.showToast({
         title: "请选择商品属性"
@@ -359,6 +323,6 @@ Page({
         })
       }
     }
-}
+
 
 })
