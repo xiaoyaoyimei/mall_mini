@@ -1,14 +1,15 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="detail_container">
   <scroll-view scroll-y="true" scroll-x="false" class="scroll-view">
     <swiper class="detail_swiper" indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{detailData.productImageList}}" wx:key="item.id">
         <swiper-item>
-          <image src="https://image-shop.dxracer.com.cn/{{item.listImg}}" mode="scaleToFill"></image>
+          <image src="{{imgurl}}{{item.listImg}}" mode="scaleToFill"></image>
         </swiper-item>
       </block>
     </swiper>
     <view class="detail_title">{{detailData.product.modelName}}</view>
-    <view class="detail_price">￥{{detailData.product.salePrice}}</view>
+    <view class="detail_price">￥{{filters.toFix(detailData.product.salePrice)}}</view>
 
     <view bindtap="showDialogBtn" class="kind-list-item-hd">
       <view class="kind-list-text">
@@ -23,7 +24,7 @@
     </view>
     <view class="{{selected?'show':'hidden'}}">
     <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
-    <image src="https://image-shop.dxracer.com.cn/{{item.imgUrl}}"  mode="widthFix"></image>
+    <image src="{{imgurl}}{{item.imgUrl}}"  mode="widthFix"></image>
     </view>
     </view>
     <view class="{{selected1?'show':'hidden'}}">	
@@ -53,15 +54,15 @@
       </view>
       <view wx:if="{{firstshow}}" class='chooseproduct'>
         <view class="image-xq">
-          <image src="https://image-shop.dxracer.com.cn/{{choosesp.img}}"></image>
+          <image src="{{imgurl}}{{choosesp.img}}"></image>
         </view>
         <view class="small-xq">
-          <view class="color-dx">￥{{choosesp.price}}</view>
+          <view class="color-dx">￥{{filters.toFix(choosesp.price)}}</view>
           <view>{{choosesp.itemNo}}</view>
           <view>库存:{{choosesp.kucun}}</view>
           <!--促销-->
           <view class="cx" wx:if="{{cxshow}}">
-            <text>￥{{choosesp.cuxiaoprice}}</text>
+            <text>￥{{filters.toFix(choosesp.cuxiaoprice)}}</text>
             <text>{{choosesp.activityName}}</text>
           </view>
         </view>

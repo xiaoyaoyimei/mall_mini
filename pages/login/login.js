@@ -50,9 +50,12 @@ Page({
     var username = that.data.username;
     var psword = that.data.psword;
     //访问网络
+    wx.login({
+      success: res => {
     request.req(option.fromurl,uri,'POST', {
       loginName: username,
-      passWord: psword
+      passWord: psword,
+      wxCode:res.code
     }, (err, res) => {
 
       this.setData({
@@ -111,6 +114,8 @@ Page({
         })
       }
     })
+      }
+      })
   },
   onLoad: function (options) {  //id==1 从商品详情跳转过来的，到确认订单界面
     option = options;  //存储options

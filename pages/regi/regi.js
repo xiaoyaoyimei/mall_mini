@@ -134,32 +134,40 @@ Page({
     var txm = that.data.txm;
     var yzm = that.data.yzm;
     //访问网络
-    request.req('regi', 'customer/register', 'POST', {
-      loginName: username,
-      passWord: psword,
-      verificationCode: txm,
-      shortMessage:yzm
-    }, (err, res) => {
+    wx.login({
+      success: res => {
+        var code = res.code;
+        if (code) {
+          request.req('regi', 'customer/register', 'POST', {
+            loginName: username,
+            passWord: psword,
+            verificationCode: txm,
+            shortMessage: yzm,
+            wxcode:code
+          }, (err, res) => {
+            this.setData({
+              loading: false,
+              disabled: false,
+            })
+            //保存
+            if (res.data.code == '200') {
+              //登陆成功 跳转
+              wx.navigateTo({   //加个参数  
+                url: '../login/login?fromurl=index'
+              })
 
-      this.setData({
-        loading: false,
-        disabled: false,
-      })
-      //保存
-      if (res.data.code == '200') {
-        //登陆成功 跳转
-        wx.navigateTo({   //加个参数  
-          url: '../login/login?fromurl=index'
-        })
-
-      } else {
-        //提示
-        that.setData({
-          showToast: res.data.msg,
-          backcolor: 'red',
-        })
+            } else {
+              //提示
+              that.setData({
+                showToast: res.data.msg,
+                backcolor: 'red',
+              })
+            }
+          })
+        }
       }
     })
+ 
   },
 
 

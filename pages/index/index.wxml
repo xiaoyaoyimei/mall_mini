@@ -8,7 +8,8 @@
   <block wx:for="{{poster}}" wx:key="{{id}}">
     <swiper-item >
        <navigator url="/pages/goodsDetail/goodsDetail?specId={{item.id}}"> 
-       <image src="https://image-shop.dxracer.com.cn/{{item.phoneUrl}}" class="slide-image"  mode="widthFix"/></navigator>
+       <image src="{{imgurl}}{{item.phoneUrl}}" class="slide-image"  mode="widthFix"/>
+       </navigator> 
     </swiper-item>
   </block>
 </swiper>

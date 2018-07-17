@@ -27,7 +27,8 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0099ff",
     "navigationBarTitleText": "Dxracer 官方商城",
-    "navigationBarTextStyle": "#fff"
+    "navigationBarTextStyle": "#fff",
+    "navigationBarTextAlign": "center"
   },
   "tabBar": {
     "color": "#575757",

@@ -7,7 +7,6 @@ Page({
   data: {
     userInfo: {},
   },
-
   no_payment: function () {
     //全部订单
     wx.navigateTo({
@@ -16,10 +15,9 @@ Page({
   },
   address_manager: function () {
     wx.navigateTo({
-      url: '../addressManager/addressManager?fromurl='
+      url: '../addressManager/addressManager'
     })
   },
-
   //账户管理
   mimeinfo: function () {
     wx.navigateTo({
@@ -28,7 +26,6 @@ Page({
   },
   onShow: function () {
     var that = this
-  
       //获取照片和用户名
       request.req('account','account', 'POST', {}, (err, res) => {
          var user = {}

@@ -10,6 +10,7 @@
     <view class="login-item-button">
       <button type="primary" size="default" plain="{{plain}}" loading="{{loading}}" disabled="{{disabled}}" class="login-button" bindtap="loginbutton"> 登录 </button>
     </view>
+    <navigator url="../regi/regi">注册</navigator>  
     <view class="error-msg" wx:if="{{error}}">{{error}}</view>
   </view>
 </view>

@@ -1,13 +1,16 @@
 //index.js
 //获取应用实例
 var app = getApp()
+var imgurl = app.globalData.imgsrc;
+
 var request = require('../../utils/https.js')
 var uri_home = 'floor/api/indexListAll'
 Page({
   data: {
     motto: '请输入您要搜索的商品',
     list: [],
-    poster:[]
+    poster:[],
+    imgurl: imgurl
   },
   onShareAppMessage: function () {
     // 用户点击右上角分享

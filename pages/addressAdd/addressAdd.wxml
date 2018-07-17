@@ -8,11 +8,12 @@
     </view>
     <view class="add_item">
         <text class="item_text">手机号:</text>
-        <input class="item_input" bindinput="bindPhoneInput" placeholder="请输入手机号" value="{{addressInfo.mobPhone}}"/>
+        <input class="item_input" bindinput="bindPhoneInput" placeholder="请输入手机号" value="{{addressInfo.mobPhone}}" confirm-hold="true"/>
     </view>
     <view class="add_item">
         <text class="item_text">省市区:</text>
-        <input class="item_input" bindtap="translate"   placeholder="请选择城市" value="{{province}} {{city}} {{county}}"/>
+       <text>{{province}} {{city}} {{county}}</text>
+        <button size="mini" bindtap="translate">选择</button>
 
         <template is="areaData" data="{{...item}}"/>
     </view>

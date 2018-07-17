@@ -10,7 +10,7 @@
       <view class="result-box">
         <view class="result-list" wx:for="{{result}}" wx:key="index">
           <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
-            <image src="https://image-shop.dxracer.com.cn/{{item.model_img}}" mode="widthFix"></image>
+            <image src="{{imgurl}}{{item.model_img}}" mode="widthFix"></image>
             <view class="result-text">
               <text>{{item.model_no}}</text>
             </view>

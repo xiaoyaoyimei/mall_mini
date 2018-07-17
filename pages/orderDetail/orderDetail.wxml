@@ -1,3 +1,4 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="status">{{orderStatus}}</view>
 <view class="detail">
   <view class="address">
@@ -12,12 +13,12 @@
   </view>
   <view class="mini-cart" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="{{index}}">
     <view class="mini-img">
-      <image src="https://image-shop.dxracer.com.cn/{{item.productItemImg}}"></image>
+      <image src="{{imgurl}}{{item.productItemImg}}"></image>
     </view>
     <view class="mini-attr">
       <text class="title">{{item.productTitle}}</text>
       <text>{{item.textroductAttrs}} 数量:{{item.quantity}}</text>
-      <text class="price">￥{{item.productFee}}   </text>
+      <text class="price">￥{{filters.toFix(item.productFee)}}   </text>
     </view>
   </view>
 
@@ -39,15 +40,15 @@
   <view class="stexttotal">
     <view class="total_wrap">
       <text class="t">商品总额</text>
-      <text class="s">￥{{orderdetail.shippingOrder.productFee}}</text>
+      <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.productFee)}}</text>
     </view>
     <view class="total_wrap">
       <text class="t">商品优惠</text>
-      <text class="s">￥{{orderdetail.shippingOrder.discountFee}}</text>
+      <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.discountFee)}}</text>
     </view>
     <view class="total_wrap">
       <text class="t">实付款：</text>
-      <text class="s">￥{{orderdetail.shippingOrder.orderTotalFee}}</text>
+      <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.orderTotalFee)}}</text>
     </view>
   </view>
   <view  wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">

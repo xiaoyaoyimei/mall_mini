@@ -1,3 +1,4 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="container">
 
 
@@ -11,14 +12,13 @@
             <text class="fr">{{item.order.znStatus}}</text>
           <text>订单号:{{item.order.orderNo}}</text>
           </view>
-           <view class="item-text"> 
-          
-           <text class="dx-color">总价:￥{{item.order.orderTotalFee}}</text>
+           <view class="item-text">         
+           <text class="dx-color">总价:￥{{filters.toFix(item.order.orderTotalFee)}}</text>
         </view>
       </view>
   
       <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId">
-        <image class="img" src="https://image-shop.dxracer.com.cn/{{item.productItemImg}}" mode='scaleToFill' />
+        <image class="img" src="{{imgurl}}{{item.productItemImg}}" mode='wdithFix' />
         <view class="goodsinfo">
           <text class="goodsname">{{item.productTitle}}</text>
            <text>{{item.productItemNo}}</text>

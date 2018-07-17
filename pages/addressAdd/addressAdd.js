@@ -21,7 +21,7 @@ Page({
     zipCode: '',
     detailAddress: '',
     addressInfo: {},
-    province:'请选择省市区',
+    province:'',
     city:'',
     county:'',
   },

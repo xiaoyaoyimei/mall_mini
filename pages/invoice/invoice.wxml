@@ -17,7 +17,8 @@
     </view>
        <view class="section">
       <view class="section__title">所在地区</view>
-        <input class="item_input" bindtap="translate"   placeholder="请选择城市" value="{{province}} {{city}} {{county}}"/>
+       <text>{{province}} {{city}} {{county}}</text>
+        <button size="mini" bindtap="translate">选择</button>
         <template is="areaData" data="{{...item}}"/>
     </view>
        <view class="section">

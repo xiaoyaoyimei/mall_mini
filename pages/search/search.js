@@ -2,6 +2,7 @@ let timeId = null;
 var request = require('../../utils/https.js')
 var uri = 'product/search' //商品列表的的uri
 var app = getApp()
+var imgurl = app.globalData.imgsrc;
 Page({
     data: {
         history: [],
@@ -47,7 +48,6 @@ Page({
 
     search(){
      var that=this;
-     console.log(that.data.value);
       request.req('searchpage', uri, 'GET', {
         //搜索过滤     
         keyWord: that.data.value,
@@ -131,7 +131,6 @@ Page({
           that.setData({
                 history: JSON.parse(history)
             })
-          console.log(that.data.history);
         }
         wx.getSystemInfo({
 

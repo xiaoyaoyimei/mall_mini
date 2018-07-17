@@ -2,6 +2,7 @@ var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
 var auto = 'customer/login';
 //携带TOKEN
 function req(fromurl,url, methodway, data, callback) {
+
   var fromurl = fromurl;
   var CuserInfo = wx.getStorageSync('CuserInfo');
   if (CuserInfo=={}){
@@ -15,13 +16,9 @@ function req(fromurl,url, methodway, data, callback) {
               // console.log("获取到的openid为：" + res.data)
               // that.globalData.openid = res.data
               wx.setStorageSync('openid', res.data)
-            } else if (res.data.code == 404) {
+            } else  {
               wx.navigateTo({
                 url: '../login/login?fromurl=index'
-              })
-            } else {
-              wx.navigateTo({
-                url: '../regi/regi?fromurl=index'
               })
               return;
             }
@@ -31,7 +28,7 @@ function req(fromurl,url, methodway, data, callback) {
         }
       }
     })
-  }
+ }
   else{
     //如果有token，就把token放到header
     wx.request({

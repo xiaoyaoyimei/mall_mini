@@ -3,6 +3,7 @@ var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 var uri = 'order/list'
 var statusuri ="order/enums"
+var imgurl = getApp().globalData.imgsrc;
 Page({
   data: {
     pageNo: 1,
@@ -10,6 +11,7 @@ Page({
     list: [],
     newlist: [],
     statusenums:[],
+    imgurl:imgurl
   },
   goindex(){
     wx.switchTab({
@@ -99,7 +101,6 @@ Page({
            that.setData({
              newlist: list
            })
-           console.log(that.data.newlist)
         }
       }
     })

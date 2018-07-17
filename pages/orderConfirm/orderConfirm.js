@@ -3,8 +3,10 @@ var addressId = ''
 var request = require('../../utils/https.js')
 var uri_order_confirm = 'order/shopping/confirm' //确认订单
 var uri_pay = 'wxh5pay/api/towxpayInfo'
+var imgurl = getApp().globalData.imgsrc;
 Page({
   data: {
+    imgurl: imgurl,
     cartList: [],
     addressInfo: {},
     hasAddress: false,

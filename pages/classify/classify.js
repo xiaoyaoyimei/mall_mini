@@ -1,5 +1,6 @@
 // pages/goodlist/goodlist.js
 var app = getApp()
+var imgurl = app.globalData.imgsrc;
 var request = require('../../utils/https.js')
 var uri = 'product/search' //商品列表的的uri
 var navlist = [
@@ -10,6 +11,7 @@ var navlist = [
 ];
 Page({
   data: {
+    imgurl: imgurl,
     startRow: 0,
     pageSize: 10,
     activeIndex: 0,

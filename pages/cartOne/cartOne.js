@@ -1,11 +1,14 @@
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
+var imgurl = getApp().globalData.imgsrc;
 Page({
   data: {
     cartList: [],               // 购物车列表
     hasList: false,          // 列表是否有数据
     totalPrice: 0,           // 总价，初始为0
     selectAllStatus: false,    // 全选状态，默认全选
+    imgurl: imgurl,
+    loginhidden:true
   },
   getCartList() {
     var self=this;
@@ -20,10 +23,12 @@ Page({
             self.setData({
               hasList: true,
               cartList: res.data.object,
+              loginhidden: false
             })
             self.getTotalPrice();
         }else{
           self.setData({
+            loginhidden: false,
             hasList: false
           });
         }

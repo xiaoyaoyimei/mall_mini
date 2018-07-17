@@ -1,3 +1,4 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view>
   <view class="top_line"></view>
   <scroll-view scroll-y="true" scroll-x="false">
@@ -18,14 +19,14 @@
     <view wx:for="{{cartList}}" wx:key="{{index}}">
       <view class="goods_info">
         <view class="iamge-wrap">
-          <image class="image_icon" src="https://image-shop.dxracer.com.cn/{{item.image}}" mode="aspectFit"></image>
+          <image class="image_icon" src="{{imgurl}}{{item.image}}" mode="aspectFit"></image>
         </view>
         <view class="info_wrap">
           <text class="text_style_1">{{item.productName}}</text>
           <text class="text_style_2">{{item.productAttr}}</text>
           	   <view class="text_style_3">
 						   	<text class="promotion" wx:if="{{item.promotionTitle !=null}}">{{item.promotionTitle}} </text>
-					      <text class="color-dx">￥{{item.salePrice}} x {{item.quantity}}</text>
+					      <text class="color-dx">￥{{filters.toFix(item.salePrice)}} x {{item.quantity}}</text>
 					       <!-- <text wx:if="{{item.promotionTitle ==null&&xscoupon}}" class="color-dx"> ￥	{{item.salePrice}} x {{item.quantity}} </text>  -->
 					    </view>
         </view>
@@ -46,14 +47,14 @@
     </view>
     <view class="bottom_text_1">
       <text>商品金额</text>
-      <text class="right_text">¥ {{origintotalprice}}</text>
+      <text class="right_text">¥ {{filters.toFix(origintotalprice)}}</text>
     </view>
     <view class="bottom_text_3">
       <text>优惠券</text>
-      <text class="right_text">-￥{{preferential}}</text>
+      <text class="right_text">-￥{{filters.toFix(preferential)}}</text>
     </view>
     <view class="true_pay">
-      <text class="true_pay_right">¥{{total.price}}</text>
+      <text class="true_pay_right">¥{{filters.toFix(total.price)}}</text>
       <text>实付金额:　</text>
     </view>
     <button class="bottom_btn" bindtap="paynow" type="primary" disabled='{{disabled}}'>微信支付</button>

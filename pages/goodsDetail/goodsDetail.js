@@ -1,6 +1,7 @@
 //商品分类页传来的商品Id
 var specId = ''
 var app = getApp();
+var imgurl = getApp().globalData.imgsrc;
 var request = require('../../utils/https.js')
 var uribuy = 'order/shopping/add'; //立即购买
 var uri = 'product';
@@ -8,6 +9,7 @@ var selectAttrid = [];//选择的属性id
 var selectIndexArray=[];//选中属性的名称
 Page({
   data: {
+    imgurl: imgurl,
     showModal: false,
     tips: '',
     max: 100,
