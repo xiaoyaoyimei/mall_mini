@@ -1,7 +1,4 @@
 /**index.wxss**/
-.slide-image{
-  width: 100%;
-}
 
 .index_search_btn {
   height: 70rpx;
@@ -34,8 +31,5 @@
     float: left;
     height: 180rpx;
 }
-/*每个item样式*/
-
-
 
 

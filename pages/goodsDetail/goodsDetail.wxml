@@ -2,9 +2,9 @@
 <view class="detail_container">
   <scroll-view scroll-y="true" scroll-x="false" class="scroll-view">
     <swiper class="detail_swiper" indicator-dots="{{indicatorDots}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{detailData.productImageList}}" wx:key="item.id">
+      <block wx:for="{{detailData.productImageList}}" wx:key="id">
         <swiper-item>
-          <image src="{{imgurl}}{{item.listImg}}" mode="scaleToFill"></image>
+          <image src="{{filters.imgurl(item.listImg)}}" mode="scaleToFill"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -24,7 +24,7 @@
     </view>
     <view class="{{selected?'show':'hidden'}}">
     <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
-    <image src="{{imgurl}}{{item.imgUrl}}"  mode="widthFix"></image>
+    <image src="{{filters.imgurl(item.imgUrl)}}"  mode="widthFix"></image>
     </view>
     </view>
     <view class="{{selected1?'show':'hidden'}}">	

@@ -1,0 +1,21 @@
+ <wxs module="filters" src="../pages/filters.wxs"></wxs>
+   <!-- 大列表 -->
+    <template name="listBig">
+    <view class="result-list">
+          <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
+            <image src="{{ filters.imgurl(item.model_img)}}" mode="widthFix"></image>
+            <view class="result-text">
+              <text>{{item.model_no}}</text>
+            </view>
+            <view class="result-text">
+              <text class="dx-color">￥{{filters.toFix(item.sale_price)}}</text>
+            </view>
+          </navigator>
+          </view>
+    </template>
+<!-- 轮播图 -->
+     <template name="fslider">
+      <swiper-item > 
+       <image src="{{filters.imgurl(item.phoneUrl)}}" class="slide-image"  mode="widthFix"/>
+    </swiper-item>
+    </template> 

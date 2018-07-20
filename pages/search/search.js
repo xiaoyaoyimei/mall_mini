@@ -17,7 +17,8 @@ Page({
         tips: '没有更多数据了~', //无数据
         loadingHidden: true,
         moreshow:false,
-        clientHeight:0
+        clientHeight:0,
+        imgurl: imgurl,
     },
     cancelSearch() {
         this.setData({

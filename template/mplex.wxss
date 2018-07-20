@@ -1,0 +1,22 @@
+/*每个item样式*/
+
+.result-list{
+    display: inline-block;
+    width: 50%;
+    box-sizing:border-box;
+    border-radius: 10px;
+    text-align: center;
+}
+.result-list:nth-child(2n){
+    margin-right: 0;
+}
+.result-list image{
+    width: 100%;
+    margin: 20rpx 0 10rpx;
+}
+ .result-text{
+    font-size: 32rpx;
+}
+.slide-image{
+  width: 100%;
+}

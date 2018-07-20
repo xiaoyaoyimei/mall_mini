@@ -10,7 +10,8 @@ Page({
     motto: '请输入您要搜索的商品',
     list: [],
     poster:[],
-    imgurl: imgurl
+    imgurl: imgurl,
+    xin:[]
   },
   onShareAppMessage: function () {
     // 用户点击右上角分享
@@ -30,6 +31,15 @@ Page({
     var specId = e.currentTarget.dataset.specid;
     wx.navigateTo({
       url: '../goodsDetail/goodsDetail?specId=' + specId,
+    })
+  },
+  xin:function(){
+    request.req3('index/product/new', 'GET', {}, (err, res) => {
+      if (res.data.code == 200) {
+        this.setData({
+          xin: res.data.object
+        })
+      }
     })
   },
   onLoad: function () {
@@ -60,5 +70,6 @@ Page({
           })
         }
       })
+      that.xin()
   },
 })

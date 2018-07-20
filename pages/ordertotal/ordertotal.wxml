@@ -29,7 +29,8 @@
 		
     <view class="opt-bottom">
 				<button  type="primary"  size="mini" bindtap="quzhifu"  wx:if="{{item.order.orderStatus=='01'}}"  data-orderno="{{item.order.orderNo}}">去支付</button> 
-        	<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>
+                      	<button  type="primary" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06'}}" >签收订单</button>
+        	<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>      
 </view>
     </view>
 </view>

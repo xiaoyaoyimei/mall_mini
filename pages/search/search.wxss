@@ -77,8 +77,8 @@
 }
 .result-list{
     display: inline-block;
-    width: 325rpx;
-    margin:0 20rpx 20rpx 0;
+    width: 50%;
+    box-sizing:border-box;
     border-radius: 10px;
     text-align: center;
 }

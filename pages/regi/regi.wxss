@@ -5,8 +5,8 @@
   overflow: hidden;
 }
 
-.login-item {
-  text-align: center;
+.login-item input{
+  padding-left: 20px;
 }
 
 .login-item-img {
@@ -95,3 +95,8 @@ font-size:18px;
 height:120rpx;
 }
 
+.hadsend{
+  float: right;
+  margin-top:10px;
+margin-right:20px;
+}

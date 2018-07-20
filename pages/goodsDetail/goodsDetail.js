@@ -1,7 +1,5 @@
 //商品分类页传来的商品Id
 var specId = ''
-var app = getApp();
-var imgurl = getApp().globalData.imgsrc;
 var request = require('../../utils/https.js')
 var uribuy = 'order/shopping/add'; //立即购买
 var uri = 'product';
@@ -9,7 +7,6 @@ var selectAttrid = [];//选择的属性id
 var selectIndexArray=[];//选中属性的名称
 Page({
   data: {
-    imgurl: imgurl,
     showModal: false,
     tips: '',
     max: 100,
@@ -67,7 +64,6 @@ Page({
       // 来自页面内转发按钮
       console.log(res.target)
     }
-    console.log(that.data.detailData.product.modelTitle);
     return {
       title: that.data.detailData.product.modelTitle,
       path: `/pages/goodsDetail/goodsDetail?specId=${specId}`
@@ -99,7 +95,6 @@ Page({
     specId = oo;
     var that = this;
     request.req2(uri, 'POST',specId, (err, res) => {
-      console.log(res.data.object)
       if (res.data.code == 200) {
         that.setData({
           detailData: Object.assign(that.data.detailData, res.data.object),

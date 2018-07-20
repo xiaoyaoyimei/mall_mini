@@ -125,8 +125,41 @@ Page({
               self.getData();
             } else {
               wx.showToast({
-                title: '取消失败',
-                icon: 'loading',
+                title: res.data.msg,
+                icon: 'none',
+                duration: 1000,
+                mask: true
+              })
+            }
+          });
+        }
+      },
+      fail(e) {
+        callback(e)
+      }
+    })
+  },
+  qianshou(e) {
+    var self = this;
+    var orderNo = e.currentTarget.dataset.orderno;
+    wx.showModal({
+      title: '温馨提示',
+      content: '确定签收该订单?',
+      success: function (res) {
+        if (res.confirm) {
+          request.req2('order/receive', 'POST', orderNo, (err, res) => {
+            if (res.data.code == 200) {
+              wx.showToast({
+                title: res.data.msg,
+                icon: 'success',
+                duration: 1000,
+                mask: true
+              })
+              self.getData();
+            } else {
+              wx.showToast({
+                title: res.data.msg,
+                icon:'none',
                 duration: 1000,
                 mask: true
               })

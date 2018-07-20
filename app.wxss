@@ -1,5 +1,5 @@
 /**app.wxss**/
-
+@import './template/mplex.wxss';
 .container {
   height: 100%;
   display: flex;

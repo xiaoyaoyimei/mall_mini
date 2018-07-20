@@ -18,7 +18,8 @@ Page({
     loading: false,    //true 为加载中
     showToast: '',
     txv:1,
-    verimg:''
+    verimg:'',
+    hadsend:false,
   },
 
   //用户名
@@ -62,6 +63,15 @@ Page({
         })
         return;
       }
+      var myreg = /^[1][0-9]{10}$/; 
+      if (!myreg.test(this.data.username)) {
+        wx.showToast({
+          title: '手机号格式不正确',
+          icon: 'none',
+          duration: 2000
+        })
+        return;
+      } else {
       wx.request({
         url: 'https://m.shop.dxracer.cn/mall/wap/customer/validate?userName=' + that.data.username,
         method: 'POST',    //大写
@@ -83,6 +93,7 @@ Page({
           }
         }
         })
+      }
 
   },
   getdxcode(){
@@ -96,6 +107,9 @@ Page({
       })
       return;
     } else {
+      that.setData({
+        hadsend: true,
+      })
       wx.request({
         url: 'https://m.shop.dxracer.cn/mall/wap/customer/register/shortmessage' ,
         method: 'POST',    //大写
@@ -107,12 +121,19 @@ Page({
         success(res) {
           var data=res.data;
           if (data.code == 200) {
-            //短信验证码180秒倒计时
+           
+            that.setData({
+              hadsend: false,
+            })
           } else {
+            
             wx.showToast({
               title: data.msg,
               icon: 'none',
               duration: 2000
+            })
+            that.setData({
+              hadsend: true,
             })
           }
         }

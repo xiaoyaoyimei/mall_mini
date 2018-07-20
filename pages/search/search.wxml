@@ -8,17 +8,17 @@
    <view class="result" wx:if="{{showResult}}"> 
     <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" wx:if="{{result.length > 0}}">
       <view class="result-box">
-        <view class="result-list" wx:for="{{result}}" wx:key="index">
+         <view class="result-list" wx:for="{{result}}" wx:key="index">
           <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
             <image src="{{imgurl}}{{item.model_img}}" mode="widthFix"></image>
             <view class="result-text">
               <text>{{item.model_no}}</text>
             </view>
             <view class="result-text">
-              <text>{{item.sale_price}}</text>
+              <text class="dx-color">{{item.sale_price}}</text>
             </view>
           </navigator>
-        </view>
+        </view> 
     </view>
     </scroll-view>
    
