@@ -29,6 +29,7 @@ var filters = {
     return value
     }
   },
+  //wxml图片显示
   imgurl:function(v){
     return '//image-shop.dxracer.com.cn/'+v
   }

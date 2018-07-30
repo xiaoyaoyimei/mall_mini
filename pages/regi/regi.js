@@ -2,15 +2,37 @@
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 var app = getApp()
+var baseUrl = app.globalData.baseorgin;
 var uri = 'customer/login'  //登录接口
 var option = {}
 var uribuy = 'cartapi/addCart' //立即购买
+
+var countdown = 180;
+var settime = function (that) {
+  if (countdown == 0) {
+    that.setData({
+      is_show: true
+    })
+    countdown = 180;
+    return;
+  } else {
+    that.setData({
+      is_show: false,
+      last_time: countdown
+    })
+
+    countdown--;
+  }
+  setTimeout(function () {
+    settime(that)
+  }, 1000)
+}
 Page({
   data: {
     backcolor: '#f0f2f5',
     username: '',
     psword: '',
-    txm:'',
+    txm:'',//图形码bindimgInput
     yzm:'',
     userInfo: {},
     disabled: true,  //是否能点击
@@ -19,9 +41,9 @@ Page({
     showToast: '',
     txv:1,
     verimg:'',
-    hadsend:false,
+    last_time: '',
+    is_show: true
   },
-
   //用户名
   bindusnInput: function (e) {
     this.setData({
@@ -53,6 +75,7 @@ Page({
       this.setData({ disabled: true })
     }
   },
+  //获取图形码
   getimgcode(){
     var that=this;
       if (this.data.username == "") {
@@ -61,6 +84,7 @@ Page({
           icon: 'none',
           duration: 2000
         })
+
         return;
       }
       var myreg = /^[1][0-9]{10}$/; 
@@ -73,22 +97,20 @@ Page({
         return;
       } else {
       wx.request({
-        url: 'https://m.shop.dxracer.cn/mall/wap/customer/validate?userName=' + that.data.username,
+        url: `${baseUrl}customer/validate?userName=${that.data.username}`,
         method: 'POST',    //大写
         header: { 'Content-Type': 'application/json'},
         success(res) {
           if (res.data.code == '200') {
-            console.log("res")
             that.data.txv++;
-            that.data.verimg = 'https://m.shop.dxracer.cn/mall/wap/customer/' + that.data.username + '/verification.png?v=' + that.data.txv;
+            that.data.verimg = `${baseUrl}customer/${that.data.username}/verification.png?v=${that.data.txv}`;
             that.setData({
               verimg: that.data.verimg,
             })
           } else {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-              duration: 2000
+            that.setData({
+              showToast: res.data.msg,
+              backcolor: 'red',
             })
           }
         }
@@ -96,8 +118,11 @@ Page({
       }
 
   },
+  //获取验证码
   getdxcode(){
     var that=this;
+    // 将获取验证码按钮隐藏60s，60s后再次显示
+
     let txm = this.data.txm;
     if (txm == null || txm == '') {
       wx.showToast({
@@ -107,11 +132,14 @@ Page({
       })
       return;
     } else {
-      that.setData({
-        hadsend: true,
-      })
+      
+    // 将获取验证码按钮隐藏180s，180s后再次显示
+    that.setData({
+      is_show: (!that.data.is_show)  //false
+    })
+    settime(that);
       wx.request({
-        url: 'https://m.shop.dxracer.cn/mall/wap/customer/register/shortmessage' ,
+        url: `${baseUrl}customer/register/shortmessage`,
         method: 'POST',    //大写
         header: { 'Content-Type': 'application/json' },
         data: {
@@ -122,19 +150,15 @@ Page({
           var data=res.data;
           if (data.code == 200) {
            
-            that.setData({
-              hadsend: false,
-            })
+
+        
           } else {
             
-            wx.showToast({
-              title: data.msg,
-              icon: 'none',
-              duration: 2000
-            })
             that.setData({
-              hadsend: true,
+              showToast: data.msg,
+              backcolor: 'red',
             })
+        
           }
         }
       })
@@ -143,7 +167,7 @@ Page({
   },
 
   //确定
-  loginbutton: function () {
+  regibutton: function () {
 
     var that = this;
     that.setData({
@@ -164,7 +188,7 @@ Page({
             passWord: psword,
             verificationCode: txm,
             shortMessage: yzm,
-            wxcode:code
+            wxCode:code
           }, (err, res) => {
             this.setData({
               loading: false,
@@ -172,6 +196,11 @@ Page({
             })
             //保存
             if (res.data.code == '200') {
+              wx.showToast({
+                title: '注册成功',
+                icon: 'success',
+                duration: 2000
+              })
               //登陆成功 跳转
               wx.navigateTo({   //加个参数  
                 url: '../login/login?fromurl=index'

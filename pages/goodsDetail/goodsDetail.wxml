@@ -54,7 +54,7 @@
       </view>
       <view wx:if="{{firstshow}}" class='chooseproduct'>
         <view class="image-xq">
-          <image src="{{imgurl}}{{choosesp.img}}"></image>
+          <image src="{{filters.imgurl(choosesp.img)}}"></image>
         </view>
         <view class="small-xq">
           <view class="color-dx">￥{{filters.toFix(choosesp.price)}}</view>
