@@ -1,7 +1,7 @@
 <view class="main">
     <view class="form-box">
         <form bindsubmit="formSubmit">
-            <input name="customerMobile" value="{{customerMobile}}" placeholder="手机号"/>
+            <input name="customerMobile" value="{{customerMobile}}" placeholder="手机号" type="number"/>
             <button form-type="submit" type="primary">保存</button>
         </form>
     </view>

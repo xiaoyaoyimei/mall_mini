@@ -51,6 +51,13 @@ Page({
     })
 
   },
+  gettxNum(e) {
+
+    this.setData({
+      username: e.detail.value,
+    });
+    this.getimgcode();
+  },
   //图形码
   bindimgInput: function (e) {
    this.setData({
@@ -108,10 +115,12 @@ Page({
               verimg: that.data.verimg,
             })
           } else {
-            that.setData({
-              showToast: res.data.msg,
-              backcolor: 'red',
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none',
+              duration: 2000
             })
+       
           }
         }
         })
@@ -121,7 +130,7 @@ Page({
   //获取验证码
   getdxcode(){
     var that=this;
-    // 将获取验证码按钮隐藏60s，60s后再次显示
+    // 将获取验证码按钮隐藏180s，180s后再次显示
 
     let txm = this.data.txm;
     if (txm == null || txm == '') {

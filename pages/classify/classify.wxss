@@ -106,7 +106,7 @@
 /*内容会被修剪，并且其余内容是不可见的。*/
 
 
-.tips{
+.tipssearch{
   text-align: center;
 position:fixed;
 bottom:0;

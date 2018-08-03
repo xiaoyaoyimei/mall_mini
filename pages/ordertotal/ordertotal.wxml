@@ -1,7 +1,10 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
-<view class="container">
+    <view wx:if="{{loginhidden}}" class="tips">
+    您尚未登录!
+    <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
+    </view>
 
-
+<view wx:else ><view class="container">
   <!--列表list组件 需要修改-->
 
 <view  wx:if="{{newlist.length>0}}">
@@ -37,5 +40,6 @@
 <view wx:else class="tips">
 <text>暂时还没有任何订单哦</text>
 <text class="color-dx" catchtap='goindex'> 去首页</text>
+</view>
 </view>
 </view>

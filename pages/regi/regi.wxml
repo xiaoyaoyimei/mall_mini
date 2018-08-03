@@ -2,7 +2,7 @@
   <view class="login-item">
     <view class="toastview" style=" line-height: 70rpx;  background: {{backcolor}};width: 100% ;color:#fff">{{showToast}}</view>
     <view class="login-item-section">
-      <input placeholder="请输入手机号" type="number" maxlength="11" class="login-item-input" bindinput="bindusnInput" />
+      <input placeholder="请输入手机号" type="number" maxlength="11" class="login-item-input" bindinput="bindusnInput"  bindblur="gettxNum" />
       <view class="img-code">
         <image src="/images/refresh.png" catchtap='getimgcode' class="refresh"> </image>
         <image src="{{verimg}}" class="img"> </image>

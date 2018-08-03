@@ -29,7 +29,7 @@
   <loading class="loading" hidden="{{loadingHidden}}">
     <text class="loading-font">加载中...</text>
   </loading>
-  <view class="tips">{{tips}}</view>
+  <view class="tipssearch">{{tips}}</view>
   <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}">
     <image src="/images/gotop.png"></image>
   </view>

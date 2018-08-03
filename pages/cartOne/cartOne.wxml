@@ -1,5 +1,8 @@
 <view class="main">
-    <view wx:if="{{loginhidden}}" class="cart-no-data">您尚未登录!</view>
+    <view wx:if="{{loginhidden}}" class="tips">
+    您尚未登录!
+    <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
+    </view>
     <view wx:else>
     <view wx:if="{{hasList}}">
         <view class="cart-box">

@@ -11,7 +11,8 @@ Page({
     list: [],
     newlist: [],
     statusenums:[],
-    imgurl:imgurl
+    imgurl:imgurl,
+    loginhidden: true
   },
   goindex(){
     wx.switchTab({
@@ -19,21 +20,34 @@ Page({
     })
   },
   onLoad(){
-    this.getStatus()
+
   },
   onShow: function () {
+
     //刷新数据
-    this.getData();
+    var that = this;
+    
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    
+    if (CuserInfo.token) {
+      that.getStatus();
+      that.getData();
+    }else{
+      that.setData({
+        loginhidden: true,
+      });
+    }
    
   },
   getStatus:function(){
     var that = this;
-    request.req('order',statusuri, 'GET', {
+    request.req('index',statusuri, 'GET', {
     }, (err, res) => {
       if (res.data.code == 200) {
           that.setData({
             hidden: true,
             statusenums: res.data.object,
+            loginhidden:false
           }) 
       }
     })
@@ -83,15 +97,14 @@ Page({
     var status = "";
     var pageNo = that.data.pageNo;
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    request.req('order',uri,'GET', {
+    request.req('index',uri,'GET', {
     }, (err, res) => {
       if (res.data.code == 200) {
-        if (!res.data) {   //无数据
-          that.setData({hidden: true, tips: "没有数据~" })
-        } else {
+
           that.setData({
             hidden: true,
             list: res.data.object,
+            loginhidden:false
           })
           //处理数据
           var list = that.data.list;
@@ -101,7 +114,10 @@ Page({
            that.setData({
              newlist: list
            })
-        }
+
+      }
+      else{
+        that.setData({ hidden: true, tips: "没有数据~", loginhidden: false })
       }
     })
   },

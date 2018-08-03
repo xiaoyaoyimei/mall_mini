@@ -6,6 +6,7 @@ var uri_address_delete = 'address/delete' //删除地址
 Page({
   data:{
     addressData:[],
+    loginhidden: true
   },
   addressClick:function(e){
     var addr = {};
@@ -65,11 +66,21 @@ Page({
     }, (err, res) => {
       that.setData({
         addressData: res.data,//接数组
+        loginhidden:false
       })
     });
   },
   onShow: function() {
     // 生命周期函数--监听页面加载
+    var that = this;
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+
+    if (CuserInfo.token) {
     this.getAddressList();
+    }else{
+      that.setData({
+        loginhidden: true,
+      });
+    }
   },
 })

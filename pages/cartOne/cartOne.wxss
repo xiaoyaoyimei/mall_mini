@@ -101,3 +101,7 @@ height:50rpx;
     color: #999;
     text-align: center;
 }
+.loginurl{
+  color:#0099ff;
+  text-decoration: underline
+}

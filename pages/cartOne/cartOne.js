@@ -13,6 +13,7 @@ Page({
   getCartList() {
     var self=this;
       this.data.cartList = [];
+
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
         if (res.data.code == 200) {
           if (res.data.object.length>0){
@@ -37,8 +38,17 @@ Page({
   onLoad(){
   },
   onShow() {
+    var that=this;
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    
+    if (CuserInfo.token) {
     this.getCartList();
     this.getTotalPrice();
+    }else{
+      that.setData({
+        loginhidden: true,
+      });
+    }
   },
   /**
    * 当前商品选中事件

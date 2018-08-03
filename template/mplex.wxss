@@ -12,7 +12,6 @@
 }
 .result-list image{
     width: 100%;
-    margin: 20rpx 0 10rpx;
 }
  .result-text{
     font-size: 32rpx;

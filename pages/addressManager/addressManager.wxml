@@ -1,5 +1,8 @@
-
-<view>
+    <view wx:if="{{loginhidden}}" class="tips">
+    您尚未登录!
+    <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
+    </view>
+<view wx:else>
     <view class="main_view">
         <scroll-view>
             <block wx:for-items="{{addressData}}" wx:key="{{index}}">

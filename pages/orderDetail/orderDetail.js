@@ -25,10 +25,10 @@ Page({
     this.getStatusEnum();
   },
   onshow(){
-    this.getOrder();
+    //this.getOrder();
   },
     getStatusEnum() {
-      request.req('order','order/enums', 'GET', {}, (err, res) => {
+      request.req('index','order/enums', 'GET', {}, (err, res) => {
         if (res.code == '200') {  
           this.setData({
           statusList: res.object

@@ -1,7 +1,14 @@
 <view class="container more">
 
   <!--上部信息-->
-  <view catchtap="mimeinfo">
+    <view wx:if="{{loginhidden}}" class="user flex-wrp nologin">
+    
+    <navigator url="../login/login?fromurl=account" class="loginurl">登录</navigator>
+    /
+    <navigator url="../regi/regi?fromurl=account" class="loginurl">
+    注册</navigator>
+    </view>
+  <view catchtap="mimeinfo" wx:else>
   <view   class="user flex-wrp">
     <view class="avatar flex-item">
         <open-data type="userAvatarUrl" class="userinfo-avatar" background-size="cover"></open-data>
@@ -14,6 +21,7 @@
     </view>
     </view>
   </view>
+
 
   <!--下部信息-->
   <view class="my">
@@ -50,5 +58,5 @@
     </view>
     </navigator>
 </view>
-<view  class="logout" catchtap="logout"><text>退出登录</text></view>
+<!-- <view  class="logout" catchtap="logout"><text>退出登录</text></view> -->
 </view>
