@@ -1,10 +1,9 @@
 
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
-var imgurl = getApp().globalData.imgsrc;
+
 Page({
   data: {
-    imgurl: imgurl,
       statusList: [],
       orderdetail:{
         shippingOrder: {},
@@ -15,14 +14,32 @@ Page({
       orderNo: '',
       //状态由orderlist页面带来。以免二次处理
       orderStatus:'',
+      wentips:false,
+      loginhidden: true,
   },
   onLoad(options) {
-    this.setData({
-      orderNo: options.orderNo,
+    var that = this;
+
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    //
+    if (CuserInfo.token) {
+      if (options.orderStatus == "待付款") {
+        that.setData({
+          wentips: true
+        })
+      }
+      this.setData({
+        orderNo: options.orderNo,
         orderStatus: options.orderStatus
-    })
-    this.getOrder();
-    this.getStatusEnum();
+      })
+      that.getOrder();
+      that.getStatusEnum();
+    } else {
+      that.setData({
+        loginhidden: true,
+      });
+    }
+
   },
   onshow(){
     //this.getOrder();
@@ -31,7 +48,8 @@ Page({
       request.req('index','order/enums', 'GET', {}, (err, res) => {
         if (res.code == '200') {  
           this.setData({
-          statusList: res.object
+          statusList: res.object,
+            loginhidden: false
         })
         }
       });
@@ -91,7 +109,8 @@ Page({
       request.req2('order', 'GET', orderNo, (err, res) => {
         res.data.shippingOrder.createTime=util.formatTime(res.data.shippingOrder.createTime, 'Y/M/D h:m:s');
           this.setData({
-            orderdetail: res.data
+            orderdetail: res.data,
+            loginhidden:false
           })    
         
       })

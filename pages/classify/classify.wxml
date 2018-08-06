@@ -21,6 +21,7 @@
         </view>
       </view>
     </block>
+  <view class="tipssearch" wx:if="{{tips}}">没有更多数据了~</view>
   </scroll-view>
 
   <view class="result-null" wx:if="{{list.length==0&&loadingHidden}}">
@@ -29,7 +30,7 @@
   <loading class="loading" hidden="{{loadingHidden}}">
     <text class="loading-font">加载中...</text>
   </loading>
-  <view class="tipssearch">{{tips}}</view>
+
   <view class="com-widget-goTop" bindtap="goTop" wx:if="{{floorstatus}}">
     <image src="/images/gotop.png"></image>
   </view>

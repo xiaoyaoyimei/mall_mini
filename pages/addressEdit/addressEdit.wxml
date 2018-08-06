@@ -4,11 +4,11 @@
 <view>
     <view class="add_item">
         <text class="item_text">收货人:</text>
-        <input class="item_input" bindinput="bindNameInput" placeholder="请输入收货人" />
+        <input class="item_input" bindinput="bindNameInput" placeholder="请输入收货人" value="{{addrForm.person}}"/>
     </view>
     <view class="add_item">
         <text class="item_text">手机号:</text>
-        <input class="item_input" bindinput="bindPhoneInput" type="number" placeholder="请输入手机号" confirm-hold="true"/>
+        <input class="item_input" bindinput="bindPhoneInput" type="number" placeholder="请输入手机号" value="{{addrForm.phone}}" confirm-hold="true"/>
     </view>
     <view class="add_item">
         <text class="item_text">省市区:</text>
@@ -19,7 +19,7 @@
     </view>
     <view class="add_item">
         <text class="item_text">详细地址:</text>
-        <input class="item_input" bindinput="bindAddressInput" placeholder="请输入详细地址" />
+        <input class="item_input" bindinput="bindAddressInput" placeholder="请输入详细地址" value="{{addrForm.address}}"/>
     </view>
     <view class="add_address" bindtap="addAddress">
         <view class="add">

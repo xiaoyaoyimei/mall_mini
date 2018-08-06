@@ -12,6 +12,7 @@
     "pages/ordertotal/ordertotal",
     "pages/addressManager/addressManager",
     "pages/addressAdd/addressAdd",
+    "pages/addressEdit/addressEdit",
     "pages/manager/manager",
     "pages/service/service",
     "pages/paycomplete/paycomplete",
@@ -44,7 +45,7 @@
       },
       {
         "pagePath": "pages/classify/classify",
-        "text": "分类",
+        "text": "产品",
         "iconPath": "images/icon_sort.png",
         "selectedIconPath": "images/icon_sort_HL.png"
       },

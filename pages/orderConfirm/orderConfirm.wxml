@@ -19,7 +19,7 @@
     <view wx:for="{{cartList}}" wx:key="{{index}}">
       <view class="goods_info">
         <view class="iamge-wrap">
-          <image class="image_icon" src="{{imgurl}}{{item.image}}" mode="aspectFit"></image>
+          <image class="image_icon" src="{{filters.imgurl(item.image)}}" mode="aspectFit"></image>
         </view>
         <view class="info_wrap">
           <text class="text_style_1">{{item.productName}}</text>
@@ -35,10 +35,11 @@
     <view class="coupon-wrap">
     <view class="coupon">  
       <text>优惠券</text>
-      <button catchtap='usecoupon' size="mini" type="primary" class="right">使用</button>  
+     
     </view>
      <view class="weui-cell ">
       <input placeholder="优惠券"  type="text" class="weui-input" bindinput="bindcouponInput"/>
+ <button catchtap='usecoupon' size="mini" type="primary" class="right">使用</button>  
       </view> 
       </view>
         <view class="bottom_text_2">

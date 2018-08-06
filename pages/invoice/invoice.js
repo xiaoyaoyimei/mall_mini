@@ -10,8 +10,8 @@ Page({
     item: {
       show: show
     },
-     invoiceForm: {
-       orderNo: '',
+    orderNo: '',
+    invoiceForm: {    
        invoiceTitle: '',
        invoiceType: '增值税普通发票',
        receivePerson: '',
@@ -27,6 +27,11 @@ Page({
        county: '',
      },
    
+  },
+  /**
+ * 弹出框蒙层截断touchmove事件
+ */
+   preventTouchMove(){
   },
   listenerRadioGroup: function (e) {
     if (e.detail.value =='增值税普通发票'){
@@ -73,9 +78,6 @@ Page({
           delta:1
         })
 
-        // wx.redirectTo({
-        //   url: `../orderDetail/orderDetail?orderNo=${that.data.invoiceForm.orderNo}&orderStatus=${}`  
-        // })
       }
     });
   },
@@ -99,7 +101,6 @@ Page({
     model.updateAreaData(this, 1, e);
 
     item = this.data.item;
-    console.log(item.provinces[item.value[0]])
     this.setData({
       province: item.provinces[item.value[0]],
       city: item.citys[item.value[1]],
@@ -108,15 +109,19 @@ Page({
   },
   onLoad(options){
     options = options;
-    
-    request.req2('order', 'GET', options.orderNo, (err, res) => {
+    var orderNo = options.orderNo;
+    this.setData({
+      orderNo: orderNo
+    });
+    request.req2('order', 'GET', orderNo, (err, res) => {
+      if (res.data.shippingInvoice!=""){
       this.setData({
         invoiceForm: res.data.shippingInvoice,
         province: res.data.shippingInvoice.receiveProvince,
         city: res.data.shippingInvoice.receiveCity,
         county: res.data.shippingInvoice.receiveDistrict,
-     
       })
+      }
     })
   }
 })

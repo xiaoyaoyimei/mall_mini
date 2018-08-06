@@ -74,7 +74,10 @@ Page({
           showKeywords: false,
           showResult: true,
         }) 
-        this.historyHandle(that.data.value);  
+        //当搜索的值不为空时，加入搜索记录
+        if (that.data.value!=""){
+          this.historyHandle(that.data.value);  
+        }     
       })
     },
     keywordHandle(e) {
@@ -134,13 +137,12 @@ Page({
             })
         }
         wx.getSystemInfo({
-
           success: function (res) {
             let height = res.windowHeight;
             wx.createSelectorQuery().selectAll('.search-box').boundingClientRect(function (rects) {
               rects.forEach(function (rect) {
                 that.setData({
-                  clientHeight: res.windowHeight - rect.bottom
+                  clientHeight: res.windowHeight - rect.bottom-5
                 });
               })
             }).exec();

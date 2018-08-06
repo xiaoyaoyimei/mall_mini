@@ -126,7 +126,7 @@ align-items:center;
 height:2.58823529em;
 min-height:2.58823529em;
 line-height:2.58823529em;
-width:100%;
+width:70%;
 border:1px solid #ccc;
 padding-left: 10rpx
 }

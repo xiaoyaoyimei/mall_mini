@@ -14,9 +14,10 @@ Page({
       url: '../ordertotal/ordertotal' 
     })
   },
+  //地址管理来自个人中心页面
   address_manager: function () {
     wx.navigateTo({
-      url: '../addressManager/addressManager'
+      url: '../addressManager/addressManager?mime=1'
     })
   },
   //账户管理

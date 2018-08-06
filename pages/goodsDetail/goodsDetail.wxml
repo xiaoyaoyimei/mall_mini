@@ -93,7 +93,7 @@
       </view>
 
     </view>
-    <button wx:if="{{kuncunEmpty}}" class="goBtn" disabled='disabled'>暂时无货，到货通知</button>
+    <button wx:if="{{kuncunEmpty&&!xiajia}}" class="goBtn" disabled='disabled'>暂时无货，到货通知</button>
     <button wx:if="{{xiajia}}" class="goCart" disabled='disabled'>该商品已下架</button>
     <button wx:if="{{!kuncunEmpty&&!xiajia}}" class="goCart bg-dx" bindtap="atc">加入购物车</button>
   </view>

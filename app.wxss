@@ -10,6 +10,9 @@
   box-sizing: border-box;
   background: #f0f4f3;
 }
+.mr20{
+  margin-right: 20rpx
+}
 
 .body {
   position: absolute;
@@ -44,9 +47,7 @@ text{
 .dx-color{
   color:#0099ff;
 }
-.bold{
-  font-weight: 600;
-}
+
 .tips{
  color:#999;
 text-align:center;
@@ -60,5 +61,54 @@ height: 100vh
 }
 .color-dx{
   color: #0099ff;
-  margin-top: 50rpx
+
+}
+.add_address{
+    display: inline-block;
+    flex-direction: column;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 20px;
+    right: 0;
+}
+.add_address .add{
+    width: 90%;
+    height: 44px;
+    background-color: #0099ff;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-size: 15px;
+    margin-left: 5%;
+}
+.add_item{
+    padding: 10px;
+    margin: 0px 10px 0px 10px;
+    border-bottom: 1px solid silver;
+    border-bottom-color: #efeff4;
+    display: flex;
+    font-size: 14px;
+}
+.item_text{
+    padding-top: 3px;
+    width:240rpx
+}
+.item_input{
+    padding-left: 10px;
+    width: 100%
+}
+.choose_btn{
+  padding: 0;
+  position: absolute;
+  right: 10px;
+}
+.add_item text{
+  font-size: 28rpx;
+   padding-top: 3px;
+}
+.w200{
+  width:200px
 }

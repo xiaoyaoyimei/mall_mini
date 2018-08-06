@@ -4,11 +4,15 @@
     display: inline-block;
     width: 50%;
     box-sizing:border-box;
-    border-radius: 10px;
+    border-bottom:solid 1rpx #ebebeb;
     text-align: center;
 }
 .result-list:nth-child(2n){
     margin-right: 0;
+    
+}
+.result-list:nth-child(2n+1){
+ border-right: solid 1rpx #ebebeb;
 }
 .result-list image{
     width: 100%;

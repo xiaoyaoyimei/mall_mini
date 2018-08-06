@@ -9,9 +9,9 @@
 <!-- --------------分割线------------- -->
 
 <template name="areaData">
-  <view class="animation-element-wrapper" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444"  >
+  <view class="animation-element-wrapper" catchtouchmove="preventTouchMove" animation="{{animation}}" style="visibility:{{show ? 'visible':'hidden'}}" bindtap="hiddenFloatView" data-id="444"   >
      <view class="animation-element" catchtap="nono"  >
-        <text class="left-bt" catchtap="hiddenFloatView" data-id="555">取消</text>
+        <text class="left-bt" catchtap="hiddenFloatView" data-id="555">关闭</text>
         <text class="right-bt" catchtap="hiddenFloatView" data-id="666">确定</text>
           <view class="line"></view> 
 

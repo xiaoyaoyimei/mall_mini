@@ -37,10 +37,15 @@ function req(fromurl,url, methodway, data, callback) {
       method: methodway,    //大写
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
       success(res) {
-        if (res.data.code == 401) {  //token失效 用code换下token
-          wx.navigateTo({   //不一定走
-            url: '../login/login?fromurl=' + fromurl,
+        if (res.data.code == 401) {  
+
+          //token失效 用code换下token
+          wx.showToast({
+                title: res.data.msg,
+                 icon: 'none',
+                 duration: 1000
                })
+           wx.removeStorageSync('CuserInfo')
         }else{
         callback(null, res)
         }
@@ -54,31 +59,42 @@ function req(fromurl,url, methodway, data, callback) {
 }
 
 
-//
 function req2(url, methodway, data, callback) {
-  var CuserInfo = wx.getStorageSync('CuserInfo');
 
+  var CuserInfo = wx.getStorageSync('CuserInfo');
+  //token未过期
+  if (CuserInfo.token){
     wx.request({
       url: rootDocment + url+'/'+data,
-     // data: data,
       method: methodway,    //大写
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {
-        if (res.data.code == 401) {  //token失效 用code换下token
-          console.log(res.data.msg)
-          wx.redirectTo({   //不一定走
-            url: '../login/login',
+        if (res.data.code == 401) {
+
+          //token失效 删除缓存token
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 1000
           })
-          }else{
-          callback(null, res)
-          }
-       
+          wx.removeStorageSync('CuserInfo')
+        } else {
+        callback(null, res)
+        }
       },
       fail(e) {
         console.error(e)
         callback(e)
       }
     })
+  }else{
+    wx.showToast({
+      title: '认证已过期，请重新登录',
+      icon: 'none',
+      duration: 2000
+    })
+    wx.removeStorageSync('CuserInfo')
+  }
 }
 function req3(url, methodway, data, callback) {
   wx.request({
@@ -95,9 +111,52 @@ function req3(url, methodway, data, callback) {
   }
 })
 }
-//不带TOKEN请求
+//无需登录,不带TOKEN请求
+function req4(url, methodway, data, callback) {
+    wx.request({
+      url: rootDocment + url + '/' + data,
+      method: methodway,    //大写
+      header: { 'Content-Type': 'application/json' },
+      success(res) {
+        callback(null, res)
+      },
+      fail(e) {
+        console.error(e)
+        callback(e)
+      }
+    })
+  } 
+function req5(url, methodway,uniunid, data, callback) {
+  var CuserInfo = wx.getStorageSync('CuserInfo');
+  if (CuserInfo.token) {
+  wx.request({
+    url: rootDocment + url+'?id='+ uniunid,
+    method: methodway,    //大写
+    data:data,
+    header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
+    success(res) {
+      callback(null, res)
+    },
+    fail(e) {
+      console.error(e)
+      callback(e)
+    }
+  })
+  }
+  else{
+    wx.showToast({
+      title: '认证已过期，请重新登录',
+      icon: 'none',
+      duration: 2000
+    })
+    wx.removeStorageSync('CuserInfo')
+  }
+} 
+
 module.exports = {
   req: req,
   req2:req2,
-  req3:req3
+  req3:req3,
+  req4:req4,
+  req5:req5
 }  

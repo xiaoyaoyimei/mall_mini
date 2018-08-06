@@ -79,12 +79,12 @@ Page({
   getimgdetail(oo){
     specId = oo;
     var that=this;
-    request.req2('product/desc', 'POST', specId, (err, res) => {
+    request.req4('product/desc', 'POST', specId, (err, res) => {
         that.setData({
           productDesc: res.data,
         })
     });
-    request.req2('product/img', 'POST', specId, (err, res) => {
+    request.req4('product/img', 'POST', specId, (err, res) => {
         that.setData({
           productimg: res.data,
         })
@@ -94,7 +94,7 @@ Page({
   requestData: function (oo) {
     specId = oo;
     var that = this;
-    request.req2(uri, 'POST',specId, (err, res) => {
+    request.req4(uri, 'POST',specId, (err, res) => {
       if (res.data.code == 200) {
         that.setData({
           detailData: Object.assign(that.data.detailData, res.data.object),

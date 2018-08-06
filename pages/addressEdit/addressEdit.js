@@ -2,27 +2,23 @@
 var request = require('../../utils/https.js')
 //地址模板
 var model = require('../../model/model.js')
-var uri_save_address = 'address/insert' //确认订单
 var show = false;
+//弹出地址选择
 var item = {};
 Page({
   data: {
     item: {
       show: show
     },
-  array:[],
-    arrayCity: [],
-    arrayDistrict: [],
-    index: 0,
-    indexC: 0,
-    indexD: 0,
-    name: '',
-    phoneNum: '',
-    zipCode: '',
-    detailAddress: '',
-    province:'',
-    city:'',
-    county:'',
+    addressInfo: {},
+    province: '',
+    city: '',
+    county: '',
+    addrForm:{
+      person:'',
+      phone:'',
+      address:'',
+    },
   },
   /**
 * 弹出框蒙层截断touchmove事件
@@ -57,32 +53,32 @@ Page({
   //收货人赋值
   bindNameInput: function (e) {
     this.setData({
-      name: e.detail.value
+      ["addrForm.person"]: e.detail.value
     })
   },
   //手机号赋值
   bindPhoneInput: function (e) {
     this.setData({
-      phoneNum: e.detail.value
+      ["addrForm.phone"]: e.detail.value
     })
   },
 
   //详细地址赋值
   bindAddressInput: function (e) {
     this.setData({
-      detailAddress: e.detail.value
+      ["addrForm.address"]: e.detail.value
     })
   },
   //保存
   addAddress: function () {
     var that = this;
-    if (that.data.name.length == 0) {
+    if (that.data.addrForm.person.length == 0) {
       wx.showToast({
         title: '收货人不能为空',
         icon: 'none',
         mask: true
       })
-    } else if (that.data.phoneNum.length == 0) {
+    } else if (that.data.addrForm.phone.length == 0) {
       wx.showToast({
         title: '手机号不能为空',
         icon: 'none',
@@ -106,20 +102,21 @@ Page({
         icon: 'loading',
         mask: true
       })
-    } else if (that.data.detailAddress.length == 0) {
+    } else if (that.data.addrForm.address.length == 0) {
       wx.showToast({
         title: '详细地址不为空',
         icon: 'loading',
         mask: true
       })
     } else {
-      request.req('addresslist',uri_save_address,'POST', {
-        person: that.data.name,
-        phone: that.data.phoneNum,
+
+      request.req5('address/update', 'POST', `${that.data.addrForm.id}`, {
+        person: that.data.addrForm.person,
+        phone: that.data.addrForm.phone,
         receiveProvince: that.data.province,
         receiveCity: that.data.city,
         receiveDistrict: that.data.county,
-        address: that.data.detailAddress,
+        address: that.data.addrForm.address,
       }, (err, res) => {
 
         if (res.data.code == 200) { //地址保存成功
@@ -145,10 +142,21 @@ Page({
       })
     }
   },
-  onLoad: function () {
-    // 生命周期函数--监听页面加载
-    var that = this;
-
-  },
+  onshow(options){
   
+  },
+  onLoad: function (options) {
+    // 生命周期函数--监听页面加载
+
+    let addr = JSON.parse(options.addrForm);
+    this.setData({
+      addrForm: addr,
+      province: addr.receiveProvince,
+      city: addr.receiveDistrict,
+      county: addr.receiveCity,
+    })
+   
+  },
+
+
 })

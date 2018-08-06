@@ -22,7 +22,7 @@ Page({
     num: 1,
     limt: 20,
     tab: '',
-    tips: '', //无数据
+    tips: false, //无数据
     total:0,
     clientHeight:0,
     scrollTop:0,
@@ -99,7 +99,7 @@ Page({
     if (that.data.startRow > that.data.total) {
       that.setData({
         loadingHidden: true,
-        tips: "没有更多数据了~"
+        tips: true
       });
       return ;
     }else{

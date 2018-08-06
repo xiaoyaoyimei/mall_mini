@@ -108,10 +108,6 @@
 
 .tipssearch{
   text-align: center;
-position:fixed;
-bottom:0;
-color:#ff9900;
-left:30%;
 }
 .topRightName{
   padding-right:30rpx
@@ -129,4 +125,21 @@ left:30%;
 .com-widget-goTop image{
   width:50px;
   height: 50px
+}
+.result-list{
+    display: inline-block;
+    width: 50%;
+    box-sizing:border-box;
+    border-radius: 10px;
+    text-align: center;
+}
+.result-list:nth-child(2n){
+    margin-right: 0;
+}
+.result-list image{
+    width: 100%;
+    margin: 20rpx 0 10rpx;
+}
+.result-list .result-text{
+    font-size: 32rpx;
 }

@@ -3,7 +3,6 @@ var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 var uri = 'order/list'
 var statusuri ="order/enums"
-var imgurl = getApp().globalData.imgsrc;
 Page({
   data: {
     pageNo: 1,
@@ -11,7 +10,6 @@ Page({
     list: [],
     newlist: [],
     statusenums:[],
-    imgurl:imgurl,
     loginhidden: true
   },
   goindex(){
@@ -28,7 +26,7 @@ Page({
     var that = this;
     
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    
+    //存在Bug .如果token过期
     if (CuserInfo.token) {
       that.getStatus();
       that.getData();

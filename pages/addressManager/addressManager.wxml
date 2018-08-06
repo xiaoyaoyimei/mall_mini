@@ -19,10 +19,10 @@
                         <image class="address_image" src="../../images/addr_delete.png" mode="aspectFit"></image>
                         <text> 删除　</text>
                     </view>
-                    <!-- <view data-item="{{item}}" bindtap="addrEdit">
+                    <view data-item="{{item}}" bindtap="addrEdit">
                         <image class="address_image" src="../../images/addr_edit.png" mode="aspectFit"></image>
                         <text> 编辑　　</text>
-                    </view> -->
+                    </view>
                 </view>
             </block>
         </scroll-view>

@@ -8,7 +8,7 @@
     <navigator url="../regi/regi?fromurl=account" class="loginurl">
     注册</navigator>
     </view>
-  <view catchtap="mimeinfo" wx:else>
+  <view  wx:else>
   <view   class="user flex-wrp">
     <view class="avatar flex-item">
         <open-data type="userAvatarUrl" class="userinfo-avatar" background-size="cover"></open-data>
@@ -17,7 +17,7 @@
         <open-data type="userNickName" class="userinfo-nickname"></open-data>
         
          <text class="userinfo-nickname">{{userInfo.phone}}</text>
-      <text class="edit">查看或编辑个人主页</text>
+      <!-- <text class="edit">查看或编辑个人主页</text> -->
     </view>
     </view>
   </view>

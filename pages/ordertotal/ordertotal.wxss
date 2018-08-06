@@ -33,15 +33,13 @@
 /*每个item样式*/
 
 .list {
-  width: 100%;
-  margin-top: 10rpx;
   padding: 20rpx;
   margin-bottom: 25rpx;
   border-bottom: solid 2px #ebebeb;
   background: white;
 }
 .list button{
-  margin-right: 50rpx;
+  margin-right: 20rpx;
   margin-top: 10rpx;
 }
 .item-bottom {
@@ -96,7 +94,6 @@
 .fr{
   color:#0099ff;
   float:right;
-  padding-right:50rpx;
 }
 
 

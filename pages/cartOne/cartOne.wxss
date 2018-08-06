@@ -96,11 +96,7 @@ height:50rpx;
     float: right;
 }
 
-.cart-no-data{
-    padding:40rpx 0;
-    color: #999;
-    text-align: center;
-}
+
 .loginurl{
   color:#0099ff;
   text-decoration: underline

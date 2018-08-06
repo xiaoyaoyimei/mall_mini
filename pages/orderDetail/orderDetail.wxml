@@ -1,9 +1,13 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
-<view class="status">{{orderStatus}}</view>
+    <view wx:if="{{loginhidden}}" class="tips">
+    您尚未登录!
+    <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
+    </view>
+     <view wx:else >
+<view class="status {{wentips == true ? 'bg-wentips' : ''}}">{{orderStatus}}
+<view class="wentips" wx:if="{{wentips}}">温馨提示:请于下单20分钟内完成支付,逾时订单将自动取消</view></view>
 <view class="detail">
   <view class="address">
-
-    <!-- <image src="../../../assets/img/地址.textng"> -->
 
     <text>{{orderdetail.shippingAddress.receiverName}} <b>{{orderdetail.shippingAddress.receiverMobile}}</b></text>
     <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
@@ -13,7 +17,7 @@
   </view>
   <view class="mini-cart" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="{{index}}">
     <view class="mini-img">
-      <image src="{{imgurl}}{{item.productItemImg}}"></image>
+      <image src="{{filters.imgurl(item.productItemImg)}}"></image>
     </view>
     <view class="mini-attr">
       <text class="title">{{item.productTitle}}</text>
@@ -29,7 +33,7 @@
     <view>收票人：{{orderdetail.shippingInvoice.receivePerson}}</view>
     <view>发票抬头：{{orderdetail.shippingInvoice.invoiceTitle}}</view>
     <view>发票类型：{{orderdetail.shippingInvoice.invoiceType}} </view>
-    <button size='mini' type='primary' 
+    <button size='mini' type='primary'  class="editin_btn"
     wx:if="{{orderdetail.shippingOrder.orderStatus!='04'}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
       编辑发票信息
     </button>
@@ -39,22 +43,23 @@
 
   <view class="stexttotal">
     <view class="total_wrap">
-      <text class="t">商品总额</text>
+      <text class="t">商品总额:</text>
       <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.productFee)}}</text>
     </view>
     <view class="total_wrap">
-      <text class="t">商品优惠</text>
+      <text class="t">商品优惠:</text>
       <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.discountFee)}}</text>
     </view>
     <view class="total_wrap">
-      <text class="t">实付款：</text>
+      <text class="t">实付款:</text>
       <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.orderTotalFee)}}</text>
     </view>
   </view>
   <view  wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">
   <view class="opt-bottom">
+   <button type="primary" bindtap="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}" class="mr20">去支付</button>
     <button class="btn-white" bindtap="cancel" size="mini">取消订单</button>
-    <button class="btn-red" bindtap="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}">去支付</button>
     </view>
   </view>
+</view>
 </view>

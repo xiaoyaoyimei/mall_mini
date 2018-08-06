@@ -1,0 +1,2 @@
+/* pages/addressEdit/addressEdit.wxss */
+@import '../../model/model.wxss';

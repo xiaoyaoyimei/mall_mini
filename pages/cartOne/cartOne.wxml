@@ -1,40 +1,41 @@
 <view class="main">
-    <view wx:if="{{loginhidden}}" class="tips">
+	<view wx:if="{{!loginhidden}}">
+	<view wx:if="{{hasList}}">
+			<view class="cart-box">
+					<view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
+							<icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+							<icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
+
+							<image class="cart-thumb" src="{{imgurl}}{{item.image}}" mode="widthFix"></image>
+							<text class="cart-pro-name">{{item.productName}}</text>
+							<text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
+							<text class="cart-pro-price">￥{{item.gshsalePrice}}</text>
+							<view class="cart-count-box">
+									<text class="cart-count-down" bindtap="minusCount"  data-index="{{index}}">-</text>
+									<text class="cart-count-num">{{item.quantity}}</text>
+									<text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
+							</view>
+							<image src="/images/delete.png"  class="cart-del" bindtap="deleteList" data-index="{{index}}" data-id="{{item.id}}"></image>
+					</view>
+			</view>
+
+			<view class="cart-footer">
+					<icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select" bindtap="selectAll"/>
+					<icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll"/>
+					<view class="order-icon" bindtap="paymoney">
+						 <image src="/images/icon3.png"></image>
+					</view>
+					<text>全选</text>
+					<text class="cart-toatl-price">￥{{totalPrice}}</text>
+			</view>
+	</view>
+	<view wx:else  class="tips">
+			购物车是空的哦~
+	</view>
+</view>
+    <view  class="tips" wx:else>
     您尚未登录!
     <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
     </view>
-    <view wx:else>
-    <view wx:if="{{hasList}}">
-        <view class="cart-box">
-            <view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
-                <icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
-                <icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
-           
-                <image class="cart-thumb" src="{{imgurl}}{{item.image}}" mode="widthFix"></image>
-                <text class="cart-pro-name">{{item.productName}}</text>
-                <text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
-                <text class="cart-pro-price">￥{{item.gshsalePrice}}</text>
-                <view class="cart-count-box">
-                    <text class="cart-count-down" bindtap="minusCount"  data-index="{{index}}">-</text>
-                    <text class="cart-count-num">{{item.quantity}}</text>
-                    <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
-                </view>
-                <image src="/images/delete.png"  class="cart-del" bindtap="deleteList" data-index="{{index}}" data-id="{{item.id}}"></image>
-            </view>
-        </view>
 
-        <view class="cart-footer">
-            <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select" bindtap="selectAll"/>
-            <icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll"/>
-            <view class="order-icon" bindtap="paymoney">
-               <image src="/images/icon3.png"></image>
-            </view>
-            <text>全选</text>
-            <text class="cart-toatl-price">￥{{totalPrice}}</text>
-        </view>
-    </view>
-    <view wx:else>
-        <view class="cart-no-data">购物车是空的哦~</view>
-    </view>
-</view>
 </view>

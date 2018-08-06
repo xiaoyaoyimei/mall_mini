@@ -26,7 +26,6 @@ function updateAreaData( that, status, e){
           provinces[num] = s.label;
           num++;
       }
-      console.log(provinces)
 
       //初始化调一次
       //获取地级市数据
@@ -116,6 +115,7 @@ function updateAreaData( that, status, e){
     }
     
 }
+
 
 //动画事件
 function animationEvents(that, moveY, show, duration) {

@@ -3,10 +3,8 @@ var addressId = ''
 var request = require('../../utils/https.js')
 var uri_order_confirm = 'order/shopping/confirm' //确认订单
 var uri_pay = 'wxh5pay/api/towxpayInfo'
-var imgurl = getApp().globalData.imgsrc;
 Page({
   data: {
-    imgurl: imgurl,
     cartList: [],
     addressInfo: {},
     hasAddress: false,
@@ -128,8 +126,8 @@ Page({
     this.data.xscoupon = false
     if (this.data.couponCode==''){
     wx.showToast({
-      title: '优惠码不能为空',
-      icon: 'error',
+      title: '优惠卷不能为空',
+      icon: 'none',
       duration: 1000,
       mask: true,
       success: function () {return; }
@@ -202,7 +200,7 @@ Page({
   onShow: function () {
     // 生命周期函数--监听页面显示
 
-    var addresss = wx.getStorageSync('address');
+    var addresss = JSON.parse(wx.getStorageSync('address'));
     if(addresss.phone != null){
       this.setData({
         addressInfo: addresss,

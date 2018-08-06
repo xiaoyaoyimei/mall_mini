@@ -2,22 +2,31 @@
 var request = require('../../utils/https.js')
 var uri_address_list = 'address' //地址列表
 var uri_address_delete = 'address/delete' //删除地址
-
+var mime=0;
 Page({
   data:{
     addressData:[],
     loginhidden: true
   },
   addressClick:function(e){
-    var addr = {};
-    addr = e.currentTarget.dataset.item;
-    wx.setStorage({
-      key: 'address',
-      data: addr,
-      success() {
-        wx.navigateBack();
-      }
-    })
+    let addrForm = JSON.stringify(e.currentTarget.dataset.item);
+    if(mime==1){
+      wx.navigateTo({
+        url: `../addressEdit/addressEdit?addrForm=${addrForm}`,
+      })
+    }
+    else{
+    
+      //从购物车2页面返回
+      wx.setStorage({
+        key: 'address',
+        data: addrForm,
+        success() {
+          wx.navigateBack();
+        }
+      })
+    }
+
   },
   addrDelete:function(e){
     var that = this;
@@ -50,12 +59,21 @@ Page({
       }
     })
   },
+  addrEdit:function(e){
+   
+    let addrForm = JSON.stringify(e.currentTarget.dataset.item);
+
+    wx.navigateTo({
+      url: `../addressEdit/addressEdit?addrForm=${addrForm}`,
+    })
+  },
   addressAdd:function(){
     wx.navigateTo({
       url: '../addressAdd/addressAdd',
     })
   },
   onLoad:function(options){
+      mime = options.mime
   },
   onReady: function() {
     // Do something when page ready.
