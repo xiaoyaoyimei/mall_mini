@@ -17,15 +17,21 @@ Page({
     showToast: '',
   },
 
-  //用户名
+  //手机号
   bindusnInput: function (e) {
-    this.setData({
-      username: e.detail.value,
-    })
-    if (this.data.username && this.data.psword) {
-      this.setData({ disabled: false })
+    var phone = e.detail.value;
+    if (!(/^1\d{10}$/.test(phone))) {
+      util.showError('手机号格式不正确');
+      return;
     } else {
-      this.setData({ disabled: true })
+      this.setData({
+        username: phone,
+      })
+      if (this.data.username && this.data.psword) {
+        this.setData({ disabled: false })
+      } else {
+        this.setData({ disabled: true })
+      }
     }
   },
   //密码

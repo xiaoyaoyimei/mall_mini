@@ -1,53 +1,26 @@
 var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
+var util = require('./util.js')
 var auto = 'customer/login';
 //携带TOKEN
 function req(fromurl,url, methodway, data, callback) {
 
   var fromurl = fromurl;
   var CuserInfo = wx.getStorageSync('CuserInfo');
-  if (CuserInfo=={}){
-    wx.login({
-      success: res => {
-        // ------ 获取凭证 ------
-        var code = res.code;
-        if (code) {
-          req2('customer/wxlogin', 'POST', code, (err, res) => {
-            if (res.data.code == 200) {
-              // console.log("获取到的openid为：" + res.data)
-              // that.globalData.openid = res.data
-              wx.setStorageSync('openid', res.data)
-            } else  {
-              wx.navigateTo({
-                url: '../login/login?fromurl=index'
-              })
-              return;
-            }
-          })
-        } else {
-          console.log('获取用户登录失败：' + res.errMsg);
-        }
-      }
-    })
- }
-  else{
+  //如果登录凭证为空。微信联合登录
+  if (CuserInfo.token){
     //如果有token，就把token放到header
     wx.request({
       url: rootDocment + url,
       data: data,
       method: methodway,    //大写
-      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
+      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {
-        if (res.data.code == 401) {  
-
-          //token失效 用code换下token
-          wx.showToast({
-                title: res.data.msg,
-                 icon: 'none',
-                 duration: 1000
-               })
-           wx.removeStorageSync('CuserInfo')
-        }else{
-        callback(null, res)
+        if (res.data.code == 401) {
+          // 清除token
+          util.showError(res.data.msg);
+          wx.removeStorageSync('CuserInfo')
+        } else {
+          callback(null, res)
         }
       },
       fail(e) {
@@ -55,12 +28,37 @@ function req(fromurl,url, methodway, data, callback) {
         callback(e)
       }
     })
+ }
+  else{
+    wx.login({
+      success: res => {
+        // ------ 获取凭证 ------
+        var code = res.code;
+        if (code) {
+          req4('customer/wxlogin', 'POST', code, (err, res) => {
+            if (res.data.code == 200) {
+              wx.setStorageSync('openid', res.data)
+              callback(null, res)
+            } else {
+              util.showError(res.data.msg);
+              wx.removeStorageSync('CuserInfo')
+              wx.navigateTo({
+                url: '../login/login?fromurl=index'
+              })
+              return;
+            }
+          })
+        } else {
+          util.showError('获取用户登录失败');
+        }
+      }
+    })
+ 
   } 
 }
 
 
 function req2(url, methodway, data, callback) {
-
   var CuserInfo = wx.getStorageSync('CuserInfo');
   //token未过期
   if (CuserInfo.token){
@@ -70,13 +68,7 @@ function req2(url, methodway, data, callback) {
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {
         if (res.data.code == 401) {
-
-          //token失效 删除缓存token
-          wx.showToast({
-            title: res.data.msg,
-            icon: 'none',
-            duration: 1000
-          })
+          util.showError(res.data.msg);
           wx.removeStorageSync('CuserInfo')
         } else {
         callback(null, res)
@@ -88,14 +80,11 @@ function req2(url, methodway, data, callback) {
       }
     })
   }else{
-    wx.showToast({
-      title: '认证已过期，请重新登录',
-      icon: 'none',
-      duration: 2000
-    })
+    util.showError('认证已过期，请重新登录');
     wx.removeStorageSync('CuserInfo')
   }
 }
+//无需登录,不带TOKEN请求
 function req3(url, methodway, data, callback) {
   wx.request({
   url: rootDocment + url,
@@ -111,7 +100,7 @@ function req3(url, methodway, data, callback) {
   }
 })
 }
-//无需登录,不带TOKEN请求
+
 function req4(url, methodway, data, callback) {
     wx.request({
       url: rootDocment + url + '/' + data,
@@ -144,11 +133,12 @@ function req5(url, methodway,uniunid, data, callback) {
   })
   }
   else{
-    wx.showToast({
-      title: '认证已过期，请重新登录',
-      icon: 'none',
-      duration: 2000
-    })
+    // wx.showToast({
+    //   title: '认证已过期，请重新登录',
+    //   icon: 'none',
+    //   duration: 2000
+    // })
+    util.showError('认证已过期，请重新登录');
     wx.removeStorageSync('CuserInfo')
   }
 } 

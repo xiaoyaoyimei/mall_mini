@@ -32,6 +32,11 @@ Page({
       scrollTop: 0
     });
   },
+  searchPro: function () {
+    wx.navigateTo({
+      url: '../search/search',
+    })
+  },
   scroll: function (e, res) {
     // 容器滚动时将此时的滚动距离赋值给 this.data.scrollTop
     if (e.detail.scrollTop > 500) {
@@ -122,9 +127,15 @@ Page({
     that.getData();
     wx.getSystemInfo({
       success: function (res) {
-        that.setData({
-          clientHeight: res.windowHeight
-        });
+
+        let height = res.windowHeight;
+        wx.createSelectorQuery().selectAll('.search_wrap').boundingClientRect(function (rects) {
+          rects.forEach(function (rect) {
+            that.setData({
+              clientHeight: res.windowHeight - rect.bottom 
+            });
+          })
+        }).exec();
       }
     });
   },

@@ -1,28 +1,6 @@
 /**index.wxss**/
 
-.index_search_btn {
-  height: 70rpx;
-  width: 90%;
-  background:rgba(252,252,252,0.8);
-  color: #666;
-  font-size: 30rpx;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: fixed;
-  top:10rpx;
-  left: 5%;
-  border-radius: 35px;
-  z-index: 2;
-  border:1px solid #eee;
-}
 
-.index_search {
-  margin-right: 3px;
-  width: 16px;
-  height: 16px;
-}
 .newpro{
   width: 100%;
   overflow: hidden;

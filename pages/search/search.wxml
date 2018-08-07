@@ -1,6 +1,6 @@
 <view class="main">
   <view class="search-box">
-    <input class="search-input" placeholder="搜索" value="{{value}}" bindinput="searchInput" />
+    <input class="search-input" bindconfirm="searchPro" bindblur="search" placeholder="搜索" value="{{value}}" bindinput="searchInput"  confirm-type="search"/>
     <icon class="weui-icon-search_in-box search-icon" type="search" size="14"></icon>
     <text class="search-btn" wx:if="{{showResult}}" bindtap="cancelSearch">取消</text>
     <text class="search-btn" wx:else bindtap="search">搜索</text>

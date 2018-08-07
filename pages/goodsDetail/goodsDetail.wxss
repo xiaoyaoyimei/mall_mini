@@ -1,4 +1,7 @@
-page{background-color:#edf0f3;}
+page {
+  background-color: #edf0f3;
+}
+
 .detail_container {
   display: flex;
   height: 100%;
@@ -32,11 +35,11 @@ swiper-item image {
 
 .detail_price {
   font-size: 17px;
-  color: #0099ff;
-  padding:5px 10px;
+  color: #09f;
+  padding: 5px 10px;
   border-bottom: 10px solid silver;
   border-bottom-color: #efeff4;
-   background: #fff;
+  background: #fff;
 }
 
 .detail_spec {
@@ -59,7 +62,7 @@ swiper-item image {
 .detail_footer_btn {
   width: 100%;
   height: 50px;
-  background-color: #0099ff;
+  background-color: #09f;
   color: white;
   text-align: center;
   align-items: center;
@@ -67,47 +70,32 @@ swiper-item image {
   display: flex;
 }
 
-.text-box {
-  margin-bottom: 70rpx;
-  padding: 40rpx 0;
-  display: flex;
-  min-height: 300rpx;
-  background-color: #fff;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 30rpx;
-  color: #353535;
-  line-height: 2em;
-}
 
-.tips {
-  background-color: rgba(255, 255, 255, 0.5);
-  text-align: center;
-  line-height: 22px;
-  font-size: 18px;
-  color: red;
-}
-.kind-list-text{
+
+
+.kind-list-text {
   flex: 1;
 }
+
 .kind-list-img {
   width: 60rpx;
   height: 60rpx;
 }
+
 .kind-list-item-hd {
   padding: 30rpx;
   display: flex;
   align-items: center;
-  transition: opacity .3s;
-  background: #ffffff;
-  margin-bottom: 30rpx
+  transition: opacity 0.3s;
+  background: #fff;
+  margin-bottom: 30rpx;
 }
 
 /* 弹窗样式 */
+
 .show-btn {
   margin-top: 100rpx;
-  color: #22cc22;
+  color: #2c2;
 }
 
 .modal-mask {
@@ -125,18 +113,20 @@ swiper-item image {
 
 .modal-dialog {
   width: 100%;
-  overflow:visible;
+  overflow: visible;
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 12;
-  background: #ffffff;
+  background: #fff;
 }
+
 .modal-content {
   padding: 30rpx;
-    overflow:visible;
-    position: relative;
+  overflow: visible;
+  position: relative;
 }
+
 .modal-footer {
   display: flex;
   flex-direction: row;
@@ -158,142 +148,177 @@ swiper-item image {
   color: #ec5300;
   text-align: center;
 }
+
 /*每组属性的主盒子*/
-.attr_box { 
- width: 100%; 
- overflow: hidden; 
- border-bottom: 1rpx solid #ececec; 
- display: flex;
- flex-direction: column;
- font-size: 14px;
-} 
-/*属性名*/
-.attr_name { 
- padding: 10rpx 0 0 0; 
-} 
-/*属性值*/
-.attr_value_box { 
- padding: 10rpx 0; 
-} 
-/*每个属性值*/
-.attr_value { 
- float: left; 
- padding: 0 30rpx; 
- margin: 10rpx 10rpx; 
- border: 1rpx solid #ececec; 
- border-radius:5px;
- line-height:30px;
-} 
-/*每个属性选中的当前样式*/
-.attr_value_active { 
- border-radius: 10rpx; 
- color: #0089dc; 
- padding: 0 30rpx; 
- border: 1rpx solid #0099ff; 
- /* background: #fff;   */
-} 
-/*使屏幕变暗  */
-.commodity_screen {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  opacity: 0.2;
-  overflow: hidden;
-  z-index: 1000;
-  color: #fff;
-}
-/*对话框 */
-.commodity_attr_box {
-  height: 300rpx;
+
+.attr_box {
   width: 100%;
   overflow: hidden;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 2000;
-  background: #fff;
-  padding-top: 20rpx;
+  border-bottom: 1rpx solid #ececec;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
 }
 
-.chooseproduct{
+/*属性名*/
+
+.attr_name {
+  padding: 10rpx 0 0 0;
+}
+
+/*属性值*/
+
+.attr_value_box {
+  padding: 10rpx 0;
+}
+
+/*每个属性值*/
+
+.attr_value {
+  float: left;
+  padding: 0 30rpx;
+  margin: 10rpx 10rpx;
+  border: 1rpx solid #ececec;
+  border-radius: 5px;
+  line-height: 30px;
+}
+
+/*每个属性选中的当前样式*/
+
+.attr_value_active {
+  border-radius: 10rpx;
+  color: #0089dc;
+  padding: 0 30rpx;
+  border: 1rpx solid #09f;
+  /* background: #fff;   */
+}
+
+
+
+.chooseproduct {
   position: relative;
   overflow: visible;
 }
-.image-xq{
+
+.image-xq {
   position: absolute;
   left: 0;
   top: -50px;
-  overflow:visible;
+  overflow: visible;
   z-index: 2;
 }
-.small-xq{
-  padding-left:220rpx;
-}
-.image-xq image{
-  width:180rpx;
-  height:180rpx;
-  border:2px solid #fff;
+
+.small-xq {
+  padding-left: 220rpx;
 }
 
-.color-dx{
-  color:#0099ff
+.image-xq image {
+  width: 180rpx;
+  height: 180rpx;
+  border: 2px solid #fff;
 }
-.num_wrap{
+
+.color-dx {
+  color: #09f;
+}
+
+.num_wrap {
   display: flex;
-  margin-top:20rpx;
-  margin-bottom:20rpx;
-  
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
-.num_right .add,.num_right .min,.num_right .num{
+.bold{
+  font-size: 28rpx;
+}
+
+.num_right .add, .num_right .min, .num_right .num {
   width: 100rpx;
-  display: inline-block;
+  display: block;
   text-align: center;
   float: left;
 }
-.num_wrap .add{
-  border-left:1px solid #ccc;
+
+.num_wrap .add {
+  border-left: 1px solid #ccc;
 }
-.num_wrap .min{
-  border-right:1px solid #ccc;
+
+.num_wrap .min {
+  border-right: 1px solid #ccc;
 }
-.num_right{
-  border:1px solid #ccc;
-  margin-left:60rpx;
+
+.num_right {
+  border: 1px solid #ccc;
+  margin-left: 60rpx;
   height: 60rpx;
   line-height: 60rpx;
 }
 
-.nav{width:100%;height:100rpx;display:flex;flex-direction:row; background: #ffffff;
-  margin-bottom: 30rpx}
-.default{line-height:100rpx;text-align:center;flex:1;border-right:1px solid gainsboro;color:#000;font-weight:bold;font-size:28rpx;}
-.red{line-height:100rpx;text-align:center;color:#0099ff;flex:1;border-right:1px solid gainsboro;font-weight:bold;font-size:28rpx;}
-.show{display:block;}
-.hidden{display:none;}
-.imgurl{
-  text-align: center
+.nav {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  margin-bottom: 30rpx;
 }
-.imgurl image{
-  width:100%;
+
+.default {
+  line-height: 100rpx;
+  text-align: center;
+  flex: 1;
+  border-right: 1px solid gainsboro;
+  color: #000;
+  font-weight: bold;
+  font-size: 28rpx;
 }
-.pro_detail{
-  padding:0 30rpx;
+
+.blue {
+  line-height: 100rpx;
+  text-align: center;
+  color: #09f;
+  flex: 1;
+  border-right: 1px solid gainsboro;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+
+.show {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+.imgurl {
+  text-align: center;
+}
+
+.imgurl image {
+  width: 100%;
+}
+
+.pro_detail {
+  padding: 0 30rpx;
   line-height: 60rpx;
 }
-.xiajia{
-  color:#ff9900;
+.pro_detail text{
+ font-size: 28rpx;
 }
-.hasseleted{
-  color:#666;
+.xiajia {
+  color: #f90;
+}
+
+.hasseleted {
+  color: #666;
   font-size: 12px;
 }
-.close{
-  width:32px;
-height:32px;
-position:absolute;
-right:10px;
-top:10px;
-z-index: 2;
+
+.close {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 2;
 }

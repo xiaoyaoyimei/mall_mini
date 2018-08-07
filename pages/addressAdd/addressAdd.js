@@ -62,9 +62,19 @@ Page({
   },
   //手机号赋值
   bindPhoneInput: function (e) {
-    this.setData({
-      phoneNum: e.detail.value
-    })
+    var phone = e.detail.value;
+    if (!(/^1\d{10}$/.test(phone))) {
+      wx.showToast({
+        title: '手机号格式不正确',
+        icon: 'none',
+        duration: 1000
+      })
+      return;
+    } else {
+      this.setData({
+        phoneNum: e.detail.value
+      })
+    }
   },
 
   //详细地址赋值

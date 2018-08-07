@@ -1,12 +1,6 @@
 
-.top_line{
-    height: 0.5px;
-    background-color: #EFEFF4;
-}
-.top_view{
-    font-size: 15px;
-    padding: 10px;
-}
+
+
 .address_view{
     padding: 0px 10px 10px 10px;
     font-size: 13px;

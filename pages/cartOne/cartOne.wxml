@@ -3,11 +3,11 @@
 	<view wx:if="{{hasList}}">
 			<view class="cart-box">
 					<view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
-							<icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+						<icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
 							<icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
 
 							<image class="cart-thumb" src="{{imgurl}}{{item.image}}" mode="widthFix"></image>
-							<text class="cart-pro-name">{{item.productName}}</text>
+						<text class="cart-pro-name">{{item.productName}}</text>
 							<text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
 							<text class="cart-pro-price">￥{{item.gshsalePrice}}</text>
 							<view class="cart-count-box">
@@ -20,6 +20,7 @@
 			</view>
 
 			<view class="cart-footer">
+  
 					<icon wx:if="{{selectAllStatus}}" type="success_circle" color="#fff" class="total-select" bindtap="selectAll"/>
 					<icon wx:else type="circle" color="#fff" class="total-select" bindtap="selectAll"/>
 					<view class="order-icon" bindtap="paymoney">

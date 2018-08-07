@@ -8,7 +8,6 @@
     "pages/mime/mime",
     "pages/orderConfirm/orderConfirm",
     "pages/goodlist/goodlist",
-    "pages/specValue/specValue",
     "pages/ordertotal/ordertotal",
     "pages/addressManager/addressManager",
     "pages/addressAdd/addressAdd",

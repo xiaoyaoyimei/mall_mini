@@ -21,7 +21,7 @@ Page({
       path: '/pages/index/index' // 分享路径
     }
   },
-  click: function () {
+  searchPro: function () {
     wx.navigateTo({
       url: '../search/search',
     })

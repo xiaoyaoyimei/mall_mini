@@ -8,7 +8,7 @@
     </view>
     <view class="add_item">
         <text class="item_text">手机号:</text>
-        <input class="item_input" bindinput="bindPhoneInput" type="number" placeholder="请输入手机号" value="{{addrForm.phone}}" confirm-hold="true"/>
+        <input class="item_input" maxlength="11" bindblur="bindPhoneInput" type="number" placeholder="请输入手机号" value="{{addrForm.phone}}" confirm-hold="true"/>
     </view>
     <view class="add_item">
         <text class="item_text">省市区:</text>

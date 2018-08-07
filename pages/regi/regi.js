@@ -44,19 +44,18 @@ Page({
     last_time: '',
     is_show: true
   },
-  //用户名
-  bindusnInput: function (e) {
-    this.setData({
-      username: e.detail.value,
-    })
-
-  },
+  //手机号
   gettxNum(e) {
-
-    this.setData({
-      username: e.detail.value,
-    });
-    this.getimgcode();
+    var phone = e.detail.value;
+    if (!(/^1\d{10}$/.test(phone))) {
+      util.showError('手机号格式不正确');
+      return;
+    }else{
+      this.setData({
+        username: phone,
+      });
+      this.getimgcode();
+    }
   },
   //图形码
   bindimgInput: function (e) {
@@ -86,21 +85,7 @@ Page({
   getimgcode(){
     var that=this;
       if (this.data.username == "") {
-        wx.showToast({
-          title: '手机号不能为空',
-          icon: 'none',
-          duration: 2000
-        })
-
-        return;
-      }
-      var myreg = /^[1][0-9]{10}$/; 
-      if (!myreg.test(this.data.username)) {
-        wx.showToast({
-          title: '手机号格式不正确',
-          icon: 'none',
-          duration: 2000
-        })
+        util.showError('手机号不能为空');
         return;
       } else {
       wx.request({
@@ -115,12 +100,7 @@ Page({
               verimg: that.data.verimg,
             })
           } else {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-              duration: 2000
-            })
-       
+            util.showError(res.data.msg);
           }
         }
         })
@@ -134,11 +114,7 @@ Page({
 
     let txm = this.data.txm;
     if (txm == null || txm == '') {
-      wx.showToast({
-        title: '图形码不能为空',
-        icon: 'none',
-        duration: 2000
-      })
+      util.showError('图形码不能为空');
       return;
     } else {
       
@@ -205,11 +181,7 @@ Page({
             })
             //保存
             if (res.data.code == '200') {
-              wx.showToast({
-                title: '注册成功',
-                icon: 'success',
-                duration: 2000
-              })
+              util.showSuccess('注册成功');
               //登陆成功 跳转
               wx.navigateTo({   //加个参数  
                 url: '../login/login?fromurl=index'

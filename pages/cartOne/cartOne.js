@@ -12,9 +12,9 @@ Page({
   },
   getCartList() {
     var self=this;
-      this.data.cartList = [];
-
+    self.data.cartList = [];
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
+
         if (res.data.code == 200) {
           if (res.data.object.length>0){
             for (var val of res.data.object) {
@@ -42,8 +42,10 @@ Page({
     var CuserInfo = wx.getStorageSync('CuserInfo');
     
     if (CuserInfo.token) {
-    this.getCartList();
-    this.getTotalPrice();
+      that.setData({
+        selectAllStatus: false,
+      });
+     this.getCartList();
     }else{
       that.setData({
         loginhidden: true,

@@ -5,14 +5,17 @@
     </view>
      <view wx:else >
 <view class="status {{wentips == true ? 'bg-wentips' : ''}}">{{orderStatus}}
-<view class="wentips" wx:if="{{wentips}}">温馨提示:请于下单20分钟内完成支付,逾时订单将自动取消</view></view>
+<view class="wentips" wx:if="{{wentips}}">温馨提示:请于下单30分钟内完成支付,逾时订单将自动取消</view></view>
 <view class="detail">
-  <view class="address">
-
-    <text>{{orderdetail.shippingAddress.receiverName}} <b>{{orderdetail.shippingAddress.receiverMobile}}</b></text>
+  <view class="iconaddress">
+  <view>
+      <image src="../../images/addr_confirm.png" ></image>
+      </view>
+      <view class="top_view">
+    <text>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</text>
     <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
         {{orderdetail.shippingAddress.receiverDistrict}}{{orderdetail.shippingAddress.receiverAddress}}</text>
-
+</view>
 
   </view>
   <view class="mini-cart" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="{{index}}">
@@ -58,7 +61,7 @@
   <view  wx:if="{{orderdetail.shippingOrder.orderStatus=='01'||orderdetail.shippingOrder.orderStatus=='02'}}">
   <view class="opt-bottom">
    <button type="primary" bindtap="quzhifu" size="mini" wx:if="{{orderdetail.shippingOrder.orderStatus=='01'}}" class="mr20">去支付</button>
-    <button class="btn-white" bindtap="cancel" size="mini">取消订单</button>
+    <button class="btn-white" bindtap="cancel" size="mini" >取消订单</button>
     </view>
   </view>
 </view>

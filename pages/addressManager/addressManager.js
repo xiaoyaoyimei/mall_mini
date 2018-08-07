@@ -8,51 +8,81 @@ Page({
     addressData:[],
     loginhidden: true
   },
+  switch1Change: function (e) {
+    var that = this;
+    var addressId = e.currentTarget.dataset.itemId;
+    let isDefault=e.detail.value;
+    if (isDefault){
+      isDefault='Y';
+    }else{
+      isDefault = 'N';
+    }
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    if (CuserInfo.token) {
+    wx.request({
+      url: `https://m.shop.dxracer.cn/mall/wap/address/updateDefault?id=${addressId}&isDefault=${isDefault}`,
+      method: 'POST',    //大写
+      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
+      success(res) {
+        if (res.data.code == 401) {  //token失效 用code换下token
+          wx.showToast({
+            title: '认证已过期，请重新登录',
+            icon: 'none',
+            duration: 2000
+          })
+          wx.removeStorageSync('CuserInfo')
+        }
+        if (res.data.code == 200) {
+          that.getAddressList();
+        }
+      },
+      fail(e) {
+        console.error(e)
+        callback(e)
+      }
+    })
+    }else{
+      wx.showToast({
+        title: '认证已过期，请重新登录',
+        icon: 'none',
+        duration: 2000
+      })
+      wx.removeStorageSync('CuserInfo')
+    }
+  },
   addressClick:function(e){
     let addrForm = JSON.stringify(e.currentTarget.dataset.item);
+    let addrDingdang=e.currentTarget.dataset.item;
     if(mime==1){
       wx.navigateTo({
         url: `../addressEdit/addressEdit?addrForm=${addrForm}`,
       })
     }
     else{
-    
-      //从购物车2页面返回
-      wx.setStorage({
-        key: 'address',
-        data: addrForm,
-        success() {
-          wx.navigateBack();
-        }
+      var pages = getCurrentPages()
+      var prevPage = pages[pages.length - 2]  //上一个页面
+      var that = this
+      prevPage.setData({
+        addressInfo: addrDingdang,
+        hasAddress:true
+      })
+      wx.navigateBack({//返回
+        delta: 1
       })
     }
 
   },
   addrDelete:function(e){
     var that = this;
-    var addressId = e.currentTarget.dataset.item.id;
+    var addressId = e.currentTarget.dataset.itemId;
     var CuserInfo = wx.getStorageSync('CuserInfo');
     wx.showModal({
       title: '确认删除该地址吗？',
       success: function(res) {
         if (res.confirm) {
-          wx.request({
-            url: 'https://m.shop.dxracer.cn/mall/wap/address/delete?id=' + addressId,
-            method: 'POST',    //大写
-            header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
-            success(res) {
-              if (res.data.code == 401) {  //token失效 用code换下token
-                wx.redirectTo({   
-                  url: '../login/login',
-                })
-              }
-              if (res.data.code == 200) {
-                that.getAddressList();
-               }
-            },
-            fail(e) {
-              console.error(e)
-              callback(e)
+          request.req5('address/delete', 'POST', addressId, {}, (err, res) => {
+            if (res.data.code == 200) {
+              that.getAddressList();
             }
           })
         }

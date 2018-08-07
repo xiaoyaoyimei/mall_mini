@@ -1,7 +1,8 @@
 
 
 <import src="../../template/mplex.wxml"/>
-    <view class="index_search_btn" bindtap="click">
+   <view class="home">
+    <view class="index_search_btn" bindtap="searchPro">
       <image class="index_search" src="../../images/searchLogo.png"></image>
       <text>搜索商品</text>
     </view>
@@ -16,3 +17,4 @@
     <view class="list">
      <template wx:for="{{xin}}" wx:key="index"  is="listBig" data="{{item}}" ></template>
      </view>
+</view>

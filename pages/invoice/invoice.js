@@ -44,9 +44,32 @@ Page({
       });
     }
   },
+  //收票人手机验证
+  bindPhoneInput: function (e) {
+    var phone = e.detail.value;
+    if (!(/^1\d{10}$/.test(phone))) {
+      wx.showToast({
+        title: '收票人手机号格式不正确',
+        icon: 'none',
+        duration: 1000
+      })
+      return;
+    }
+  },
   invoiceFormSubmit(e){
+
     var that = this;
     var formData = e.detail.value;
+
+    if (formData.receivePhone == "" || that.data.province == "" || that.data.city == "" || that.data.county == "" || formData.receiveAddress == "" || formData.receivePerson == "" ){
+      wx.showToast({
+        title: '请完善发票信息',
+        icon: 'none',
+        duration: 1000
+      })
+      return 
+    }
+    else{
     that.setData({
       invoiceForm: formData
     })
@@ -65,12 +88,11 @@ Page({
       invoiceCode: formData.invoiceCode,
       registerAddress: formData.registerAddress
     }, (err, res) => {
-    
       if(res.data.code==200){
+        //将发票信息传到上一个页面
         var pages = getCurrentPages()
         var prevPage = pages[pages.length - 2]  //上一个页面
         var that = this
-
         prevPage.setData({
           ["orderdetail.shippingInvoice"]: that.data.invoiceForm
         })
@@ -80,6 +102,7 @@ Page({
 
       }
     });
+    }
   },
   //生命周期函数--监听页面初次渲染完成
   onReady: function (e) {

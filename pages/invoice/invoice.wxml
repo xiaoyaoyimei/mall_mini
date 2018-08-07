@@ -1,5 +1,5 @@
  <import src="../../model/model.wxml"/>
-<form class="page__bd" bindsubmit="invoiceFormSubmit" bindreset="formReset">
+<form class="page_bd" bindsubmit="invoiceFormSubmit" bindreset="formReset">
     <view class="add_item">
       <view class="item_text">订单编号</view>
       <input name="orderNo"  placeholder="请在这里输入" value="{{orderNo}}"disabled='disabled' class="item_input"/>
@@ -31,7 +31,7 @@
     </view>
             <view class="add_item">
       <view class="item_text">收票人手机</view>
-      <input name="receivePhone"  type="number" placeholder="收票人手机" value="{{invoiceForm.receivePhone}}" class="item_input"/>
+      <input name="receivePhone"  type="number"  maxlength="11" bindblur="bindPhoneInput"  placeholder="收票人手机" value="{{invoiceForm.receivePhone}}" class="item_input"/>
     </view>
       <!-- 专用发票 -->
 

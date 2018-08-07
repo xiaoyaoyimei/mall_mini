@@ -29,13 +29,10 @@
 
 /*用户名称样式*/
 
-
-
 /*时间样式*/
 
 .topRightTime {
-
-  color: #0099ff;
+  color: #09f;
   margin-top: 10rpx;
 }
 
@@ -55,18 +52,6 @@
   margin-top: 8rpx;
 }
 
-
-
-/*整体view样式*/
-
-.containsView {
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-  background-color: white;
-  flex-direction: column;
-}
-
 /*顶部view整体样式*/
 
 .headerView {
@@ -77,7 +62,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  border-bottom:10px solid #ebebeb
+  border-bottom: 10px solid #ebebeb;
 }
 
 .top-bar-item {
@@ -89,7 +74,7 @@
 }
 
 .top-bar-active {
-  color: #0099ff;
+  color: #09f;
   font-size: 32rpx;
 }
 
@@ -105,41 +90,45 @@
 
 /*内容会被修剪，并且其余内容是不可见的。*/
 
-
-.tipssearch{
+.tipssearch {
   text-align: center;
 }
-.topRightName{
-  padding-right:30rpx
+
+.topRightName {
+  padding-right: 30rpx;
 }
 
-.com-widget-goTop { 
-        position: fixed; 
-        bottom: 100px; 
-        right: 10px; 
-        border-radius: 50%; 
-        overflow: hidden; 
-        z-index: 500; 
-} 
+.com-widget-goTop {
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 500;
+}
 
-.com-widget-goTop image{
-  width:50px;
-  height: 50px
+.com-widget-goTop image {
+  width: 50px;
+  height: 50px;
 }
-.result-list{
-    display: inline-block;
-    width: 50%;
-    box-sizing:border-box;
-    border-radius: 10px;
-    text-align: center;
+
+.result-list {
+  display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  text-align: center;
 }
-.result-list:nth-child(2n){
-    margin-right: 0;
+
+.result-list:nth-child(2n) {
+  margin-right: 0;
 }
-.result-list image{
-    width: 100%;
-    margin: 20rpx 0 10rpx;
+
+.result-list image {
+  width: 100%;
+  margin: 20rpx 0 10rpx;
 }
-.result-list .result-text{
-    font-size: 32rpx;
+
+.result-list .result-text {
+  font-size: 32rpx;
 }

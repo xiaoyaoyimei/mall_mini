@@ -35,7 +35,7 @@
     </view>
    <view class="my-item flex-wrp" catchtap="address_manager">
       <view class="myitem-icon flex-item">
-        <image src="../../images/addr_edit.png"></image>
+        <image src="../../images/icon_address.png"></image>
       </view>
       <view class="myitem-name flex-item">
         <text>地址管理</text>

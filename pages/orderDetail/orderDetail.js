@@ -56,7 +56,6 @@ Page({
     },
     cancel() {
       var orderNo = this.data.orderNo;
-      
       wx.showModal({
         title: '温馨提示',
         content: '确定取消该订单?',
@@ -67,19 +66,10 @@ Page({
             request.req2('order/cancel', 'POST', orderNo, (err, res) => {
               if (res.code == 200) {
                 self.getOrder();
-                wx.showToast({
-                  title: '取消成功',
-                  icon: 'success',
-                  duration: 1000,
-                  mask: true
-                })
+                util.showSuccess('取消成功')
+
               }else{
-                wx.showToast({
-                  title: '取消失败',
-                  icon: 'loading',
-                  duration: 1000,
-                  mask: true
-                })
+               util.showError('取消失败')
               }
             });
           } 
@@ -91,8 +81,33 @@ Page({
       }) 
     },
     quzhifu() {
-
-      //this.$router.push({ name: '/cartthree', query: { orderNo: this.orderNo } });
+      var that = this;
+      var orderNo = this.data.orderNo;
+      wx.login({
+        success: function (res) {
+          request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
+            var weval = res.data.object;
+            wx.requestPayment({
+              timeStamp: weval.timeStamp,
+              nonceStr: weval.nonceStr,
+              package: weval.package,
+              signType: weval.signType,
+              paySign: weval.paySign,
+              success: function (res) { //跳转
+                wx.redirectTo({
+                  url: '../paycomplete/paycomplete',
+                })
+              },
+              fail: function () {
+                util.showError('支付失败')
+              },
+              complete: function () {
+                that.getData();
+              }
+            })
+          });
+        }
+      }) 
     },
     editInvoice(e){
       var order = e.currentTarget.dataset.order
@@ -114,14 +129,5 @@ Page({
           })    
         
       })
-    },
-    //   this.$axios({
-    //     method: 'get',
-    //     url: '/order/' + this.orderNo,
-    //   }).then((res) => {
-    //     this.orderdetail = res;
-    //   });
-    // },
- 
-    
+    },   
 })

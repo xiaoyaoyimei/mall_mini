@@ -199,18 +199,24 @@ Page({
   },
   onShow: function () {
     // 生命周期函数--监听页面显示
+    //获取默认地址
+    var that=this;
+    request.req('addresslist', 'address', 'POST', {
+    }, (err, res) => {
+      if(res.data.length>0){
+        let addressInfo = res.data[0]
+        that.setData({
+          addressInfo: addressInfo,//接数组
+          hasAddress: true
+        })
+      }else{
+        that.setData({
+          hasAddress: false
+        })
+      }
+    });
+  
 
-    var addresss = JSON.parse(wx.getStorageSync('address'));
-    if(addresss.phone != null){
-      this.setData({
-        addressInfo: addresss,
-        hasAddress:true
-      })
-    }else{
-      this.setData({
-        hasAddress:false
-      })
-    }
   },
   paynow: function (e) {
    //保存订单接口获取ordercode

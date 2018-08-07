@@ -1,5 +1,5 @@
 <!-- 整体 -->
-<view class="containsView">
+<view class="products_page">
   <!-- 顶部导航栏 -->
   <!-- <view class="headerView">
     <block wx:for="{{navList}}" wx:key="">
@@ -9,6 +9,11 @@
     </block>
   </view> -->
   <!--scrollview-->
+   <view class="search_wrap"><view class="index_search_btn" bindtap="searchPro">
+      <image class="index_search" src="../../images/searchLogo.png"></image>
+      <text>搜索商品</text>
+    </view>
+    </view>
   <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" enable-back-to-top="true" wx:if="{{list.length > 0}}" scroll-top="{{scrollTop}}" bindscroll="scroll">
     <block wx:for-items="{{list}}" wx:key="id">
       <!-- item-->

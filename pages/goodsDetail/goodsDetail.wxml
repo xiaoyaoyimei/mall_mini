@@ -19,18 +19,20 @@
       <image class="kind-list-img" src="../../images/nav.png"></image>
     </view>
     <view class="nav bc_white">
-      <view class="{{selected?'red':'default'}}" bindtap="selected">长图描述</view>
-      <view class="{{selected1?'red':'default'}}" bindtap="selected1">产品详细</view>
+      <view class="{{selected?'blue':'default'}}" bindtap="selected">长图描述</view>
+      <view class="{{selected1?'blue':'default'}}" bindtap="selected1">产品详细</view>
     </view>
     <view class="{{selected?'show':'hidden'}}">
-    <view wx:for="{{productimg}}"  wx:key="index" class="imgurl">
-    <image src="{{filters.imgurl(item.imgUrl)}}"  mode="widthFix"></image>
+      <view wx:for="{{productimg}}" wx:key="index" class="imgurl">
+        <image src="{{filters.imgurl(item.imgUrl)}}" mode="widthFix"></image>
+      </view>
     </view>
+    <view class="{{selected1?'show':'hidden'}}">
+      <view wx:for="{{productDesc}}" wx:key="index" class="pro_detail">
+        <text>{{item.attrCode}}:</text>
+        <text>{{item.attrValue}}</text>
+      </view>
     </view>
-    <view class="{{selected1?'show':'hidden'}}">	
-    <view wx:for="{{productDesc}}"  wx:key="index" class="pro_detail">
-	   <text class="title">{{item.attrCode}}:</text> <text class="neirong">{{item.attrValue}}</text></view>
-  </view>
     <view class="detail_footer">
       <view class="detail_footer_btn" bindtap="showbynow">
         <text>立即购买</text>
@@ -41,33 +43,33 @@
 </view>
 
 <!--弹窗-->
-<view class="modal-mask" bindtap="hideModal"  catchtouchmove="preventTouchMove"  wx:if="{{showModal}}"></view>
-<view class="modal-dialog" wx:if="{{showModal}}"  catchtouchmove="preventTouchMove" >
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}" catchtouchmove="preventTouchMove">
 
   <view class="modal-content">
-     <image src='/images/close.png' class='close' catchtap='hideModal'> </image>
-      <view wx:if="{{xiajia}}" class="xiajia">
-        该商品已下架
+    <image src='/images/close.png' class='close' catchtap='hideModal'> </image>
+    <view wx:if="{{xiajia}}" class="xiajia">
+      该商品已下架
+    </view>
+    <view wx:if="{{!xiajia&&!firstshow}}" class="xiajia">
+      请选择商品
+    </view>
+    <view wx:if="{{firstshow}}" class='chooseproduct'>
+      <view class="image-xq">
+        <image src="{{filters.imgurl(choosesp.img)}}"></image>
       </view>
-      <view wx:if="{{!xiajia&&!firstshow}}" class="xiajia">
-        请选择商品
-      </view>
-      <view wx:if="{{firstshow}}" class='chooseproduct'>
-        <view class="image-xq">
-          <image src="{{filters.imgurl(choosesp.img)}}"></image>
+      <view class="small-xq">
+        <view class="color-dx">￥{{filters.toFix(choosesp.price)}}</view>
+        <view>{{choosesp.itemNo}}</view>
+        <view>库存:{{choosesp.kucun}}</view>
+        <!--促销-->
+        <view class="cx" wx:if="{{cxshow}}">
+          <text>￥{{filters.toFix(choosesp.cuxiaoprice)}}</text>
+          <text>{{choosesp.activityName}}</text>
         </view>
-        <view class="small-xq">
-          <view class="color-dx">￥{{filters.toFix(choosesp.price)}}</view>
-          <view>{{choosesp.itemNo}}</view>
-          <view>库存:{{choosesp.kucun}}</view>
-          <!--促销-->
-          <view class="cx" wx:if="{{cxshow}}">
-            <text>￥{{filters.toFix(choosesp.cuxiaoprice)}}</text>
-            <text>{{choosesp.activityName}}</text>
-          </view>
-        </view>
       </view>
-  
+    </view>
+
     <!--选择商品结束 -->
     <view class="attr_box" wx:for="{{detailData.productAttrList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex" wx:key="attrValueObj.id">
       <!--属性名-->
@@ -76,9 +78,6 @@
       <!--属性值-->
       <view class="attr_value_box">
         <!--每个属性值-->
-        <!--   -->
-        <!-- <view class="attr_value {{value.id==attrValueObj.selectedValue?'attr_value_active':''}}" bindtap="selectAttrValue" data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}"
-          wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value.modelAttrValue}}</view> -->
         <view class="attr_value {{valueIndex==attrValueObj.selectedValue?'attr_value_active':''}}" bindtap="selectAttrValue" data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-column-index="{{valueIndex}}" data-index="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}"
           wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex" wx:key="value.id">{{value.modelAttrValue}}</view>
       </view>

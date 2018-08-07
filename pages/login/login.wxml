@@ -4,7 +4,7 @@
   <view class="login-item">
     <view class="toastview" style=" line-height: 70rpx;  background: {{backcolor}};width: 100% ;color:#fff">{{showToast}}</view>
     <view class="login-item-section">
-      <input placeholder="请输入用户名" type="number" class="login-item-input" placeholder-style="color:gray;font-size: 16px;" bindinput="bindusnInput" />
+      <input placeholder="请输入手机号" maxlength="11" type="number" class="login-item-input" placeholder-style="color:gray;font-size: 16px;"   bindblur="bindusnInput"/>
       <input placeholder="请输入密码" class="login-item-input" password placeholder-style="color:gray; font-size: 16px; " bindinput="bindpsdInput" />
     </view>
     <view class="login-item-button">

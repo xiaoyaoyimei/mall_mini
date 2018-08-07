@@ -67,7 +67,11 @@ var showSuccess = text => wx.showToast({
   title: text,
   icon: 'success'
 })
-
+// 显示错误提示
+var showError = text => wx.showToast({
+  title: text,
+  icon: 'none'
+})
 // 显示失败提示
 var showModel = (title, content) => {
   wx.hideToast();
@@ -79,4 +83,4 @@ var showModel = (title, content) => {
   })
 }
 
-module.exports = { formatTime, showBusy, showSuccess, showModel, pricefilter}
+module.exports = { formatTime, showBusy, showSuccess, showError,showModel,  pricefilter}

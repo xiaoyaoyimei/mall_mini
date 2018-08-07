@@ -46,7 +46,12 @@ Page({
             }
         }
     },
-
+  searchPro(e){
+    this.setData({
+      value: e.detail.value
+    })
+    this.search();
+  },
     search(){
      var that=this;
       request.req('searchpage', uri, 'GET', {
@@ -59,7 +64,7 @@ Page({
           app.globalData.keyword = "";
           that.setData({
             loadingHidden: true,
-            result: that.data.result.concat(res.data.itemsList),
+            result: res.data.itemsList,
             total: res.data.total,
           });
         }
@@ -142,7 +147,7 @@ Page({
             wx.createSelectorQuery().selectAll('.search-box').boundingClientRect(function (rects) {
               rects.forEach(function (rect) {
                 that.setData({
-                  clientHeight: res.windowHeight - rect.bottom-5
+                  clientHeight: res.windowHeight - rect.bottom
                 });
               })
             }).exec();

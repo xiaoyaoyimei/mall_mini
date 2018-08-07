@@ -1,18 +1,19 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
 <view>
-  <view class="top_line"></view>
   <scroll-view scroll-y="true" scroll-x="false">
   <navigator url="../addressManager/addressManager">
-    <view wx:if="{{hasAddress}}">
-      <view catchtap='addressClick'>
+    <view wx:if="{{hasAddress}}" catchtap='addressClick' class="iconaddress">
+
+      <view>
+      <image src="../../images/addr_confirm.png" ></image>
+      </view>
         <view class="top_view">
-          <text>{{addressInfo.person}}  {{addressInfo.phone}}</text> </view>
-          <view class="address_view">
-            <text> {{addressInfo.receiveProvince}}{{addressInfo.receiveCity}}{{addressInfo.receiveDistrict}}{{addressInfo.address}}
-           </text>
-          </view>
+          <view>{{addressInfo.person}}  {{addressInfo.phone}}</view>
+              <text> {{addressInfo.receiveProvince}}{{addressInfo.receiveCity}}{{addressInfo.receiveDistrict}}{{addressInfo.address}}
+           </text> </view>
+
       </view>
-      </view>
+
 
       <view wx:else class="orders-no-address"><text>添加收货地址</text><text> > </text></view>
       </navigator>
