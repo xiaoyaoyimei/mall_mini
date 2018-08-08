@@ -29,7 +29,7 @@ Page({
         })
     },
     searchInput(e) {
-    //  value = e.detail.value
+
       this.setData({
          value: e.detail.value
       })
@@ -47,12 +47,15 @@ Page({
         }
     },
   searchPro(e){
+    //在当前页面的搜索将初始置0
     this.setData({
-      value: e.detail.value
+      value: e.detail.value,
+      startRow:0
     })
     this.search();
   },
     search(){
+      console.log("search");
      var that=this;
       request.req('searchpage', uri, 'GET', {
         //搜索过滤     
@@ -60,6 +63,7 @@ Page({
         startRow: that.data.startRow,
         pageSize: that.data.pageSize,
       }, (err, res) => {
+        console.log(res);
         if (res.data.total > 0) {
           app.globalData.keyword = "";
           that.setData({
@@ -113,8 +117,7 @@ Page({
           keywords: history
         });
     },
-    bindscrolltolower: function () {
-    
+    bindscrolltolower: function () { 
       var that = this;
       var tempstart = that.data.startRow;
       tempstart = that.data.startRow + that.data.pageSize;

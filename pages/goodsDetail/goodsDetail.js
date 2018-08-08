@@ -1,10 +1,11 @@
+
 //商品分类页传来的商品Id
 var specId = ''
 var request = require('../../utils/https.js')
 var uribuy = 'order/shopping/add'; //立即购买
 var uri = 'product';
-var selectAttrid = [];//选择的属性id
-var selectIndexArray=[];//选中属性的名称
+// var selectAttrid = [];//选择的属性id
+// var selectName= [];//已选的属性名字
 Page({
   data: {
     showModal: false,
@@ -22,8 +23,9 @@ Page({
     indicatorDots: true,
     interval: 5000,
     duration: 1000,
-    selectName: "",//已选的属性名字
     selectAttrid: [],//选择的属性id
+    selectName:[],
+    namestring:"",
     choosesp: {
       img: '',
       itemNo: '',
@@ -101,13 +103,13 @@ Page({
         })
         var temp = that.data.detailData;
         var jishu=0;
-        var selectName = "";
-
-        for (var i = 0; i < temp.productAttrList.length; i++) {
+        var selectAttrid=[];
+        var selectName=[];
+        for (let i = 0; i < temp.productAttrList.length; i++) {
           if (temp.productAttrList[i].attrValues.length==1){
             temp.productAttrList[i].selectedValue =0;
             selectAttrid[i] = temp.productAttrList[i].attrValues[0].id;   
-            selectName += ' "' + temp.productAttrList[i].attrValues[0].modelAttrValue + '" ';         
+            selectName[i]=temp.productAttrList[i].attrValues[0].modelAttrValue ;         
             jishu+=1;
           }
          // temp.productAttrList[i].selectedValue = temp.productAttrList[i].attrValues[0].id;
@@ -115,10 +117,17 @@ Page({
         if (jishu == temp.productAttrList.length){
           this.showpro(selectAttrid);
         }
+        var namestring = "";
+        for (let i = 0; i < selectName.length; i++) {
+          if (selectName[i] != undefined) {
+            namestring += selectName[i]+"   ";
+          }
+        }
         that.setData({
           detailData: temp,
           selectAttrid: selectAttrid,
           selectName: selectName,
+          namestring: namestring,
         })
       }
     })
@@ -166,6 +175,8 @@ Page({
   /* 选择属性值事件 */
   selectAttrValue: function (e) {
 
+    var  selectName = this.data.selectName;
+    var selectAttrid = this.data.selectAttrid;
 //点击过，修改属性
     var selectIndex = e.currentTarget.dataset.index;//属性索引 
     var columnIndex = e.currentTarget.dataset.columnIndex;
@@ -179,24 +190,22 @@ Page({
     e.currentTarget.dataset.selectedvalue = itemvalue.id;
   
     var count = detailData.productAttrList[selectIndex].attrValues.length;
-
-    //点击过，修改属性
-    var selectName = "";
-    //点击过，修改属性
-    selectIndexArray[selectIndex] = itemvalue.modelAttrValue;
+    selectName[selectIndex] = itemvalue.modelAttrValue;
     selectAttrid[selectIndex] = itemvalue.id;
-    //将数组的所有属性名拼接起来
-    for (var i = 0; i < selectIndexArray.length; i++) {  
-      selectName += ' "' + selectIndexArray[i] + '" ';
+    var namestring="";
+    for (let i = 0; i < selectName.length; i++) {
+      if (selectName[i] != undefined) {
+        namestring += selectName[i] + "   ";
+      }
     }
-    
     this.setData({
       detailData: detailData,
       selectName: selectName,
+      namestring:namestring,
       selectAttrid: selectAttrid
     });
     var jishu = 0;
-    for (var i = 0; i < selectAttrid.length; i++) {
+    for (let i = 0; i < selectAttrid.length; i++) {
       if (selectAttrid[i]!=undefined) {
         jishu += 1;
       }

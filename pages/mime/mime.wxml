@@ -58,5 +58,5 @@
     </view>
     </navigator>
 </view>
-<!-- <view  class="logout" catchtap="logout"><text>退出登录</text></view> -->
+<view  class="logout" catchtap="logout"><text>退出登录</text></view>
 </view>

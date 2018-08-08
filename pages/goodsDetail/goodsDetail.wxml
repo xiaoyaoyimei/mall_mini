@@ -14,7 +14,7 @@
     <view bindtap="showDialogBtn" class="kind-list-item-hd">
       <view class="kind-list-text">
         <text class="hasseleted"> 已选</text>
-        <text class="bold">{{selectName}}</text>
+        <text class="bold">{{namestring}}</text>
       </view>
       <image class="kind-list-img" src="../../images/nav.png"></image>
     </view>

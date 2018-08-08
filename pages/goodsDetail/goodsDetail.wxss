@@ -312,6 +312,7 @@ swiper-item image {
 .hasseleted {
   color: #666;
   font-size: 12px;
+  margin-right: 20px;
 }
 
 .close {

@@ -12,7 +12,7 @@
       <image src="../../images/addr_confirm.png" ></image>
       </view>
       <view class="top_view">
-    <text>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</text>
+    <view>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</view>
     <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
         {{orderdetail.shippingAddress.receiverDistrict}}{{orderdetail.shippingAddress.receiverAddress}}</text>
 </view>

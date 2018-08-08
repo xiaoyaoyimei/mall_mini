@@ -60,14 +60,11 @@ Page({
         title: '温馨提示',
         content: '确定取消该订单?',
         success: function (res) {
-
           if (res.confirm) {
-
             request.req2('order/cancel', 'POST', orderNo, (err, res) => {
-              if (res.code == 200) {
-                self.getOrder();
+              if (res.data.code == 200) {
                 util.showSuccess('取消成功')
-
+                self.getOrder();
               }else{
                util.showError('取消失败')
               }

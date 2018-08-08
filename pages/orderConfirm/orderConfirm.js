@@ -2,7 +2,6 @@ var cartId = ''
 var addressId = ''
 var request = require('../../utils/https.js')
 var uri_order_confirm = 'order/shopping/confirm' //确认订单
-var uri_pay = 'wxh5pay/api/towxpayInfo'
 Page({
   data: {
     cartList: [],
@@ -170,51 +169,52 @@ Page({
   },
   // 生命周期函数--监听页面加载
   onLoad: function () {
-    
+
     var cartList = wx.getStorageSync('cart');
-    var _this = this;
-    _this.data.productItemIds = [];
+    var that = this;
+    that.data.productItemIds = [];
     let n = 0;
     cartList.forEach(function (item, index) {
       if (item.promotionTitle != '' && item.promotionTitle != null) {
         n += 1;
       }
-      _this.data.productItemIds.push(item.id);
+      that.data.productItemIds.push(item.id);
     });
-    if (this.data.cartList.length == n) {
-      this.setData({
+    if (that.data.cartList.length == n) {
+      that.setData({
         couponshow: false,
       })
     } else {
-      this.setData({
+      that.setData({
         couponshow: true,
         productItemIds: productItemIds
       })
     }
-    this.setData({
+    that.setData({
       cartList: cartList,
     })
     
-    this.jisuan();
-  },
-  onShow: function () {
-    // 生命周期函数--监听页面显示
-    //获取默认地址
-    var that=this;
+    that.jisuan();
+
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
-      if(res.data.length>0){
+      if (res.data.length > 0) {
         let addressInfo = res.data[0]
         that.setData({
           addressInfo: addressInfo,//接数组
           hasAddress: true
         })
-      }else{
+      } else {
         that.setData({
           hasAddress: false
         })
       }
     });
+  },
+  onShow: function () {
+    // 生命周期函数--监听页面显示
+    //获取默认地址
+
   
 
   },

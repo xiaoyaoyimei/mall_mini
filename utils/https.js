@@ -42,9 +42,9 @@ function req(fromurl,url, methodway, data, callback) {
             } else {
               util.showError(res.data.msg);
               wx.removeStorageSync('CuserInfo')
-              wx.navigateTo({
-                url: '../login/login?fromurl=index'
-              })
+              // wx.navigateTo({
+              //   url: '../login/login?fromurl=index'
+              // })
               return;
             }
           })
