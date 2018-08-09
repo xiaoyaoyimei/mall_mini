@@ -54,73 +54,72 @@ Page({
     })
     var username = that.data.username;
     var psword = that.data.psword;
-    //访问网络
-    // wx.login({
-    //   success: res => {
-    // request.req(option.fromurl,uri,'POST', {
-    //   loginName: username,
-    //   passWord: psword,
-    //   wxCode:res.code
-    // }, (err, res) => {
-    //   console.log(res)
-    //   this.setData({
-    //     loading: false,
-    //     disabled: false,
-    //   })
-    //   //保存
-    //   if (res.data.code =='200') {
-    //     var result = res.data.object
-    //     //存储数据
-    //     var CuserInfo = {
-    //       token: result.token,
-    //       userId: result.userId,
-    //     };
+
+    wx.login({
+      success: res => {
+      request.req3('customer/login','POST', {
+      loginName: username,
+      passWord: psword,
+      wxCode:res.code
+    }, (err, res) => {
+      this.setData({
+        loading: false,
+        disabled: false,
+      })
+      //保存
+      if (res.data.code =='200') {
+        var result = res.data.object
+        //存储数据
+        var CuserInfo = {
+          token: result.token,
+          userId: result.userId,
+        };
 
      
-    //     wx.setStorageSync('CuserInfo', CuserInfo);
+        wx.setStorageSync('CuserInfo', CuserInfo);
 
-    //     //登陆成功 跳转
+        //登陆成功 跳转
 
-    //     if (option.fromurl=="cart") { //立即购买
+        if (option.fromurl=="cart") { //立即购买
    
-    //       wx.switchTab({   //加个参数  
-    //         url: '../cartOne/cartOne'
-    //       })
-    //     } else if (option.fromurl == 'addresslist') {
-    //       wx.navigateBack({   //加个参数  
-    //         url: '../addressManager/addressManager'
-    //       })
+          wx.switchTab({   //加个参数  
+            url: '../cartOne/cartOne'
+          })
+        } else if (option.fromurl == 'addresslist') {
+          wx.navigateBack({   //加个参数  
+            url: '../addressManager/addressManager'
+          })
          
-    //     } else if (option.fromurl == 'orderlist'){
-    //       wx.navigateBack({
-    //         url: '../ordertotal/ordertotal',
-    //       })
+        } else if (option.fromurl == 'orderlist'){
+          wx.navigateBack({
+            url: '../ordertotal/ordertotal',
+          })
         
-    //     } else if (option.fromurl == 'account'){
-    //       wx.switchTab({
-    //         url: '../mime/mime',
-    //       })
+        } else if (option.fromurl == 'account'){
+          wx.switchTab({
+            url: '../mime/mime',
+          })
 
-    //     } else if (option.fromurl == 'index'){
-    //       wx.switchTab({
-    //         url: '../index/index',
-    //       })
-    //     }else{
-    //       wx.navigateBack({
-    //         url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
-    //       })
-    //     }
+        } else if (option.fromurl == 'index'){
+          wx.switchTab({
+            url: '../index/index',
+          })
+        }else{
+          wx.navigateBack({
+            url: '../goodsDetail/goodsDetail?specId=' + option.fromurl,
+          })
+        }
 
-    //   } else {
-    //     //提示
-    //     that.setData({
-    //       showToast: res.data.object,
-    //       backcolor: 'red',
-    //     })
-    //   }
-    // })
-    //   }
-    //   })
+      } else {
+        //提示
+        that.setData({
+          showToast: res.data.object,
+          backcolor: 'red',
+        })
+      }
+    })
+      }
+      })
   },
   onLoad: function (options) {  //id==1 从商品详情跳转过来的，到确认订单界面
     option = options;  //存储options

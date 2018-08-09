@@ -1,9 +1,9 @@
 var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
 var util = require('./util.js')
 var auto = 'customer/login';
-//携带TOKEN
+//携带TOKEN req req2 都需携带token
 function req(fromurl,url, methodway, data, callback) {
-
+      
   var fromurl = fromurl;
   var CuserInfo = wx.getStorageSync('CuserInfo');
   //如果登录凭证为空。微信联合登录
@@ -84,6 +84,28 @@ function req2(url, methodway, data, callback) {
     wx.removeStorageSync('CuserInfo')
   }
 }
+function req5(url, methodway, uniunid, data, callback) {
+  var CuserInfo = wx.getStorageSync('CuserInfo');
+  if (CuserInfo.token) {
+    wx.request({
+      url: rootDocment + url + '?id=' + uniunid,
+      method: methodway,    //大写
+      data: data,
+      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
+      success(res) {
+        callback(null, res)
+      },
+      fail(e) {
+        console.error(e)
+        callback(e)
+      }
+    })
+  }
+  else {
+    util.showError('认证已过期，请重新登录');
+    wx.removeStorageSync('CuserInfo')
+  }
+} 
 //无需登录,不带TOKEN请求
 function req3(url, methodway, data, callback) {
   wx.request({
@@ -115,38 +137,27 @@ function req4(url, methodway, data, callback) {
       }
     })
   } 
-function req5(url, methodway,uniunid, data, callback) {
-  var CuserInfo = wx.getStorageSync('CuserInfo');
-  if (CuserInfo.token) {
-  wx.request({
-    url: rootDocment + url+'?id='+ uniunid,
-    method: methodway,    //大写
-    data:data,
-    header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId},
-    success(res) {
-      callback(null, res)
-    },
-    fail(e) {
-      console.error(e)
-      callback(e)
-    }
-  })
-  }
-  else{
-    // wx.showToast({
-    //   title: '认证已过期，请重新登录',
-    //   icon: 'none',
-    //   duration: 2000
-    // })
-    util.showError('认证已过期，请重新登录');
-    wx.removeStorageSync('CuserInfo')
-  }
-} 
+function req6(url, methodway, uniunid, data, callback) {
+    wx.request({
+      url: rootDocment + url + '?' + uniunid,
+      method: methodway,    //大写
+      data: data,
+      header: { 'Content-Type': 'application/json' },
+      success(res) {
+        callback(null, res)
+      },
+      fail(e) {
+        console.error(e)
+        callback(e)
+      }
+    })
+}
 
 module.exports = {
   req: req,
   req2:req2,
   req3:req3,
   req4:req4,
-  req5:req5
+  req5:req5,
+  req6:req6
 }  

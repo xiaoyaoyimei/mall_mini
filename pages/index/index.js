@@ -44,23 +44,6 @@ Page({
   },
   onLoad: function () {
     //调登陆接口
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          //存储 code
-          var codeinfo = {
-            code: res.code,
-          };
-          wx.setStorageSync('codeinfo', codeinfo)
-        }
-      },
-      fail: function () {
-        console.log("授权失败");
-      },
-      complete: function () {
-
-      }
-    })
     var that = this
     //广告位轮播
     request.req3('index/poster', 'GET',{},(err, res) => {

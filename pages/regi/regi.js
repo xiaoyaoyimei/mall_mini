@@ -88,22 +88,22 @@ Page({
         util.showError('手机号不能为空');
         return;
       } else {
-      wx.request({
-        url: `${baseUrl}customer/validate?userName=${that.data.username}`,
-        method: 'POST',    //大写
-        header: { 'Content-Type': 'application/json'},
-        success(res) {
-          if (res.data.code == '200') {
-            that.data.txv++;
-            that.data.verimg = `${baseUrl}customer/${that.data.username}/verification.png?v=${that.data.txv}`;
-            that.setData({
-              verimg: that.data.verimg,
-            })
+        request.req6('customer/register/shortmessage', 'POST', `userName=${that.data.username}`,{
+          //搜索过滤     
+          "mobile": that.data.username,
+          "verificationCode": that.data.txm
+        }, (err, res) => {
+          if (res.data.code == 200) {
+             that.data.txv++;
+             that.data.verimg = `${baseUrl}customer/${that.data.username}/verification.png?v=${that.data.txv}`;
+             that.setData({
+               verimg: that.data.verimg,
+             })
           } else {
-            util.showError(res.data.msg);
-          }
-        }
-        })
+             util.showError(res.data.msg);
+           }
+        });
+
       }
 
   },
@@ -111,43 +111,30 @@ Page({
   getdxcode(){
     var that=this;
     // 将获取验证码按钮隐藏180s，180s后再次显示
-
     let txm = this.data.txm;
     if (txm == null || txm == '') {
       util.showError('图形码不能为空');
       return;
-    } else {
-      
+    } else {  
     // 将获取验证码按钮隐藏180s，180s后再次显示
     that.setData({
       is_show: (!that.data.is_show)  //false
     })
     settime(that);
-      wx.request({
-        url: `${baseUrl}customer/register/shortmessage`,
-        method: 'POST',    //大写
-        header: { 'Content-Type': 'application/json' },
-        data: {
-          "mobile": that.data.username,
-          "verificationCode": that.data.txm
-          },
-        success(res) {
-          var data=res.data;
-          if (data.code == 200) {
-           
+      request.req3('customer/register/shortmessage', 'POST', {
+        //搜索过滤     
+        "mobile": that.data.username,
+        "verificationCode": that.data.txm
+      }, (err, res) => {
+        if (res.data.code == 200) {
 
-        
-          } else {
-            
-            that.setData({
-              showToast: data.msg,
-              backcolor: 'red',
-            })
-        
-          }
+        } else {
+          that.setData({
+            showToast: res.data.msg,
+            backcolor: 'red',
+          })
         }
-      })
-
+      });
     }
   },
 
@@ -168,7 +155,7 @@ Page({
       success: res => {
         var code = res.code;
         if (code) {
-          request.req('regi', 'customer/register', 'POST', {
+          request.req3('customer/register', 'POST', {
             loginName: username,
             passWord: psword,
             verificationCode: txm,
@@ -186,7 +173,6 @@ Page({
               wx.navigateTo({   //加个参数  
                 url: '../login/login?fromurl=index'
               })
-
             } else {
               //提示
               that.setData({

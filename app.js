@@ -10,7 +10,6 @@ App({
       success: function (res) {
         var code=res.code;
         request.req4('customer/wxlogin', 'POST', code, (err, res) => {
-          
           if (res.data.code == 200) {
             var CuserInfo = {
               token: res.data.object.token,

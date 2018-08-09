@@ -60,6 +60,9 @@ Page({
             duration: 2000
           })
           wx.removeStorageSync('CuserInfo')
+          that.setData({
+            loginhidden: true,
+          });
         }
     })
 
