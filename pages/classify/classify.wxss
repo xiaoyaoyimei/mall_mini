@@ -32,7 +32,7 @@
 /*时间样式*/
 
 .topRightTime {
-  color: #09f;
+  color: #f00;
   margin-top: 10rpx;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .top-bar-active {
-  color: #09f;
+  color: #f00;
   font-size: 32rpx;
 }
 

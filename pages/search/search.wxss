@@ -39,8 +39,8 @@
 .title text{
     padding-right: 30rpx;
     padding-bottom: 10rpx;
-    color: #0099ff;
-    border-bottom: 8rpx solid #0099ff;
+    color: #f00;
+    border-bottom: 8rpx solid #f00;
 }
 .tags text{
     display: inline-block;

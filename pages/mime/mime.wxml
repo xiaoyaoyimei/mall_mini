@@ -33,6 +33,15 @@
         <text>全部订单</text>
       </view>
     </view>
+
+       <navigator url="../refundList/refundList" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/icon_refund.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>售后订单</text>
+    </view>
+    </navigator>
    <view class="my-item flex-wrp" catchtap="address_manager">
       <view class="myitem-icon flex-item">
         <image src="../../images/icon_address.png"></image>

@@ -32,7 +32,7 @@
 }
 .cart-list .cart-pro-price{
     display: inline-block;
-    color:#0099ff;
+    color:#f00;
 }
 .cart-list .cart-count-box{
     position: absolute;
@@ -70,7 +70,7 @@ height:50rpx;
     line-height: 90rpx;
     padding:0 100rpx 0 80rpx;
     box-sizing: border-box;
-    background: #0099ff;
+    background: #f00;
     color: #fff;
 }
 .total-select{
@@ -98,6 +98,6 @@ height:50rpx;
 
 
 .loginurl{
-  color:#0099ff;
+  color:#f00;
   text-decoration: underline
 }

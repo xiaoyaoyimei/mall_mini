@@ -59,11 +59,17 @@ function req(fromurl,url, methodway, data, callback) {
 
 
 function req2(url, methodway, data, callback) {
+
+  if(data==null||data==undefined){
+    url=rootDocment + url 
+  }else{
+    url=rootDocment + url + '/' + data
+  }
   var CuserInfo = wx.getStorageSync('CuserInfo');
   //token未过期
   if (CuserInfo.token){
     wx.request({
-      url: rootDocment + url+'/'+data,
+      url: url,
       method: methodway,    //大写
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {

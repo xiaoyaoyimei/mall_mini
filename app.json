@@ -20,45 +20,48 @@
     "pages/aboutUs/aboutUs",
     "pages/orderDetail/orderDetail",
     "pages/invoice/invoice",
-    "pages/regi/regi"
+    "pages/regi/regi",
+    "pages/refund/refund",
+    "pages/refundList/refundList",
+    "pages/logisticsInfo/logisticsInfo"
   ],
   "window": {
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#0099ff",
+    "navigationBarBackgroundColor": "#ff0000",
     "navigationBarTitleText": "Dxracer 官方商城",
     "navigationBarTextStyle": "#fff",
     "navigationBarTextAlign": "center"
   },
   "tabBar": {
     "color": "#575757",
-    "selectedColor": "#0099FF",
+    "selectedColor": "#ff0000",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "images/icon_home.png",
-        "selectedIconPath": "images/icon_home_HL.png"
+        "iconPath": "images/bar-home-gray.png",
+        "selectedIconPath": "images/bar-home-red.png"
       },
       {
         "pagePath": "pages/classify/classify",
         "text": "产品",
-        "iconPath": "images/icon_sort.png",
-        "selectedIconPath": "images/icon_sort_HL.png"
+        "iconPath": "images/bar-list-gray.png",
+        "selectedIconPath": "images/bar-list-red.png"
       },
       {
-          "pagePath": "pages/cartOne/cartOne",
-          "text": "购物车",
-          "iconPath": "images/icon_cart.png",
-          "selectedIconPath": "images/icon_cart_HL.png"
-        },
+        "pagePath": "pages/cartOne/cartOne",
+        "text": "购物车",
+  "iconPath": "images/bar-cart-gray.png",
+  "selectedIconPath": "images/bar-cart-red.png"
+      },
       {
         "pagePath": "pages/mime/mime",
         "text": "我的",
-        "iconPath": "images/icon_user.png",
-        "selectedIconPath": "images/icon_user_HL.png"
+    "iconPath": "images/bar-user-gray.png",
+    "selectedIconPath": "images/bar-user-red.png"
       }
     ]
   },

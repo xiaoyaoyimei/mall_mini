@@ -34,7 +34,7 @@ Page({
     })
   },
   xin:function(){
-    request.req3('index/product/new', 'GET', {}, (err, res) => {
+    request.req3('index/hotitem', 'GET', {}, (err, res) => {
       if (res.data.code == 200) {
         this.setData({
           xin: res.data.object

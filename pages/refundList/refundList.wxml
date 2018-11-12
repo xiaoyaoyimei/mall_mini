@@ -11,11 +11,11 @@
     <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.znStatus}}" >
       <view class="item-headerview">
           <view class="item-text">
-            <text class="fr">{{item.order.znStatus}}</text>
-          <text>订单号:{{item.order.orderNo}}</text>
+            <text class="fr">{{item.refundOrder.znStatus}}</text>
+          <text>订单号:{{item.refundOrder.refundOrderNo}}</text>
           </view>
            <view class="item-text">         
-           <text class="dx-color">总价:￥{{filters.toFix(item.order.orderTotalFee)}}</text>
+           <text class="dx-color" wx:if="{{!item.refundOrder.refundOrderStatus=='01'&&!item.refundOrder.refundOrderStatus=='05'}}">总价:￥{{filters.toFix(item.refundOrder.orderTotalFee)}}</text>
         </view>
       </view>
   
@@ -29,12 +29,8 @@
         </view>
     </navigator>
 		
-    <view class="opt-bottom">
-				<button  type="primary"  size="mini" bindtap="quzhifu"  wx:if="{{item.order.orderStatus=='01'}}"  data-orderno="{{item.order.orderNo}}">去支付</button> 
-                      	<button  type="primary" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06'}}" >签收订单</button>
-        	<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>     
-                  	<button  type="default" size="mini"  data-orderno="{{item.order.orderNo}}" bindtap="showrefund">退款退货</button>   
-
+    <view class="opt-bottom">   
+                  	<button  type="default" size="mini"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="tianxie" wx:if="{{x.refundOrder.refundOrderStatus=='02'}}">填写物流单号</button>     
        
 </view>
     </view>

@@ -45,12 +45,12 @@ text {
 }
 
 .bg-dx {
-  background: #09f;
+  background: #f00;
   color: #fff;
 }
 
-.dx-color {
-  color: #09f;
+.dx-color ,.color-dx{
+  color: #f00;
 }
 
 .tips {
@@ -63,9 +63,6 @@ text {
   height: 100vh;
 }
 
-.color-dx {
-  color: #09f;
-}
 
 .add_address {
   display: inline-block;
@@ -80,7 +77,7 @@ text {
 .add_address .add {
   width: 90%;
   height: 44px;
-  background-color: #09f;
+  background-color: #f00;
   color: white;
   text-align: center;
   align-items: center;
@@ -101,7 +98,7 @@ text {
 
 .item_text {
   padding-top: 3px;
-  width: 240rpx;
+  width: 250rpx;
 }
 
 .item_input {
@@ -135,7 +132,7 @@ text {
 }
 
 .search_wrap {
-  background: #09f;
+  background: #f00;
   padding: 20rpx;
 }
 

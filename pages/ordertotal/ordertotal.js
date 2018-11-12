@@ -162,5 +162,12 @@ Page({
       }
     })
   },
+  showrefund(e){
+    var self = this;
+    var orderNo = e.currentTarget.dataset.orderno;
+    wx.navigateTo({
+       url: `../refund/refund?rforder=${orderNo}`
+    })
+  }
 
 })

@@ -3,12 +3,12 @@
     <template name="listBig">
     <view class="result-list">
           <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
-            <image src="{{ filters.imgurl(item.model_img)}}" mode="widthFix"></image>
+            <image src="{{ filters.imgurl(item.list.img_url)}}" mode="widthFix"></image>
             <view class="result-text">
-              <text>{{item.model_no}}</text>
+              <text>{{item.list.model_no}}</text>
             </view>
             <view class="result-text">
-              <text class="dx-color">￥{{filters.toFix(item.sale_price)}}</text>
+              <text class="dx-color">￥{{filters.toFix(item.list.sale_price)}}</text>
             </view>
           </navigator>
           </view>

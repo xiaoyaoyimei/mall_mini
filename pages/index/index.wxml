@@ -10,11 +10,20 @@
 <swiper indicator-dots='true'>
       <template wx:for="{{poster}}" wx:key="id"  is="fslider" data="{{item}}" ></template> 
 </swiper>
-    <!--为你推荐-->
-    <!-- <view class="Recommend ">为你推荐</view> -->
+    <view class="tab_link">
+    <view>
+      <navigator class="loginurl"><image src="../../images/xp.png" mode="widthFix"></image>
+    <text>新品</text></navigator></view>
+    <view><image src="../../images/yj.png" mode="widthFix"></image><text>建议</text></view>
+       <view><image src="../../images/ms.png" mode="widthFix"></image><text>秒杀</text></view>
+          <view><image src="../../images/zb.png" mode="widthFix"></image><text>周边</text></view>
+    </view>
+
 
     <!--列表list组件 -->
     <view class="list">
      <template wx:for="{{xin}}" wx:key="index"  is="listBig" data="{{item}}" ></template>
      </view>
+     <view><text>电竞椅</text><text>查看更多</text></view>
+     <view></view>
 </view>

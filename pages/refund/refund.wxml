@@ -1,0 +1,34 @@
+<view class="top_line"></view>
+<view>
+    <view class="add_item">
+        <text class="item_text">订单号:</text>
+        <text class="item_input">{{rforder}}</text>
+    </view>
+        <view class="add_item">
+        <text class="item_text">退款退货原因:</text>
+        {{reasonList}}
+          <picker-view indicator-style="height: 50px;"  value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{reasonList}}" style="line-height: 50px" wx:key="index">{{item}}</view>
+    </picker-view-column>
+    </picker-view>
+        <!-- <input class="item_input" bindinput="bindAddressInput" placeholder="退款退货原因" /> -->
+    </view>
+        <view class="add_item">
+        <text class="item_text">上传凭证:</text>
+        <button class="item_input"bindtap='chooseImg'>选择图片</button>
+    </view>
+    <view class="add_item">
+        <text class="item_text">退款退货理由:</text>
+        <input class="item_input" maxlength="11" bindblur="bindPhoneInput" placeholder="请输入退款退货理由" confirm-hold="true"/>
+    </view>
+
+
+    <view class="add_address" bindtap="addAddress">
+        <view class="add">
+            <text>保存</text>
+        </view>
+    </view>
+
+
+</view> 

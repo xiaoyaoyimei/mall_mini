@@ -75,5 +75,5 @@ color:red;
 }
 .nologin{
   justify-content: center;
-  color: #0099ff;
+  color: #f00;
 }

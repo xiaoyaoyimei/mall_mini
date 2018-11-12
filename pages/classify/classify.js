@@ -80,6 +80,7 @@ Page({
       startRow: that.data.startRow,
       pageSize: that.data.pageSize,
     }, (err, res) => {
+
         if (res.data.total>0){
           that.setData({
             loadingHidden: true,

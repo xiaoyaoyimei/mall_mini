@@ -82,7 +82,7 @@
 
 .status {
   font-size: 16px;
-  background: #0099ff;
+  background: #f00;
   color: white;
   line-height: 30px;
 }
@@ -92,7 +92,7 @@
   font-size: 16px;
 }
 .fr{
-  color:#0099ff;
+  color:#f00;
   float:right;
 }
 
