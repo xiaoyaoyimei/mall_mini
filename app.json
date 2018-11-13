@@ -6,6 +6,10 @@
     "pages/goodsDetail/goodsDetail",
     "pages/login/login",
     "pages/mime/mime",
+    "pages/like/like",
+    "pages/updatePassword/updatePassword",
+      "pages/policy/policy",
+    "pages/evaluation/evaluation",
     "pages/orderConfirm/orderConfirm",
     "pages/goodlist/goodlist",
     "pages/ordertotal/ordertotal",
@@ -23,7 +27,8 @@
     "pages/regi/regi",
     "pages/refund/refund",
     "pages/refundList/refundList",
-    "pages/logisticsInfo/logisticsInfo"
+    "pages/logisticsInfo/logisticsInfo",
+    "pages/advice/advice"
   ],
   "window": {
     "enablePullDownRefresh": true,
@@ -40,6 +45,12 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
+        "pagePath": "pages/mime/mime",
+        "text": "我的",
+        "iconPath": "images/bar-user-gray.png",
+        "selectedIconPath": "images/bar-user-red.png"
+      },
+      {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "images/bar-home-gray.png",
@@ -54,14 +65,8 @@
       {
         "pagePath": "pages/cartOne/cartOne",
         "text": "购物车",
-  "iconPath": "images/bar-cart-gray.png",
-  "selectedIconPath": "images/bar-cart-red.png"
-      },
-      {
-        "pagePath": "pages/mime/mime",
-        "text": "我的",
-    "iconPath": "images/bar-user-gray.png",
-    "selectedIconPath": "images/bar-user-red.png"
+        "iconPath": "images/bar-cart-gray.png",
+        "selectedIconPath": "images/bar-cart-red.png"
       }
     ]
   },

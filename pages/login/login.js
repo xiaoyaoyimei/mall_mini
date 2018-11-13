@@ -3,7 +3,6 @@ var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
 var app = getApp()
 var option = {}
-var uribuy = 'cartapi/addCart' //立即购买
 Page({
   data: {
     backcolor: '#f0f2f5',

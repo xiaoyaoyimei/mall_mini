@@ -35,9 +35,10 @@
 </view>
     </view>
 </view>
-<view wx:else class="tips">
-<text>暂时还没有任何订单哦</text>
-<text class="color-dx" catchtap='goindex'> 去首页</text>
-</view>
+  <view class="flex-center  empty" wx:else>
+    <image src="../../images/sh_empty.png"></image>
+    <text>您还没有相关的订单</text>
+    <text catchtap="goindex" class="color-dx">去购物</text>
+  </view>
 
 </view>

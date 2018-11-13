@@ -8,18 +8,18 @@ Page({
     userInfo: {},
     loginhidden: true
   },
-  no_payment: function () {
+  allorder: function () {
     //全部订单
     wx.navigateTo({
-      url: '../ordertotal/ordertotal' 
+      url: "../ordertotal/ordertotal?status=00"
     })
   },
   //地址管理来自个人中心页面
-  address_manager: function () {
-    wx.navigateTo({
-      url: '../addressManager/addressManager?mime=1'
-    })
-  },
+  // address_manager: function () {
+  //   wx.navigateTo({
+  //     url: '../addressManager/addressManager?mime=1'
+  //   })
+  // },
   //账户管理
   mimeinfo: function () {
     wx.navigateTo({

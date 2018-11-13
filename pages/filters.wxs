@@ -1,6 +1,6 @@
 var filters = {
-  toFix: function (value) {
-    if (typeof value === 'number' && !isNaN(value)){
+  toFix: function(value) {
+    if (typeof value === 'number' && !isNaN(value)) {
       num = parseFloat(value);
       var SUM = "";
       var sumFol = num.toFixed(2);
@@ -24,17 +24,16 @@ var filters = {
       SUM = sumStr.slice(0, sumStr.toString().length % 3) + text + sumEndStr;
       return SUM;
       return sumFol;
-    }
-    else{
-    return value
+    } else {
+      return value
     }
   },
   //wxml图片显示
-  imgurl:function(v){
-    return '//image-shop.dxracer.com.cn/'+v
+  imgurl: function(v) {
+    return '//image-shop.dxracer.com.cn/' + v
   }
 }
 module.exports = {
   toFix: filters.toFix,
-  imgurl: filters.imgurl
+  imgurl: filters.imgurl,
 }

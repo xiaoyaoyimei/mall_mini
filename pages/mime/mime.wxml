@@ -1,71 +1,129 @@
 <view class="container more">
 
   <!--上部信息-->
-    <view wx:if="{{loginhidden}}" class="user flex-wrp nologin">
-    
+  <view wx:if="{{loginhidden}}" class="user flex-wrp nologin">
+
     <navigator url="../login/login?fromurl=account" class="loginurl">登录</navigator>
     /
     <navigator url="../regi/regi?fromurl=account" class="loginurl">
-    注册</navigator>
-    </view>
-  <view  wx:else>
-  <view   class="user flex-wrp">
-    <view class="avatar flex-item">
+      注册</navigator>
+  </view>
+  <view wx:else>
+    <view class="user flex-wrp">
+      <view class="avatar flex-item">
         <open-data type="userAvatarUrl" class="userinfo-avatar" background-size="cover"></open-data>
-    </view>
-    <view class="user-info flex-item">
+      </view>
+      <view class="user-info flex-item">
         <open-data type="userNickName" class="userinfo-nickname"></open-data>
-        
-         <text class="userinfo-nickname">{{userInfo.phone}}</text>
-      <!-- <text class="edit">查看或编辑个人主页</text> -->
+
+        <text class="userinfo-nickname">{{userInfo.phone}}</text>
+        <!-- <text class="edit">查看或编辑个人主页</text> -->
+      </view>
     </view>
+  </view>
+  <view class="myorder">
+    <view class="mt">
+      <text>我的订单</text>
+      <text class="all" catchtap="allorder">查看全部订单></text>
+    </view>
+    <view class="tab_link">
+     <navigator url="../ordertotal/ordertotal?status=01" hover-class="navigator-hover">  
+        <image src="../../images/dfk.png" mode="widthFix"></image>
+        <text>待付款</text>
+      </navigator>
+           <navigator url="../ordertotal/ordertotal?status=02" hover-class="navigator-hover">
+        <image src=" ../../images/dfh.png" mode="widthFix"></image>
+        <text>待发货</text>
+        </navigator>
+      <navigator url="../ordertotal/ordertotal?status=06" hover-class="navigator-hover">
+        <image src="../../images/dsh.png" mode="widthFix"></image>
+        <text>已发货</text>
+       </navigator>
+         <navigator url="../ordertotal/ordertotal?status=07" hover-class="navigator-hover">
+        <image src="../../images/yqs.png" mode="widthFix"></image>
+        <text>已签收</text>
+       </navigator>
+          <navigator url="../ordertotal/ordertotal?status=04" hover-class="navigator-hover">
+        <image src="../../images/yqx.png" mode="widthFix"></image>
+        <text>已取消</text>
+       </navigator>
+           <navigator url="../refundList/refundList" hover-class="navigator-hover">
+        <image src=" ../../images/sh.png" mode="widthFix"></image>
+        <text>售后</text>
+     </navigator>
     </view>
   </view>
 
+<view class="my">
 
+
+    <navigator url="../like/like" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u1.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>喜欢的商品</text>
+      </view>
+    </navigator>
+   <navigator url="../evaluation/evaluation" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u2.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>我的评价</text>
+      </view>
+    </navigator>
+
+    <navigator url="../addressManager/addressManager" class="my-item flex-wrp">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u4.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>收货地址</text>
+      </view>
+    </navigator>
+        <navigator url="../updatePassword/updatePassword" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u3.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>修改密码</text>
+      </view>
+    </navigator>
+  </view>
   <!--下部信息-->
   <view class="my">
-    <view class="my-item flex-wrp" catchtap="no_payment">
+    <navigator url="../contactUs/contactUs" class="my-item flex-wrp" hover-class="navigator-hover">
       <view class="myitem-icon flex-item">
-        <image src="../../images/icon_already_complete.png"></image>
-      </view>
-      <view class="myitem-name flex-item">
-        <text>全部订单</text>
-      </view>
-    </view>
-
-       <navigator url="../refundList/refundList" class="my-item flex-wrp" hover-class="navigator-hover">
-      <view class="myitem-icon flex-item">
-        <image src="../../images/icon_refund.png"></image>
-      </view>
-      <view class="myitem-name flex-item">
-        <text>售后订单</text>
-    </view>
-    </navigator>
-   <view class="my-item flex-wrp" catchtap="address_manager">
-      <view class="myitem-icon flex-item">
-        <image src="../../images/icon_address.png"></image>
-      </view>
-      <view class="myitem-name flex-item">
-        <text>地址管理</text>
-      </view>
-    </view>
-   <navigator url="../contactUs/contactUs" class="my-item flex-wrp" hover-class="navigator-hover">
-      <view class="myitem-icon flex-item">
-        <image src="../../images/phone.png"></image>
+        <image src="../../images/u5.png"></image>
       </view>
       <view class="myitem-name flex-item">
         <text>联系我们</text>
-    </view>
+      </view>
     </navigator>
-      <navigator url="../aboutUs/aboutUs" class="my-item flex-wrp" >
+    <navigator url="../aboutUs/aboutUs" class="my-item flex-wrp">
       <view class="myitem-icon flex-item">
-        <image src="../../images/book.png"></image>
+        <image src="../../images/u6.png"></image>
       </view>
       <view class="myitem-name flex-item">
         <text>关于我们</text>
-    </view>
+      </view>
     </navigator>
-</view>
-<!-- <view  class="logout" catchtap="logout"><text>退出登录</text></view> -->
+    <navigator url="../policy/policy" class="my-item flex-wrp" hover-class="navigator-hover">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u7.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>隐私政策</text>
+      </view>
+    </navigator>
+    <navigator url="../advice/advice" class="my-item flex-wrp">
+      <view class="myitem-icon flex-item">
+        <image src="../../images/u8.png"></image>
+      </view>
+      <view class="myitem-name flex-item">
+        <text>意见反馈</text>
+      </view>
+    </navigator>
+  </view>
 </view>
