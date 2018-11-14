@@ -2,6 +2,11 @@
   "pages": [
     "pages/index/index",
     "pages/search/search",
+    "pages/sort/sort",
+    "pages/seckill/seckill",
+    "pages/advice/advice",
+    "pages/seckilldetail/seckilldetail",
+    "pages/sortDetail/sortDetail",
     "pages/classify/classify",
     "pages/goodsDetail/goodsDetail",
     "pages/login/login",
@@ -46,7 +51,7 @@
         "selectedIconPath": "images/bar-home-red.png"
       },
       {
-        "pagePath": "pages/classify/classify",
+        "pagePath": "pages/sort/sort",
         "text": "产品",
         "iconPath": "images/bar-list-gray.png",
         "selectedIconPath": "images/bar-list-red.png"

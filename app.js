@@ -59,7 +59,7 @@ App({
     userInfo:null,
     imgsrc:'//image-shop.dxracer.com.cn/',
 
-    baseorgin:'https://shop.dxracer.cn/mall/wap/',
+    baseorgin:'https://m.shop.dxracer.cn/mall/wap/',
     keyword:''
   }
 })
