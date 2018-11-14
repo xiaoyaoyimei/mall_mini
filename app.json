@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mime/mime",
     "pages/index/index",
     "pages/search/search",
     "pages/sort/sort",
@@ -9,10 +10,10 @@
     "pages/classify/classify",
     "pages/goodsDetail/goodsDetail",
     "pages/login/login",
-    "pages/mime/mime",
     "pages/like/like",
+    "pages/evaluate/evaluate",
     "pages/updatePassword/updatePassword",
-      "pages/policy/policy",
+    "pages/policy/policy",
     "pages/evaluation/evaluation",
     "pages/orderConfirm/orderConfirm",
     "pages/goodlist/goodlist",
@@ -48,12 +49,7 @@
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
-      {
-        "pagePath": "pages/mime/mime",
-        "text": "我的",
-        "iconPath": "images/bar-user-gray.png",
-        "selectedIconPath": "images/bar-user-red.png"
-      },
+
       {
         "pagePath": "pages/index/index",
         "text": "首页",
@@ -71,7 +67,13 @@
         "text": "购物车",
         "iconPath": "images/bar-cart-gray.png",
         "selectedIconPath": "images/bar-cart-red.png"
-      }
+      },
+            {
+              "pagePath": "pages/mime/mime",
+              "text": "我的",
+              "iconPath": "images/bar-user-gray.png",
+              "selectedIconPath": "images/bar-user-red.png"
+            }
     ]
   },
   "networkTimeout": {

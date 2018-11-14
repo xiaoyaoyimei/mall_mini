@@ -20,7 +20,6 @@ Page({
     })
   },
   onLoad(options){
-    console.log(options)
     this.setData({
       status: options.status,
     });
@@ -92,6 +91,7 @@ Page({
       }
     }
   }, 
+
    getData: function () {
      var uri = '';
     var that = this;

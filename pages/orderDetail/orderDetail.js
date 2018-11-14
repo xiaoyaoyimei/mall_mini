@@ -41,6 +41,7 @@ Page({
     }
 
   },
+ 
   onshow(){
     //this.getOrder();
   },
@@ -115,11 +116,23 @@ Page({
     productFeejun(item) {
       return item.productFee / item.quantity
     },
-
+  invoicefilter(value) {
+    if (value == 'created') {
+      return '已创建'
+    } else if (value == 'B') {
+      return "已开票"
+    } else {
+      return "已寄出"
+    }
+  }, 
     getOrder() {
+      var that=this;
       var orderNo = this.data.orderNo;
       request.req2('order', 'GET', orderNo, (err, res) => {
-        res.data.shippingOrder.createTime=util.formatTime(res.data.shippingOrder.createTime, 'Y/M/D h:m:s');
+        if (res.data.shippingInvoice!=""){
+          res.data.shippingInvoice.znstatus = that.invoicefilter(res.data.shippingInvoice.invoiceStatus);
+        }
+       
           this.setData({
             orderdetail: res.data,
             loginhidden:false

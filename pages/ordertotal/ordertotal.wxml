@@ -17,23 +17,26 @@
             <text class="dx-color">总价:￥{{filters.toFix(item.order.orderTotalFee)}}</text>
           </view>
         </view>
-
-        <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId">
-          <image class="img" src="{{filters.imgurl(item.productItemImg)}}" mode='wdithFix' />
+ </navigator>
+        <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId" wx:for-item="child">
+          <image class="img" src="{{filters.imgurl(child.productItemImg)}}" mode='wdithFix' />
           <view class="goodsinfo">
-            <text class="goodsname">{{item.productTitle}}</text>
-            <text>{{item.productItemNo}}</text>
-            <view class="goodsnum">数量:{{item.quantity}}</view>
+            <text class="goodsname">{{child.productTitle}}</text>
+            <text>{{child.productItemNo}}</text>
+            <view class="goodsnum">
+            <text>数量:{{child.quantity}}</text>
+              </view>
+                     <navigator url="../evaluate/evaluate?simg={{child.productItemImg}}&sname={{child.productItemNo}}&stitle={{child.productTitle}}&evaItemId={{child.orderItemsId}}&productId={{child.productModelId}}" 
+       wx:if="{{item.order.orderStatus=='07'&& !child.pinglun}}">去评价</navigator>      
           </view>
         </view>
-      </navigator>
+     
 
       <view class="opt-bottom">
         <button type="primary" size="mini" bindtap="quzhifu" wx:if="{{item.order.orderStatus=='01'}}" data-orderno="{{item.order.orderNo}}">去支付</button>
-        <button type="primary" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06'}}">签收订单</button>
+        <button type="warn" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06'}}">确认收货</button>
         <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>
-        <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="showrefund">退款退货</button>
-
+        <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="showrefund" wx:if="{{item.canRefund==true}}">退款退货</button>
 
       </view>
     </view>

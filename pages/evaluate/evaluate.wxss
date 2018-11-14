@@ -1,0 +1,44 @@
+/* pages/evaluate/evaluate.wxss */
+.top_m{
+  margin:0px 10px 0px 10px;
+  display: flex;
+  padding: 10px;
+  border-bottom:1px solid #ebebeb
+}
+.title{
+  flex: 1;
+  font-size: 14px;
+  color: #787878;
+}
+
+.img {
+  height: 200rpx;
+  width: 200rpx;
+}
+.question-images {
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+  padding: 10px;
+  flex-flow:wrap;
+
+}
+.q-image-wrap {
+  width: 31%;
+  margin-right: 10rpx;
+}
+.q-image {
+  flex: 1;
+  height: 200rpx;
+  width: 100%;
+  min-width: 100rpx
+}
+
+.q-image-remover {
+  text-align: center;
+  font-size: 14px
+}
+.question-images-tool {
+  display: flex;
+  align-items: center;
+}
