@@ -1,0 +1,85 @@
+<!--pages/sort/sort.wxml-->
+	<view class="new newsort">
+			<view class="bg-black " style="z-index:10">
+				<view class="search-wrap">
+					<input catchtap="gosearch" v-model="keyword"></input>
+					<image src='../../images/search_header.png' class="icon-search" ></image>
+					<span catchtap="xuanzeModal">筛选<image src="../../images/sx.png" class="sx"></image></span>
+				</view>
+			</view>
+		<scroller
+			  :on-refresh="refresh"
+              :on-infinite="infinite"
+              ref="my_scroller">
+
+			<view v-if="hasShow">
+				<view  class="clearfix ul mylike">
+					<view class='li' wx:for="{{productList}}"  wx:key="id"  wx:for-index="index"  wx:for-item='item'>
+						<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.id}}">
+							<view class='i' wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</view>
+							<image src='' :alt="item.model_name"></image>
+							<text class="ptitle">{{item.model_no}}</text>
+							<text class="red">{{item.sale_price}}</text>
+						</navigator>
+					</view>
+				</view>
+				<view class="#ff0037 " style="text-align:center;padding-top:2rem">{{bottomtext}}</view>
+			</view>
+			<view class="flex-center  empty" v-if="!hasShow">
+				<image src="../../images/sort_empty.png" class='img'></image>
+				<view class='p'>抱歉 没有找到相关商品</view>
+				<view class="try">
+					<view class='h6'>您还可以尝试以下搜素:</view>
+					<view class='ul'>
+						<view class='li'>电竞</view>
+						<view class='li'>办公</view>
+						<view class='li'>吃鸡</view>
+						<view class='li'>LPL</view>
+					</view>
+				</view>
+			</view>
+			      <!-- <view v-for="(item, index) in items" catchtap="onItemClick(index, item)"
+          class="row" :class="{'grey-bg': index % 2 == 0}">
+        {{ item }}
+      </view> -->
+		</scroller>
+
+		<Spin size="large" fix v-if="spinShow"></Spin>
+		<!-- <Modal class="filterModal" :class="{zIndex:!filterModal}" v-model="filterModal" title="筛选条件">
+			<view class="wrap">
+				<view class="dt">类型:</view>
+				<view class="dd clearfix">
+					<span catchtap="getList('catalog','',-1)" :class="{active: '-1' == catalogindex}">全部</span>
+					<span v-for="(item,index) in catalog" catchtap="getList('catalog',item.id,index)" :class="{active: index ==catalogindex}">{{item.catalogName}}</span>
+				</view>
+			</view>
+			<view class="wrap">
+				<view class="dt">分类:</view>
+				<view class="dd clearfix">
+					<span catchtap="getList('type','',-1)" :class="{active: '-1' == typeindex}">全部</span>
+					<span v-for="(item,index) in type" catchtap="getList('type',item.id,index)" :class="{active: index ==typeindex,routerActive:item.red}">{{item.typeName}}</span>
+				</view>
+			</view>
+			<view class="wrap">
+				<view class="dt">系列:</view>
+				<view class="dd clearfix">
+					<span catchtap="getList('series','',-1)" :class="{active: '-1' == seriesindex}">全部</span>
+					<span v-for="(item,index) in series" catchtap="getList('series',item.id,index)" :class="{active: index == seriesindex}">{{item.seriesName}}</span></view>
+			</view>
+			<view class="wrap">
+				<view class="dt">品牌:</view>
+				<view class="dd clearfix">
+					<span catchtap="getList('brand','',-1)" :class="{active: '-1' == brandindex}">全部</span>
+					<span v-for="(item,index) in brand" catchtap="getList('brand',item.id,index)" :class="{active: index == brandindex}">{{item.brandName}}</span></view>
+			</view>
+			<view class="Hfoot" slot="footer">
+				<Button catchtap="reset">重置</Button>
+				<Button class="bg-dx" type="error" catchtap="ok">搜索</Button>
+			</view>
+		</Modal> -->
+		<BackTop :height="100" :bottom="200">
+			<view class="top">
+				<Icon type="md-arrow-round-up" />
+			</view>
+		</BackTop>
+	</view>

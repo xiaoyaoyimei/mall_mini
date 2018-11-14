@@ -1,29 +1,169 @@
 
 
 <import src="../../template/mplex.wxml"/>
-   <view class="home">
-    <view class="index_search_btn" bindtap="searchPro">
-      <image class="index_search" src="../../images/searchLogo.png"></image>
-      <text>搜索商品</text>
-    </view>
-<!--index.wxml-->
-<swiper indicator-dots='true'>
-      <template wx:for="{{poster}}" wx:key="id"  is="fslider" data="{{item}}" ></template> 
-</swiper>
-    <view class="tab_link">
-    <view>
-      <navigator class="loginurl"><image src="../../images/xp.png" mode="widthFix"></image>
-    <text>新品</text></navigator></view>
-    <view><image src="../../images/yj.png" mode="widthFix"></image><text>建议</text></view>
-       <view><image src="../../images/ms.png" mode="widthFix"></image><text>秒杀</text></view>
-          <view><image src="../../images/zb.png" mode="widthFix"></image><text>周边</text></view>
-    </view>
+	<view class="homepage">
+		<view class="bg-black">
+			<view class="search-wrap">
+				<image src="../../images/waplogo.png" mode="scaleToFill" class="logo"></image>
+				 <input placeholder="新品" catchtap="gosearch" v-model="keyword"></input> 
+				 <image src='../../images/search_header.png' class="icon-search" ></image>
+			</view>
+		</view>
+		
+			<view class="side_nav_wrap clear">
+          <swiper indicator-dots='true'>
+                <template wx:for="{{Items}}" wx:key="id"  is="fslider" data="{{item}}" ></template> 
+          </swiper>
+				<view class="minipro clearfix">
+					<view class='li'>
+						<navigator  class='a' url="/pages/sort/sort?keyword=新品">
+							<image src="../../images/xp.png"> </image>
+              <text>新品</text>
+						</navigator >
+					</view>
+					<view class='li'>
+						<navigator  class='a'  url="/pages/advice/advice">
+							<image src="../../images/yj.png"></image>
+              <text> 建议</text>
+						</navigator>
+					</view>
+					<view class='li'>
+						<navigator  class='a' url="/pages/seckill/seckill">
+							<image src="../../images/ms.png"> </image>
+              <text>秒杀</text>
+						</navigator>
+					</view>
+					<view class='li'>
+						<navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+							<image src="../../images/zb.png"> </image>
+              <text>周边</text>
+						</navigator>
+					</view>
+				</view>
+				<view class="floor">
+					<view class="clearfix one">
+						<view class='li' wx:for="{{hotitem}}" wx:key="id"  wx:for-index="index"  wx:for-item='item'>
+							<image src="../../images/icon-rexiao.png" class="rx"></image>
+							<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
+								<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id"  mode='widthFix'></image>
+							<view ><text class='h6'>{{item.list.model_no}}</text></view>	
+								<view><text class="color-newred">￥{{item.list.sale_price|pricefilter}}</text></view>
+							</navigator>
+						</view>
+					</view>
+				</view>
+				<view class="floor">
+					<view class="more">
+							<navigator url="/pages/sort/sort?keyword=电竞椅" class="a"> 
+                  <text class='seemore'>查看更多 >></text> 
+							</navigator>
+						<text>电竞椅</text></view>
+					<view class="two  list-wrap clearfix">
+						<view class="ad-wrap">
+							<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{gameproductone.product_id}}">
+								<image src="{{imgurl}}{{gameproductone.img_url}}"  :ref="gameproductone.product_id"  mode='widthFix'></image>
+								<view class="ad">
+								  <view><text class='h5'>{{gameproductone.model_no}}</text></view>
+								  <view><text class='h6'>{{gameproductone.describe1}}</text></view>
+							  	<view><text class='h6'>{{gameproductone.describe2}}</text></view>
+							  	<view><text class='span'>¥ {{gameproductone.sale_price }}</text></view>
+								</view>
+							</navigator>
+						</view>
+						<view class="clearfix ul">
+							<view class='li'  wx:for="{{gameproduct}}"wx:key="id"  wx:for-index="index"  wx:for-item='item' wx:if="{{index>0}}" wx:show='{{index<5}}'>
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
+									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id" mode='widthFix'></image>
+									<view><text class='h6'>{{item.list.model_no}}</text></view>
+									<view><text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text></view>
+								</navigator>
+							</view>
+						</view>
+					</view>
+					<view class="more">
+							<navigator  class='a' url="/pages/sort/sort?keyword:办公">
+							<text class='seemore'>查看更多 >></text> 
+							</navigator>
+						<text>办公</text>
+					</view>
+					<view class=" three clearfix list-wrap">
+						<view class=" clearfix  office ">
+							<view class="w594">
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?={{officeproductone.product_id}}">
+									<image src="{{imgurl}}{{officeproductone.img_url}}" :ref="officeproductone.product_id"  mode='widthFix'></image>
+									<view class="ad ">
+										 <text class='h5'>{{officeproductone.model_no}}</text> 
+										 <text class='h6'>{{officeproductone.describe1}}</text> 
+										 <text class='h6'>{{officeproductone.describe2}}</text> 
+										 <text class='span'>¥ {{officeproductone.sale_price | pricefilter}}</text> 
+									</view>
+								</navigator>
+							</view>
+							<view class="officeproduct li" wx:for="{{officeproduct}}" wx:key="id" wx:for-index="index"  wx:for-item='item' wx:if="{{index>0}}" wx:show='{{index<5}}'>
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
+									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id"  mode='widthFix'></image>
+									<text class='h6'>{{item.list.model_no}}</text>
+									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text>
+								</navigator>
+							</view>
+						</view>
+					</view>
+					<view class="more">
+							<navigator  class='a' url="/pages/sort/sort?keyword=家居"> 
+                  <text class='seemore'>查看更多 >></text> 
+							</navigator>
+						<text>家居</text></view>
+					<view class=" three clearfix list-wrap">
+						<view class=" clearfix ul  office">
+							<view class="w594">
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{houseproductone.product_id}}">
+									<image src="{{imgurl}}{{houseproductone.img_url}}" mode='widthFix'></image>
+									<view class="ad ">
+										<text class='h5'>{{houseproductone.model_no}}</text>
+										<text class='h6'>{{houseproductone.describe1}}</text>
+										<text class='h6'>{{houseproductone.describe2}}</text>
+										<text class='span'>¥ {{houseproductone.sale_price | pricefilter}}</text>
+									</view>
+								</navigator>
+							</view>
+							<view class="officeproduct li"   wx:for="{{houseproduct}}" wx:key="id" wx:for-index="index"  wx:for-item='item' wx:if="{{index>0}}" wx:show='{{index<5}}'>
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
+									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id" mode='widthFix'></image>
+									<text class='h6'>{{item.list.model_no}}</text>
+									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text>
+								</navigator>
 
-
-    <!--列表list组件 -->
-    <view class="list">
-     <template wx:for="{{xin}}" wx:key="index"  is="listBig" data="{{item}}" ></template>
-     </view>
-     <view><text>电竞椅</text><text>查看更多</text></view>
-     <view></view>
-</view>
+							</view>
+						</view>
+					</view>
+					<view class="more">
+							<navigator  class='a' url="/pages/sort/sort?keyword=座舱"> 
+								<text class='seemore'>查看更多 >></text> 
+							</navigator>
+						<text>座舱</text></view>
+					<view class="floorad clearfix">
+						<view class="yxzc" wx:for="{{cockpitproduct}}" wx:for-index="index" wx:key="id"  wx:for-item='item'  wx:if='{{index<2}}'>
+							<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
+								<image src="{{imgurl}}{{item.list.img_url}}" mode='widthFix' class="zhuozi"></image>
+								<view class="ad ">
+									<text class='h6'>{{item.list.model_no}}</text>
+									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text></view>
+							</navigator>
+						</view>
+					</view>
+					<view class="more">
+							<navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+								<text class='seemore'>查看更多 >></text> 
+							</navigator>
+						<text>座椅周边</text></view>
+						<view class="max100">
+              <navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+                <image src="../../images/zyzb.jpg"  mode='widthFix'></image>
+              </navigator>
+            </view>
+					<view class="homeBottom">
+						—— 我是有底线的 ——
+					</view>
+				</view>
+			</view>
+	</view>

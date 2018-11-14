@@ -1,0 +1,278 @@
+/* pages/sort/sort.wxss */
+	.new{
+    min-height: 100vh;
+		overflow: hidden;
+    background-color: #f0f0f0;
+	}
+  .search-wrap {
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      position: relative;
+      display: flex;
+  }
+  .search-wrap .logo {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+  }
+  .bg-black {
+      width: 100%;
+      height: 44px;
+      background-color: #ff0000;
+  }
+  .search-wrap    i:first-child {
+    font-size: 2.4rem;
+    color: #fff;
+    position: relative;
+    left: 0;
+    top: 0.5rem;
+    margin-right: 1rem;
+  }
+  .search-wrap    .icon-search {
+    font-size: 2.2rem;
+    color: #aaa;
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    left: 1rem;
+    z-index: 5;
+    top: 0.7rem;
+  }
+  .search-wrap input {
+    height: 1.5rem;
+    border-radius: 0.5rem;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.8rem;
+    border: 0 none;
+    background-color: #fff;
+    flex: 1;
+    text-indent: 1.5rem;
+  }
+  .search-wrap    span {
+    margin-left: 0.25rem;
+    color: #fff;
+    font-size: 0.8rem;
+    position: relative;
+    top: 0.1rem;
+  }
+	
+	.icon-xuanze {
+		background-size: 25rem 25rem;
+		width: 2.25rem;
+		height: 2.25rem;
+		background-position: -8.85rem -11.5rem;
+		position: absolute;
+		right: 1.5rem;
+	}
+	
+	.mylike {
+		border-top: 1px solid #eee;
+	}
+	
+	.mylike li {
+		float: left;
+		width: 50%;
+		text-align: center;
+		border-bottom: 1px solid #eee;
+		border-right: 1px solid transparent;
+		background: #fff;}
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+	
+	
+	.mylike li:nth-of-type(2n+1) {
+		border-color: #eee;
+	}
+	
+	.mylike li img {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.mylike .ptitle {
+		font-weight: 400;
+		font-size: 1.6rem;
+		color: #333;
+		height: 2.5rem;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
+	.mylike .red {
+		font-size: 1.6rem;
+		color: #FF0000;
+		padding-bottom: 1rem;
+	}
+	
+	.jiazaicenter {
+		font-weight: 400;
+		height: 10rem;
+		line-height: 10rem;
+		font-size: 1.8rem;
+		color: #999999;
+		text-align: center;
+		background-color: #f0f0f0;
+	}
+	
+	.filterModal {
+		width: 80%;
+		position: absolute;
+		top: 0rem;
+		right: 0rem;
+		min-height: 100vh;
+		z-index: 1000000;
+	}
+	
+	.filterModal .wrap {
+		margin-top: 0;
+	}
+	
+	.zIndex {
+		z-index: -1;
+	}
+	
+	.filterModal .dt {
+		margin-bottom: 0.9rem;
+		font-weight: bold;
+	}
+	
+	.filterModal .dd {
+		margin-bottom: 0.5rem;
+		margin-right: 0.5rem;
+	}
+	
+	.dd span {
+		float: left;
+		width: 49%;
+		text-align: center;
+		margin-bottom: 0.5rem;
+		margin-right: 1%;
+		overflow: hidden;
+		height: 2.5rem;
+		line-height: 2.5rem;
+		font-size: 1.5rem;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	
+	.wrap .active {
+		background-color: #f00;
+		color: #fff;
+	}
+	
+	.filterModal .Hfoot {
+		text-align: center;
+	}
+	
+	.filterModal .Hfoot button {
+		width: 7.5rem;
+		height: 4rem;
+		font-size: 1.6rem;
+	}
+	
+	.top {
+		/* background: rgba(255, 0, 0, .9); */
+		color: #fff;
+		text-align: center;
+		border-radius: 2px;
+	}
+	
+	.try {
+		width: 100%;
+		padding: 0.5rem;
+  }
+	.try	.h6 {
+			margin-top: 2rem;
+			font-size: 0.8rem;
+			font-weight: normal;
+			color: #111;
+      padding-left: 1rem;
+		}
+    .try .ul{
+      padding-left: 1rem;
+    }
+	.try	.li {
+			font-size: 0.8rem;
+			background: #fff;
+			padding: 0.15rem 0.5rem;
+			border-radius: 0.25rem;
+			float: left;
+			margin-right: 0.5rem;
+			margin-top: 0.5rem;
+			color: #333;
+		}
+	
+	
+	.search-wrap .sx {
+		width: 1rem;
+		height: 1rem;
+	}
+	
+	.Hfoot {
+		position: absolute;
+		bottom: 10px;
+	}
+	.filterModal .ivu-modal {
+		width: 100%!important;
+		right: 0rem;
+		top: 0rem;
+		margin: 0rem;
+		z-index: 10001;
+	}
+		.filterModal .ivu-modal-body{
+			padding: 0;
+		}
+	.filterModal .ivu-modal {
+		height: 100%;
+	}
+	
+	.filterModal .ivu-modal-content {
+		border-radius: 0rem;
+	}
+	
+	.filterModal .ivu-modal-header {
+		background-color: #f0f0f0;
+	}
+	
+	.filterModal .ivu-modal-header-inner {
+		color: #999999;
+	}
+	
+	.filterModal .ivu-modal-wrap {
+		left: 7.5rem!important;
+	}
+	
+	.filterModal .ivu-modal-footer {
+		border-top: 0 none;
+	}
+	
+	.newsort .ivu-scroll-container{
+		height:calc(100vh - 50px)!important;
+	}
+  .flex-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 400px;
+  }
+  .flex-center .a {
+      text-decoration: underline;
+  }
+  
+  .flex-center .img{
+    width: 280rpx;
+    height: 280rpx;
+    margin: 0rpx auto;
+  }
+  .empty .p {
+    font-size: 0.8rem;
+    margin: 1rem 0;
+    color: #999999;
+  }

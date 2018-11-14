@@ -4,14 +4,14 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "1.9.94",
 	"appid": "wxc6a4ecf6eccfc55c",
 	"projectname": "dxracer官方商城",
 	"isGameTourist": false,

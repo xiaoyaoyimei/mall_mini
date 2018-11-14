@@ -53,7 +53,7 @@ Page({
             that.setData({ list: [] });
         }
         request.req3(uri,'GET', {
-             //搜索过滤     
+             //搜索过滤
             keyWord: id,
             startRow: that.data.startRow,
             pageSize: that.data.pageSize,

@@ -1,17 +1,332 @@
 /**index.wxss**/
-
-
-.newpro{
-  width: 100%;
-  overflow: hidden;
-}
-.newpro navigator image{
-    max-width:50%;
+  .search-wrap {
+      padding-top: 0.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      position: relative;
+      display: flex;
+  }
+  .search-wrap .logo {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+  }
+  .bg-black {
+      width: 100%;
+      height: 44px;
+      background-color: #ff0000;
+  }
+  .search-wrap    i:first-child {
+    font-size: 2.4rem;
+    color: #fff;
+    position: relative;
+    left: 0;
+    top: 0.5rem;
+    margin-right: 1rem;
+  }
+  .search-wrap    .icon-search {
+    font-size: 2.2rem;
+    color: #aaa;
+    position: absolute;
+    height: 1rem;
+    width: 1rem;
+    left: 4rem;
+    z-index: 5;
+    top: 0.7rem;
+  }
+  .search-wrap input {
+    height: 1.5rem;
+    border-radius: 1rem;
+    outline: none;
+    box-shadow: none;
+    font-size: 0.8rem;
+    border: 0 none;
+    background-color: #fff;
+    flex: 1;
+    text-indent: 1.5rem;
+  }
+  .search-wrap    span {
+    margin-left: 1rem;
+    color: #fff;
+    font-size: 1.6rem;
+    position: relative;
+    top: 0.4rem;
+  }
+	.homepage {
+		background: #f0f0f0;
+	}
+	
+	.minipro {
+		display: flex;
+		background: #fff;
+		padding: 0 0 1rem;
+		font-size: 1.4rem;
+		color: #888;
+  }
+	.minipro	.li {
     float: left;
-    height: 180rpx;
-}
-
-
+			width: 25%
+	}
+	.minipro	.a {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+  }
+	.minipro	image {
+			width: 2rem;
+		  height: 2rem;
+	}
+	
+	.more {
+		font-size: 1rem;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+		overflow: hidden;
+		padding-left: 1rem;
+		padding-right: 1rem;
+  }
+	.more .a {
+		color: #999999;
+		font-size: 0.8rem;
+		float: right;
+	}
+	.seemore{
+    font-size: 0.7rem;
+  }
+	
+	.two .ad-wrap{
+			width: 33.333%;
+			float: left;
+  }
+	.two	image{
+			max-width: 100%;
+	}
+	.two .a{
+				position: relative;
+	}
+		
+	.two	.ul{
+			width:66.66%;
+			float: left;
+		}
+	.two	.li{
+			float: left;
+			width: 49.5%;
+			text-align: center;
+			border-left: 1px solid transparent;
+			border-top:1px solid transparent;}
+	.two .li		image{
+				max-width: 53.5%;
+			}
+		
+	.two	.li:nth-child(2n){
+			border-left:1px solid #eee
+		}
+	.two	.li:nth-child(n+3){
+			border-top:1px solid #eee
+		}
+	
+	.two .ad {
+		position: absolute;
+		top: 2.4rem;
+		left: 1rem;
+	}
+	
+	.ad .h5 {
+    display: block;
+		font-weight: 700;
+		font-size: 1rem;
+		color: #FFFFFF;
+	}
+	
+	.ad .h6 {
+    display: block;
+		font-weight: 400;
+		font-size: 0.6rem;
+    height: 0.7rem;
+		color: #FFFFFF;
+	}
+	
+	.ad .span {
+    display: block;
+		font-weight: 700;
+		font-size: 0.6rem;
+    height: 0.7rem;
+		color: #FFFFFF;
+		position: relative;
+		top: 0.2rem;
+	}
+	.color-newred {
+		color: #ff0000;
+		font-size: 0.8rem;
+		font-weight: bold;
+	}
+	
+	.w594 {
+		float: left;
+		width: 66.3%;
+		position: relative;
+	}
+	.w594 image{
+		width: 100%;
+	}
+	
+	.w594 .ad {
+		position: absolute;
+		top: 2.25rem;
+		left: 2rem;
+	}
+	.office .li:nth-of-type(2){
+		border-left:1px solid #eee;
+	}
+  .office .li{
+		border-right:1px solid #eee;
+	}
+	.office .li:nth-child(n+3){
+			border-top: 1px solid #eee;
+		}
+	.officeproduct {
+		float: left;
+		width: 33%;
+		text-align: center;
+	}
+	.floor .li{
+		background: #fff;
+  }
+	.floor .a{
+		display: block;
+	}
+	.officeproduct image {
+		max-width:60%;
+	}
+	.navigator-hover{
+    background-color:rgba(255, 255, 255, 1)
+  }
+	.floor  .h6 {
+		overflow: hidden;
+		font-size: 0.6rem;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-weight: normal;
+    display: block;
+	}
+	
+	 .yxzc {
+		float: left;
+		width: 49.5%;
+		position: relative;
+    height: 8rem;
+		background: #fff;
+    }
+	.yxzc .a{
+			display: block;
+			overflow: hidden;
+		}
+	.yxzc	image{
+			max-width: 100%;
+		}
+	
+	
+	.floorad .yxzc:nth-of-type(1){
+		border-right: 0.05rem solid #eee;
+	}
+	.floorad .ad {
+		position: absolute;
+		top: 1.2rem;
+		left: 0.5rem;
+	}
+	
+	.floorad .ad .h5 {
+		font-size: 1rem;
+		color: #333333;
+	}
+	
+	.floorad .ad .p {
+		font-size: 0.6rem;
+		color: #333333;
+	}
+	
+	.floorad .ad .span {
+		font-size: 0.6rem;
+		color: #333333;
+	}
+	
+	.peripheryproduct li {
+		width: 100%;
+	}
+	
+	.peripheryproduct img {
+		width: 100%;
+		max-height: 100%;
+	}
+	
+	.homeBottom {
+		background-color: #f0f0f0;
+		height: 2rem;
+		width: 100%;
+		font-weight: 400;
+		font-size: 01rem;
+		padding-top: 1rem;
+		color: #999999;
+		text-align: center;
+	}
+	
+	.max100 image{
+    width:100%;
+  }
+	.one .li {
+		float: left;
+		width: 33%;
+		position: relative;
+		text-align: center;
+		border-top: 0.05rem solid #eee;
+		border-bottom: 0.05rem solid #eee;
+  }
+	.one .rx{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width:40rpx;
+      height: 40rpx;
+		}
+	
+	.one .li:nth-of-type(2) {
+		border-left: 0.05rem solid #eee;
+	}
+	
+	.one .li:nth-of-type(3) {
+		border-left: 0.05rem solid #eee;
+	}
+	
+	.one image {
+		max-width: 100%;
+	}
+	
+	.one i {
+		position: absolute;
+		top: 0.5rem;
+		background-size: 25rem 25rem;
+		left: 0.5rem;
+	}
+	
+	.one .color-newred {
+		color: #ff0000;
+		height: 1.5rem;
+		overflow: hidden;
+	}
+	
+	.demo-carousel img ,	.max100 img{
+		max-width: 100%;
+	}
+	
+	.list-wrap{
+  		background: #fff;
+		  border-top: 1px solid #eee;
+		  border-bottom: 1px solid #eee;}
+	.list-wrap	a {
+			display: block;
+		}
 .result-list{
   width:33.333%
 }
