@@ -1,16 +1,15 @@
 {
   "pages": [
+    "pages/mime/mime",
     "pages/index/index",
     "pages/search/search",
     "pages/sort/sort",
     "pages/seckill/seckill",
-    "pages/advice/advice",
     "pages/seckilldetail/seckilldetail",
     "pages/sortDetail/sortDetail",
     "pages/classify/classify",
     "pages/goodsDetail/goodsDetail",
     "pages/login/login",
-    "pages/mime/mime",
     "pages/like/like",
     "pages/updatePassword/updatePassword",
       "pages/policy/policy",
