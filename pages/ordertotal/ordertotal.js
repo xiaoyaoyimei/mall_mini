@@ -1,7 +1,7 @@
 //ordertotal.js
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
-var uri = 'order/list'
+
 var statusuri ="order/enums"
 Page({
   data: {
@@ -10,15 +10,20 @@ Page({
     list: [],
     newlist: [],
     statusenums:[],
-    loginhidden: true
+    loginhidden: true,
+    status:'00',
+    hasShow:true
   },
   goindex(){
     wx.switchTab({
       url: '../index/index',
     })
   },
-  onLoad(){
-
+  onLoad(options){
+    console.log(options)
+    this.setData({
+      status: options.status,
+    });
   },
   onShow: function () {
 
@@ -39,6 +44,7 @@ Page({
   },
   getStatus:function(){
     var that = this;
+
     request.req('index',statusuri, 'GET', {
     }, (err, res) => {
       if (res.data.code == 200) {
@@ -87,23 +93,31 @@ Page({
     }
   }, 
    getData: function () {
+     var uri = '';
     var that = this;
-    var status = "";
     var pageNo = that.data.pageNo;
     var CuserInfo = wx.getStorageSync('CuserInfo');
+
+     if (that.data.status!='00'){
+      uri = `order/list?orderStatus=${that.data.status}`
+    }else{
+       uri = 'order/list'
+    }
     request.req('index',uri,'GET', {
     }, (err, res) => {
-      if (res.data.code == 200) {
-
+      if (res.data.code == 200 && res.data.object.length>0) {
           that.setData({
             hidden: true,
             list: res.data.object,
-            loginhidden:false
+            loginhidden:false,
+            hasShow:true
           })
           //处理数据
           var list = that.data.list;
+
           for (var i = 0; i < list.length; i++) {
             list[i].order.znStatus = that.statusfilter(list[i].order.orderStatus);
+            this.maopao(list[i])
            }
            that.setData({
              newlist: list
@@ -111,11 +125,20 @@ Page({
 
       }
       else{
-        that.setData({ hidden: true, tips: "没有数据~", loginhidden: false })
+        that.setData({ hidden: true, tips: "没有数据~", loginhidden: false,hasShow:false })
       }
     })
   },
-
+  maopao(item) {
+    for (let j = 0; j < item.commentList.length; j++) {
+      for (let n = 0; n < item.orderItems.length; n++) {
+        if (item.commentList[j].orderItemsId == item.orderItems[n].orderItemsId) {
+          item.orderItems[n].pinglun = item.commentList[j].canComment;
+          item.orderItems[n].productModelId = item.commentList[j].productModel.id;
+        }
+      }
+    }
+  },
   cancel(e) {
     var self=this;
     var orderNo = e.currentTarget.dataset.orderno;

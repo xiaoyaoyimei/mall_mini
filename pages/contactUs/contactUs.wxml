@@ -1,6 +1,16 @@
-
-		<view class="flex-center"><p><strong>售前电话：400-990-5033</strong><button catchtap='calling' data-attr="1"  type="primary" size="mini">拨打售前电话</button></p>
-		<p><strong>售后电话：400-829-6033</strong> <button catchtap='calling' data-attr="2" type="primary" size="mini">拨打售后电话</button></p>
-		<p><strong>邮箱：sales@dxracer.com.cn</strong></p>
-		<p><strong>地址：江苏省无锡惠山经济开发区智慧路19号404室</strong></p>
+<!-- 
+		<view class="flex-center"><view><strong>售前电话：400-990-5033</strong><button catchtaview='calling' data-attr="1"  tyviewe="viewrimary" size="mini">拨打售前电话</button></view>
+		<view><strong>售后电话：400-829-6033</strong> <button catchtaview='calling' data-attr="2" tyviewe="viewrimary" size="mini">拨打售后电话</button></view>
+		<view><strong>邮箱：sales@dxracer.com.cn</strong></view>
+		<view><strong>地址：江苏省无锡惠山经济开发区智慧路19号404室</strong></view>
+		</view> -->
+    <view class="contantUs ">
+			<view class="h6">迪锐克斯科技无锡有限公司</view>
+			<view>服务热线：400-990-5033</view>
+			<view>服务热线：400-829-6033</view>
+			<view>官方邮箱：sales@dxracer.com.cn</view>
+			<view>公司地址：江苏省无锡市惠山区堰桥街道惠山大道108号国慧商务广场17楼</view>
+			<view class="toviewview">新浪微博：迪瑞克斯DXRacer</view>
+			<view>官方微信号：DXRacer-CN</view>
+			<view>官方交流群：487060608</view>
 		</view>

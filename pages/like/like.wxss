@@ -1,0 +1,10 @@
+.result-list .love{
+  width:24px;
+  height: 24px;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+.result-list{
+  position: relative
+}

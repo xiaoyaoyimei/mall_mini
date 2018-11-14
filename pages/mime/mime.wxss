@@ -46,9 +46,9 @@
   flex: 1;
 }
 .my .my-item .myitem-icon image{
-  width: 45rpx;
-  height: 45rpx;
-  padding: 20rpx 0;
+  width: 60rpx;
+  height: 60rpx;
+  padding: 15rpx 0;
 }
 .my .my-item .myitem-name{
   flex: 5;
@@ -76,4 +76,40 @@ color:red;
 .nologin{
   justify-content: center;
   color: #f00;
+}
+.myorder{
+  background: #fff;
+  width: 100%;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  color: #787878;
+  padding-bottom:30rpx
+}
+.mt{
+   padding-top:20rpx;
+   padding-bottom: 10rpx;
+   border-bottom: solid 1px #ebebeb;
+  padding-left:10px;
+  padding-right: 10px;
+
+}
+.all{
+  float: right
+}
+
+.tab_link {
+  display: flex
+}
+
+.tab_link navigator{
+ margin-top:30rpx;
+ width:100px;
+ display: flex;
+ flex-direction: column;
+ align-items: center
+
+}
+.tab_link  image{
+  width:40px;
+  height: 40px
 }

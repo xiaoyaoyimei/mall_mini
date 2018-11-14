@@ -1,11 +1,15 @@
 /* pages/contactUs/contactUs.wxss */
-.flex-center{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding:20rpx;
-}
-.flex-center p{
-  font-size: 32rpx;
-  line-height: 60rpx
-}
+	.contantUs {
+		background: #FFF;
+		padding: 20px 20px 50px;
+    color: #787878;
+  }
+		.h6 {
+			margin: 10px 0 30px;
+		}
+		view {
+			margin-bottom: 5px;
+		}
+		.topp {
+			margin-top: 40px;
+		}

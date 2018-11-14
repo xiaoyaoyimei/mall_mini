@@ -1,0 +1,32 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
+      <block wx:if="{{hasShow}}">
+<view  wx:for="{{evaluateList}}" wx:key="index" class="pj">
+  <view class="pj_top">
+    <image src="{{filters.imgurl(item.list.iconUrl)}}" class="tx" ></image>
+    <text>{{item.list.nickName}}</text>
+    <view class="zan">
+    <text style="{{item.isZan =='Y'?'color:#f00':'color:gray'}}">{{item.number}}</text>
+    <image src="../../images/zan-red.png" wx:if="item.isZan =='Y'" data-id="item.list.id" data-isZan="item.isZan" bindtap='zan'></image>
+			<image src="../../images/zan-gray.png" wx:else data-id="item.list.id" data-isZan="item.isZan" bindtap='zan'></image>
+      </view>
+  </view>
+  <view>
+    <text class="attr">					{{item.list.commentTime}}  件数:{{item.shippingOrderItems.quantity}}, 颜色分类:{{item.shippingOrderItems.productAttrs}}</text>
+  </view>
+  <view class="content">			{{item.list.commentContent}}</view>
+  <view class="conent-img">	<block  wx:for-item="child"  wx:for="{{item.imgList}}" wx:key="index">
+  <image  src="{{ filters.imgurl(child)}}" >  </image></block></view>
+  <view class="product">
+    <image src="{{ filters.imgurl(item.shippingOrderItems.productItemImg)}}"></image>
+    <view class="title">
+      <text>{{item.list.productTitle}}</text>
+      <text>￥{{filters.toFix(item.list.productFee)}}</text>
+    </view>
+  </view>
+</view>
+</block>
+<view class="flex-center  empty" wx:else >
+  <image src="../../images/pj_empty.png" ></image>
+  <text>暂无任何评价记录~</text>
+  <text catchtap="goindex"  class="color-dx">去首页</text>
+</view>

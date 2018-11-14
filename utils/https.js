@@ -1,7 +1,7 @@
 var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
 var util = require('./util.js')
 var auto = 'customer/login';
-//携带TOKEN req req2 都需携带token
+//携带TOKEN req req2 req5都需携带token
 function req(fromurl,url, methodway, data, callback) {
       
   var fromurl = fromurl;

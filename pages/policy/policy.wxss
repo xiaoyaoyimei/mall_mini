@@ -1,0 +1,12 @@
+/* pages/policy/policy.wxss */
+.p{
+  padding: 20rpx
+}
+view{
+  font-weight: bold;
+}
+text{
+  font-size: 14px;
+  display: block;
+  line-height: 24px
+}

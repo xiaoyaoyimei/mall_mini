@@ -1,5 +1,5 @@
  <wxs module="filters" src="../pages/filters.wxs"></wxs>
-   <!-- 大列表 -->
+   <!--首页 大列表 -->
     <template name="listBig">
     <view class="result-list">
           <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
@@ -9,6 +9,20 @@
             </view>
             <view class="result-text">
               <text class="dx-color">￥{{filters.toFix(item.list.sale_price)}}</text>
+            </view>
+          </navigator>
+          </view>
+    </template>
+    <template name="listPrimary">
+    <view class="result-list">
+
+          <navigator url="../goodsDetail/goodsDetail?specId={{item.product_id}}">
+            <image src="{{ filters.imgurl(item.model_img)}}" mode="widthFix"></image>
+            <view class="result-text">
+              <text>{{item.model_no}}</text>
+            </view>
+            <view class="result-text">
+              <text class="dx-color">￥{{filters.toFix(item.sale_price)}}</text>
             </view>
           </navigator>
           </view>

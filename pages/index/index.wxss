@@ -327,6 +327,28 @@
 	.list-wrap	a {
 			display: block;
 		}
+.result-list{
+  width:33.333%
+}
 
+.list{
+  border-top:1rpx solid  #ebebeb
+}
+.home .tab_link view{
+  width:25%
+}
+.tab_link{
+  display: flex;
+  padding-bottom:20rpx;
+}
+.tab_link view{
+  display: flex;
 
+   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
+}
+.tab_link image{
+  width:100%;
+}
