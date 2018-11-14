@@ -7,17 +7,15 @@
 					<span catchtap="xuanzeModal">筛选<image src="../../images/sx.png" class="sx"></image></span>
 				</view>
 			</view>
-		<scroller
-			  :on-refresh="refresh"
-              :on-infinite="infinite"
-              ref="my_scroller">
+		<scroll-view 
+			   bindscrolltolower="bindscrolltolower" scroll-y style="height: 95vh;">
 
-			<view v-if="hasShow">
+			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">
 					<view class='li' wx:for="{{productList}}"  wx:key="id"  wx:for-index="index"  wx:for-item='item'>
 						<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.id}}">
 							<view class='i' wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</view>
-							<image src='' :alt="item.model_name"></image>
+							<image src='{{imgurl}}{{item.model_img}}'  mode='widthFix'></image>
 							<text class="ptitle">{{item.model_no}}</text>
 							<text class="red">{{item.sale_price}}</text>
 						</navigator>
@@ -25,7 +23,7 @@
 				</view>
 				<view class="#ff0037 " style="text-align:center;padding-top:2rem">{{bottomtext}}</view>
 			</view>
-			<view class="flex-center  empty" v-if="!hasShow">
+			<view class="flex-center  empty" wx:if="{{!hasShow}}">
 				<image src="../../images/sort_empty.png" class='img'></image>
 				<view class='p'>抱歉 没有找到相关商品</view>
 				<view class="try">
@@ -38,45 +36,42 @@
 					</view>
 				</view>
 			</view>
-			      <!-- <view v-for="(item, index) in items" catchtap="onItemClick(index, item)"
-          class="row" :class="{'grey-bg': index % 2 == 0}">
-        {{ item }}
-      </view> -->
-		</scroller>
-
+		</scroll-view>
 		<Spin size="large" fix v-if="spinShow"></Spin>
-		<!-- <Modal class="filterModal" :class="{zIndex:!filterModal}" v-model="filterModal" title="筛选条件">
+		<modal class="filterModal" hidden="{{hidden}}" v-model="filterModal" title="筛选条件" confirm-text="搜索" cancel-text="重置" bindcancel="reset" bindconfirm="ok" no-cancel="{{nocancel}}"  catchtouchmove="preventTouchMove">
+    <scroll-view scroll-y style="height: 75vh;"  catchtouchmove="preventTouchMove">
 			<view class="wrap">
 				<view class="dt">类型:</view>
 				<view class="dd clearfix">
-					<span catchtap="getList('catalog','',-1)" :class="{active: '-1' == catalogindex}">全部</span>
-					<span v-for="(item,index) in catalog" catchtap="getList('catalog',item.id,index)" :class="{active: index ==catalogindex}">{{item.catalogName}}</span>
+					<view class='span {{catalogindex == -1 ? "active":""}}' catchtap="getList" data-value=" " data-catalog ='catalog' data-index="-1">全部</view>
+					<view class='span {{index ==catalogindex ? "active":" "}}' wx:for="{{catalog}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' catchtap="getList" data-value="{{item.id}}" data-catalog ='catalog' data-index="{{index}}">{{item.catalogName}}</view>
 				</view>
 			</view>
 			<view class="wrap">
 				<view class="dt">分类:</view>
 				<view class="dd clearfix">
-					<span catchtap="getList('type','',-1)" :class="{active: '-1' == typeindex}">全部</span>
-					<span v-for="(item,index) in type" catchtap="getList('type',item.id,index)" :class="{active: index ==typeindex,routerActive:item.red}">{{item.typeName}}</span>
+					<view class='span {{typeindex == -1 ? "active":""}}' catchtap="getList('type','',-1)" catchtap="getList" data-value=" " data-catalog ='catalog' data-index="-1">全部</view>
+					<view class='span {{index ==typeindex ? "active":" "}} {{item.red? "routerActive":""}}' wx:for="{{type}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' data-value="{{item.id}}" data-catalog ='type' data-index="{{index}}" catchtap="getList">{{item.typeName}}</view>
 				</view>
 			</view>
 			<view class="wrap">
 				<view class="dt">系列:</view>
 				<view class="dd clearfix">
-					<span catchtap="getList('series','',-1)" :class="{active: '-1' == seriesindex}">全部</span>
-					<span v-for="(item,index) in series" catchtap="getList('series',item.id,index)" :class="{active: index == seriesindex}">{{item.seriesName}}</span></view>
+					<view class='span {{seriesindex == -1 ? "active":""}}' catchtap="getList" data-value=" " data-catalog ='series' data-index="-1">全部</view>
+					<view class='span {{index ==seriesindex ? "active":" "}}' wx:for="{{series}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' catchtap="getList" data-value="{{item.id}}" data-catalog ='series' data-index="{{index}}">{{item.seriesName}}</view></view>
 			</view>
 			<view class="wrap">
 				<view class="dt">品牌:</view>
 				<view class="dd clearfix">
-					<span catchtap="getList('brand','',-1)" :class="{active: '-1' == brandindex}">全部</span>
-					<span v-for="(item,index) in brand" catchtap="getList('brand',item.id,index)" :class="{active: index == brandindex}">{{item.brandName}}</span></view>
+					<view class='span {{brandindex == -1 ? "active":""}}' catchtap="getList" data-value=" " data-catalog ='brand' data-index="-1">全部</view> 
+					<view class='span {{index ==brandindex ? "active":" "}}' wx:for="{{brand}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' catchtap="getList" data-value="{{item.id}}" data-catalog ='brand' data-index="{{index}}">{{item.brandName}}</view></view>
 			</view>
-			<view class="Hfoot" slot="footer">
-				<Button catchtap="reset">重置</Button>
-				<Button class="bg-dx" type="error" catchtap="ok">搜索</Button>
-			</view>
-		</Modal> -->
+			<!-- <view class="Hfoot" slot="footer">
+				<Button catchtap="">重置</Button>
+				<Button class="bg-dx" type="error" catchtap="">搜索</Button>
+			</view> -->
+      </scroll-view>
+		</modal>
 		<BackTop :height="100" :bottom="200">
 			<view class="top">
 				<Icon type="md-arrow-round-up" />

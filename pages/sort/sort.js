@@ -1,4 +1,11 @@
 // pages/sort/sort.js
+
+var app = getApp()
+var imgurl = app.globalData.imgsrc;
+
+var request = require('../../utils/https.js')
+var uri_home = 'floor/api/indexListAll'
+
 Page({
 
   /**
@@ -13,8 +20,10 @@ Page({
     title: '',
     totalSize: 0,
     filterModal: false,
+    imgurl:imgurl,
     catalog: [],
     type: [],
+    hidden:true,
     isActive: false,
     series: [],
     brand: [],
@@ -37,158 +46,196 @@ Page({
     items: [],
   },
   ok() {
-    this.keyword = '';
-    this.startRow = 0;
-    this.$axios({
-      method: 'GET',
-      url: '/product/search?catalog=' + this.searchfilter.catalog + '&series=' + this.searchfilter.series + '&type=' + this.searchfilter.type + '&brand=' + this.searchfilter.brand + '&startRow=' + this.startRow + '&pageSize=' + this.pageSize,
-    }).then((res) => {
-      if (res.itemsList.length > 0) {
-        this.productList = res.itemsList;
-        this.hasShow = true
+      this.setData({
+        keyword: '',
+        startRow: 0
+      })
+    request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
+       'GET',{},
+     (err,res) => {
+      if (res.data.itemsList.length > 0) {
+        this.setData({
+          productList: res.data.itemsList,
+          hasShow:true
+        })
       } else {
-        this.hasShow = false
+        this.setData({
+          hasShow: false
+        })
       }
-      this.totalSize = res.total;
+       this.setData({
+         totalSize: res.data.total
+       })
     })
-    this.filterModal = false;
+    this.setData({
+      hidden: true
+    })
   },
   //筛选重置搜索条件
   reset() {
-    this.catalogindex = -1;
-    this.typeindex = -1;
-    this.seriesindex = -1;
-    this.brandindex = -1;
-    this.searchfilter.catalog = '';
-    this.searchfilter.series = '';
-    this.searchfilter.type = '';
-    this.searchfilter.brand = ''
+    this.setData({
+      catalogindex : -1,
+      typeindex : -1,
+      seriesindex : -1,
+      brandindex : -1,
+      'searchfilter.catalog' : '',
+      'searchfilter.series' : '',
+      'searchfilter.type' :'',
+      'searchfilter.brand': '',
+    })
+
   },
   xuanzeModal() {
-    this.filterModal = true;
+    this.setData({
+      hidden:false
+    })
   },
-  //获取顶部筛选
-  getParams() {
-    if (this.$route.query.type != undefined) {
-      this.getList('type', this.$route.query.type, this.$route.query.typeindex)
-    }
-    if (this.$route.query.keyword != undefined) {
-      this.keyword = this.$route.query.keyword;
-      this.fetchData();
-    }
-  },
-
   getTop() {
-    this.$axios({
-      method: 'GET',
-      url: '/product/catalog',
-    }).then((res) => {
-      this.catalog = res;
+    request.req3('/product/catalog', 'GET',{},(err,res) => {
+      this.setData({
+        catalog:res.data
+      })
     })
-    this.$axios({
-      method: 'GET',
-      url: '/product/brand',
-    }).then((res) => {
-      this.brand = res;
+    request.req3('/product/brand','GET',{},(err,res) => {
+      this.setData({
+        brand: res.data
+      })
     })
-    this.$axios({
-      method: 'GET',
-      url: '/product/series',
-    }).then((res) => {
-      this.series = res;
+    request.req3('/product/series','GET',{},(err,res) => {
+      this.setData({
+        series: res.data
+      })
     })
-    this.$axios({
-      method: 'GET',
-      url: '/product/type',
-    }).then((res) => {
-      this.type = res;
-      for (let index = 0; index < this.type.length; index++) {
-        if (this.type[index].id == this.catalogId) {
-          this.type[index].red = true;
-          this.typeindex = -2
+    request.req3('/product/type','GET',{},(err,res) => {
+      this.setData({
+        type: res.data
+      })
+      for (let index = 0; index < this.data.type.length; index++) {
+          let obj = "data.type["+index+"].red"
+        if (this.data.type[index].id == this.data.catalogId) {
+          
+          this.setData({
+            obj:true,
+            typeindex:-2
+          })
         } else {
-          this.type[index].red = false;
+          this.setData({
+            obj: false,
+          })
         }
 
       }
     })
-    this.spinShow = false
+    // this.setData({
+    //   spinShow:false
+    // })
   },
   //点击顶部筛选
-  getList(type, value, index) {
+  getList:function(e) {
+    let type = e.currentTarget.dataset.catalog
+    let index = e.currentTarget.dataset.index
+    let value = e.currentTarget.dataset.value
     if (type == 'catalog') {
-      this.catalogindex = index;
-      this.searchfilter.catalog = value
+      this.setData({
+        catalogindex:index,
+        'searchfilter.catalog' :value
+      })
     }
     if (type == 'type') {
-      this.typeindex = index;
-      this.searchfilter.type = value
-      for (let i = 0; i < this.type.length; i++) {
-        this.type[i].red = false;
-
+      this.setData({
+        typeindex: index,
+        'searchfilter.type': value
+      })
+      for (let i = 0; i < this.data .type.length; i++) {
+        let obj = 'type['+i+'].red'
+        this.setData({
+          obj :false
+        })
       }
     }
     if (type == 'series') {
-      this.seriesindex = index;
-      this.searchfilter.series = value
+      this.setData({
+        seriesindex: index,
+        'searchfilter.series': value
+      })
     }
     if (type == 'brand') {
-      this.brandindex = index;
-      this.searchfilter.brand = value
+      this.setData({
+        brandindex: index,
+        'searchfilter.brand': value
+      })
     }
 
   },
   fetchData() {
-    this.productList = [],
-      this.startRow = 0;
-    this.$axios({
-      method: 'GET',
-      url: '/product/search?keyWord=' + this.keyword + '&startRow=' + this.startRow + '&pageSize=' + this.pageSize,
-    }).then((res) => {
-      if (res.total > 0) {
-        this.hasShow = true;
-        this.productList = res.itemsList;
-        this.totalSize = res.total;
+    this.setData({
+      productList:[],
+      startRow:0
+    })
+    request.req3('/product/search?keyWord=' + this.data.keyword + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
+    (err,res) => {
+      if (res.data.total > 0) {
+        this.setData({
+          hasShow:true,
+          productList: res.data.itemsList,
+          totalSize:res.data.total
+        })
       } else {
-        this.hasShow = false;
+        this.setData({
+          hasShow: false
+        })
       }
-      this.refresh()
+      // this.refresh()
     })
   },
-  gosearch() {
-    this.$router.push('/search');
+  gosearch: function () {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    });
   },
-  refresh(done) {
-    setTimeout(() => {
-      done()
-    }, 2000);
-
-  },
-  //scroll下拉加载更多
-  infinite(done) {
-    let _this = this;
-    if (this.productList.length < this.totalSize) {
-      this.startRow = this.startRow + this.pageSize;
-      return new Promise(resolve => {
-        this.$axios({
-          method: 'GET',
-          url: '/product/search?startRow=' + this.startRow + '&pageSize=' + this.pageSize,
-        }).then((res) => {
-          _this.productList = _this.productList.concat(res.itemsList);
-          done()
+  // //scroll下拉加载更多
+  bindscrolltolower() {
+    let that = this;
+    if (this.data.productList.length < this.data.totalSize) {
+      this.data.startRow = this.data.startRow + this.data.pageSize;
+      request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
+        'GET', {},
+        (err, res) => {
+          if (res.data.itemsList.length > 0) {
+            this.setData({
+              productList: that.data.productList.concat( res.data.itemsList),
+              hasShow: true
+            })
+          } else {
+            this.setData({
+              hasShow: false
+            })
+          }
+          this.setData({
+            totalSize: res.data.total
+          })
         })
-        resolve();
-      });
+
     } else {
       this.bottomtext = '已经到底了,没有更多了....';
-      done()
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
+    if (options.type != undefined) {
+      this.getList('type', options.type, options.typeindex)
+    }
+    if (options.keyword != undefined) {
+      this.setData({
+        keyword: options.keyword
+      })
+      this.fetchData();
+    }
+    this.getTop()
+    this.fetchData();
   },
 
   /**

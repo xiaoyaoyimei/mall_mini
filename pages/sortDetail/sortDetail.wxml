@@ -1,2 +1,173 @@
 <!--pages/sortDetail/sortDetail.wxml-->
-<text>pages/sortDetail/sortDetail.wxml</text>
+<import src="../../template/mplex.wxml"/>
+	<view>
+		<view class="clearfix ">
+			<view class="video-wrap">
+				<!-- <view ref="videoWrap" v-show=" 0== videonum" class="video-height" :style="{width:videowidth,height:videowidth}">
+					<view class="video" id="youkuplayer" style="width: 100%;height:100%">
+					</view>
+				</view> -->
+				<view wx:show="{{1== videonum}}" class="swiper">
+					<swiper wx:if="{{shangp.productImageList.length}}"  indicator-dots='true' style='height:720rpx;'>
+                <swiper-item wx:for="{{shangp.productImageList}}" wx:key="id"  data="{{item}}" > 
+                  <image src="{{imgurl}}{{item.listImg}}" class="slide-image"  mode="widthFix"/>
+                </swiper-item>
+					</swiper>
+					<image src="{{imgurl}}{{shangp.product.modelImg}}" wx:else></image>
+				</view>
+				<!-- <view class="controls" v-show="controlshow"> -->
+					<!-- <button :class="videonum==1?'active':''" catchtap="togglevideotab(1)">图片</button> -->
+					<!-- <button :class="videonum==0?'active':''" catchtap="togglevideotab(0)">视频</button> -->
+				<!-- </view> -->
+			</view>
+			<view class="iteminfo">
+				<view  class="dl-base dl clearfix">
+					<view class="mylike" catchtap="likepro">
+						<image src="../../images/love.png" v-if="likeshow"></image>
+						<image src="../..//images/custom-love.png" v-else></image>
+					</view>
+					<view class="sku-price dd color-newred">
+						<span wx:if="{{choosesp.price==0}}">￥{{shangp.product.salePrice}}</span>
+						<span wx:else> 
+						<span wx:if="{{cxshow}}">
+						<span class="color-red">￥{{choosesp.cuxiaoprice }} </span>
+						<label class="color-origin">￥{{choosesp.price }}</label>
+						</span>
+						<span wx:else>￥{{filters.toFix(choosesp.price)}}</span>
+						</span>
+					</view>
+				</view>
+				<view class='h1'>
+					<span class="prf10">{{shangp.product.modelNo}} </span>
+				</view>
+				<view class="itemtitle">
+					<span class="color-newred">{{shangp.product.modelName}} </span>
+				</view>
+				<view class="huodong clearfix" wx:if="{{choosesp.activityName!=null&&choosesp.activityName!=''}}">
+					<view class="huodongtitle div">活动</view>
+					<view class="huodonglist div">
+						<view class='p'><span class="red">{{choosesp.activityName}}</span></view>
+					</view>
+				</view>
+			</view>
+			<view class="fuwu">
+				<span>○ 官方正品</span>
+				<span>○ 极速发货</span>
+				<span>○ 七天无理由退换货</span>
+			</view>
+		</view>
+		<view class="bg-lightgray">
+			<view  class="swith-tab ul pt50 clearfix">
+				<view class='li {{num == 0 ? "active":" "}}' catchtap="toggletab" data-index="0">商品详情</view>
+				<view class='li {{num == 1? "active":" "}}' catchtap="toggletab" data-index="1">商品参数</view>
+				<view class='li {{num == 2 ? "active":" "}}' catchtap="toggletab" data-index="2">评价晒单</view>
+			</view>
+			<view class="intro_bg">
+				<view wx:if="{{num == 0}}" class="pro_intro">
+					<view wx:for="{{productimg}}" wx:key="id"  wx:for-index="index"  wx:for-item='item'><image mode="widthFix" src="{{imgurl}}{{item.imgUrl}}"></image></view>
+				</view>
+				<view wx:if="{{num == 1}}" class="pro_size clearfix">
+					<view class='p' wx:for="{{productDesc}}" wx:key="id"  wx:for-index="index"  wx:for-item='item'>
+						<text class="title span">{{item.attrCode}}:</text> <text class='span'>{{item.attrValue}}</text>
+					</view>
+				</view>
+				<view class="eval  " wx:if="{{num == 2}}">
+					<view class="eval-fl ">
+						<view class='h5'>全部评价
+						  <text class='span'  wx:if="{{!onlyimg}}" catchtap="toggleimg">全部</text>
+							<text class="allimg span"  catchtap="toggleimg" wx:if="{{onlyimg}}">有图</text>
+						</view>
+						<view class="eval-ul ul" wx:if="{{hasPJ}}">
+							<view  class="clearfix li" wx:for="{{commentList}}" wx:key="id"  wx:for-index="index"  wx:for-item='item'>
+								<view class='h6'><image class="iconUrl" src="{{imgurl}}{{item.list.iconUrl}}"></image></view>
+								<view class='div'>
+									<view class="name">{{item.list.nickName | plusXing('*')}}</view>
+									<view class="zan">{{dateUtil.format(item.list.commentTime ,'Y/M/D') }}
+										<view>
+											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>
+										<view class='zanicon ' :class="{red:item.isZan =='Y'}">
+													<text>{{item.number}}</text>
+										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
+										<image src="../../images/zan-gray.png" wx:else data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
+										</view>
+									</view>
+
+									<view class="commentContent">{{item.list.commentContent}}</view>
+									<view class="sz" wx:for="{{item.imgList}}" wx:key="id"  wx:for-index="index"  wx:for-item='cild' :key="index" wx:if="item.imgList.length>0">
+												<image src="{{imgurl}}{{child}}"></image>
+									</view>
+
+								</view>
+							</view>
+						</view>
+						<view class="flex-center  empty" wx:else>
+							<image src="../../images/pj_empty.png" style="max-width: 8rem;">
+              </image>
+							<p>暂无评论记录~</p>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<!-- <modal class="cartModal" v-model="cartModal">
+			<view class="imgdetail">
+				<image :src="ImgUrl |imgfilter" alt=""></image>
+				<view class="xinxi">
+					<span class="red" v-if="choosesp.price==0">￥{{shangp.product.salePrice | pricefilter}}</span>
+					<span class="red" v-else> 
+					<span v-if="cxshow">
+					<span class="color-red red">￥{{choosesp.cuxiaoprice | pricefilter}} </span>
+					<label class="color-origin red">￥{{choosesp.price | pricefilter}}</label>
+					</span>
+					<span class="red" v-else>￥{{choosesp.price | pricefilter}}</span>
+					</span>
+					<span v-show="!xiajia">
+					库存: {{choosesp.kucun}}件
+					</span>
+					<span class="prf10">已选：{{shangp.product.modelNo}} </span>
+					<view v-if="xiajia" class="xiajia">
+						<Icon type="information-circled">
+						</Icon>该商品已下架
+					</view>
+				</view>
+
+			</view>
+			<view class="summary">
+				<dl v-if="choosesp.activityName!=null&&choosesp.activityName!=''"><dt><em class="act">{{choosesp.activityName}}</em></dt>
+					<dd class="color-black">{{choosesp.activityName}} </dd>
+				</dl>
+				<dl class="noborde clerafix" v-for="(item, i) in shangp.productAttrList" :key="i">
+					<dt>{{item.attrKey.catalogAttrValue}}</dt>
+					<dd style="overflow: hidden;">
+						<ul class="color-sel clerafix">
+							<li :class="choosesp.kucun==0?'disabled':'abled'" v-for="(child, index) in item.attrValues" :key="index" catchtap="chooseSP($event,item)">
+								<span v-bind:class="item.attrValues.length==1?'active':''" :titleid="child.id" ref="dditem">
+										{{child.modelAttrValue}}</span>
+							</li>
+						</ul>
+					</dd>
+				</dl>
+				<dl class="dl-base clearfix"><dt>购买数量</dt>
+					<dd>
+						<view class="number">
+							<Icon type="ios-add" class="ios-add" catchtap="jia" /><input value="1" type="text" v-model="quantity" v-on:blur="changeNumber($event)"></input>
+							<Icon type="ios-remove" class="ios-remove" catchtap="jian" />
+						</view>
+					</dd>
+				</dl>
+			</view>
+			<view class="opt">
+				<button class="btn-cart" catchtap="atc" v-show="!wuhuotongzhi" v-if="!xiajia"><i class="icon-new icon-minicart"></i>加入购物车</button>
+				<button class="btn-xorder" v-show="!wuhuotongzhi" catchtap="buynow(0)"><i class="icon-new icon-minicart"  ></i>立即下单</button>
+				<button v-if="wuhuotongzhi" size="large" class="btn-nopro" disabled="disabled">暂时无货，到货通知</button>
+
+			</view>
+
+		</modal> -->
+		<!-- <view class="detailfooter">
+			<navigator url="/index"><image src="../../images/bar-home-gray.png"></image>> </navigator>
+			<navigator url="/cart"> <image src="../../images/bar-cart-gray.png"></image>></navigator>
+			<button catchtap="cartmodal()" style="background-color:#ff0000"> 点击购买</button> -->
+
+		<!-- </view> -->
+	</view>

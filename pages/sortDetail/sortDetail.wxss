@@ -1,1 +1,529 @@
 /* pages/sortDetail/sortDetail.wxss */
+	.icon-back {
+		position: fixed;
+		background: #333;
+		opacity: 0.5;
+		z-index: 11;
+		color: #fff;
+		border-radius: 100%;
+		left: 1rem;
+		font-size: 3.5rem;
+		top: 1rem;
+	}
+	
+	.iteminfo {
+    padding-top: 0.5rem;
+		border-top:#F0F0F0 solid 0.25rem;
+		position: relative;
+		background: #fff;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+	}
+	
+	.dl-base .sku-price {
+		margin-top: 0rem;
+		font-weight: 700;
+		font-size: 1rem;
+		float: left;
+		color: #FF0000;
+	}
+	
+	.iteminfo .h1 {
+		margin-top: 0.35rem;
+		line-height: 1rem;
+		margin-bottom: 0.2rem;
+	}
+	
+	.itemtitle {
+		font-size: 0.7rem;
+		padding-bottom: 0.5rem;
+    color: #999999;
+	}
+	
+	.prf10 {
+		font-weight: 700;
+		font-size: 0.7rem;
+		color: #333333;
+	}
+	
+	.wuliu {
+		width: 100%;
+		font-weight: 400;
+		font-size: 1.8rem;
+		color: #999999;
+		padding: 1.5rem 1.25rem;
+		border-bottom: 0.025rem solid #eee;
+	}
+	
+	.mylike {
+		position: absolute;
+		top: 0.75rem;
+		right: 0.7rem;
+  }
+	.mylike	image {
+		width: 1rem;
+		height: 1rem;
+	}
+	
+	
+	.huodong {
+		width: 100%;
+		padding: 0 0.61rem;
+		border-bottom: 0.12rem solid #eee;
+	}
+	
+	.huodong .div {
+		float: left;
+	}
+	
+	.huodongtitle {
+		width: 2rem;
+		font-weight: 400;
+		font-size: 0.8rem;
+		color: #999999;
+		margin-top: 0.5rem;
+	}
+	
+	.huodonglist {
+		width: 14rem;
+		margin-top: 0.5rem;
+	}
+	
+	.huodonglist .p {
+		margin-bottom: 0.5rem;
+		font-weight: 400;
+		font-size: 0.8rem;
+		color: #333333;
+		height: 1.25rem;
+		overflow: hidden;
+	}
+	
+	.huodonglist .red {
+		color: #FF0000;
+		margin-right: 0.35rem;
+	}
+	
+	.fuwu {
+		padding: 0.5rem;
+		border-bottom: 0.5rem solid #F0F0F0;
+		border-top: 0.5rem solid #F0F0F0;
+		background: #fff;
+		color: #666;
+    font-size: 0.6rem;
+	}
+	
+	.bg-lightgray {
+		width: 100%;
+		margin-bottom: 5rem;
+	}
+	
+	.swith-tab {
+		width: 100%;
+		background: #fff;
+		border-bottom: 0.25rem solid #eee;
+	}
+	
+	.swith-tab .li {
+		float: left;
+		width: 33%;
+		font-weight: 400;
+		font-size: 0.9rem;
+		color: #999999;
+		height: 2.5rem;
+		line-height: 2.5rem;
+		text-align: center;
+		border-right: 0.05rem solid #eee;
+	}
+	
+	.swith-tab .active {
+		color: #FF0000;
+		border-bottom: 0.15rem solid #FF0000;
+	}
+	
+	.pro_intro image {
+		width: 100%;
+	}
+	
+	.detailfooter {
+		width: 100%;
+		height: 4.9rem;
+		position: fixed;
+		left: 0rem;
+		bottom: 0rem;
+		z-index: 1000;
+		border-top: 1px solid #eee;
+		box-shadow: -0.2rem 0px 0px 0px #1b1b1b;
+		background-color: #fff;
+		text-align: center;
+		display: flex;
+		align-items: center;}
+		a {
+			width: 25%;
+		}
+		button {
+			width: 50%;
+			border: none;
+			font-weight: 400;
+			font-size: 1.8rem;
+			color: #FFFFFF;
+			height: 100%;
+		}
+	
+	
+	.big {
+		position: relative;
+		width: 100%;
+	}
+	
+	.videoIcon {
+		position: absolute;
+		left: 2.5rem;
+		bottom: 2.5rem;
+		width: 3rem;
+		height: 3rem;
+	}
+	
+	.guanbi {
+		position: absolute;
+		right: 2.5rem;
+		top: 2.5rem;
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	
+	.pro_size {
+		padding: 1.25rem;
+		background: #fff;
+	}
+	
+	.pro_size .span {
+		float: left;
+		width: 68%;
+		margin-top: 0.25rem;
+		font-size: 0.7rem;
+		overflow: hidden;
+		color: #999999;
+	}
+	
+	.pro_size .title {
+		width: 28%;
+		text-align: right;
+		margin-right: 4%;
+		color: #333333;
+	}
+	
+	.btn-like {
+		background-color: #ffffff;
+		border: none;
+	}
+	
+	.noborder {
+		border-top: 1px solid #eee;
+	}
+	
+	.noborder dt {
+		font-weight: 400;
+		font-size: 2.4px;
+		margin-bottom: 0.5rem;
+	}
+	
+	.color-sel {
+		margin-top: 1rem;
+	}
+	
+	.color-sel .li {
+		float: left;
+		margin-bottom: 0.5rem;
+		margin-right: 1rem;
+		text-align: center;
+		border-radius: 0.5rem;
+	}
+	
+	.color-sel .li .span {
+		padding-left: 1rem;
+		padding-right: 1rem;
+		display: block;
+		width: 100%;
+		border: 1px solid #eee;
+		height: 3rem;
+		line-height: 3rem;
+		font-size: 1.4rem;
+	}
+	
+	.color-sel .li image {
+		width: 4rem;
+		vertical-align: middle;
+	}
+	
+	.color-sel .active {
+		border: 1px solid #eee;
+		color: #f00;
+	}
+	
+	.cartModal .dl-base {
+		margin-top: 1rem;
+		padding-top: 1rem;
+		border-top: 1px solid #eee;
+	}
+	
+	.number input {
+		float: right;
+		line-height: 3.6rem;
+		height: 3.6rem;
+		width: 5rem;
+		border: 1px solid #eee;
+		text-align: center;
+	}
+	
+	.number .ios-add {
+		float: right;
+		line-height: 3.6rem;
+		height: 3.6rem;
+		width: 3.6rem;
+		background-color: #f0f0f0;
+		text-align: center;
+	}
+	
+	.number .ios-remove {
+		float: right;
+		line-height: 3.6rem;
+		height: 3.6rem;
+		width: 3.6rem;
+		background-color: #f0f0f0;
+		text-align: center;
+	}
+	
+	.imgdetail {
+		display: flex;
+	}
+	
+	.imgdetail img {
+		width: 10rem;
+		height: 10rem;
+		margin-right: 1rem;
+	}
+	
+	.xinxi .span {
+		display: block;
+		font-weight: 400;
+		font-size: 1.6rem;
+		color: #999999;
+	}
+	
+	.summary {
+		padding-top: 1rem;
+		border-top: 1px solid #eee;
+	}
+	
+	.summary dt {
+		font-size: 1.4rem;
+		color: #333;
+	}
+	
+	.xinxi .red {
+		font-weight: 700;
+		font-size: 2rem;
+		color: #FF0000;
+	}
+	
+	.opt {
+		margin-top: 1.5rem;
+		width: 100%;
+		text-align: center;
+		margin-bottom: 1rem;
+		display: flex;
+	}
+	
+	.opt button {
+		height: 3.6rem;
+		line-height: 3.6rem;
+		border: none;
+		font-size: 1.6rem;
+		width: 50%;
+	}
+	
+	.btn-cart {
+		background-color: #f69136;
+		color: #fff;
+	}
+	
+	.btn-xorder {
+		background-color: #FF0000;
+		color: #fff;
+	}
+	
+	.iconUrl {
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 1.2rem;
+		border: 1px solid #ddd;
+		padding: 0.25rem;
+	}
+	  .eval-fl .h5 {
+      padding: 0rem 0.61rem;
+      border-bottom: 0.05rem solid #eee;
+      background: #fff;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 400;
+  }
+  
+  .eval-fl .h5 .span {
+      float: right;
+      padding-right: 0.15rem;
+      text-align: right;
+      border: 1px solid #ddd;
+      padding: 0.1rem 0.75rem;
+      border-radius: 0.5rem;
+  }
+  
+  .eval-fl .h5 .allimg {
+      color: #FF0000;
+      border-color: #ff0000
+  }
+  
+  .eval-ul {
+      padding: 0rem 0.75rem;
+  }
+  
+  .eval-ul .h6 {
+      float: left;
+      width: 4rem;
+  }
+  
+  .eval-ul .li {
+      margin-top: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid #eee;
+  }
+  
+  .eval-ul .div {
+      float: left;
+      width: calc(100% - 4rem);
+      position: relative;
+  }
+
+	.eval-ul .name {
+		font-weight: 400;
+		font-size: 0.9rem;
+		line-height: 1.25rem;
+		color: #333333;
+	}
+	
+	.eval-ul .zan {
+		font-weight: 400;
+		font-size: 0.6rem;
+		color: #999999;
+		line-height:1rem;
+	}
+	
+	.eval-ul .zanicon {
+		position: absolute;
+		top: 1.25rem;
+		right: 0rem;
+		color: #999999;
+		font-size: 0.9rem;
+	}
+	
+	.zanicon image {
+		width: 1rem;
+		height: 1rem;
+	}
+	
+	.eval-ul .red {
+		color: #FF0000;
+	}
+	
+	.fr image {
+		vertical-align: middle;
+		margin-left: 0.4rem;
+		width: 1rem;
+	}
+	
+	.eval-ul .commentContent {
+		margin-top: 1rem;
+		font-weight: 400;
+		font-size: 0.75rem;
+		line-height: 1.25rem;
+		color: #333;
+	}
+	
+	.sz image {
+		margin-top:0.75rem;
+		width: 2.5rem;
+		height: 2.5rem;
+	}
+	
+	.carticon {
+		position: fixed;
+		z-index: 11;
+		right: 1.5rem;
+		top: 1rem;
+		background: #333;
+		border-radius: 50%;
+		color: #fff;
+		font-size: 2rem;
+		height: 3rem;
+		width: 3rem;
+		text-align: center;
+		opacity: 0.5;
+	}
+	
+	.video-wrap {
+		position: relative;
+		width: 100%;
+		display: block;
+  }
+	.video-wrap	.swiper  image {
+				max-width: 100%;
+		}
+	.video-wrap	.controls {
+			position: absolute;
+			bottom: 3rem;
+			left: 50%;
+			margin-left: -70px;
+			z-index: 10;}
+	.video-wrap	.controls	button {
+				background: #fff;
+				color: #666;
+				border: 1px solid #666;
+				margin-left: 1.5rem;
+				padding: 0 0.7rem;
+				font-size: 1.2rem;
+				border-radius: 0.5rem;
+			}
+	.video-wrap	.active {
+				background: #0099ff;
+				color: #fff;
+				border-color: #0099ff;
+			}
+		
+	
+	
+	.video {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+	
+	.flex-center {
+		background: #fff;
+	}
+
+	.ivu-modal-close {
+		border: 1px solid #bbb;
+		border-radius: 50%;
+	}
+	
+	.cartModal .ivu-modal {
+		left: 0rem;
+		bottom: 0rem;
+		width: 100%!important;
+		margin: 0px;
+	}
+	
+	.cartModal .ivu-modal-footer {
+		display: none!important;
+	}
