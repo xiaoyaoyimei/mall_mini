@@ -1,0 +1,37 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
+<view class="top_line"></view>
+<view>
+  <view class="top_m">
+    <image class="img" src="{{filters.imgurl(simg)}}"></image>
+    <view class="title"><view>{{stitle}}</view>
+    <view> {{sname}}</view></view>
+  </view>
+  <view class="add_item">
+    <textarea class="item_input" placeholder='请输入晒单评价' bindinput='textarea'></textarea>
+
+
+  </view>
+  <view class="add_item">
+    <text class="item_text">上传图片:</text>
+ 
+       <view class="question-images-tool">
+      <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 5}}">添加图片</button>
+    </view>
+  </view>
+<view class="question-images"> 
+<block wx:for="{{images}}" wx:key="*this"> 
+<view class="q-image-wrap"> <!-- 图片缩略图 -->
+ <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image> <!-- 移除图片的按钮 --> 
+<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view> </view> </block> </view>
+
+
+
+
+  <!-- <view class="add_address" bindtap="add">
+    <view class="add">
+      <text>提交</text>
+    </view>
+  </view> -->
+
+  <button class="weui-btn" type="primary" bindtap="add">提交</button>
+</view>

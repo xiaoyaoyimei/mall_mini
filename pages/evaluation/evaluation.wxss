@@ -1,6 +1,14 @@
 /* pages/evaluation/evaluation.wxss */
+page{
+    background:#f0f0f0;
+}
 .pj {
-  padding: 20rpx
+  padding: 20rpx;
+  background:#fff;
+  margin-bottom: 10px;
+}
+.mr5{
+  margin-right: 5px
 }
 .pj_top{
   padding-bottom: 10px;

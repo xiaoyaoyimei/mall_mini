@@ -1,4 +1,4 @@
-var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
+var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀
 var util = require('./util.js')
 var auto = 'customer/login';
 //携带TOKEN req req2 req5都需携带token
@@ -57,9 +57,8 @@ function req(fromurl,url, methodway, data, callback) {
   } 
 }
 
-
+//请求直接加载url 上的
 function req2(url, methodway, data, callback) {
-
   if(data==null||data==undefined){
     url=rootDocment + url 
   }else{
@@ -91,10 +90,16 @@ function req2(url, methodway, data, callback) {
   }
 }
 function req5(url, methodway, uniunid, data, callback) {
+
+  if (uniunid == null || uniunid == undefined) {
+    url=rootDocment + url
+  }else{
+    url=rootDocment + url + '?id=' + uniunid
+  }
   var CuserInfo = wx.getStorageSync('CuserInfo');
   if (CuserInfo.token) {
     wx.request({
-      url: rootDocment + url + '?id=' + uniunid,
+      url: url,
       method: methodway,    //大写
       data: data,
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },

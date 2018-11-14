@@ -5,13 +5,13 @@
     <image src="{{filters.imgurl(item.list.iconUrl)}}" class="tx" ></image>
     <text>{{item.list.nickName}}</text>
     <view class="zan">
-    <text style="{{item.isZan =='Y'?'color:#f00':'color:gray'}}">{{item.number}}</text>
+    <text  class="mr5" style="{{item.isZan =='Y'?'color:#f00':'color:gray'}}">{{item.number}}</text>
     <image src="../../images/zan-red.png" wx:if="item.isZan =='Y'" data-id="item.list.id" data-isZan="item.isZan" bindtap='zan'></image>
 			<image src="../../images/zan-gray.png" wx:else data-id="item.list.id" data-isZan="item.isZan" bindtap='zan'></image>
       </view>
   </view>
   <view>
-    <text class="attr">					{{item.list.commentTime}}  件数:{{item.shippingOrderItems.quantity}}, 颜色分类:{{item.shippingOrderItems.productAttrs}}</text>
+    <text class="attr">					{{filters.formatTime(item.list.commentTime)}}  件数:{{item.shippingOrderItems.quantity}}, 颜色分类:{{item.shippingOrderItems.productAttrs}}</text>
   </view>
   <view class="content">			{{item.list.commentContent}}</view>
   <view class="conent-img">	<block  wx:for-item="child"  wx:for="{{item.imgList}}" wx:key="index">

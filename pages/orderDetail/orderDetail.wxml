@@ -13,8 +13,8 @@
       </view>
       <view class="top_view">
     <view>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</view>
-    <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}
-        {{orderdetail.shippingAddress.receiverDistrict}}{{orderdetail.shippingAddress.receiverAddress}}</text>
+    <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}} {{orderdetail.shippingAddress.receiverDistrict}}
+    {{orderdetail.shippingAddress.receiverAddress}}</text>
 </view>
 
   </view>
@@ -32,12 +32,15 @@
 
   <view class="stext">
     <view>订单编号：{{orderdetail.shippingOrder.orderNo}}</view>
-    <view>下单时间：{{orderdetail.shippingOrder.createTime }}</view>
-    <view>收票人：{{orderdetail.shippingInvoice.receivePerson}}</view>
+    <view>下单时间：{{filters.formatTime(orderdetail.shippingOrder.createTime)}}</view>
+
+     <view>发票状态：{{orderdetail.shippingInvoice.znstatus}}</view>
+  
     <view>发票抬头：{{orderdetail.shippingInvoice.invoiceTitle}}</view>
     <view>发票类型：{{orderdetail.shippingInvoice.invoiceType}} </view>
+    <view>收票人：{{orderdetail.shippingInvoice.receivePerson}}</view>
     <button size='mini' type='primary'  class="editin_btn"
-    wx:if="{{orderdetail.shippingOrder.orderStatus!='04'}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
+    wx:if="{{orderdetail.shippingOrder.orderStatus!='04'&&orderdetail.shippingInvoice.invoiceStatus=='created'}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
       编辑发票信息
     </button>
 
@@ -52,6 +55,10 @@
     <view class="total_wrap">
       <text class="t">商品优惠:</text>
       <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.discountFee)}}</text>
+    </view>
+     <view class="total_wrap">
+      <text class="t">运费:</text>
+      <text class="s">￥{{filters.toFix(orderdetail.shippingOrder.postageFee)}}</text>
     </view>
     <view class="total_wrap">
       <text class="t">实付款:</text>
