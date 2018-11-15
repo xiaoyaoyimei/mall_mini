@@ -1,13 +1,18 @@
+import { $init, $digest } from '../../utils/util'
 var cartId = ''
 var addressId = ''
 var request = require('../../utils/https.js')
 var uri_order_confirm = 'order/shopping/confirm' //确认订单
 Page({
   data: {
+    orderfrom: 'B',	//获取from类型A为立即下单，B为来自购物车1
+    freight:0,
     cartList: [],
-    addressInfo: {},
+    addressInfo: { receiveProvince:''},
     hasAddress: false,
     productItemIds:[],
+    quantitys:[],
+    modelIds:[],
     couponshow: true,
     //商品原总价
     origintotalprice: 0,
@@ -25,7 +30,9 @@ Page({
       price: 0,
       num: 0
     },
-    disabled:false
+    disabled:false,
+    useCouponMsg:'',//使用优惠码提示
+    remark:''
   },
   //优惠券
   bindcouponInput: function (e) {
@@ -33,11 +40,19 @@ Page({
       couponCode: e.detail.value,
     })
   },
+  //订单备注
+  bindRemark: function (e) {
+    this.setData({
+      remark: e.detail.value,
+    })
+  },
   addressClick: function () {
     wx.navigateTo({
       url: '../addressManager/addressManager',
     })
+
   },
+
   //总价计算
   jisuan(value) {
     let _this = this;
@@ -54,66 +69,101 @@ Page({
     }
     //使用优惠券
     else {
+      _this.data.total.num = 0;
+      this.data.cartList.forEach(function (item, index) {
+        _this.data.total.num += item.quantity;
+      });
       let couponmethod = value;
-      if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "") {
-        totalPrice = 0;
+      if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "" && couponmethod.availableModel == "") {
+        _this.total.price = 0;
         if (couponmethod.couponMode == 'rate') {
           this.data.cartList.forEach(function (item, index) {
             if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
-              totalPrice += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
             } else {
-              totalPrice += item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+              item.salePrice = item.salePrice * (1 - couponmethod.modeValue);
+              _this.data.total.price += item.salePrice * item.quantity;
             }
           });
         } else {
           this.data.cartList.forEach(function (item, index) {
             if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
-              totalPrice += item.salePrice * item.quantity;
+              _this.total.price += item.salePrice * item.quantity;
             } else {
-              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+              item.salePrice = item.salePrice - couponmethod.modeValue;
+              _this.total.price += item.salePrice * item.quantity;
             }
           });
         }
       } else if (couponmethod.availableSku != "") {
-        totalPrice = 0;
+        _this.data.total.price = 0;
         if (couponmethod.couponMode == 'rate') {
           this.data.cartList.forEach(function (item, index) {
-            if (item.id == couponmethod.availableCatalog) {
-              totalPrice += item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+            if (item.id == couponmethod.availableSku) {
+              item.salePrice = item.salePrice * (1 - couponmethod.modeValue);
+              _this.data.total.price += item.salePrice * item.quantity
             } else {
-              totalPrice += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
             }
           });
         } else {
           this.data.cartList.forEach(function (item, index) {
-            if (item.id == couponmethod.availableCatalog) {
-              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+            if (item.id == couponmethod.availableSku) {
+              item.salePrice = item.salePrice - couponmethod.modeValue
+              _this.data.total.price += item.salePrice * item.quantity
             } else {
-              totalPrice += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
             }
+
           });
         }
-      } else {
-        totalPrice = 0;
+      } else if (couponmethod.availableModel != "") {
+        _this.data.total.price = 0;
         if (couponmethod.couponMode == 'rate') {
           this.data.cartList.forEach(function (item, index) {
-            if (item.productType == couponmethod.availableSku) {
-              totalPrice+= item.salePrice * (1 - couponmethod.modeValue) * item.quantity
+            if (item.productId == couponmethod.availableModel) {
+              item.salePrice = item.salePrice * (1 - couponmethod.modeValue);
+              _this.data.total.price += item.salePrice * item.quantity
             } else {
-              totalPrice += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
             }
           });
         } else {
           this.data.cartList.forEach(function (item, index) {
-            if (item.productType == couponmethod.availableSku) {
-              totalPrice += (item.salePrice - couponmethod.modeValue) * item.quantity
+            if (item.productId == couponmethod.availableModel) {
+              item.salePrice = item.salePrice - couponmethod.modeValue
+              _this.data.total.price += item.salePrice * item.quantity
             } else {
-              totalPrice += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
+            }
+
+          });
+        }
+      }
+      else {
+        _this.data.total.price = 0;
+        if (couponmethod.couponMode == 'rate') {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.productType == couponmethod.availableCatalog) {
+              item.salePrice = item.salePrice * (1 - couponmethod.modeValue);
+              _this.data.total.price += item.salePrice * item.quantity
+            } else {
+              _this.data.total.price += item.salePrice * item.quantity;
+            }
+          });
+        } else {
+          this.data.cartList.forEach(function (item, index) {
+            if (item.productType == couponmethod.availableCatalog) {
+              item.salePrice = item.salePrice - couponmethod.modeValue;
+              _this.data.total.price += item.salePrice * item.quantity
+            } else {
+              _this.data.total.price += item.salePrice * item.quantity;
             }
           });
         }
       }
     }
+
     var preferential = origintotalprice - totalPrice;
     this.setData({
       total: { num: num, price: totalPrice},
@@ -122,6 +172,7 @@ Page({
     })
   },
   usecoupon() {
+  
     this.data.xscoupon = false
     if (this.data.couponCode==''){
     wx.showToast({
@@ -129,16 +180,16 @@ Page({
       icon: 'none',
       duration: 1000,
       mask: true,
-      success: function () {return; }
       })
     }else{
     let para = {
-      addressId: this.data.addressInfo.id,
+      modelIds: this.modelIds,
       productItemIds: this.data.productItemIds,
-      couponCode: this.data.couponCode
+      couponCode:this.data.couponCode,
+      quantity: this.data.quantitys
     };
     request.req('cart', 'promotion/coupon', 'POST', para, (err, res) => {
-
+      this.data.cartList = wx.getStorageSync('cart');
       if (res.data.code == '200') {
         this.setData({
           xscoupon:true,
@@ -146,8 +197,10 @@ Page({
         })
         this.jisuan(this.data.couponmsg);
       }else{
+        this.data.useCouponMsg = res.data.object;
         this.setData({
           xscoupon: false,
+          useCouponMsg: this.data.useCouponMsg
         })
         wx.showModal({
           content: res.data.object,
@@ -168,18 +221,25 @@ Page({
     }
   },
   // 生命周期函数--监听页面加载
-  onLoad: function () {
-
+  onLoad: function (options) {
+    this.setData({
+      orderfrom: options.orderfrom,
+    });
+      $init(this)
     var cartList = wx.getStorageSync('cart');
     var that = this;
     that.data.productItemIds = [];
     let n = 0;
+ 
     cartList.forEach(function (item, index) {
       if (item.promotionTitle != '' && item.promotionTitle != null) {
         n += 1;
       }
       that.data.productItemIds.push(item.id);
+      that.data.quantitys.push(item.quantity)
+      that.data.modelIds.push(item.productId)
     });
+
     if (that.data.cartList.length == n) {
       that.setData({
         couponshow: false,
@@ -187,7 +247,9 @@ Page({
     } else {
       that.setData({
         couponshow: true,
-        productItemIds: productItemIds
+        productItemIds: productItemIds,
+        quantitys: quantitys,
+        modelIds:modelIds
       })
     }
     that.setData({
@@ -203,7 +265,11 @@ Page({
         that.setData({
           addressInfo: addressInfo,//接数组
           hasAddress: true
-        })
+        }) 
+    
+       
+        this.getShipPrice();
+
       } else {
         that.setData({
           hasAddress: false
@@ -211,10 +277,46 @@ Page({
       }
     });
   },
+  getShipPrice(){
+    if (this.data.addressInfo.receiveProvince!=''){
+      let province = this.data.addressInfo.receiveProvince;
+      var price = [],
+        quantity = [],
+        typeIds = [];
+      this.data.cartList.forEach(function (item, index) {
+        price.push(item.salePrice);
+        quantity.push(item.quantity);
+        typeIds.push(item.productCatalog);
+      });
+      request.req5('order/getShipPrice', 'POST', null, {
+        "price": price,
+        "province": province,
+        "quantity": quantity,
+        "typeIds": typeIds
+      }, (err, res) => {
+  
+        if (res.data.code == 200) {
+          this.data.freight = res.data.object;
+          this.data.total.price += this.data.freight;
+          this.setData({
+            freight: this.data.freight,
+            total:{price:this.data.total.price}
+          })
+        }
+      
+      
+      });
+    }else{
+      return
+    }
+
+  },
   onShow: function () {
+
     // 生命周期函数--监听页面显示
     //获取默认地址
-
+   
+    this.getShipPrice();
   
 
   },
@@ -229,10 +331,22 @@ Page({
       })
       return;
     }
+    // addressId: this.addressList[this.selectItem].id,
+    //   productItemIds: this.productItemIds,
+    //     couponCode: this.couponCode,
+    //       remark: this.beizhu,
+    //         type: this.orderfrom,
+    //           quantity: this.quantitys,
+    //             modelIds: this.modelIds,
     request.req('zhifu',uri_order_confirm, 'POST',{
+
       productItemIds: that.data.productItemIds,  // 购物车id
       addressId: that.data.addressInfo.id, //地址id
       couponCode: that.data.couponCode,  //暂时为空  优惠券id
+      quantity: that.data.quantitys,
+      modelIds: that.data.modelIds,
+      remark: that.data.remark,
+      type: that.data.orderfrom
     }, (err, res) => {
           if (res.data.code == 200) {
             var orderNo=res.data.msg;

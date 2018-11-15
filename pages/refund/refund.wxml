@@ -1,3 +1,4 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="top_line"></view>
 <view>
     <view class="add_item">
@@ -6,29 +7,42 @@
     </view>
         <view class="add_item">
         <text class="item_text">退款退货原因:</text>
-        {{reasonList}}
-          <picker-view indicator-style="height: 50px;"  value="{{value}}" bindchange="bindChange">
-    <picker-view-column>
-      <view wx:for="{{reasonList}}" style="line-height: 50px" wx:key="index">{{item}}</view>
-    </picker-view-column>
-    </picker-view>
-        <!-- <input class="item_input" bindinput="bindAddressInput" placeholder="退款退货原因" /> -->
+        
+      <picker class="picker" bindchange="bindPickerChange" value="{{index}}" range="{{reasonList}}"  range-key="content">
+        <view class="picker">
+          {{reasonList[index].content}}
+        </view>
+  </picker>
     </view>
         <view class="add_item">
         <text class="item_text">上传凭证:</text>
-        <button class="item_input"bindtap='chooseImg'>选择图片</button>
+        <view class="question-images-tool">
+         <button type="default" size="mini" bindtap="chooseImage" wx:if="{{images.length < 5}}">选择图片</button>
+</view>
+   </view>
+        <view class="add_item">
+        <text class="item_text">上传视频:</text>
+    <view class="question-images-tool">    
+    <button type="default" size="mini" bindtap="chooseVideo" wx:if="{{refundVideo==''}}">选择视频</button>
+     </view>
     </view>
     <view class="add_item">
-        <text class="item_text">退款退货理由:</text>
-        <input class="item_input" maxlength="11" bindblur="bindPhoneInput" placeholder="请输入退款退货理由" confirm-hold="true"/>
+          <textarea class="item_input" placeholder='请输入退款退货理由' bindinput='bindTextarea' style="height:60px"></textarea>
     </view>
-
-
-    <view class="add_address" bindtap="addAddress">
-        <view class="add">
-            <text>保存</text>
+ 
+    <!-- 图片缩略图  -->
+    <view class="question-images">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="q-image-wrap">
+          <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+          <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view>
         </view>
+      </block>
     </view>
-
+    <view class="question-images" wx:if="{{refundVideo!=''}}">
+      <video  id="prew_video" src="{{filters.imgurl(refundVideo)}}" controls bindfullscreenchange="handleVideoPreview"></video>
+       <view class="q-image-remover"  bindtap="removeVideo">删除</view>
+    </view>
+  <button  type="primary" bindtap="add">提交</button>
 
 </view> 

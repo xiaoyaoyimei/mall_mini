@@ -3,7 +3,6 @@ import { promisify } from '../../utils/promise.util'
 var request = require('../../utils/https.js')
 var baseorgin = getApp().globalData.baseorgin;
 //上传图片
-var upimg = require('../../utils/upimg.js')
 const wxUploadFile = promisify(wx.uploadFile)
 Page({
 

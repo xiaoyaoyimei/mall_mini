@@ -16,11 +16,7 @@ Page({
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
 
         if (res.data.code == 200) {
-          if (res.data.object.length>0){
-            for (var val of res.data.object) {
-              val.gshsalePrice = util.pricefilter(val.salePrice);
-            }
-          }
+
             self.setData({
               hasList: true,
               cartList: res.data.object,
@@ -189,7 +185,7 @@ Page({
     }else{
       wx.setStorageSync('cart', goumai);
       wx.navigateTo({
-        url: "../orderConfirm/orderConfirm",
+        url: "../orderConfirm/orderConfirm?orderfrom=B",
       });
 
     }

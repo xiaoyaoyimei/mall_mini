@@ -15,30 +15,3 @@
   height: 200rpx;
   width: 200rpx;
 }
-.question-images {
-  display: flex;
-  align-items: center;
-  margin-top: 40rpx;
-  padding: 10px;
-  flex-flow:wrap;
-
-}
-.q-image-wrap {
-  width: 31%;
-  margin-right: 10rpx;
-}
-.q-image {
-  flex: 1;
-  height: 200rpx;
-  width: 100%;
-  min-width: 100rpx
-}
-
-.q-image-remover {
-  text-align: center;
-  font-size: 14px
-}
-.question-images-tool {
-  display: flex;
-  align-items: center;
-}

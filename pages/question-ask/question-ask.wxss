@@ -38,10 +38,6 @@ page {
   padding: 40rpx 0;
 }
 
-.question-images-tool {
-  display: flex;
-  align-items: center;
-}
 
 .question-images {
   display: flex;

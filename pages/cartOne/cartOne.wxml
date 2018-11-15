@@ -1,15 +1,16 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="main">
 	<view wx:if="{{!loginhidden}}">
 	<view wx:if="{{hasList}}">
 			<view class="cart-box">
 					<view class="cart-list" wx:for="{{cartList}}" wx:key="{{index}}">
-						<icon wx:if="{{item.selected}}" type="success" color="#0099ff" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
+						<icon wx:if="{{item.selected}}" type="success" color="red" data-index="{{index}}"  class="cart-pro-select" bindtap="selectList"/>
 							<icon wx:else type="circle" class="cart-pro-select" data-index="{{index}}" bindtap="selectList"/>
 
 							<image class="cart-thumb" src="{{imgurl}}{{item.image}}" mode="widthFix"></image>
 						<text class="cart-pro-name">{{item.productName}}</text>
 							<text wx:if="{{item.promotionTitle !=null}}" class="promotion">{{x.promotionTitle}}</text>
-							<text class="cart-pro-price">￥{{item.gshsalePrice}}</text>
+							<text class="cart-pro-price">￥{{filters.toFix(item.salePrice)}}</text>
 							<view class="cart-count-box">
 									<text class="cart-count-down" bindtap="minusCount"  data-index="{{index}}">-</text>
 									<text class="cart-count-num">{{item.quantity}}</text>
@@ -30,9 +31,11 @@
 					<text class="cart-toatl-price">￥{{totalPrice}}</text>
 			</view>
 	</view>
-	<view wx:else  class="tips">
-			购物车是空的哦~
-	</view>
+
+    <view class="flex-center empty " wx:else>
+    <image src="../../images/cart_empty.png "></image>
+    <text>购物车是空的哦~</text>
+  </view>
 </view>
     <view  class="tips" wx:else>
     您尚未登录!
