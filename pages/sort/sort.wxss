@@ -71,43 +71,44 @@
 		border-top: 1px solid #eee;
 	}
 	
-	.mylike li {
+	.mylike .li {
 		float: left;
-		width: 50%;
+		width: 49.5%;
 		text-align: center;
 		border-bottom: 1px solid #eee;
 		border-right: 1px solid transparent;
-		background: #fff;}
-		a {
+		background: #fff;
+  }
+	.mylike	.a {
 			display: block;
 			width: 100%;
 			height: 100%;
 		}
-	
-	
-	.mylike li:nth-of-type(2n+1) {
+	.mylike .li:nth-of-type(2n+1) {
 		border-color: #eee;
 	}
 	
-	.mylike li img {
+	.mylike .li image {
 		width: 100%;
 		height: 100%;
 	}
 	
 	.mylike .ptitle {
 		font-weight: 400;
-		font-size: 1.6rem;
+		font-size: 1rem;
 		color: #333;
-		height: 2.5rem;
+		height: 1.5rem;
 		white-space: nowrap;
 		overflow: hidden;
+    display: block;
 		text-overflow: ellipsis;
 	}
 	
 	.mylike .red {
-		font-size: 1.6rem;
+		font-size: 1rem;
 		color: #FF0000;
-		padding-bottom: 1rem;
+		padding-bottom: 0.5rem;
+    display:block;
 	}
 	
 	.jiazaicenter {
@@ -138,25 +139,25 @@
 	}
 	
 	.filterModal .dt {
-		margin-bottom: 0.9rem;
+		margin-bottom: 0.4rem;
 		font-weight: bold;
 	}
 	
 	.filterModal .dd {
-		margin-bottom: 0.5rem;
-		margin-right: 0.5rem;
+		margin-bottom: 0.2rem;
+		margin-right: 0.2rem;
 	}
 	
-	.dd span {
+	.dd .span {
 		float: left;
 		width: 49%;
 		text-align: center;
-		margin-bottom: 0.5rem;
+		margin-bottom: 0.2rem;
 		margin-right: 1%;
 		overflow: hidden;
-		height: 2.5rem;
-		line-height: 2.5rem;
-		font-size: 1.5rem;
+		height: 1.5rem;
+		line-height: 1.5rem;
+		font-size: 0.7rem;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
@@ -165,17 +166,6 @@
 		background-color: #f00;
 		color: #fff;
 	}
-	
-	.filterModal .Hfoot {
-		text-align: center;
-	}
-	
-	.filterModal .Hfoot button {
-		width: 7.5rem;
-		height: 4rem;
-		font-size: 1.6rem;
-	}
-	
 	.top {
 		/* background: rgba(255, 0, 0, .9); */
 		color: #fff;
@@ -213,11 +203,6 @@
 		width: 1rem;
 		height: 1rem;
 	}
-	
-	.Hfoot {
-		position: absolute;
-		bottom: 10px;
-	}
 	.filterModal .ivu-modal {
 		width: 100%!important;
 		right: 0rem;
@@ -247,11 +232,6 @@
 	.filterModal .ivu-modal-wrap {
 		left: 7.5rem!important;
 	}
-	
-	.filterModal .ivu-modal-footer {
-		border-top: 0 none;
-	}
-	
 	.newsort .ivu-scroll-container{
 		height:calc(100vh - 50px)!important;
 	}

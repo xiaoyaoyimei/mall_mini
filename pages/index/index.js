@@ -54,11 +54,6 @@ Page({
       path: '/pages/index/index' // 分享路径
     }
   },
-  searchPro: function () {
-    wx.navigateTo({
-      url: '../search/search',
-    })
-  },
   //跳转到goodsdetail
   itemclick: function (e) {
     var specId = e.currentTarget.dataset.specid;
