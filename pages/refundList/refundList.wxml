@@ -1,14 +1,11 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
-    <view wx:if="{{loginhidden}}" class="tips">
-    您尚未登录!
-    <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
-    </view>
+ 
 
-<view wx:else >
-<view class="container" wx:if="{{newlist.length>0}}">
+<view  >
+<view class="container" wx:if="{{hasShow}}">
 
     <view class="list" wx:for="{{newlist}}"  wx:key="id">
-    <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.znStatus}}" >
+    <navigator url="../refundDetail/refundDetail?refundOrderNo={{item.refundOrder.refundOrderNo}}&OrderNo={{item.refundOrder.orderNo}}" >
       <view class="item-headerview">
           <view class="item-text">
             <text class="fr">{{item.refundOrder.znStatus}}</text>
@@ -19,7 +16,7 @@
         </view>
       </view>
   
-      <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId">
+      <view class="item-bottom" wx:for="{{item.refundOrderItems}}" wx:key="orderItemsId">
         <image class="img" src="{{filters.imgurl(item.productItemImg)}}" mode='wdithFix' />
         <view class="goodsinfo">
           <text class="goodsname">{{item.productTitle}}</text>
@@ -33,7 +30,7 @@
                   	<button  type="default" size="mini"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="tianxie" wx:if="{{x.refundOrder.refundOrderStatus=='02'}}">填写物流单号</button>     
        
 </view>
-    </view>
+</view>
 </view>
   <view class="flex-center  empty" wx:else>
     <image src="../../images/sh_empty.png"></image>

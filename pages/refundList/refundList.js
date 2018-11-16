@@ -6,11 +6,11 @@ var statusuri = "refund/enums"
 Page({
   data: {
     pageNo: 1,
-    hidden: false,
     list: [],
     newlist: [],
     statusenums: [],
-    loginhidden: true
+    loginhidden: true,
+    hasShow:true
   },
   goindex() {
     wx.switchTab({
@@ -43,7 +43,6 @@ Page({
     }, (err, res) => {
       if (res.data.code == 200) {
         that.setData({
-          hidden: true,
           statusenums: res.data.object,
           loginhidden: false
         })
@@ -65,25 +64,25 @@ Page({
     var CuserInfo = wx.getStorageSync('CuserInfo');
     request.req('index', uri, 'GET', {
     }, (err, res) => {
-      if (res.data.code == 200) {
+      if (res.data.length >0) {
 
         that.setData({
-          hidden: true,
-          list: res.data.object,
-          loginhidden: false
+          list: res.data,
+          loginhidden: false,
+          hasShow:true
         })
         //处理数据
         var list = that.data.list;
         for (var i = 0; i < list.length; i++) {
-          list[i].order.znStatus = that.statusfilter(list[i].refundOrder.refundOrderStatus);
+          list[i].refundOrder.znStatus = that.statusfilter(list[i].refundOrder.refundOrderStatus);
         }
         that.setData({
-          newlist: list
+          newlist: that.data.list
         })
 
       }
       else {
-        that.setData({ hidden: true, tips: "没有售后订单~", loginhidden: false })
+        that.setData({  tips: "没有售后订单~", loginhidden: false, hasShow:false })
       }
     })
   },

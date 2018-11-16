@@ -5,47 +5,54 @@
 </view>
 
 <view wx:else>
-  <view class="container" wx:if="{{hasShow}}">
+  <view class="tab">
+    <text class="{{status==00?'active':''}}" bindtap='setStatus' data-num="00">全部</text>
+    <text class="{{status==01?'active':''}}" bindtap='setStatus' data-num="01">待付款</text>
+    <text class="{{status==02?'active':''}}" bindtap='setStatus' data-num="02">待发货</text>
+    <text class=" {{status==06? 'active': ''}} " bindtap='setStatus' data-num="06">待收货</text>
+    <text class="{{status==07? 'active': ''}} " bindtap='setStatus' data-num="07">已签收</text>
+  </view>
+  <view class="container " wx:if="{{hasShow}}">
+
     <view class="list" wx:for="{{newlist}}" wx:key="id">
-      <navigator url="../orderDetail/orderDetail?orderNo={{item.order.orderNo}}&orderStatus={{item.order.znStatus}}">
-        <view class="item-headerview">
-          <view class="item-text">
-            <text class="fr">{{item.order.znStatus}}</text>
-            <text>订单号:{{item.order.orderNo}}</text>
-          </view>
-          <view class="item-text">
-            <text class="dx-color">总价:￥{{filters.toFix(item.order.orderTotalFee)}}</text>
-          </view>
+ 
+      <view class="item-headerview ">
+        <view class="item-text ">
+          <text class="fr ">{{item.order.znStatus}}</text>
+          <text>订单号:{{item.order.orderNo}}</text>
         </view>
- </navigator>
-        <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId" wx:for-item="child">
-          <image class="img" src="{{filters.imgurl(child.productItemImg)}}" mode='wdithFix' />
-          <view class="goodsinfo">
-            <text class="goodsname">{{child.productTitle}}</text>
-            <text>{{child.productItemNo}}</text>
-            <view class="goodsnum">
+        <view class="item-text ">
+          <text class="dx-color ">总价:￥{{filters.toFix(item.order.orderTotalFee)}}</text>
+        </view>
+      </view>
+
+      <view class="item-bottom" wx:for="{{item.orderItems}}" wx:key="orderItemsId" wx:for-item="child">
+        <image class="img" src="{{filters.imgurl(child.productItemImg)}} " mode='wdithFix' />
+        <view class="goodsinfo">
+          <text class="goodsname">{{child.productTitle}}</text>
+          <text>{{child.productItemNo}}</text>
+          <view class="goodsnum">
             <text>数量:{{child.quantity}}</text>
-              </view>
-                     <navigator url="../evaluate/evaluate?simg={{child.productItemImg}}&sname={{child.productItemNo}}&stitle={{child.productTitle}}&evaItemId={{child.orderItemsId}}&productId={{child.productModelId}}" 
-       wx:if="{{item.order.orderStatus=='07'&& !child.pinglun}}">去评价</navigator>      
           </view>
+          <navigator url="../evaluate/evaluate?simg={{child.productItemImg}}&sname={{child.productItemNo}}&stitle={{child.productTitle}}&evaItemId={{child.orderItemsId}}&productId={{child.productModelId}} " wx:if="{{item.order.orderStatus=='07' && !child.pinglun}}" class="pj">去评价</navigator>
         </view>
-     
+      </view>
+
 
       <view class="opt-bottom">
-        <button type="primary" size="mini" bindtap="quzhifu" wx:if="{{item.order.orderStatus=='01'}}" data-orderno="{{item.order.orderNo}}">去支付</button>
-        <button type="warn" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06'}}">确认收货</button>
-        <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01'||item.order.orderStatus=='02'}}">取消订单</button>
+        <button type="primary" size="mini" bindtap="seedetail" data-orderno="{{item.order.orderNo}}" data-orderstatus="{{item.order.znStatus}}">查看详情</button>
+        <button type="primary" size="mini" bindtap="quzhifu" wx:if="{{item.order.orderStatus=='01' }}" data-orderno="{{item.order.orderNo}}">去支付</button>
+        <button type="warn" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="qianshou" wx:if="{{item.order.orderStatus=='06' }}">确认收货</button>
+        <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="cancel" wx:if="{{item.order.orderStatus=='01' ||item.order.orderStatus=='02' }}">取消订单</button>
         <button type="default" size="mini" data-orderno="{{item.order.orderNo}}" bindtap="showrefund" wx:if="{{item.canRefund==true}}">退款退货</button>
-
       </view>
     </view>
   </view>
 
-  <view class="flex-center  empty" wx:else>
-    <image src="../../images/order_empty.png"></image>
+  <view class="flex-center empty " wx:else>
+    <image src="../../images/order_empty.png "></image>
     <text>您还没有相关的订单</text>
-    <text catchtap="goindex" class="color-dx">去购物</text>
+    <text catchtap="goindex " class="color-dx ">去购物</text>
   </view>
 
 </view>

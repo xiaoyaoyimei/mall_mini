@@ -55,6 +55,13 @@ Page({
       }
     })
   },
+  seedetail(e){
+    var orderNo = e.currentTarget.dataset.orderno;
+    var orderstatus = e.currentTarget.dataset.orderstatus;
+    wx.redirectTo({
+      url: `../orderDetail/orderDetail?orderNo=${orderNo}&orderStatus=${orderstatus}`,
+    })
+  },
   quzhifu(e){
     var that=this;
     var orderNo = e.currentTarget.dataset.orderno;
@@ -92,9 +99,19 @@ Page({
     }
   }, 
 
+  setStatus:function(e){
+    let num = e.target.dataset.num;
+    this.setData({
+      status: num
+    });
+    this.getData();
+  },
    getData: function () {
+   
+     
      var uri = '';
     var that = this;
+   
     var pageNo = that.data.pageNo;
     var CuserInfo = wx.getStorageSync('CuserInfo');
 
@@ -125,7 +142,10 @@ Page({
 
       }
       else{
-        that.setData({ hidden: true, tips: "没有数据~", loginhidden: false,hasShow:false })
+
+        that.setData({ hidden: true, 
+         loginhidden: false,hasShow:false })
+       
       }
     })
   },

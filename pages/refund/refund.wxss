@@ -1,1 +1,6 @@
 /* pages/refund/refund.wxss */
+.picker{
+  width: 100%;
+  padding-top: 5rpx;
+  padding-left:5px;
+}

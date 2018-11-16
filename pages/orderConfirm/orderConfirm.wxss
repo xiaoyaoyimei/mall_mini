@@ -62,9 +62,10 @@ width:500rpx;
     border-top: 10px solid #EFEFF4;
     border-bottom: 10px solid #EFEFF4;
     font-size: 13px;
+    padding: 10px;
 }
 .coupon{
-    padding: 10px 10px 0;
+   padding-bottom: 10px
 }
 .bottom_text_1{
     padding: 10px 10px 0px 10px;
@@ -111,7 +112,7 @@ display:flex;
 justify-content:space-between;
 }
 .weui-cell{
-padding:10rpx 10px;
+padding-bottom: 10px;
 position:relative;
 display:flex;
 align-items:center;
@@ -126,4 +127,13 @@ padding-left: 10rpx
 }
 .right{
   float: right
+}
+.beizhu {
+padding:10px;
+border-bottom:10px solid #f0f0f0;
+}
+.beizhu textarea{
+ border:1px solid #ccc;
+ height: 50px;
+ margin-top: 10px;
 }
