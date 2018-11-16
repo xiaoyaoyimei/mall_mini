@@ -70,6 +70,24 @@ Page({
       }
     })
   },
+  sort:function(e){
+    var keyword = wx.getStorageSync("keyword")
+    var type = wx.getStorageSync("type")
+    if (type != undefined) {
+      wx.removeStorageSync('type')
+    }
+    if (keyword != undefined) {
+      wx.removeStorageSync('keyword')
+    }
+    if (e.currentTarget.dataset.i != undefined){
+      wx.setStorageSync('keyword', e.currentTarget.dataset.i);
+    }else{
+      wx.setStorageSync('type', e.currentTarget.dataset.type);
+    }
+    wx.switchTab({
+      url: '/pages/sort/sort',
+    });
+  }, 
   gosearch:function() {
     wx.navigateTo({
       url: '/pages/search/search',

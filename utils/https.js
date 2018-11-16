@@ -1,4 +1,4 @@
-var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀
+var rootDocment = 'https://m.shop.dxracer.cn/mall/wap/';//  前缀
 var util = require('./util.js')
 var auto = 'customer/login';
 //携带TOKEN req req2 req5都需携带token
