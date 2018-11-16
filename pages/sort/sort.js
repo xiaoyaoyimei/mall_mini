@@ -48,7 +48,6 @@ Page({
   },
    // 获取滚动条当前位置
   scrolltoupper:function(e){
-    console.log(e) 
     if (e.detail.scrollTop > 100) {
         this.setData({ 
           floorstatus: true 
@@ -67,6 +66,7 @@ Page({
        }); 
   },
   ok() {
+    console.log(this.data.searchfilter)
       this.setData({
         keyword: '',
         startRow: 0
@@ -219,7 +219,6 @@ Page({
   },
   // //scroll下拉加载更多
   bindscrolltolower() {
-    console.log(this.data.productList)
     let that = this;
     if (this.data.productList.length < this.data.totalSize) {
       this.data.startRow = this.data.startRow + this.data.pageSize;
@@ -251,20 +250,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var keyword = wx.getStorageSync("keyword")
-    // var type = wx.getStorageSync("type")
-    // if (type != undefined) {
-    //   this.setData({
-    //     'searchfilter.type': type
-    //   })
-    // }
-    // if (keyword != undefined) {
-    //   this.setData({
-    //     keyword: keyword
-    //   })
-    // }
-    // this.fetchData();
-    // this.getTop()
+    var keyword = wx.getStorageSync("keyword")
+    var type = wx.getStorageSync("type")
+    if (type != undefined) {
+      this.setData({
+        'searchfilter.type': type
+      })
+    }
+    if (keyword != undefined) {
+      this.setData({
+        keyword: keyword
+      })
+    }
+    this.fetchData();
+    this.getTop()
   },
 
   /**
@@ -298,7 +297,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    var keyword = wx.getStorageSync("keyword")
+    var type = wx.getStorageSync("type")
+    if (type != undefined) {
+      wx.removeStorageSync('type')
+    }
+    if (keyword != undefined) {
+      wx.removeStorageSync('keyword')
+    }
   },
 
   /**
