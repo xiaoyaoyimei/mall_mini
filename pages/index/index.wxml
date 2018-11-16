@@ -16,7 +16,7 @@
           </swiper>
 				<view class="minipro clearfix">
 					<view class='li'>
-						<navigator  class='a' url="/pages/sort/sort?keyword=新品">
+						<navigator  class='a' catchtap="sort" data-type='f1e3e761ab6b4a659e676e83bae636a4'>
 							<image src="../../images/xp.png"> </image>
               <text>新品</text>
 						</navigator >
@@ -34,7 +34,7 @@
 						</navigator>
 					</view>
 					<view class='li'>
-						<navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+						<navigator  class='a' catchtap="sort" data-i='座椅周边' url="">
 							<image src="../../images/zb.png"> </image>
               <text>周边</text>
 						</navigator>
@@ -54,7 +54,7 @@
 				</view>
 				<view class="floor">
 					<view class="more">
-							<navigator url="/pages/sort/sort?keyword=电竞椅" class="a"> 
+							<navigator   catchtap="sort" data-i='电竞椅' class="a"> 
                   <text class='seemore'>查看更多 >></text> 
 							</navigator>
 						<text>电竞椅</text></view>
@@ -81,7 +81,7 @@
 						</view>
 					</view>
 					<view class="more">
-							<navigator  class='a' url="/pages/sort/sort?keyword:办公">
+							<navigator  class='a' catchtap="sort" data-i='办公'>
 							<text class='seemore'>查看更多 >></text> 
 							</navigator>
 						<text>办公</text>
@@ -109,7 +109,7 @@
 						</view>
 					</view>
 					<view class="more">
-							<navigator  class='a' url="/pages/sort/sort?keyword=家居"> 
+							<navigator  class='a' catchtap="sort" data-i='家居' > 
                   <text class='seemore'>查看更多 >></text> 
 							</navigator>
 						<text>家居</text></view>
@@ -137,7 +137,7 @@
 						</view>
 					</view>
 					<view class="more">
-							<navigator  class='a' url="/pages/sort/sort?keyword=座舱"> 
+							<navigator  class='a' catchtap="sort" data-i='座舱' > 
 								<text class='seemore'>查看更多 >></text> 
 							</navigator>
 						<text>座舱</text></view>
@@ -152,12 +152,12 @@
 						</view>
 					</view>
 					<view class="more">
-							<navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+							<navigator  class='a'  catchtap="sort" data-i='座椅周边'>
 								<text class='seemore'>查看更多 >></text> 
 							</navigator>
 						<text>座椅周边</text></view>
 						<view class="max100">
-              <navigator  class='a' url="/pages/sort/sort?keyword=座椅周边">
+              <navigator  class='a'  catchtap="sort" data-i='座椅周边'>
                 <image src="../../images/zyzb.jpg"  mode='widthFix'></image>
               </navigator>
             </view>

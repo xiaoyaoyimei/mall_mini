@@ -172,7 +172,7 @@ Page({
       productList:[],
       startRow:0
     })
-    request.req3('/product/search?keyWord=' + this.data.keyword + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
+    request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
     (err,res) => {
       if (res.data.total > 0) {
         this.setData({
@@ -198,7 +198,7 @@ Page({
     let that = this;
     if (this.data.productList.length < this.data.totalSize) {
       this.data.startRow = this.data.startRow + this.data.pageSize;
-      request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
+      request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
         'GET', {},
         (err, res) => {
           if (res.data.itemsList.length > 0) {
@@ -224,18 +224,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-    if (options.type != undefined) {
-      this.getList('type', options.type, options.typeindex)
-    }
-    if (options.keyword != undefined) {
+    console.log(options)
+    var keyword = wx.getStorageSync("keyword")
+    var type = wx.getStorageSync("type")
+    if (type != undefined) {
       this.setData({
-        keyword: options.keyword
+        'searchfilter.type': type
       })
-      this.fetchData();
     }
-    this.getTop()
+    if (keyword != undefined) {
+      this.setData({
+        keyword: keyword
+      })
+    }
     this.fetchData();
+    this.getTop()
   },
 
   /**

@@ -146,35 +146,38 @@
 	
 	.detailfooter {
 		width: 100%;
-		height: 4.9rem;
+		height: 2.5rem;
 		position: fixed;
 		left: 0rem;
 		bottom: 0rem;
 		z-index: 1000;
 		border-top: 1px solid #eee;
-		box-shadow: -0.2rem 0px 0px 0px #1b1b1b;
+		box-shadow: -0.1rem 0px 0px 0px #1b1b1b;
 		background-color: #fff;
 		text-align: center;
 		display: flex;
-		align-items: center;}
-		a {
+		align-items: center;
+  }
+	.detailfooter	.a {
 			width: 25%;
-		}
-		button {
+	}
+  .detailfooter	 .image{
+      width: 1.5rem;
+      height: 1.5rem;
+  }
+	.detailfooter	.button {
 			width: 50%;
 			border: none;
 			font-weight: 400;
-			font-size: 1.8rem;
+			font-size: 0.9rem;
 			color: #FFFFFF;
 			height: 100%;
-		}
-	
-	
+      border-radius: 0;
+	}
 	.big {
 		position: relative;
 		width: 100%;
 	}
-	
 	.videoIcon {
 		position: absolute;
 		left: 2.5rem;
@@ -182,7 +185,6 @@
 		width: 3rem;
 		height: 3rem;
 	}
-	
 	.guanbi {
 		position: absolute;
 		right: 2.5rem;
@@ -190,7 +192,6 @@
 		width: 2.5rem;
 		height: 2.5rem;
 	}
-	
 	.pro_size {
 		padding: 1.25rem;
 		background: #fff;
@@ -221,74 +222,75 @@
 		border-top: 1px solid #eee;
 	}
 	
-	.noborder dt {
+	.noborder .dt {
 		font-weight: 400;
-		font-size: 2.4px;
-		margin-bottom: 0.5rem;
+		font-size: 1.2px;
+		margin-bottom: 0.25rem;
 	}
 	
 	.color-sel {
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 	}
 	
 	.color-sel .li {
 		float: left;
-		margin-bottom: 0.5rem;
-		margin-right: 1rem;
+		margin-bottom: 0.25rem;
+		margin-right: 0.5rem;
 		text-align: center;
-		border-radius: 0.5rem;
+    padding-left: 0.5rem;
+		border: 1px solid #eee;
+    background: #eee;    
+		padding-right: 0.5rem;
+		border-radius: 0.25rem;
 	}
 	
 	.color-sel .li .span {
-		padding-left: 1rem;
-		padding-right: 1rem;
-		display: block;
-		width: 100%;
-		border: 1px solid #eee;
-		height: 3rem;
-		line-height: 3rem;
-		font-size: 1.4rem;
+		font-size: 0.7rem;
+
 	}
 	
 	.color-sel .li image {
-		width: 4rem;
+		width: 2rem;
 		vertical-align: middle;
 	}
 	
 	.color-sel .active {
 		border: 1px solid #eee;
 		color: #f00;
+    background: #fdeded;
 	}
 	
 	.cartModal .dl-base {
-		margin-top: 1rem;
-		padding-top: 1rem;
+		margin-top: 0.5rem;
+		padding-top: 0.5rem;
 		border-top: 1px solid #eee;
 	}
-	
+	.number{
+    float: right;
+  }
 	.number input {
 		float: right;
-		line-height: 3.6rem;
-		height: 3.6rem;
-		width: 5rem;
+		line-height: 1.8rem;
+		height: 1.7rem;
+		width: 2.5rem;
 		border: 1px solid #eee;
 		text-align: center;
 	}
 	
 	.number .ios-add {
 		float: right;
-		line-height: 3.6rem;
-		height: 3.6rem;
-		width: 3.6rem;
+		line-height: 1.8rem;
+		height: 1.8rem;
+		width: 1.8rem;
 		background-color: #f0f0f0;
 		text-align: center;
 	}
 	
 	.number .ios-remove {
 		float: right;
-		line-height: 3.6rem;
-		height: 3.6rem;
-		width: 3.6rem;
+		line-height: 1.8rem;
+		height: 1.8rem;
+		width: 1.8rem;
 		background-color: #f0f0f0;
 		text-align: center;
 	}
@@ -296,17 +298,10 @@
 	.imgdetail {
 		display: flex;
 	}
-	
-	.imgdetail img {
-		width: 10rem;
-		height: 10rem;
-		margin-right: 1rem;
-	}
-	
 	.xinxi .span {
 		display: block;
 		font-weight: 400;
-		font-size: 1.6rem;
+		font-size: 0.8rem;
 		color: #999999;
 	}
 	
@@ -322,23 +317,33 @@
 	
 	.xinxi .red {
 		font-weight: 700;
-		font-size: 2rem;
+		font-size: 1rem;
 		color: #FF0000;
 	}
-	
+	.imgdetail image {
+    width: 5rem;
+    height: 5rem;
+    margin-right: 1rem;
+}
 	.opt {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 		margin-top: 1.5rem;
 		width: 100%;
 		text-align: center;
-		margin-bottom: 1rem;
+		margin-bottom: 0;
+    background-color: #f0f0f0;
 		display: flex;
+    z-index: 100;
 	}
 	
 	.opt button {
-		height: 3.6rem;
-		line-height: 3.6rem;
+		height: 3rem;
+		line-height: 3rem;
 		border: none;
-		font-size: 1.6rem;
+    border-radius: 0;
+		font-size: 0.8rem;
 		width: 50%;
 	}
 	
@@ -351,7 +356,9 @@
 		background-color: #FF0000;
 		color: #fff;
 	}
-	
+	.opt .btn-nopro{
+    width: 100%;
+  }
 	.iconUrl {
 		width: 2.25rem;
 		height: 2.25rem;
@@ -515,15 +522,4 @@
 	.ivu-modal-close {
 		border: 1px solid #bbb;
 		border-radius: 50%;
-	}
-	
-	.cartModal .ivu-modal {
-		left: 0rem;
-		bottom: 0rem;
-		width: 100%!important;
-		margin: 0px;
-	}
-	
-	.cartModal .ivu-modal-footer {
-		display: none!important;
 	}

@@ -3,6 +3,7 @@
     "pages/mime/mime",
     "pages/cartOne/cartOne",
     "pages/index/index",
+    "pages/mime/mime",
     "pages/search/search",
     "pages/sort/sort",
     "pages/seckill/seckill",
@@ -69,12 +70,12 @@
         "iconPath": "images/bar-cart-gray.png",
         "selectedIconPath": "images/bar-cart-red.png"
       },
-            {
-              "pagePath": "pages/mime/mime",
-              "text": "我的",
-              "iconPath": "images/bar-user-gray.png",
-              "selectedIconPath": "images/bar-user-red.png"
-            }
+      {
+        "pagePath": "pages/mime/mime",
+        "text": "我的",
+        "iconPath": "images/bar-user-gray.png",
+        "selectedIconPath": "images/bar-user-red.png"
+      }
     ]
   },
   "networkTimeout": {

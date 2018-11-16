@@ -1,5 +1,6 @@
 <!--pages/sortDetail/sortDetail.wxml-->
 <import src="../../template/mplex.wxml"/>
+<wxs module="dateFr" src="../filters.wxs"></wxs>
 	<view>
 		<view class="clearfix ">
 			<view class="video-wrap">
@@ -22,18 +23,18 @@
 			</view>
 			<view class="iteminfo">
 				<view  class="dl-base dl clearfix">
-					<view class="mylike" catchtap="likepro">
-						<image src="../../images/love.png" v-if="likeshow"></image>
-						<image src="../..//images/custom-love.png" v-else></image>
+					<view class="mylike" >
+						<image src="../../images/love.png" wx:if="{{likeshow}}"></image>
+						<image src="../../images/custom-love.png" catchtap="likepro" wx:else></image>
 					</view>
 					<view class="sku-price dd color-newred">
-						<span wx:if="{{choosesp.price==0}}">￥{{shangp.product.salePrice}}</span>
+						<span wx:if="{{choosesp.price==0}}">￥{{dateFr.toFix(shangp.product.salePrice)}}</span>
 						<span wx:else> 
 						<span wx:if="{{cxshow}}">
-						<span class="color-red">￥{{choosesp.cuxiaoprice }} </span>
-						<label class="color-origin">￥{{choosesp.price }}</label>
+						<span class="color-red">￥{{dateFr.toFix(choosesp.price)}} </span>
+						<label class="color-origin">￥{{dateFr.toFix(choosesp.price)}}</label>
 						</span>
-						<span wx:else>￥{{filters.toFix(choosesp.price)}}</span>
+						<span wx:else>￥{{dateFr.toFix(choosesp.price)}}</span>
 						</span>
 					</view>
 				</view>
@@ -82,7 +83,7 @@
 								<view class='h6'><image class="iconUrl" src="{{imgurl}}{{item.list.iconUrl}}"></image></view>
 								<view class='div'>
 									<view class="name">{{item.list.nickName | plusXing('*')}}</view>
-									<view class="zan">{{dateUtil.format(item.list.commentTime ,'Y/M/D') }}
+									<view class="zan">{{dateFr.formatTime(item.list.commentTime ,'yyyy-MM-dd') }}
 										<view>
 											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>
 										<view class='zanicon ' :class="{red:item.isZan =='Y'}">
@@ -93,7 +94,7 @@
 									</view>
 
 									<view class="commentContent">{{item.list.commentContent}}</view>
-									<view class="sz" wx:for="{{item.imgList}}" wx:key="id"  wx:for-index="index"  wx:for-item='cild' :key="index" wx:if="item.imgList.length>0">
+									<view class="sz" wx:for="{{item.imgList}}" wx:key="id"  wx:for-index="index"  wx:for-item='child' :key="index" wx:if="item.imgList.length>0">
 												<image src="{{imgurl}}{{child}}"></image>
 									</view>
 
@@ -109,23 +110,23 @@
 				</view>
 			</view>
 		</view>
-		<!-- <modal class="cartModal" v-model="cartModal">
+		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
 			<view class="imgdetail">
-				<image :src="ImgUrl |imgfilter" alt=""></image>
+				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
 				<view class="xinxi">
-					<span class="red" v-if="choosesp.price==0">￥{{shangp.product.salePrice | pricefilter}}</span>
-					<span class="red" v-else> 
-					<span v-if="cxshow">
-					<span class="color-red red">￥{{choosesp.cuxiaoprice | pricefilter}} </span>
-					<label class="color-origin red">￥{{choosesp.price | pricefilter}}</label>
-					</span>
-					<span class="red" v-else>￥{{choosesp.price | pricefilter}}</span>
-					</span>
-					<span v-show="!xiajia">
+					<text class="red" wx:if="{{choosesp.price == 0}}">￥{{shangp.product.salePrice}}</text>
+					<text class="red" wx:else> 
+					<text wx:if="{{cxshow}}">
+					<text class="color-red red">￥{{choosesp.cuxiaoprice}} </text>
+					<text class="color-origin red">￥{{choosesp.price}}</text>
+					</text>
+					<text class="red" wx:else>￥{{choosesp.price}}</text>
+					</text>
+					<view class='span' wx:show="{{!xiajia}}">
 					库存: {{choosesp.kucun}}件
-					</span>
-					<span class="prf10">已选：{{shangp.product.modelNo}} </span>
-					<view v-if="xiajia" class="xiajia">
+					</view>
+					<view class="prf10 span">已选：{{shangp.product.modelNo}} </view>
+					<view wx:if="{{xiajia}}" class="xiajia">
 						<Icon type="information-circled">
 						</Icon>该商品已下架
 					</view>
@@ -133,41 +134,42 @@
 
 			</view>
 			<view class="summary">
-				<dl v-if="choosesp.activityName!=null&&choosesp.activityName!=''"><dt><em class="act">{{choosesp.activityName}}</em></dt>
-					<dd class="color-black">{{choosesp.activityName}} </dd>
-				</dl>
-				<dl class="noborde clerafix" v-for="(item, i) in shangp.productAttrList" :key="i">
-					<dt>{{item.attrKey.catalogAttrValue}}</dt>
-					<dd style="overflow: hidden;">
-						<ul class="color-sel clerafix">
-							<li :class="choosesp.kucun==0?'disabled':'abled'" v-for="(child, index) in item.attrValues" :key="index" catchtap="chooseSP($event,item)">
-								<span v-bind:class="item.attrValues.length==1?'active':''" :titleid="child.id" ref="dditem">
-										{{child.modelAttrValue}}</span>
-							</li>
-						</ul>
-					</dd>
-				</dl>
-				<dl class="dl-base clearfix"><dt>购买数量</dt>
-					<dd>
-						<view class="number">
-							<Icon type="ios-add" class="ios-add" catchtap="jia" /><input value="1" type="text" v-model="quantity" v-on:blur="changeNumber($event)"></input>
-							<Icon type="ios-remove" class="ios-remove" catchtap="jian" />
+				<view class='dl' wx:if="{{choosesp.activityName!=null&&choosesp.activityName!=''}}">
+          <view class='dt'><em class="act">{{choosesp.activityName}}</em></view>
+					<view class="color-black dd">{{choosesp.activityName}} </view>
+				</view>
+				<view  class="noborde dl clerafix" wx:for="{{shangp.productAttrList}}"  wx:key="id"  wx:for-index="i"  wx:for-item='item'>
+					<view class='dt'>{{item.attrKey.catalogAttrValue}}</view>
+					<view class='dd' style="overflow: hidden;">
+						<view class="color-sel ul clerafix">
+							<view class="{{choosesp.kucun==0?'disabled':'abled'}} li" wx:for="{{item.attrValues}}"  wx:key="id"  wx:for-index="index"  wx:for-item='child' catchtap="chooseSP" data-titleid="{{child.id}}"  data-i='{{i}}' data-index='{{index}}'>
+              <text class="span {{item.attrValues.length==1?'active':''}} {{child.active?'active':''}} " >{{child.modelAttrValue}}</text>
+							</view>
 						</view>
-					</dd>
-				</dl>
+					</view>
+				</view>
+				<view  class="dl-base dl clearfix">
+					<view class='dd'>
+          购买数量
+						<view class="number">
+							<text type="ios-add" class="ios-add" catchtap="jia">+</text><input type="text" value="{{quantity}}" bindinput="searchInput"></input>
+							<text type="ios-remove" class="ios-remove" catchtap="jian">-</text>
+						</view>
+					</view>
+				</view>
 			</view>
 			<view class="opt">
-				<button class="btn-cart" catchtap="atc" v-show="!wuhuotongzhi" v-if="!xiajia"><i class="icon-new icon-minicart"></i>加入购物车</button>
-				<button class="btn-xorder" v-show="!wuhuotongzhi" catchtap="buynow(0)"><i class="icon-new icon-minicart"  ></i>立即下单</button>
-				<button v-if="wuhuotongzhi" size="large" class="btn-nopro" disabled="disabled">暂时无货，到货通知</button>
+				<button class="btn-cart" catchtap="atc" wx:if="{{!wuhuotongzhi}}" wx:show="{{!xiajia}}"><i class="icon-new icon-minicart"></i>加入购物车</button>
+				<button class="btn-xorder" wx:if="{{!wuhuotongzhi}}" catchtap="buynow" data-i='{{0}}'><i class="icon-new icon-minicart"  ></i>立即下单</button>
+				<button wx:if="{{wuhuotongzhi}}" size="large" class="btn-nopro" disabled="disabled">暂时无货，到货通知</button>
 
 			</view>
 
-		</modal> -->
-		<!-- <view class="detailfooter">
-			<navigator url="/index"><image src="../../images/bar-home-gray.png"></image>> </navigator>
-			<navigator url="/cart"> <image src="../../images/bar-cart-gray.png"></image>></navigator>
-			<button catchtap="cartmodal()" style="background-color:#ff0000"> 点击购买</button> -->
+		</modal> 
+		<view class="detailfooter">
+			<navigator class='a' url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>
+			<navigator class='a' url="/pages/cartOne/cartOne"> <image class='image' src="../../images/bar-cart-gray.png"></image></navigator>
+			<button catchtap="cartmodal" class='button' style="background-color:#ff0000"> 点击购买</button> 
 
-		<!-- </view> -->
+	   </view>
 	</view>
