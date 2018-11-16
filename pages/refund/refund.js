@@ -75,7 +75,6 @@ Page({
   getStatus: function () {
     var that = this;
     request.req2('refund/getRefundCauseList', 'GET', null, (err, res) => {
-
         that.setData({
           reasonList: res.data,
           refundCauseId: res.data[0].causeId
