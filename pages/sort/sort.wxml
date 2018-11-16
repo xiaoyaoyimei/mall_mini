@@ -7,7 +7,13 @@
 					<span catchtap="xuanzeModal">筛选<image src="../../images/sx.png" class="sx"></image></span>
 				</view>
 			</view>
+<<<<<<< HEAD
 		<scroll-view bindscrolltolower="bindscrolltolower" scroll-y  style="height:95vh;margin-top:44px">
+=======
+		<scroll-view 
+			   bindscrolltolower="bindscrolltolower" scroll-top='{{topNum}}'  bindscroll="scrolltoupper" scroll-y style='margin-top:44px;height:100vh;' >
+
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
 			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">
 					<view class='li' wx:for="{{productList}}"  wx:key="id"  wx:for-index="index"  wx:for-item='item'>
@@ -19,7 +25,7 @@
 						</navigator>
 					</view>
 				</view>
-				<view class="#ff0037 " style="text-align:center;padding-top:2rem">{{bottomtext}}</view>
+				<view class="#ff0037 " style="text-align:center;padding-top:1rem;font-size:0.7rem;padding-bottom:1rem">{{bottomtext}}</view>
 			</view>
 			<view class="flex-center  empty" wx:if="{{!hasShow}}">
 				<image src="../../images/sort_empty.png" class='img'></image>
@@ -66,5 +72,12 @@
 			</view>
       </scroll-view>
 		</modal>
+<<<<<<< HEAD
 
+=======
+    <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
+    <image src='../../images/grayback.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
 	</view>

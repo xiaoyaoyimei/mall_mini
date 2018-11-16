@@ -228,7 +228,11 @@ Page({
     this.setData({
       orderfrom: options.orderfrom,
     });
+<<<<<<< HEAD
     $init(this)
+=======
+      $init(this)
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     var cartList = JSON.parse(wx.getStorageSync('cart'));
     var that = this;
     that.data.productItemIds = [];
@@ -258,6 +262,10 @@ Page({
     that.setData({
       cartList: cartList,
     })
+<<<<<<< HEAD
+=======
+    that.jisuan();
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -300,7 +308,11 @@ Page({
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
+<<<<<<< HEAD
             'total.price': this.data.total.price
+=======
+            'total.price': this.data.total.price,
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
           })
         }
       

@@ -258,3 +258,13 @@
     margin: 1rem 0;
     color: #999999;
   }
+  .goTop{
+  height: 80rpx;
+  width: 80rpx;
+  position: fixed;
+  bottom: 50rpx;
+  background: rgba(0,0,0,.3);
+  right: 30rpx;
+  border-radius: 50%;
+  z-index: 20;
+}

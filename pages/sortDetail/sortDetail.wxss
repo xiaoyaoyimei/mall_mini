@@ -257,9 +257,14 @@
 	.color-sel .active {
 		border: 1px solid #eee;
 		color: #f00;
-    background: #fdeded;
 	}
-	
+	/* .bakgroung{
+    width:90vw;
+    position: relative;
+    left: -5vw;
+    padding: 0.5rem;
+    background-color: #fff;
+  } */
 	.cartModal .dl-base {
 		margin-top: 0.5rem;
 		padding-top: 0.5rem;

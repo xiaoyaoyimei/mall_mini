@@ -14,7 +14,7 @@
                   <image src="{{imgurl}}{{item.listImg}}" class="slide-image"  mode="widthFix"/>
                 </swiper-item>
 					</swiper>
-					<image src="{{imgurl}}{{shangp.product.modelImg}}" wx:else></image>
+					<image src="{{imgurl}}{{shangp.product.modelImg}}" class="slide-image" mode="widthFix" wx:else></image>
 				</view>
 				<!-- <view class="controls" v-show="controlshow"> -->
 					<!-- <button :class="videonum==1?'active':''" catchtap="togglevideotab(1)">图片</button> -->
@@ -110,8 +110,15 @@
 				</view>
 			</view>
 		</view>
+<<<<<<< HEAD
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
     <button class='close' catchtap='closemodal' >x</button>
+=======
+		<modal class="cartModal" hidden='{{hidden}}'  catchtouchmove="preventTouchMove" v-model="cartModal">
+    <view class='bakgroung'>
+
+    <view style='overflow:hidden'><button class='close' catchtap='closemodal' >x</button></view>
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     <view class='cartModalFixed'>
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
@@ -167,6 +174,7 @@
 
 			</view>
 </view>
+    </view>
 		</modal> 
 		<view class="detailfooter">
 			<navigator class='a' catchtap="gohome" url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>

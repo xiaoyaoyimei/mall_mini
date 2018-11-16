@@ -42,13 +42,36 @@ Page({
     hasShow: true, //搜索有商品
     keyword: '',
     bottomtext: '',
+    loadingHidden: false,
     items: [],
+    topNum: 0,
+  },
+   // 获取滚动条当前位置
+  scrolltoupper:function(e){
+    console.log(e) 
+    if (e.detail.scrollTop > 100) {
+        this.setData({ 
+          floorstatus: true 
+        });
+    } else { 
+      this.setData({
+           floorstatus: false 
+      }); 
+    } 
+  },
+     //回到顶部 
+  goTop: function (e) {
+     // 一键回到顶部 
+      this.setData({ 
+        topNum: this.data.topNum = 0
+       }); 
   },
   ok() {
       this.setData({
         keyword: '',
         startRow: 0
       })
+    this.setData({ loadingHidden: false });
     request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
        'GET',{},
      (err,res) => {
@@ -67,7 +90,8 @@ Page({
        })
     })
     this.setData({
-      hidden: true
+      hidden: true,
+      loadingHidden: true
     })
   },
   //筛选重置搜索条件
@@ -166,7 +190,8 @@ Page({
   fetchData() {
     this.setData({
       productList:[],
-      startRow:0
+      startRow:0,
+      loadingHidden: false,
     })
     request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
     (err,res) => {
@@ -181,6 +206,9 @@ Page({
           hasShow: false
         })
       }
+      this.setData({
+        loadingHidden: true
+      })
       // this.refresh()
     })
   },
@@ -191,6 +219,7 @@ Page({
   },
   // //scroll下拉加载更多
   bindscrolltolower() {
+    console.log(this.data.productList)
     let that = this;
     if (this.data.productList.length < this.data.totalSize) {
       this.data.startRow = this.data.startRow + this.data.pageSize;
@@ -213,7 +242,9 @@ Page({
         })
 
     } else {
-      this.bottomtext = '已经到底了,没有更多了....';
+      this.setData({
+        bottomtext :'已经到底了,没有更多了....'
+      });
     }
   },
   /**
