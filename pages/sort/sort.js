@@ -255,6 +255,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // var keyword = wx.getStorageSync("keyword")
+    // var type = wx.getStorageSync("type")
+    // if (type != undefined) {
+    //   this.setData({
+    //     'searchfilter.type': type
+    //   })
+    // }
+    // if (keyword != undefined) {
+    //   this.setData({
+    //     keyword: keyword
+    //   })
+    // }
+    // this.fetchData();
+    // this.getTop()
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+  
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     var keyword = wx.getStorageSync("keyword")
     var type = wx.getStorageSync("type")
     if (type != undefined) {
@@ -269,20 +296,6 @@ Page({
     }
     this.fetchData();
     this.getTop()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
 
   /**
