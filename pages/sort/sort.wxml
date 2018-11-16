@@ -8,9 +8,9 @@
 				</view>
 			</view>
 
+
 		<scroll-view 
 			   bindscrolltolower="bindscrolltolower" scroll-top='{{topNum}}'  bindscroll="scrolltoupper" scroll-y style='margin-top:44px;height:100vh;' >
-
 
 			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">
@@ -71,9 +71,11 @@
       </scroll-view>
 		</modal>
 
+
     <loading class="loading" hidden="{{loadingHidden}}">
       <text class="loading-font">加载中...</text>
     </loading>
     <image src='../../images/grayback.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+
 
 	</view>

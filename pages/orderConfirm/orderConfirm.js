@@ -228,7 +228,6 @@ Page({
     this.setData({
       orderfrom: options.orderfrom,
     });
-
       $init(this)
     var cartList = JSON.parse(wx.getStorageSync('cart'));
     var that = this;
@@ -259,8 +258,6 @@ Page({
     that.setData({
       cartList: cartList,
     })
-
-
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -297,19 +294,14 @@ Page({
         "quantity": quantity,
         "typeIds": typeIds
       }, (err, res) => {
-  
         if (res.data.code == 200) {
           this.data.freight = res.data.object;
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
-
             'total.price': this.data.total.price
-
           })
         }
-      
-      
       });
     }else{
       return

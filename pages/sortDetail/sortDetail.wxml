@@ -110,14 +110,9 @@
 				</view>
 			</view>
 		</view>
-<!-- <<<<<<< HEAD
+
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
     <button class='close' catchtap='closemodal' >x</button>
-======= -->
-		<modal class="cartModal" hidden='{{hidden}}'  catchtouchmove="preventTouchMove" v-model="cartModal">
-    <view class='bakgroung'>
-
-    <view><button class='close' catchtap='closemodal' >x</button></view>
 
     <view class='cartModalFixed'>
 			<view class="imgdetail">
@@ -174,7 +169,6 @@
 
 			</view>
 </view>
-    </view>
 		</modal> 
 		<view class="detailfooter">
 			<navigator class='a' catchtap="gohome" url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>

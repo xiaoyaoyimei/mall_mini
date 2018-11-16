@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 //  var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
+=======
+  //var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
+>>>>>>> 40d1b81a5b25182ec9590414fc9021614fa9fbd2
 var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
 var util = require('./util.js')
 var auto = 'customer/login';
