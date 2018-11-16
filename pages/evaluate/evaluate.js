@@ -45,7 +45,6 @@ Page({
     })
   },
   removeImage(e) {
-
     const idx = e.target.dataset.idx
     this.data.images.splice(idx, 1)
     this.setData({

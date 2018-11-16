@@ -1,2 +1,32 @@
-<!--pages/advice/advice.wxml-->
-<text>pages/advice/advice.wxml</text>
+<wxs module="filters" src="../filters.wxs"></wxs>
+
+<view>
+           <view class="add_item">
+        <text class="item_text">姓名:</text>
+        <input class="item_input" bindinput="bindxmInput" placeholder="请输入姓名" />
+    </view>
+              <view class="add_item">
+        <text class="item_text">手机号:</text>
+        <input class="item_input" bindinput="bindphoneInput" placeholder="请输入手机号" />
+    </view>
+  <view class="add_item">
+    <textarea class="item_input" placeholder='请输入问题描述' bindinput='bindTextarea'></textarea>
+
+
+  </view>
+  <view class="add_item">
+    <text class="item_text">上传图片:</text>
+ 
+       <view class="question-images-tool">
+      <button type="default" size="mini" bindtap="chooseImage"  wx:if="{{images.length < 1}}">添加图片</button>
+    </view>
+  </view>
+
+
+<view class="question-images"> 
+<block wx:for="{{images}}" wx:key="*this"> 
+<view class="q-image-wrap"> <!-- 图片缩略图 -->
+ <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image> 
+<view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view> </view> </block> </view>
+  <button class="weui-btn" bindtap="add">提交</button>
+</view>

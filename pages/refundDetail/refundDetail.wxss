@@ -1,1 +1,33 @@
 /* pages/refundDetail/refundDetail.wxss */
+page{
+  background: #f0f0f0;
+  font-size: 14px
+}
+.sbg{
+  background: red;
+  color: #fff;
+  margin: 10px 0;
+  padding: 20px 15px;
+    line-height: 24px;
+}
+.bgorder{
+  background: #fff;
+  color: #565656;
+  margin-bottom: 10px;
+  padding: 20px 15px;
+  line-height: 24px;
+  
+}
+.list-order{
+  background: #fff;
+  margin-bottom: 10px;
+  display: flex
+}
+.list-order image{
+  width:80px;
+  height: 85px;
+}
+.list-order .xq{
+  display: flex;
+  flex-direction:column
+}

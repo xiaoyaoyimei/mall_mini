@@ -364,7 +364,6 @@
 		height: 2.25rem;
 		border-radius: 1.2rem;
 		border: 1px solid #ddd;
-		padding: 0.25rem;
 	}
 	  .eval-fl .h5 {
       padding: 0rem 0.61rem;

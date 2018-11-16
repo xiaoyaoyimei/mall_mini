@@ -82,7 +82,7 @@
 							<view  class="clearfix li" wx:for="{{commentList}}" wx:key="id"  wx:for-index="index"  wx:for-item='item'>
 								<view class='h6'><image class="iconUrl" src="{{imgurl}}{{item.list.iconUrl}}"></image></view>
 								<view class='div'>
-									<view class="name">{{item.list.nickName | plusXing('*')}}</view>
+									<view class="name">{{dateFr.plusXing(item.list.nickName,'*')}}</view>
 									<view class="zan">{{dateFr.formatTime(item.list.commentTime ,'yyyy-MM-dd') }}
 										<view>
 											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>

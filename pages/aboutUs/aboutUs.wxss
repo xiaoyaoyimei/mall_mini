@@ -1,6 +1,7 @@
 /* pages/aboutUs/aboutUs.wxss */
 .about{
-  padding: 0 20rpx;
+ 		background: #FFF;
+		padding: 20px 20px 50px;
 }
 .about text{
   text-indent: 40rpx;

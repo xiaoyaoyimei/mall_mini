@@ -16,9 +16,7 @@ Page({
 
       this.setData({
         psword: psword,
-      })
-
-    
+      })   
   },
   //确认密码
   bindconfirmInput: function (e) {

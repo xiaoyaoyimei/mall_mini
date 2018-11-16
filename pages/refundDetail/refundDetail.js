@@ -23,30 +23,32 @@ Page({
     refundOrderNo:'',
   },
   statusfilter(value) {
-    for (var i = 0; i < this.statusList.length; i++) {
-      if (this.statusList[i].key == value) {
-        return this.statusList[i].value;
+    for (var i = 0; i < this.data.statusList.length; i++) {
+
+      if (this.data.statusList[i].key == value) {
+        return this.data.statusList[i].value;
       }
     }
   },
   getStatusEnum() {
     request.req2('refund/enums', 'get', null, (err, res) => {
       if (res.data.code == '200') {
-      that.setData({
-        refundOrderdetail: res.data.object,
-
+      this.setData({
+        statusList: res.data.object,
       })
       }
     })
   },
   getOrder() {
     request.req2('refund', 'get', this.data.refundOrderNo, (err, res) => {
-      that.setData({
+ 
+      res.data.shoppingRefundOrder.znrefundOrderStatus = this.statusfilter(res.data.shoppingRefundOrder.refundOrderStatus);
+      this.setData({
         refundOrderdetail: res.data,
       })
     })
     request.req2('order', 'get', this.data.orderNo, (err, res) => {
-      that.setData({
+      this.setData({
         orderdetail: res.data,
       })
     })
@@ -57,12 +59,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let orderNo = options.orderNo;
+
+    
     this.setData({
       orderNo: options.orderNo,
       refundOrderNo: options.refundOrderNo
     })
+
     this.getOrder();
+    this.getStatusEnum();
   },
 
   /**

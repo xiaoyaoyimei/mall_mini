@@ -5,7 +5,7 @@
 <view class="container" wx:if="{{hasShow}}">
 
     <view class="list" wx:for="{{newlist}}"  wx:key="id">
-    <navigator url="../refundDetail/refundDetail?refundOrderNo={{item.refundOrder.refundOrderNo}}&OrderNo={{item.refundOrder.orderNo}}" >
+    <navigator url="../refundDetail/refundDetail?refundOrderNo={{item.refundOrder.refundOrderNo}}&orderNo={{item.refundOrder.orderNo}}" >
       <view class="item-headerview">
           <view class="item-text">
             <text class="fr">{{item.refundOrder.znStatus}}</text>
@@ -27,7 +27,8 @@
     </navigator>
 		
     <view class="opt-bottom">   
-                  	<button  type="default" size="mini"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="tianxie" wx:if="{{x.refundOrder.refundOrderStatus=='02'}}">填写物流单号</button>     
+                  	<button  type="default" size="mini"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="tianxie" 
+                    wx:if="{{x.refundOrder.refundOrderStatus=='02'}}">填写物流单号</button>     
        
 </view>
 </view>
