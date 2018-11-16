@@ -28,5 +28,5 @@
 <view class="q-image-wrap"> <!-- 图片缩略图 -->
  <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image> 
 <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">删除</view> </view> </block> </view>
-  <button class="weui-btn" bindtap="add">提交</button>
+  <button class="weui-btn" bindtap="add" disabled="{{disabled}}">提交</button>
 </view>

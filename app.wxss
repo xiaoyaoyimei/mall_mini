@@ -337,3 +337,6 @@ text-align: center;
   margin-right: 15px;
   color: #fff
 }
+textarea {
+  height: 100px
+}

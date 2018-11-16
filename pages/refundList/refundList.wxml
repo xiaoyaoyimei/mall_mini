@@ -27,6 +27,11 @@
     </navigator>
 		
     <view class="opt-bottom">   
+    <button type="default" size="mini" wx:if="{{item.refundOrder.refundOrderStatus=='01'}}"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="cancelrefund">取消</button>
+						<button type="default" size="mini" data-total="{{item.refundOrder.refundOrderTotalFee}}" 
+            data-reason="{{item.refundOrder.refuseReason}}"    
+            data-status="{{item.refundOrder.refundOrderStatus}}"    
+            wx:if="{{item.refundOrder.refundOrderStatus=='02'||item.refundOrder.refundOrderStatus=='05'}}" bindtap="showResult">显示处理结果</button>
                   	<button  type="default" size="mini"  data-orderno="{{item.refundOrder.refundOrderNo}}" bindtap="tianxie" 
                     wx:if="{{x.refundOrder.refundOrderStatus=='02'}}">填写物流单号</button>     
        
@@ -38,5 +43,16 @@
     <text>您还没有相关的订单</text>
     <text catchtap="goindex" class="color-dx">去购物</text>
   </view>
+
+<modal hidden="{{hidden}}" title="审核详情" confirm-text="确定" bindconfirm="confirm" no-cancel>
+ <view>退款金额:{{filters.toFix(refundAmount)}}</view>
+ <view  wx:if="{{refundStatus=='05'}}"> 拒绝原因:{{refuseReason}}</view>
+ <view wx:if="{{refundStatus=='02'}}">
+ <view>退货联系人{{refundAddress.name}}</view>
+	<view>退货联系电话{{refundAddress.mobile}}	</view>
+<view>退货地址{{refundAddress.address}}</view>
+</view>
+</modal>
+
 
 </view>

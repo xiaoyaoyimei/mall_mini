@@ -2,7 +2,6 @@
 
 var app = getApp()
 var imgurl = app.globalData.imgsrc;
-
 var request = require('../../utils/https.js')
 var uri_home = 'floor/api/indexListAll'
 
@@ -126,9 +125,6 @@ Page({
 
       }
     })
-    // this.setData({
-    //   spinShow:false
-    // })
   },
   //点击顶部筛选
   getList:function(e) {

@@ -1,5 +1,5 @@
-//  var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
-var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
+  var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
+//var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
 var util = require('./util.js')
 var auto = 'customer/login';
 //携带TOKEN req req2 req5都需携带token
@@ -136,6 +136,11 @@ function req3(url, methodway, data, callback) {
 }
 
 function req4(url, methodway, data, callback) {
+  if (data == null || data == undefined) {
+    url = rootDocment + url
+  } else {
+    url = rootDocment + url + '/' + data
+  }
     wx.request({
       url: rootDocment + url + '/' + data,
       method: methodway,    //大写

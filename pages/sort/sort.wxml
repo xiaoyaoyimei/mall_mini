@@ -7,9 +7,7 @@
 					<span catchtap="xuanzeModal">筛选<image src="../../images/sx.png" class="sx"></image></span>
 				</view>
 			</view>
-		<scroll-view 
-			   bindscrolltolower="bindscrolltolower" scroll-y >
-
+		<scroll-view bindscrolltolower="bindscrolltolower" scroll-y  style="height:95vh;margin-top:44px">
 			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">
 					<view class='li' wx:for="{{productList}}"  wx:key="id"  wx:for-index="index"  wx:for-item='item'>
@@ -66,15 +64,7 @@
 					<view class='span {{brandindex == -1 ? "active":""}}' catchtap="getList" data-value=" " data-catalog ='brand' data-index="-1">全部</view> 
 					<view class='span {{index ==brandindex ? "active":" "}}' wx:for="{{brand}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' catchtap="getList" data-value="{{item.id}}" data-catalog ='brand' data-index="{{index}}">{{item.brandName}}</view></view>
 			</view>
-			<!-- <view class="Hfoot" slot="footer">
-				<Button catchtap="">重置</Button>
-				<Button class="bg-dx" type="error" catchtap="">搜索</Button>
-			</view> -->
       </scroll-view>
 		</modal>
-		<BackTop :height="100" :bottom="200">
-			<view class="top">
-				<Icon type="md-arrow-round-up" />
-			</view>
-		</BackTop>
+
 	</view>
