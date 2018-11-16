@@ -253,7 +253,8 @@ Page({
       //				if(v==1){
       //					this.cartList=this.cartList.concat(this.compineList)
       //	
-    var cart = wx.getStorageSync("cart")			
+    var cart = wx.getStorageSync("cart")	
+    console.log(cart)		
       if(cart != undefined){
         wx.removeStorage('cart');
       }
@@ -286,7 +287,11 @@ Page({
           wx.switchTab({
             url: '/pages/cartOne/cartOne',
           });
-        } else {
+        } else if (res.data.code == '401'){
+          wx.navigateTo({
+            url: '/pages/login/login',
+          });
+        } else{
           util.showError('加入购物车失败');
         }
       })

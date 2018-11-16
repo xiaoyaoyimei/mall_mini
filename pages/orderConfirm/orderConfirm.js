@@ -227,13 +227,8 @@ Page({
     this.setData({
       orderfrom: options.orderfrom,
     });
-<<<<<<< HEAD
-    $init(this)
-    var cartList = wx.getStorageSync('cart');
-=======
       $init(this)
     var cartList = JSON.parse(wx.getStorageSync('cart'));
->>>>>>> f0d694927aa90e002ca185d28d2fdc08646bd8a0
     var that = this;
     that.data.productItemIds = [];
     let n = 0;
@@ -262,12 +257,7 @@ Page({
     that.setData({
       cartList: cartList,
     })
-<<<<<<< HEAD
-    
-    
-=======
     that.jisuan();
->>>>>>> f0d694927aa90e002ca185d28d2fdc08646bd8a0
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -310,11 +300,7 @@ Page({
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
-<<<<<<< HEAD
-            'total.price': this.data.total.price
-=======
-            total: {price:this.data.total.price}
->>>>>>> f0d694927aa90e002ca185d28d2fdc08646bd8a0
+            'total.price': this.data.total.price,
           })
         }
       

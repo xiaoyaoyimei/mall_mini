@@ -8,7 +8,7 @@
 				</view>
 			</view>
 		<scroll-view 
-			   bindscrolltolower="bindscrolltolower" scroll-y >
+			   bindscrolltolower="bindscrolltolower" scroll-top='{{topNum}}'  bindscroll="scrolltoupper" scroll-y style='margin-top:44px;height:100vh;' >
 
 			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">
@@ -21,7 +21,7 @@
 						</navigator>
 					</view>
 				</view>
-				<view class="#ff0037 " style="text-align:center;padding-top:2rem">{{bottomtext}}</view>
+				<view class="#ff0037 " style="text-align:center;padding-top:1rem;font-size:0.7rem;padding-bottom:1rem">{{bottomtext}}</view>
 			</view>
 			<view class="flex-center  empty" wx:if="{{!hasShow}}">
 				<image src="../../images/sort_empty.png" class='img'></image>
@@ -72,9 +72,8 @@
 			</view> -->
       </scroll-view>
 		</modal>
-		<BackTop :height="100" :bottom="200">
-			<view class="top">
-				<Icon type="md-arrow-round-up" />
-			</view>
-		</BackTop>
+    <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
+    <image src='../../images/grayback.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
 	</view>
