@@ -30,7 +30,7 @@
 <!-- 轮播图 -->
      <template name="fslider">
       <swiper-item > 
-        <navigator url="../sortDetail/sortDetail?id={{item.id}}">
+        <navigator url="{{linkUrl}}">
           <image src="{{filters.imgurl(item.phoneUrl)}}" class="slide-image"  mode="widthFix"/>
         </navigator>
       </swiper-item>

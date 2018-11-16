@@ -1,6 +1,7 @@
 
 
 <import src="../../template/mplex.wxml"/>
+<wxs module="dateFr" src="../filters.wxs"></wxs>
 	<view class="homepage">
 		<view class="bg-black">
 			<view class="search-wrap">
@@ -47,7 +48,7 @@
 							<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
 								<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id"  mode='widthFix'></image>
 							<view ><text class='h6'>{{item.list.model_no}}</text></view>	
-								<view><text class="color-newred">￥{{item.list.sale_price|pricefilter}}</text></view>
+								<view><text class="color-newred">￥{{dateFr.toFix(item.list.sale_price)}}</text></view>
 							</navigator>
 						</view>
 					</view>
@@ -66,7 +67,7 @@
 								  <view><text class='h5'>{{gameproductone.model_no}}</text></view>
 								  <view><text class='h6'>{{gameproductone.describe1}}</text></view>
 							  	<view><text class='h6'>{{gameproductone.describe2}}</text></view>
-							  	<view><text class='span'>¥ {{gameproductone.sale_price }}</text></view>
+							  	<view><text class='span'>¥ {{dateFr.toFix(gameproductone.sale_price) }}</text></view>
 								</view>
 							</navigator>
 						</view>
@@ -75,7 +76,7 @@
 								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
 									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id" mode='widthFix'></image>
 									<view><text class='h6'>{{item.list.model_no}}</text></view>
-									<view><text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text></view>
+									<view><text class="color-newred span">¥ {{dateFr.toFix(item.list.sale_price|pricefilter)}}</text></view>
 								</navigator>
 							</view>
 						</view>
@@ -95,7 +96,7 @@
 										 <text class='h5'>{{officeproductone.model_no}}</text> 
 										 <text class='h6'>{{officeproductone.describe1}}</text> 
 										 <text class='h6'>{{officeproductone.describe2}}</text> 
-										 <text class='span'>¥ {{officeproductone.sale_price | pricefilter}}</text> 
+										 <text class='span'>¥ {{dateFr.toFix(officeproductone.sale_price)}}</text> 
 									</view>
 								</navigator>
 							</view>
@@ -103,7 +104,7 @@
 								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
 									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id"  mode='widthFix'></image>
 									<text class='h6'>{{item.list.model_no}}</text>
-									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text>
+									<text class="color-newred span">¥ {{dateFr.toFix(item.list.sale_price)}}</text>
 								</navigator>
 							</view>
 						</view>
@@ -122,7 +123,7 @@
 										<text class='h5'>{{houseproductone.model_no}}</text>
 										<text class='h6'>{{houseproductone.describe1}}</text>
 										<text class='h6'>{{houseproductone.describe2}}</text>
-										<text class='span'>¥ {{houseproductone.sale_price | pricefilter}}</text>
+										<text class='span'>¥ {{dateFr.toFix(houseproductone.sale_price)}}</text>
 									</view>
 								</navigator>
 							</view>
@@ -130,7 +131,7 @@
 								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{item.list.product_id}}">
 									<image src="{{imgurl}}{{item.list.img_url}}" :ref="item.list.id" mode='widthFix'></image>
 									<text class='h6'>{{item.list.model_no}}</text>
-									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text>
+									<text class="color-newred span">¥ {{dateFr.toFix(item.list.sale_price|pricefilter)}}</text>
 								</navigator>
 
 							</view>
@@ -147,7 +148,7 @@
 								<image src="{{imgurl}}{{item.list.img_url}}" mode='widthFix' class="zhuozi"></image>
 								<view class="ad ">
 									<text class='h6'>{{item.list.model_no}}</text>
-									<text class="color-newred span">¥ {{item.list.sale_price|pricefilter}}</text></view>
+									<text class="color-newred span">¥ {{dateFr.toFix(item.list.sale_price)}}</text></view>
 							</navigator>
 						</view>
 					</view>

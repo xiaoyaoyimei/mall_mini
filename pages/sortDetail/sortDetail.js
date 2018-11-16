@@ -160,7 +160,21 @@ Page({
       num : e.currentTarget.dataset.index
     })
   },
-
+  closemodal:function(){
+    this.setData({
+      hidden:true
+    })
+  },
+  gohome:function(){
+    wx.switchTab({
+      url: '/pages/index/index',
+    });
+  },
+  gocart: function () {
+    wx.switchTab({
+      url: '/pages/cartOne/cartOne',
+    });
+  },
   searchInput: function (e) {
     var obj = e.detail.value;
     this.setData({
@@ -238,9 +252,12 @@ Page({
       //0为单个立即下单，1为推荐组合中的立即下单
       //				if(v==1){
       //					this.cartList=this.cartList.concat(this.compineList)
-      //				}
-      wx.removeStorage('cart');
-      wx.setStorageSync('cart', JSON.stringify(this.cartList));
+      //	
+    var cart = wx.getStorageSync("cart")			
+      if(cart != undefined){
+        wx.removeStorage('cart');
+      }
+      wx.setStorageSync('cart', JSON.stringify(this.data.cartList));
       wx.setStorageSync('orderfrom', 'A')
       wx.navigateTo({
         url: '/pages/orderConfirm/orderConfirm',

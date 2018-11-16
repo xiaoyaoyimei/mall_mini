@@ -226,7 +226,7 @@ Page({
       orderfrom: options.orderfrom,
     });
       $init(this)
-    var cartList = wx.getStorageSync('cart');
+    var cartList = JSON.parse(wx.getStorageSync('cart'));
     var that = this;
     that.data.productItemIds = [];
     let n = 0;
