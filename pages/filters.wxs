@@ -1,6 +1,15 @@
 var regYear = getRegExp("(y+)", "i");
 
 var filters = {
+
+  plusXing:function(str, cha) {
+
+    var xing = '';
+    for (var i = 0; i < 3; i++) {
+      xing += cha;
+    }
+    return str.substring(0, 1) + xing + str.substring(str.length - 1);
+  },
   //价格转换
   toFix: function(value) {
     if (typeof value === 'number' && !isNaN(value)) {
@@ -79,5 +88,6 @@ var filters = {
 module.exports = {
   toFix: filters.toFix,
   imgurl: filters.imgurl,
-  formatTime: filters.formatTime
+  formatTime: filters.formatTime,
+  plusXing: filters.plusXing
 }

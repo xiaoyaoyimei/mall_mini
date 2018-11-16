@@ -55,7 +55,6 @@ Page({
     this.search();
   },
     search(){
-      console.log("search");
      var that=this;
       request.req('searchpage', uri, 'GET', {
         //搜索过滤     
@@ -63,7 +62,6 @@ Page({
         startRow: that.data.startRow,
         pageSize: that.data.pageSize,
       }, (err, res) => {
-        console.log(res);
         if (res.data.total > 0) {
           app.globalData.keyword = "";
           that.setData({
