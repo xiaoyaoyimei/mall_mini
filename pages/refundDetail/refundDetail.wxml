@@ -6,12 +6,12 @@
 	<view>退款金额:￥ {{filters.toFix(refundOrderdetail.shoppingRefundOrder.refundOrderTotalFee)}}</view>
 </view>
       <view class="list-order" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="orderItemsId" wx:for-item="child">
-        <image src="{{filters.imgurl(child.productItemImg)}} " mode='wdithFix' />
+        <image src="{{filters.imgurl(child.productItemImg)}} " />
         <view  class="xq">
           <text>{{child.productTitle}}</text>
           <text>{{child.productItemNo}}{{child.productAttrs}}</text>
           <view>
-            <text>{{child.productFee}} x {{child.quantity}}</text>
+            <text>{{filters.toFix(child.productFee)}} x {{child.quantity}}</text>
           </view>
         </view>
       </view>

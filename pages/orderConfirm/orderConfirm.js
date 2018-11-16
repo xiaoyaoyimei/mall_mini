@@ -59,7 +59,6 @@ Page({
 
     let _this = this;
     var totalnum = _this.data.total.num;
-    console.log(totalnum);
     var totalPrice = _this.data.total.price;
     var origintotalprice = _this.data.origintotalprice;
 
@@ -230,7 +229,7 @@ Page({
       orderfrom: options.orderfrom,
     });
     $init(this)
-    var cartList = wx.getStorageSync('cart');
+    var cartList = JSON.parse(wx.getStorageSync('cart'));
     var that = this;
     that.data.productItemIds = [];
     let n = 0;

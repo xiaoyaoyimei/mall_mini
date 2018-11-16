@@ -258,6 +258,7 @@ text {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 .item-bottom .img{
   width:80px;

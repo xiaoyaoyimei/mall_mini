@@ -111,7 +111,7 @@
 			</view>
 		</view>
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
-    <view style='overflow:hidden'><button class='close' catchtap='closemodal' >x</button></view>
+    <button class='close' catchtap='closemodal' >x</button>
     <view class='cartModalFixed'>
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>

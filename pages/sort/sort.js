@@ -220,7 +220,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     var keyword = wx.getStorageSync("keyword")
     var type = wx.getStorageSync("type")
     if (type != undefined) {

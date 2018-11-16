@@ -3,7 +3,7 @@
 <block  wx:if="{{hasLove}}" >
   <view class="result-list" wx:for-items="{{likeList}}"  wx:key="{{item.id}}">
      <image src="../../images/love.png" class="love" bindtap='del' id="{{item.id}}"></image>
-    <navigator url="../goodsDetail/goodsDetail?specId={{item.product_id}}">
+    <navigator url="../sortDetail/sortDetail?id={{item.product_id}}">
    
       <image src="{{ filters.imgurl(item.model_img)}}" mode="widthFix"></image>
       <view class="result-text">
