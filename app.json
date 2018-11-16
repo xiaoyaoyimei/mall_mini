@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/cartOne/cartOne",
     "pages/index/index",
+    "pages/cartOne/cartOne",
     "pages/mime/mime",
     "pages/search/search",
     "pages/sort/sort",

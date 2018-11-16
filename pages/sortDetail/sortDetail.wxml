@@ -88,8 +88,8 @@
 											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>
 										<view class='zanicon ' :class="{red:item.isZan =='Y'}">
 													<text>{{item.number}}</text>
-										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
-										<image src="../../images/zan-gray.png" wx:else data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
+										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
+										<image src="../../images/zan-gray.png" wx:else data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
 										</view>
 									</view>
 
@@ -111,6 +111,8 @@
 			</view>
 		</view>
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
+    <view style='overflow:hidden'><button class='close' catchtap='closemodal' >x</button></view>
+    <view class='cartModalFixed'>
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
 				<view class="xinxi">
@@ -164,11 +166,11 @@
 				<button wx:if="{{wuhuotongzhi}}" size="large" class="btn-nopro" disabled="disabled">暂时无货，到货通知</button>
 
 			</view>
-
+</view>
 		</modal> 
 		<view class="detailfooter">
-			<navigator class='a' url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>
-			<navigator class='a' url="/pages/cartOne/cartOne"> <image class='image' src="../../images/bar-cart-gray.png"></image></navigator>
+			<navigator class='a' catchtap="gohome" url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>
+			<navigator class='a' catchtap="gocart" url="/pages/cartOne/cartOne"> <image class='image' src="../../images/bar-cart-gray.png"></image></navigator>
 			<button catchtap="cartmodal" class='button' style="background-color:#ff0000"> 点击购买</button> 
 
 	   </view>

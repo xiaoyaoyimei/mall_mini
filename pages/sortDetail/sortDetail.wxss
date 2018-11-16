@@ -150,7 +150,7 @@
 		position: fixed;
 		left: 0rem;
 		bottom: 0rem;
-		z-index: 1000;
+		z-index: 100;
 		border-top: 1px solid #eee;
 		box-shadow: -0.1rem 0px 0px 0px #1b1b1b;
 		background-color: #fff;
@@ -282,7 +282,7 @@
 		line-height: 1.8rem;
 		height: 1.8rem;
 		width: 1.8rem;
-		background-color: #f0f0f0;
+		background-color: #ccc;
 		text-align: center;
 	}
 	
@@ -291,7 +291,7 @@
 		line-height: 1.8rem;
 		height: 1.8rem;
 		width: 1.8rem;
-		background-color: #f0f0f0;
+		background-color: #ccc;
 		text-align: center;
 	}
 	
@@ -518,7 +518,23 @@
 		background: #fff;
 	}
 
-	.ivu-modal-close {
-		border: 1px solid #bbb;
+	.close {
+		border: 1px solid #ff0000;
 		border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    float: right;
+    line-height: 2rem;
+    font-size: 1rem;
+    color: #ff0000;
+    padding: 0;
+
 	}
+  .cartModal{
+    width: 100vh;
+    height: 100vh;
+
+  }
+  .cartModalFixed{
+    z-index: 10000;
+  }
