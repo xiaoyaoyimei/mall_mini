@@ -260,6 +260,7 @@ text {
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 .item-bottom .img{
   width:80px;
@@ -338,4 +339,7 @@ text-align: center;
   margin-left: 15px;
   margin-right: 15px;
   color: #fff
+}
+textarea {
+  height: 100px
 }

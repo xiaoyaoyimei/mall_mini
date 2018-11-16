@@ -61,6 +61,7 @@ Page({
     var totalnum = _this.data.total.num;
     var totalPrice = _this.data.total.price;
     var origintotalprice = _this.data.origintotalprice;
+
     //刚进入购物车页面
     if (value == undefined) {
       this.data.cartList.forEach(function (item, index) {
@@ -227,7 +228,11 @@ Page({
     this.setData({
       orderfrom: options.orderfrom,
     });
+<<<<<<< HEAD
+    $init(this)
+=======
       $init(this)
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     var cartList = JSON.parse(wx.getStorageSync('cart'));
     var that = this;
     that.data.productItemIds = [];
@@ -257,7 +262,10 @@ Page({
     that.setData({
       cartList: cartList,
     })
+<<<<<<< HEAD
+=======
     that.jisuan();
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -275,7 +283,7 @@ Page({
       }
     });
     that.jisuan();
-    console.log(this.data.total)
+  
   },
   getShipPrice(){
     if (this.data.addressInfo.receiveProvince!=''){
@@ -300,7 +308,11 @@ Page({
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
+<<<<<<< HEAD
+            'total.price': this.data.total.price
+=======
             'total.price': this.data.total.price,
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
           })
         }
       

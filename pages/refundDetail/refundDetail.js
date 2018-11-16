@@ -23,8 +23,8 @@ Page({
     refundOrderNo:'',
   },
   statusfilter(value) {
-    for (var i = 0; i < this.data.statusList.length; i++) {
 
+    for (var i = 0; i < this.data.statusList.length; i++) {
       if (this.data.statusList[i].key == value) {
         return this.data.statusList[i].value;
       }
@@ -43,6 +43,7 @@ Page({
     request.req2('refund', 'get', this.data.refundOrderNo, (err, res) => {
  
       res.data.shoppingRefundOrder.znrefundOrderStatus = this.statusfilter(res.data.shoppingRefundOrder.refundOrderStatus);
+     
       this.setData({
         refundOrderdetail: res.data,
       })

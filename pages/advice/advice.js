@@ -15,14 +15,19 @@ Page({
     mobile: '',
     content: '',
     imageUrl: '',
-    images:[]
+    images:[],
+    disabled:true
   },
   //姓名
   bindxmInput: function (e) {
-
     this.setData({
       userId: e.detail.value,
     })
+    if (this.data.userId && this.data.mobile && this.data.content) {
+      this.setData({ disabled: false })
+    } else {
+      this.setData({ disabled: true })
+    }
   },
   bindphoneInput: function (e) {
     var phone = e.detail.value;
@@ -34,11 +39,21 @@ Page({
         mobile: phone,
       })
     }
+    if (this.data.userId && this.data.mobile && this.data.content) {
+      this.setData({ disabled: false })
+    } else {
+      this.setData({ disabled: true })
+    }
   },
       bindTextarea: function(e) {
     this.setData({
       content: e.detail.value,
     })
+        if (this.data.userId && this.data.mobile && this.data.content) {
+          this.setData({ disabled: false })
+        } else {
+          this.setData({ disabled: true })
+        }
   },
   removeImage(e) {
     const idx = e.target.dataset.idx
@@ -77,8 +92,12 @@ Page({
 
   },
   add() {
+
     const content = this.data.content;
     var that = this;
+    that.setData({
+      disabled: true,
+    })
     if (content) {
       const arr = [] //将选择的图片组成一个Promise数组，准备进行并行上传
       for (let path of this.data.images) {
@@ -111,6 +130,9 @@ Page({
             const prevPage = pages[pages.length - 2];
             wx.navigateBack()
           }
+          that.setData({
+            disabled: false,
+          })
         })
       }).catch(err => {
         console.log(">>>> create question error:", err)

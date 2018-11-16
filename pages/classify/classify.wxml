@@ -1,13 +1,5 @@
 <!-- 整体 -->
 <view class="products_page">
-  <!-- 顶部导航栏 -->
-  <!-- <view class="headerView">
-    <block wx:for="{{navList}}" wx:key="">
-      <view catchtap="onTapTag" data-index="{{index}}" id="{{item.id}}" class="top-bar-item {{index == activeIndex ? 'top-bar-active' : ''}}">
-        {{item.title}}
-      </view>
-    </block>
-  </view> -->
   <!--scrollview-->
    <view class="search_wrap"><view class="index_search_btn" bindtap="searchPro">
       <image class="index_search" src="../../images/searchLogo.png"></image>

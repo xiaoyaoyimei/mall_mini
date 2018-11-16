@@ -10,7 +10,13 @@ Page({
     newlist: [],
     statusenums: [],
     loginhidden: true,
-    hasShow:true
+    hasShow:true,
+    expressNo: '',
+    logistics: '',
+    refundAmount: 0,
+    refuseReason: '',
+    refundAddress: {},
+    hidden:true
   },
   goindex() {
     wx.switchTab({
@@ -21,7 +27,6 @@ Page({
 
   },
   onShow: function () {
-
     //刷新数据
     var that = this;
 
@@ -35,7 +40,6 @@ Page({
         loginhidden: true,
       });
     }
-
   },
   getStatus: function () {
     var that = this;
@@ -86,16 +90,16 @@ Page({
       }
     })
   },
-
-  tianxie(e) {
+  cancelrefund(e){
     var self = this;
-    var orderNo = e.currentTarget.dataset.orderno;
+    var refundOrderNo = e.currentTarget.dataset.orderno;
     wx.showModal({
       title: '温馨提示',
-      content: '确定取消该订单?',
+      content: '确定该售后订单?',
       success: function (res) {
         if (res.confirm) {
-          request.req2('order/cancel', 'POST', orderNo, (err, res) => {
+          var url =`refund/cancel?refundOrderNo=${refundOrderNo}`
+          request.req2(url, 'POST', null, (err, res) => {
             if (res.data.code == 200 || res.data.code == 503) {
               util.showSuccess(res.data.msg)
               self.getData();
@@ -110,6 +114,22 @@ Page({
       }
     })
   },
+  showResult(e){
+    this.setData({
+      refundAmount: e.currentTarget.dataset.total,
+      refuseReason: e.currentTarget.dataset.reason,
+      refundStatus: e.currentTarget.dataset.status,
+      hidden: false
+    })
 
+  },
+  tianxie(e) {
+   
+  },
+  confirm(){
+    this.setData({
+      hidden: true
+    })
+  }
 
 })

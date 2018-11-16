@@ -3,19 +3,12 @@ var app = getApp()
 var imgurl = app.globalData.imgsrc;
 var request = require('../../utils/https.js')
 var uri = 'product/search' //商品列表的的uri
-var navlist = [
-  { id: " ", title: "综合", icon: "" },
-  { id: "salenum", title: "销量", icon: "" },
-  { id: "goodsStorePrice", title: "价格", icon: "../../images/pop_select_pray.png" },
-  { id: "shaixuan", title: "筛选", icon: "../../images/list_sx.png" },
-];
 Page({
   data: {
     imgurl: imgurl,
     startRow: 0,
     pageSize: 10,
     activeIndex: 0,
-    navList: navlist,
     systemInfo: [],
     loadingHidden: false,
     list: [],
@@ -119,7 +112,7 @@ Page({
   clickitem: function (e) {   //带着specId 去详情界面
     var specId = e.currentTarget.dataset.specid;
     wx.navigateTo({
-      url: '../goodsDetail/goodsDetail?specId=' + specId,
+      url: '../sortDetail/sortDetail?id=' + specId,
     })
   },
   onLoad: function () {

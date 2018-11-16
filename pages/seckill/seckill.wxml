@@ -1,2 +1,47 @@
 <!--pages/seckill/seckill.wxml-->
-<text>pages/seckill/seckill.wxml</text>
+<wxs module="dateFr" src="../filters.wxs"></wxs>
+<view wx:if="{{show}}">
+          <view>立即秒杀</view>
+              <view class="search_list_wrap clearfix" >
+		            <view class="seckilllist"  wx:for="{{startpro}}" wx:key='index'  >
+		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}">
+                   <image src='{{filters.toFix(item.productItem.listImg)}} '></image>
+		                <div  class="title">
+		                      {{item.product.modelNo}}
+		                </div>
+		                <div class="name">{{item.product.modelName}}</div>
+		                 </navigator>
+		                <div class="color-dx">开始:{{item.crush.startTime}}</div>
+		                <div>结束:{{item.crush.endTime}}</div>
+		                <div  class="sku_tag" v-if="item.promotionTitle !=null">{{item.promotionTitle}}</div> 
+		                  <div class="price">
+		                  	 <span class="red">￥{{item.crush.salePrice|pricefilter}}</span>
+		                        <span class="origin">￥{{item.product.salePrice |pricefilter }}</span>
+		                   </div> 
+		            </view>
+	            </view>
+                  <view class="seckilllist"  wx:for="{{nostartpro}}" wx:key='index'  >
+		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}">
+                   <image src='{{filters.toFix(item.productItem.listImg)}} '></image>
+		                <div  class="title">
+		                      {{item.product.modelNo}}
+		                </div>
+		                <div class="name">{{item.product.modelName}}</div>
+		                 </navigator>
+		                <div class="color-dx">开始:{{item.crush.startTime}}</div>
+		                <div>结束:{{item.crush.endTime}}</div>
+		                <div  class="sku_tag" v-if="item.promotionTitle !=null">{{item.promotionTitle}}</div> 
+		                  <div class="price">
+		                  	 <span class="red">￥{{item.crush.salePrice|pricefilter}}</span>
+		                        <span class="origin">￥{{item.product.salePrice |pricefilter }}</span>
+		                   </div> 
+		            </view>
+	            </view>
+        
+
+
+           <view class="flex-center  empty" wx:else>
+    <image src="../../images/ms_empty.png"></image>
+    <text>暂时没有秒杀活动,敬请期待</text>
+  </view>
+   

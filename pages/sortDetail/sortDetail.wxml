@@ -110,10 +110,15 @@
 				</view>
 			</view>
 		</view>
+<<<<<<< HEAD
+		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
+    <button class='close' catchtap='closemodal' >x</button>
+=======
 		<modal class="cartModal" hidden='{{hidden}}'  catchtouchmove="preventTouchMove" v-model="cartModal">
     <view class='bakgroung'>
 
     <view style='overflow:hidden'><button class='close' catchtap='closemodal' >x</button></view>
+>>>>>>> a71ec28eee88ec93ac81fff5b1425bb0258563f6
     <view class='cartModalFixed'>
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
