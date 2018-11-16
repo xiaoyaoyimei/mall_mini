@@ -88,8 +88,8 @@
 											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>
 										<view class='zanicon ' :class="{red:item.isZan =='Y'}">
 													<text>{{item.number}}</text>
-										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
-										<image src="../../images/zan-gray.png" wx:else data-id="{{tem.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
+										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
+										<image src="../../images/zan-gray.png" wx:else data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
 										</view>
 									</view>
 

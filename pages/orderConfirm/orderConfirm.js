@@ -172,7 +172,6 @@ Page({
     })
   },
   usecoupon() {
-  
     this.data.xscoupon = false
     if (this.data.couponCode==''){
     wx.showToast({
@@ -189,7 +188,7 @@ Page({
       quantity: this.data.quantitys
     };
     request.req('cart', 'promotion/coupon', 'POST', para, (err, res) => {
-      this.data.cartList = wx.getStorageSync('cart');
+      this.data.cartList = JSON.parse(wx.getStorageSync('cart'));
       if (res.data.code == '200') {
         this.setData({
           xscoupon:true,
@@ -255,9 +254,7 @@ Page({
     that.setData({
       cartList: cartList,
     })
-    
     that.jisuan();
-
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -300,7 +297,7 @@ Page({
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
-            total:{price:this.data.total.price}
+            total: {price:this.data.total.price}
           })
         }
       

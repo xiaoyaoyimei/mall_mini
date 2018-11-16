@@ -46,7 +46,7 @@
       </view>
        <view class="beizhu">订单备注:<textarea placeholder='备注信息'  bindblur="bindRemark"></textarea></view>
         <view class="bottom_text_2">
-      <text>商品件数</text>
+      <text>商品件数</text>{{total.price}}
       <text class="right_text"> {{total.num}}</text>
     </view>
    

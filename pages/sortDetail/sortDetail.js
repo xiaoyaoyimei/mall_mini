@@ -131,17 +131,17 @@ Page({
     })
   },
   //点赞
-  zan(value, isZan) {
-    var zanid = value;
-    var Like = isZan;
+  zan(e) {
+    var zanid = e.currentTarget.dataset.id;
+    var Like = e.currentTarget.dataset.isZan;
     if (Like == 'N') {
       Like = 'yes'
     } else {
       Like = 'no'
     }
 
-    request.req2('/comment/beLike/' + zanid + '/' + Like, 'post',{},(res) => {
-      if (res.code == '200') {
+    request.req2('/comment/beLike/' + zanid + '/' + Like, 'post','',(err,res) => {
+      if (res.data.code == '200') {
         this.showcomments()
       }
     })
