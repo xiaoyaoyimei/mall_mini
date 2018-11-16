@@ -8,7 +8,7 @@
 				</view>
 			</view>
 		<scroll-view 
-			   bindscrolltolower="bindscrolltolower" scroll-y style="height: 95vh;margin-top: 44px;">
+			   bindscrolltolower="bindscrolltolower" scroll-y >
 
 			<view wx:if="{{hasShow}}">
 				<view  class="clearfix ul mylike">

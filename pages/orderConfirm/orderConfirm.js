@@ -27,8 +27,9 @@ Page({
     xscoupon: false,
     couponCode: '',
     total: {
+      num: 0,
       price: 0,
-      num: 0
+     
     },
     disabled:false,
     useCouponMsg:'',//使用优惠码提示
@@ -55,8 +56,9 @@ Page({
 
   //总价计算
   jisuan(value) {
+
     let _this = this;
-    var num = _this.data.total.num;
+    var totalnum = _this.data.total.num;
     var totalPrice = _this.data.total.price;
     var origintotalprice = _this.data.origintotalprice;
     //刚进入购物车页面
@@ -64,7 +66,7 @@ Page({
       this.data.cartList.forEach(function (item, index) {
         origintotalprice += item.salePrice * item.quantity;
         totalPrice += item.salePrice * item.quantity;
-        num += item.quantity;
+        totalnum += item.quantity;
       });
     }
     //使用优惠券
@@ -163,13 +165,14 @@ Page({
         }
       }
     }
-
+//优惠
     var preferential = origintotalprice - totalPrice;
     this.setData({
-      total: { num: num, price: totalPrice},
+      total: { num: totalnum, price: totalPrice},
       origintotalprice: origintotalprice,
       preferential:preferential
     })
+   
   },
   usecoupon() {
   
@@ -225,7 +228,7 @@ Page({
     this.setData({
       orderfrom: options.orderfrom,
     });
-      $init(this)
+    $init(this)
     var cartList = wx.getStorageSync('cart');
     var that = this;
     that.data.productItemIds = [];
@@ -256,8 +259,7 @@ Page({
       cartList: cartList,
     })
     
-    that.jisuan();
-
+    
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
       if (res.data.length > 0) {
@@ -266,8 +268,6 @@ Page({
           addressInfo: addressInfo,//接数组
           hasAddress: true
         }) 
-    
-       
         this.getShipPrice();
 
       } else {
@@ -276,6 +276,8 @@ Page({
         })
       }
     });
+    that.jisuan();
+    console.log(this.data.total)
   },
   getShipPrice(){
     if (this.data.addressInfo.receiveProvince!=''){
@@ -300,7 +302,7 @@ Page({
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
-            total:{price:this.data.total.price}
+            'total.price': this.data.total.price
           })
         }
       
@@ -331,13 +333,6 @@ Page({
       })
       return;
     }
-    // addressId: this.addressList[this.selectItem].id,
-    //   productItemIds: this.productItemIds,
-    //     couponCode: this.couponCode,
-    //       remark: this.beizhu,
-    //         type: this.orderfrom,
-    //           quantity: this.quantitys,
-    //             modelIds: this.modelIds,
     request.req('zhifu',uri_order_confirm, 'POST',{
 
       productItemIds: that.data.productItemIds,  // 购物车id
