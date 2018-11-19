@@ -20,7 +20,7 @@ function updateAreaData( that, status, e){
       var s;
       provinces = [];
       var num = 0;
-      
+      console.log(areaInfo)
       for (var i = 0; i < areaInfo.length; i++) {
           s = areaInfo[i];
           provinces[num] = s.label;

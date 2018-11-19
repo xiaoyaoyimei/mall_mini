@@ -140,7 +140,11 @@ Page({
           this.setData({
             likeshow: true
           })
-        } else {
+        } else if (es.code == '401'){
+          wx.navigateTo({
+            url: '/pages/login/login',
+          });          
+        }else {
           util.showError('收藏失败');
           this.setData({
             likeshow: false
