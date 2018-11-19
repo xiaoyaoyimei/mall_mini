@@ -5,7 +5,7 @@ function getAreaInfo(callBack) {
   let promise = new Promise((resolve, reject) => {
 
     request.req('common', 'common/address', 'POST', {}, (err, res) => {
-      resolve(res.data);
+      resolve(res);
       });
   })
   promise.then(function (value) { callBack(value) });

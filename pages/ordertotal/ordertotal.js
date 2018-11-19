@@ -169,10 +169,10 @@ Page({
         if (res.confirm) {
           request.req2('order/cancel', 'POST', orderNo, (err, res) => {
             if (res.code == 200 || res.code==503) {
-              util.showSuccess(res.data.msg)
+              util.showSuccess(res.msg)
               self.getData();
             } else {
-              util.showError(res.data.msg)
+              util.showError(res.msg)
             }
           });
         }
@@ -192,10 +192,10 @@ Page({
         if (res.confirm) {
           request.req2('order/receive', 'POST', orderNo, (err, res) => {
             if (res.code == 200) {
-              util.showSuccess(res.data.msg)
+              util.showSuccess(res.msg)
               self.getData();
             } else {
-              util.showError(res.data.msg)
+              util.showError(res.msg)
             }
           });
         }

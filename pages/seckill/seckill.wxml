@@ -1,40 +1,39 @@
 <!--pages/seckill/seckill.wxml-->
-<wxs module="dateFr" src="../filters.wxs"></wxs>
-<view wx:if="{{show}}">
-          <view>立即秒杀</view>
+<wxs module="filters" src="../filters.wxs"></wxs>
+<view wx:if="{{hasShow}}">
+          <view class="t"  wx:if="{{startpro.length>0}}" >立即秒杀</view>
               <view class="search_list_wrap clearfix" >
-		            <view class="seckilllist"  wx:for="{{startpro}}" wx:key='index'  >
-		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}">
-                   <image src='{{filters.toFix(item.productItem.listImg)}} '></image>
-		                <div  class="title">
-		                      {{item.product.modelNo}}
-		                </div>
-		                <div class="name">{{item.product.modelName}}</div>
-		                 </navigator>
-		                <div class="color-dx">开始:{{item.crush.startTime}}</div>
-		                <div>结束:{{item.crush.endTime}}</div>
-		                <div  class="sku_tag" v-if="item.promotionTitle !=null">{{item.promotionTitle}}</div> 
-		                  <div class="price">
-		                  	 <span class="red">￥{{item.crush.salePrice|pricefilter}}</span>
-		                        <span class="origin">￥{{item.product.salePrice |pricefilter }}</span>
-		                   </div> 
+		            <view   wx:for="{{startpro}}" wx:key='index'  >
+		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
+                   <image src='{{filters.imgurl(item.productItem.listImg)}} '></image>
+                   <view class="xq">
+                          <view class="font-14">开始:{{item.crush.startTime}}</view>
+                          <view class="font-14">结束:{{item.crush.endTime}}</view>
+		                    
+                          <view class="font-13">{{item.product.modelName}}</view>
+                           <view class="font-13">{{item.product.modelNo}}</view>
+                          <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
+                           <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
+                          <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
+                         
+		                </view>
+		              
+                       </navigator>
 		            </view>
 	            </view>
-                  <view class="seckilllist"  wx:for="{{nostartpro}}" wx:key='index'  >
-		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}">
-                   <image src='{{filters.toFix(item.productItem.listImg)}} '></image>
-		                <div  class="title">
-		                      {{item.product.modelNo}}
-		                </div>
-		                <div class="name">{{item.product.modelName}}</div>
-		                 </navigator>
-		                <div class="color-dx">开始:{{item.crush.startTime}}</div>
-		                <div>结束:{{item.crush.endTime}}</div>
-		                <div  class="sku_tag" v-if="item.promotionTitle !=null">{{item.promotionTitle}}</div> 
-		                  <div class="price">
-		                  	 <span class="red">￥{{item.crush.salePrice|pricefilter}}</span>
-		                        <span class="origin">￥{{item.product.salePrice |pricefilter }}</span>
-		                   </div> 
+                   <view wx:if="{{nostartpro.length>0}}"  class="t">即将开始</view>
+                  <view   wx:for="{{nostartpro}}" wx:key='index'  >
+		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
+                   <image src='{{filters.imgurl(item.productItem.listImg)}}'></image>
+		                <view class="xq">
+		                      <text>{{item.product.modelNo}}{{item.product.modelName}}</text>
+                          <text>开始:{{item.crush.startTime}}</text>
+                          <text>结束:{{item.crush.endTime}}</text>
+                          <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
+                          <text>￥{{filters.toFix(item.product.salePrice)}}</text>
+                          <text>￥{{filters.toFix(item.crush.salePrice)}}</text>
+		                </view>
+ </navigator>
 		            </view>
 	            </view>
         

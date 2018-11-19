@@ -31,8 +31,6 @@ const $init = (page) => {
 }
 
 const $digest = (page) => {
-  debugger
-console.log(page)
   let data = page.data
   let $data = page.$data
   let ready2set = {}
