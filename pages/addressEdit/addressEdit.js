@@ -125,7 +125,7 @@ Page({
       })
     } else {
 
-      request.req5('address/update', 'POST', `${that.data.addrForm.id}`, {
+      request.req2('address/update', 'POST', `${that.data.addrForm.id}`, {
         person: that.data.addrForm.person,
         phone: that.data.addrForm.phone,
         receiveProvince: that.data.province,

@@ -2,16 +2,22 @@
 var request = require('../../utils/https.js')
 var util = require('../../utils/util.js')
 Page({
-  day: 0,
-  hr: 0,
-  min: 0,
-  sec: 0,
-  jsqtime: 0,
-  productDesc: [],
-  productimg: [],
-  onlyimg: false,
-  commentList: [],
+
+
   data: {
+    proId:'',
+    tabNum:0,//控制tab切换
+    day: 0,
+    hr: 0,
+    min: 0,
+    sec: 0,
+    jsqtime: 0,
+    productDesc: [],
+    productimg: [],
+    onlyimg: false,
+    commentList: [],
+    max: 0,
+    quantity: 1,
     detail: {
       productItem: {
         salePrice: 0
@@ -25,15 +31,52 @@ Page({
     hasAddr:true,
     skuId:''
   },
+  setNum: function (e) {
+    let num = e.target.dataset.num;
+    this.setData({
+      tabNum: num
+    });
+    console.log(num);
+    this.getTab(num);
+  },
+  /**
+  * 绑定加数量事件
+  */
+  addCount(e) {
+    let num = this.data.quantity;
+    if (num > max){
+     num=max;
+    }
+    this.setData({
+      quantity: quantity
+    });
+    this.getExpressPrice();
+  },
+
+  /**
+   * 绑定减数量事件
+   */
+  minusCount() {
+    let num = this.data.quantity;
+    if (num <= 1) {
+      num=1;
+    }else{
+      num = num - 1;
+    }
+    this.setData({
+      quantity: quantity
+    });
+    this.getExpressPrice();
+  },
   //获取初始地址
   getAddress() {
     var that=this;
     request.req2(`address`, 'post', null, (err, res) => {
       if (res.length > 0) {
         res.map(function (i) {
-          if (i.isDefault == 'Y' && that.address.receiveProvince == '') {
-            that.address = i;
-            that.hasAddr = true
+          if (i.isDefault == 'Y' && that.data.address.receiveProvince == '') {
+            that.data.address = i;
+            that.data.hasAddr = true
           }
         });
         that.setData({
@@ -41,7 +84,7 @@ Page({
           hasAddr: that.data.hasAddr,
         }); 
       }
-      if (self.hasAddr) {
+      if (that.data.hasAddr) {
         this.getExpressPrice();
       }
     });
@@ -51,20 +94,20 @@ Page({
   //获取运费
   getExpressPrice() {
     if (this.data.address.receiveProvince == '') {
-      util.shoshowError('请先选择收货地址')
+      util.showError('请先选择收货地址')
       return false
     }
     let data= {
-      "price": [this.freightPrice],
-      "province": this.addressList.receiveProvince,
-      "quantity": [this.quantity],
-      "typeIds": [this.freightTypeId]
+      "price": [this.data.detail.product.salePrice],
+      "province": this.data.address.receiveProvince,
+      "quantity": [this.data.quantity],
+      "typeIds": [this.data.detail.product.catalogId]
     }
-    request.req3(`order/getShipPrice`, 'post', data, (err, res) => {
+    request.req2(`order/getShipPrice`, 'post', data, (err, res) => {
       if (res.code == 200) {
         this.data.freight = res.object;
         this.setData({
-          freight: that.data.freight
+          freight: this.data.freight
         });
       }
     });
@@ -103,8 +146,8 @@ Page({
     request.req3(`promotion/crush/${skuId}`, 'get', null, (err, res) => {
       if (res.code == '200') {
         this.data.detail = res.object;
-
         this.data.max = this.data.detail.crush.unitQuantity;
+        this.data.proId = this.data.detail.product.id;
         if (this.data.detail.switch == '0') {
           this.data.jsqtime = this.data.detail.crush["startTime"]
         } else {
@@ -113,38 +156,54 @@ Page({
         this.setData({
           detail: this.data.detail,
           max: this.data.max,
-          jsqtime: this.data.jsqtime
+          jsqtime: this.data.jsqtime,
+          proId: this.data.proId
         });
         //计时器
+        this.getTab(0)
         this.countdown();
-        //this.proId = res.object.productItem.productId;
-        request.req3(`product/desc/${skuId}`, 'get', null, (err, res) => {
-          this.data.productDesc=res
-          this.setData({
-            productDesc: this.data.productDesc
-          });
-        })
-        request.req3(`product/img/${skuId}`, 'get', null, (err, res) => {
-          this.data.productimg = res
-          this.setData({
-            productimg: this.data.productimg
-          });
-        })
-        this.showcomments();
+    
       }
     });
 
   },
+  getTab(v){
+    if(v==0){
+      request.req3(`product/img/${this.data.proId}`, 'get', null, (err, res) => {
+        this.data.productimg = res
+        this.setData({
+          productimg: this.data.productimg
+        });
+      })
+   
+    }else if(v==1){
+      request.req3(`product/desc/${this.data.proId}`, 'get', null, (err, res) => {
+        this.data.productDesc = res
+        this.setData({
+          productDesc: this.data.productDesc
+        });
+      })
+    }else{
+      this.showcomments();
+    }
+  
+   
+  },
+  switchAddr() {
+    wx.navigateTo({
+      url: '../addressManager/addressManager?mime=2',
+    })
+  },
   //显示评论。0位全部评论，1为显示带图评论
   showcomments() {
-    let skuId = wx.getStorageSync('skuId');
+
     var imgshow = this.onlyimg;
     if (imgshow == true) {
       imgshow = 1
     } else {
       imgshow = 0
     }
-    request.req3(`comment/search/${skuId}/${imgshow}`, 'get', null, (err, res) => {
+    request.req3(`comment/search/${this.data.proId}/${imgshow}`, 'get', null, (err, res) => {
       if (res.code == "200" && res.object.length > 0) {
         this.data.commentList = res.object;
         this.data.hasPJ = true;
@@ -162,7 +221,9 @@ Page({
    */
   onLoad: function (options) {
     wx.setStorageSync('skuId', options.skuId);
-    this.getDetail()
+    this.getDetail();
+    this.getAddress();
+   
   },
 
   /**

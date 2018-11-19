@@ -25,13 +25,16 @@
                   <view   wx:for="{{nostartpro}}" wx:key='index'  >
 		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
                    <image src='{{filters.imgurl(item.productItem.listImg)}}'></image>
-		                <view class="xq">
-		                      <text>{{item.product.modelNo}}{{item.product.modelName}}</text>
-                          <text>开始:{{item.crush.startTime}}</text>
-                          <text>结束:{{item.crush.endTime}}</text>
+		               <view class="xq">
+                          <view class="font-14">开始:{{item.crush.startTime}}</view>
+                          <view class="font-14">结束:{{item.crush.endTime}}</view>
+		                    
+                          <view class="font-13">{{item.product.modelName}}</view>
+                           <view class="font-13">{{item.product.modelNo}}</view>
                           <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
-                          <text>￥{{filters.toFix(item.product.salePrice)}}</text>
-                          <text>￥{{filters.toFix(item.crush.salePrice)}}</text>
+                           <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
+                          <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
+                         
 		                </view>
  </navigator>
 		            </view>
