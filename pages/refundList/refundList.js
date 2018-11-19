@@ -45,9 +45,9 @@ Page({
     var that = this;
     request.req('index', statusuri, 'GET', {
     }, (err, res) => {
-      if (res.data.code == 200) {
+      if (res.code == 200) {
         that.setData({
-          statusenums: res.data.object,
+          statusenums: res.object,
           loginhidden: false
         })
       }
@@ -68,10 +68,10 @@ Page({
     var CuserInfo = wx.getStorageSync('CuserInfo');
     request.req('index', uri, 'GET', {
     }, (err, res) => {
-      if (res.data.length >0) {
+      if (res.length >0) {
 
         that.setData({
-          list: res.data,
+          list: res,
           loginhidden: false,
           hasShow:true
         })
@@ -100,11 +100,11 @@ Page({
         if (res.confirm) {
           var url =`refund/cancel?refundOrderNo=${refundOrderNo}`
           request.req2(url, 'POST', null, (err, res) => {
-            if (res.data.code == 200 || res.data.code == 503) {
-              util.showSuccess(res.data.msg)
+            if (res.code == 200 || res.code == 503) {
+              util.showSuccess(res.msg)
               self.getData();
             } else {
-              util.showError(res.data.msg)
+              util.showError(res.msg)
             }
           });
         }
