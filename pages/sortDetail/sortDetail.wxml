@@ -110,8 +110,10 @@
 				</view>
 			</view>
 		</view>
+
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
     <button class='close' catchtap='closemodal' >x</button>
+
     <view class='cartModalFixed'>
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
