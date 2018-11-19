@@ -3,10 +3,10 @@
   <!--上部信息-->
   <view wx:if="{{loginhidden}}" class="user flex-wrp nologin">
 
-    <navigator url="../login/login?fromurl=account" class="loginurl">登录</navigator>
-    /
+    <navigator url="../login/login?fromurl=account" class="loginurl"><text>登录</text></navigator>
+   <text>/</text> 
     <navigator url="../regi/regi?fromurl=account" class="loginurl">
-      注册</navigator>
+      <text>注册</text></navigator>
   </view>
   <view wx:else>
     <view class="user flex-wrp">
