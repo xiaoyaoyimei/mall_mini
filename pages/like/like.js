@@ -14,16 +14,17 @@ Page({
   del:function(event){
     let id = event.currentTarget.id;
     request.req2('like/delete',  'POST', id, (err, res) => {
-      if (res.data.code = '200') {
+      if (res.code = '200') {
         this.getLike();
       }
     });
   },
   getLike:function(){
     request.req('like', 'like', 'POST', {}, (err, res) => {
-      if (res.data.length > 0) {
+      console.log(res)
+      if (res.length > 0) {
         this.setData({
-          likeList: res.data,
+          likeList: res,
           hasLove: true
         })
       } else {

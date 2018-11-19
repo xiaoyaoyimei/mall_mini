@@ -124,14 +124,14 @@ Page({
         mask: true
       })
     } else {
-
-      request.req2('address/update', 'POST', `${that.data.addrForm.id}`, {
+      request.req2('address/update?id='+that.data.addrForm.id, 'POST', {
         person: that.data.addrForm.person,
         phone: that.data.addrForm.phone,
         receiveProvince: that.data.province,
         receiveCity: that.data.city,
         receiveDistrict: that.data.county,
         address: that.data.addrForm.address,
+        tel:''
       }, (err, res) => {
 
         if (res.code == 200) { //地址保存成功

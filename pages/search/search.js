@@ -62,12 +62,12 @@ Page({
         startRow: that.data.startRow,
         pageSize: that.data.pageSize,
       }, (err, res) => {
-        if (res.data.total > 0) {
+        if (res.total > 0) {
           app.globalData.keyword = "";
           that.setData({
             loadingHidden: true,
-            result: res.data.itemsList,
-            total: res.data.total,
+            result: res.itemsList,
+            total: res.total,
           });
         }
         else {

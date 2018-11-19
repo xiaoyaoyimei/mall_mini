@@ -24,7 +24,7 @@
             <text> 编辑　　</text>
           </view>
           <view>
-            <switch color="#0099ff" bindchange="switch1Change" data-item-id="{{item.id}}" checked="{{item.isDefault=='Y'?true:false}}" />
+            <switch color="#0099ff" bindtap="switch1Change" data-item-id="{{item.id}}" data-isDefault="{{item.isDefault}}" checked="{{item.isDefault=='Y'?true:false}}" />
             <text wx:if="{{item.isDefault=='Y'}}" class="color-dx">默认地址</text>
             <text wx:else>设为默认</text>
           </view>

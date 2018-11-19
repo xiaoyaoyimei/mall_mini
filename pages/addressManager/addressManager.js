@@ -11,44 +11,26 @@ Page({
   switch1Change: function (e) {
     var that = this;
     var addressId = e.currentTarget.dataset.itemId;
-    let isDefault=e.detail.value;
+    let isDefault = e.currentTarget.dataset.isdefault;
     if (isDefault){
       isDefault='Y';
     }else{
       isDefault = 'N';
     }
-    var CuserInfo = wx.getStorageSync('CuserInfo');
-    if (CuserInfo.token) {
-    wx.request({
-      url: `https://m.shop.dxracer.cn/mall/wap/address/updateDefault?id=${addressId}&isDefault=${isDefault}`,
-      method: 'POST',    //大写
-      header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
-      success(res) {
+    request.req2( `/address/updateDefault?id=${addressId}&isDefault=${isDefault}`,'POST',{},
+      (err,res) =>{
         if (res.code == 401) {  //token失效 用code换下token
           wx.showToast({
             title: '认证已过期，请重新登录',
             icon: 'none',
             duration: 2000
           })
-          wx.removeStorageSync('CuserInfo')
+          
         }
         if (res.code == 200) {
           that.getAddressList();
         }
-      },
-      fail(e) {
-        console.error(e)
-        callback(e)
-      }
-    })
-    }else{
-      wx.showToast({
-        title: '认证已过期，请重新登录',
-        icon: 'none',
-        duration: 2000
       })
-      wx.removeStorageSync('CuserInfo')
-    }
   },
   addressClick:function(e){
     //mime=2来自秒杀页面
@@ -91,7 +73,7 @@ Page({
       title: '确认删除该地址吗？',
       success: function(res) {
         if (res.confirm) {
-          request.req5('address/delete', 'POST', addressId, {}, (err, res) => {
+          request.req2('address/delete?id='+addressId, 'POST',{}, (err, res) => {
             if (res.code == 200) {
               that.getAddressList();
             }
@@ -115,6 +97,7 @@ Page({
   },
   onLoad:function(options){
       mime = options.mime
+    console.log(mime)
   },
   onReady: function() {
     // Do something when page ready.

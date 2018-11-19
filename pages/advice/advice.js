@@ -118,7 +118,7 @@ Page({
         console.log(">>>> upload images error:", err)
       }).then(urls => { // 调用保存问题的后端接口 
         let img = urls[0];
-        request.req5('comment/create', 'POST', null, {
+        request.req2('/complaint/add', 'POST', {
                 userId: that.data.userId,
           mobile: that.data.mobile,
                 content: that.data.content,
