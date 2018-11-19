@@ -1,7 +1,7 @@
 .user {
   width: 725rpx;
   background: #ffffff;
-  padding: 10rpx 25rpx 10rpx 0;
+  padding: 15rpx 25rpx 15rpx 0;
   margin: 15rpx 0 0 0;
   border-top: 1px solid #eee;
   border-bottom: 1px solid #dcdcdc;
@@ -79,7 +79,6 @@ color:red;
 .nologin{
   justify-content: center;
   color: #f00;
-  height: 60px;
   text-align: center
 }
 .myorder{

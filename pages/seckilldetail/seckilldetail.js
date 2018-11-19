@@ -2,8 +2,6 @@
 var request = require('../../utils/https.js')
 var util = require('../../utils/util.js')
 Page({
-
-
   data: {
     proId:'',
     tabNum:0,//控制tab切换
@@ -29,26 +27,103 @@ Page({
     },
     address: { receiveProvince:''},
     hasAddr:true,
-    skuId:''
+    skuId:'',
+    hasPJ:true
   },
-  setNum: function (e) {
+  toggleimg() {
+    this.data.onlyimg = !this.data.onlyimg;
+    this.showcomments();
+  },
+  dianzan:function(e){
+    let id = e.target.dataset.id;
+    let iszan = e.target.dataset.iszan;
+
+      if (Like == 'N') {
+        iszan = 'yes'
+      } else {
+        iszan = 'no'
+      }
+    request.req2(`comment/beLike/${id}/${iszan}`, 'post', null, (err, res) => {
+      if (res.code == '200') {
+          this.showcomments()
+        }
+    });
+    },
+  setNum:function (e) {
     let num = e.target.dataset.num;
     this.setData({
       tabNum: num
     });
-    console.log(num);
     this.getTab(num);
+  },
+  confirm() {
+    if (this.data.address.id == undefined) {
+      util.showError('收货地址不能为空');
+      return;
+    }
+    let para = {
+      addressId: this.data.address.id,
+      quantity: this.data.quantity,
+      skuId: wx.getStorageSync('skuId')
+    };
+    request.req2('promotion/crush/confirm', 'post', para, (err, res) => {
+      if (res.code == '200') {
+        wx.removeStorageSync('skuId');
+        wx.login({
+          success: function (res) {
+            request.req2(`order/weixin/browser/${res.object}`, 'GET', res.code, (err, res) => {
+              var weval = res.object;
+              wx.requestPayment({
+                timeStamp: weval.timeStamp,
+                nonceStr: weval.nonceStr,
+                package: weval.package,
+                signType: weval.signType,
+                paySign: weval.paySign,
+                success: function (res) { //跳转
+                  wx.redirectTo({
+                    url: '../paycomplete/paycomplete',
+                  })
+                },
+                fail: function () {
+                  wx.showToast({
+                    title: '支付失败',
+                    icon: 'none',
+                    duration: 2000
+                  })
+                  wx.switchTab({
+                    url: '../mime/mime',
+                  })
+                },
+                complete: function () {
+                  wx.switchTab({
+                    url: '../mime/mime',
+                  })
+                }
+              })
+            });
+          }
+        })
+
+      } else {
+        util.showError(res.object);
+        return;
+      }
+    });
   },
   /**
   * 绑定加数量事件
   */
-  addCount(e) {
-    let num = this.data.quantity;
-    if (num > max){
-     num=max;
+  addCount() {
+
+    let num = parseInt(this.data.quantity);
+    if (num >= parseInt(this.data.max)){
+      num = parseInt(this.data.max);
+      util.showModel('购买提示',`只能购买${num}件`)
+    }else{
+      num=num+1
     }
     this.setData({
-      quantity: quantity
+      quantity: num
     });
     this.getExpressPrice();
   },
@@ -57,14 +132,14 @@ Page({
    * 绑定减数量事件
    */
   minusCount() {
-    let num = this.data.quantity;
+    let num = parseInt(this.data.quantity);
     if (num <= 1) {
       num=1;
     }else{
       num = num - 1;
     }
     this.setData({
-      quantity: quantity
+      quantity: num
     });
     this.getExpressPrice();
   },

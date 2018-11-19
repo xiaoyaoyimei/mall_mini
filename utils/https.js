@@ -117,6 +117,7 @@ if (data == null || data== undefined) {
 
 //无需登录,不带TOKEN请求(url中包含/和?)
 function req3(url, methodway, data, callback) {
+
   if (data == null || data == undefined) {
   wx.request({
   url: rootDocment + url,
@@ -137,6 +138,7 @@ function req3(url, methodway, data, callback) {
       method: methodway,    //大写
       header: { 'Content-Type': 'application/json' },
       success(res) {
+
         callback(null, res.data)
       },
       fail(e) {

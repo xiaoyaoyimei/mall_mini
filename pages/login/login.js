@@ -56,6 +56,7 @@ Page({
 
     wx.login({
       success: res => {
+       console.log(res) 
       request.req3('customer/login','POST', {
       loginName: username,
       passWord: psword,

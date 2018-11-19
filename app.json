@@ -39,10 +39,9 @@
   "window": {
     "enablePullDownRefresh": true,
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#ff0000",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Dxracer 官方商城",
-    "navigationBarTextStyle": "#fff",
-    "navigationBarTextAlign": "center"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#575757",
@@ -50,7 +49,6 @@
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
-
       {
         "pagePath": "pages/index/index",
         "text": "首页",

@@ -5,7 +5,7 @@
 	<view class="homepage">
 		<view class="bg-black">
 			<view class="search-wrap">
-				<image src="../../images/waplogo.png" mode="scaleToFill" class="logo"></image>
+				<!-- <image src="../../images/waplogo.png" mode="scaleToFill" class="logo"></image> -->
 				 <input placeholder="新品" catchtap="gosearch" v-model="keyword"></input> 
 				 <image src='../../images/search_header.png' class="icon-search" ></image>
 			</view>
