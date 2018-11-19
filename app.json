@@ -26,7 +26,7 @@
     "pages/service/service",
     "pages/paycomplete/paycomplete",
     "pages/contactUs/contactUs",
-        "pages/refundDetail/refundDetail",
+    "pages/refundDetail/refundDetail",
     "pages/aboutUs/aboutUs",
     "pages/orderDetail/orderDetail",
     "pages/invoice/invoice",

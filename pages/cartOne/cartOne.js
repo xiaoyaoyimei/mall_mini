@@ -183,7 +183,8 @@ Page({
       util.showModel('提示','您尚未选择商品')
       return;
     }else{
-      wx.setStorageSync('cart', goumai);
+      
+      wx.setStorageSync('cart', JSON.stringify(goumai));
       wx.navigateTo({
         url: "../orderConfirm/orderConfirm?orderfrom=B",
       });

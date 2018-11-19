@@ -92,11 +92,39 @@ Page({
     compineId: [],
     likeshow: false,
     player: {},
+    topNum: 0,
   },
   cartmodal() {
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+
+    if (CuserInfo.token) {
+      this.setData({
+        hidden: false
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      });
+    }
+  },
+  // 获取滚动条当前位置
+  scrolltoupper: function (e) {
+    if (e.detail.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
+  //回到顶部 
+  goTop: function (e) {
+    // 一键回到顶部 
     this.setData({
-      hidden:false
-    })
+      topNum: this.data.topNum = 0
+    });
   },
   //喜欢
   likepro() {
@@ -233,7 +261,7 @@ Page({
   },
   buynow(v) {
       if (this.data.productItemId == "") {
-        this.$Message.error('请选择商品属性');
+        util.showError('请选择商品属性');
         return
       }
       this.setData({
@@ -268,7 +296,7 @@ Page({
   atc() {
 
     let productItemIds = [];
-      if (this.productItemId == "") {
+      if (this.data.productItemId == "") {
         util.showError('请选择商品属性');
         return
       }
@@ -277,7 +305,7 @@ Page({
         productItemIds = this.data.compineId.concat(productItemIds);
         this.data.quantity = 1;
       }
-      request.req5('/order/shopping/add', 'post','',
+      request.req2('/order/shopping/add', 'post',
         {
           productItemIds: productItemIds,
           quantity: this.data.quantity
