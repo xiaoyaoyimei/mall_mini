@@ -13,7 +13,8 @@ Page({
   },
   del:function(event){
     let id = event.currentTarget.id;
-    request.req2('like/delete',  'POST', id, (err, res) => {
+    request.req2('like/delete/'+id,  'POST', {}, (err, res) => {
+      console.log(res)
       if (res.code = '200') {
         this.getLike();
       }
@@ -21,7 +22,6 @@ Page({
   },
   getLike:function(){
     request.req('like', 'like', 'POST', {}, (err, res) => {
-      console.log(res)
       if (res.length > 0) {
         this.setData({
           likeList: res,
