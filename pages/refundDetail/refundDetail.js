@@ -32,25 +32,25 @@ Page({
   },
   getStatusEnum() {
     request.req2('refund/enums', 'get', null, (err, res) => {
-      if (res.data.code == '200') {
+      if (res.code == '200') {
       this.setData({
-        statusList: res.data.object,
+        statusList: res.object,
       })
       }
     })
   },
   getOrder() {
-    request.req2('refund', 'get', this.data.refundOrderNo, (err, res) => {
+    request.req2(`refund/${this.data.refundOrderNo}`, 'get',null, (err, res) => {
  
-      res.data.shoppingRefundOrder.znrefundOrderStatus = this.statusfilter(res.data.shoppingRefundOrder.refundOrderStatus);
+      res.shoppingRefundOrder.znrefundOrderStatus = this.statusfilter(res.shoppingRefundOrder.refundOrderStatus);
      
       this.setData({
-        refundOrderdetail: res.data,
+        refundOrderdetail: res,
       })
     })
-    request.req2('order', 'get', this.data.orderNo, (err, res) => {
+    request.req2(`order/${this.data.orderNo}`, 'get',null, (err, res) => {
       this.setData({
-        orderdetail: res.data,
+        orderdetail: res,
       })
     })
 

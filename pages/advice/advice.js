@@ -124,7 +124,7 @@ Page({
                 content: that.data.content,
           imageUrl: img
         }, (err, res) => {
-          if (res.data.code == '200') {
+          if (res.code == '200') {
             const pages = getCurrentPages();
             const currPage = pages[pages.length - 1];
             const prevPage = pages[pages.length - 2];

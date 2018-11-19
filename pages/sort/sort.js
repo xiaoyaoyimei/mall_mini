@@ -75,9 +75,9 @@ Page({
     request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
        'GET',{},
      (err,res) => {
-      if (res.data.itemsList.length > 0) {
+      if (res.itemsList.length > 0) {
         this.setData({
-          productList: res.data.itemsList,
+          productList: res.itemsList,
           hasShow:true
         })
       } else {
@@ -86,7 +86,7 @@ Page({
         })
       }
        this.setData({
-         totalSize: res.data.total
+         totalSize: res.total
        })
     })
     this.setData({
@@ -116,22 +116,22 @@ Page({
   getTop() {
     request.req3('/product/catalog', 'GET',{},(err,res) => {
       this.setData({
-        catalog:res.data
+        catalog:res
       })
     })
     request.req3('/product/brand','GET',{},(err,res) => {
       this.setData({
-        brand: res.data
+        brand: res
       })
     })
     request.req3('/product/series','GET',{},(err,res) => {
       this.setData({
-        series: res.data
+        series: res
       })
     })
     request.req3('/product/type','GET',{},(err,res) => {
       this.setData({
-        type: res.data
+        type: res
       })
       for (let index = 0; index < this.data.type.length; index++) {
           let obj = "data.type["+index+"].red"
@@ -195,11 +195,11 @@ Page({
     })
     request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
     (err,res) => {
-      if (res.data.total > 0) {
+      if (res.total > 0) {
         this.setData({
           hasShow:true,
-          productList: res.data.itemsList,
-          totalSize:res.data.total
+          productList: res.itemsList,
+          totalSize:res.total
         })
       } else {
         this.setData({
@@ -225,9 +225,9 @@ Page({
       request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
         'GET', {},
         (err, res) => {
-          if (res.data.itemsList.length > 0) {
+          if (res.itemsList.length > 0) {
             this.setData({
-              productList: that.data.productList.concat( res.data.itemsList),
+              productList: that.data.productList.concat( res.itemsList),
               hasShow: true
             })
           } else {
@@ -236,7 +236,7 @@ Page({
             })
           }
           this.setData({
-            totalSize: res.data.total
+            totalSize: res.total
           })
         })
 

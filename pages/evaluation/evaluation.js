@@ -19,11 +19,11 @@ Page({
   },
   getEvaluate() {
     request.req2('comment/mysearch', 'GET',null,  (err, res) => {
-      if (res.data.code == 200) {
+      if (res.code == 200) {
         this.setData({
-          evaluateList: res.data.object
+          evaluateList: res.object
         })
-        if (res.data.object.length > 0) {
+        if (res.object.length > 0) {
           this.setData({
             hasShow: true
           })
@@ -44,7 +44,7 @@ Page({
       Like = 'no'
     }
     request.req2('/comment/beLike/' + zanid + '/' + Like, 'GET', (err, res) => {
-      if (res.data.code == 200) {
+      if (res.code == 200) {
         this.getEvaluate()
       }
     })

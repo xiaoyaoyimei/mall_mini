@@ -63,7 +63,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             request.req2('order/cancel', 'POST', orderNo, (err, res) => {
-              if (res.data.code == 200) {
+              if (res.code == 200) {
                 util.showSuccess('取消成功')
                 self.getOrder();
               }else{
@@ -84,7 +84,7 @@ Page({
       wx.login({
         success: function (res) {
           request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
-            var weval = res.data.object;
+            var weval = res.object;
             wx.requestPayment({
               timeStamp: weval.timeStamp,
               nonceStr: weval.nonceStr,
@@ -128,13 +128,12 @@ Page({
     getOrder() {
       var that=this;
       var orderNo = this.data.orderNo;
-      request.req2('order', 'GET', orderNo, (err, res) => {
-        if (res.data.shippingInvoice!=""){
-          res.data.shippingInvoice.znstatus = that.invoicefilter(res.data.shippingInvoice.invoiceStatus);
+      request.req2('order/' + orderNo, 'GET', null, (err, res) => {
+        if (res.shippingInvoice!=""){
+          res.shippingInvoice.znstatus = that.invoicefilter(res.shippingInvoice.invoiceStatus);
         }
-       
           this.setData({
-            orderdetail: res.data,
+            orderdetail: res,
             loginhidden:false
           })    
         

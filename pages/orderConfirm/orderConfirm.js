@@ -191,22 +191,22 @@ Page({
       couponCode:this.data.couponCode,
       quantity: this.data.quantitys
     };
-    request.req('cart', 'promotion/coupon', 'POST', para, (err, res) => {
+    request.req2('promotion/coupon', 'POST', para, (err, res) => {
       this.data.cartList = JSON.parse(wx.getStorageSync('cart'));
-      if (res.data.code == '200') {
+      if (res.code == '200') {
         this.setData({
           xscoupon:true,
-          couponmsg: Object.assign({}, res.data.object),
+          couponmsg: Object.assign({}, res.object),
         })
         this.jisuan(this.data.couponmsg);
       }else{
-        this.data.useCouponMsg = res.data.object;
+        this.data.useCouponMsg = res.object;
         this.setData({
           xscoupon: false,
           useCouponMsg: this.data.useCouponMsg
         })
         wx.showModal({
-          content: res.data.object,
+          content: res.object,
           confirmText: "确定",
           showCancel: false
         })
@@ -260,8 +260,8 @@ Page({
     })
     request.req('addresslist', 'address', 'POST', {
     }, (err, res) => {
-      if (res.data.length > 0) {
-        let addressInfo = res.data[0]
+      if (res.length > 0) {
+        let addressInfo = res[0]
         that.setData({
           addressInfo: addressInfo,//接数组
           hasAddress: true
@@ -288,14 +288,14 @@ Page({
         quantity.push(item.quantity);
         typeIds.push(item.productCatalog);
       });
-      request.req5('order/getShipPrice', 'POST', null, {
+      request.req2('order/getShipPrice', 'POST', {
         "price": price,
         "province": province,
         "quantity": quantity,
         "typeIds": typeIds
       }, (err, res) => {
-        if (res.data.code == 200) {
-          this.data.freight = res.data.object;
+        if (res.code == 200) {
+          this.data.freight = res.object;
           this.data.total.price += this.data.freight;
           this.setData({
             freight: this.data.freight,
@@ -328,8 +328,7 @@ Page({
       })
       return;
     }
-    request.req('zhifu',uri_order_confirm, 'POST',{
-
+    request.req2(uri_order_confirm, 'POST',{
       productItemIds: that.data.productItemIds,  // 购物车id
       addressId: that.data.addressInfo.id, //地址id
       couponCode: that.data.couponCode,  //暂时为空  优惠券id
@@ -338,8 +337,8 @@ Page({
       remark: that.data.remark,
       type: that.data.orderfrom
     }, (err, res) => {
-          if (res.data.code == 200) {
-            var orderNo=res.data.msg;
+          if (res.code == 200) {
+            var orderNo=res.object.order.orderNo;
             wx.removeStorageSync('cart');
             this.setData({
               disabled: true
@@ -347,7 +346,7 @@ Page({
             wx.login({
               success: function (res) {
                 request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
-                  var weval = res.data.object;
+                  var weval = res.object;
                   wx.requestPayment({
                     timeStamp: weval.timeStamp,
                     nonceStr: weval.nonceStr,
@@ -382,7 +381,7 @@ Page({
           else {
             wx.showToast({
               icon: 'none',
-              title: res.data.msg,
+              title: res.msg,
               duration: 2000
             })
           }

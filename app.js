@@ -9,11 +9,12 @@ App({
     wx.login({
       success: function (res) {
         var code=res.code;
-        request.req4('customer/wxlogin', 'POST', code, (err, res) => {
-          if (res.data.code == 200) {
+        request.req2('customer/wxlogin', 'POST', code, (err, res) => {
+          console.log(res)
+          if (res.code == 200) {
             var CuserInfo = {
-              token: res.data.object.token,
-              userId: res.data.object.userId,
+              token: res.object.token,
+              userId: res.object.userId,
             };
             wx.setStorageSync('CuserInfo', CuserInfo);
           }

@@ -52,15 +52,15 @@ Page({
         request.req2(url, 'POST', null, (err, res) => {
 
           //保存
-          if (res.data.code == '200') {
+          if (res.code == '200') {
             that.setData({
-              showToast: res.data.msg,
+              showToast: res.msg,
               backcolor: 'green',
             })
           } else {
             //提示
             that.setData({
-              showToast: res.data.msg,
+              showToast: res.msg,
               backcolor: 'red',
             })
           }

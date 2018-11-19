@@ -73,9 +73,14 @@ margin-top:40rpx;
 margin-bottom:20rpx;
 color:red;
 }
+.user  navigator{
+  display: inline-block;
+}
 .nologin{
   justify-content: center;
   color: #f00;
+  height: 60px;
+  text-align: center
 }
 .myorder{
   background: #fff;
