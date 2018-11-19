@@ -1,2 +1,16 @@
 <!--pages/seckilldetail/seckilldetail.wxml-->
-<text>pages/seckilldetail/seckilldetail.wxml</text>
+<wxs module="filters" src="../filters.wxs"></wxs>
+<view class="mainImg">
+<image src="{{filters.imgurl(detail.productItem.listImg)}}"></image>
+
+<view class="p"><text wx:if="{{detail.switch==0}}">距开始还有</text><text wx:else>距活动结束还剩
+</text>{{day}}天{{hr}}:{{min}}:{{sec}}</view>
+</view>
+<text>秒杀价￥{{filters.toFix(detail.crush.salePrice)}}</text>
+<text>原价￥{{filters.toFix(detail.productItem.salePrice)}}</text>
+<view wx:if="hasAddr"><text>{{addressList.person}}</text><text>{{addressList.phone}}</text>
+<view>{{addressList.receiveProvince}}{{addressList.receiveCity}}{{addressList.receiveDistrict}}{{addressList.address}}</view>
+<view>运费:￥{{filters.toFix(freight)}}</view></view>
+<view wx:else>请选择收货地址</view>
+<view>{{detail.product.modelName}}</view>
+

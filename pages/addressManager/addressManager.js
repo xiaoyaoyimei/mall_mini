@@ -24,7 +24,7 @@ Page({
       method: 'POST',    //大写
       header: { 'Content-Type': 'application/json', 'token': CuserInfo.token, 'loginUserId': CuserInfo.userId },
       success(res) {
-        if (res.data.code == 401) {  //token失效 用code换下token
+        if (res.code == 401) {  //token失效 用code换下token
           wx.showToast({
             title: '认证已过期，请重新登录',
             icon: 'none',
@@ -32,7 +32,7 @@ Page({
           })
           wx.removeStorageSync('CuserInfo')
         }
-        if (res.data.code == 200) {
+        if (res.code == 200) {
           that.getAddressList();
         }
       },
@@ -81,7 +81,7 @@ Page({
       success: function(res) {
         if (res.confirm) {
           request.req5('address/delete', 'POST', addressId, {}, (err, res) => {
-            if (res.data.code == 200) {
+            if (res.code == 200) {
               that.getAddressList();
             }
           })
@@ -113,7 +113,7 @@ Page({
     request.req('addresslist',uri_address_list, 'POST', {
     }, (err, res) => {
       that.setData({
-        addressData: res.data,//接数组
+        addressData: res,//接数组
         loginhidden:false
       })
     });

@@ -1,1 +1,15 @@
 /* pages/seckilldetail/seckilldetail.wxss */
+.mainImg{
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.p{
+  background: #f00;
+  position: absolute;
+  bottom:0;
+  left:0;
+  width: 100%;
+  color: #fff;
+  height: 50px;
+}

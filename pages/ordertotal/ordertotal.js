@@ -46,10 +46,10 @@ Page({
 
     request.req('index',statusuri, 'GET', {
     }, (err, res) => {
-      if (res.data.code == 200) {
+      if (res.code == 200) {
           that.setData({
             hidden: true,
-            statusenums: res.data.object,
+            statusenums: res.object,
             loginhidden:false
           }) 
       }
@@ -68,7 +68,7 @@ Page({
     wx.login({
       success: function (res) {
         request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
-          var weval=res.data.object;
+          var weval=res.object;
             wx.requestPayment({
               timeStamp: weval.timeStamp,
               nonceStr: weval.nonceStr,
@@ -122,10 +122,10 @@ Page({
     }
     request.req('index',uri,'GET', {
     }, (err, res) => {
-      if (res.data.code == 200 && res.data.object.length>0) {
+      if (res.code == 200 && res.object.length>0) {
           that.setData({
             hidden: true,
-            list: res.data.object,
+            list: res.object,
             loginhidden:false,
             hasShow:true
           })
@@ -168,11 +168,11 @@ Page({
       success: function (res) {
         if (res.confirm) {
           request.req2('order/cancel', 'POST', orderNo, (err, res) => {
-            if (res.data.code == 200 || res.data.code==503) {
-              util.showSuccess(res.data.msg)
+            if (res.code == 200 || res.code==503) {
+              util.showSuccess(res.msg)
               self.getData();
             } else {
-              util.showError(res.data.msg)
+              util.showError(res.msg)
             }
           });
         }
@@ -191,11 +191,11 @@ Page({
       success: function (res) {
         if (res.confirm) {
           request.req2('order/receive', 'POST', orderNo, (err, res) => {
-            if (res.data.code == 200) {
-              util.showSuccess(res.data.msg)
+            if (res.code == 200) {
+              util.showSuccess(res.msg)
               self.getData();
             } else {
-              util.showError(res.data.msg)
+              util.showError(res.msg)
             }
           });
         }

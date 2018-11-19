@@ -39,6 +39,7 @@ function req(fromurl,url, methodway, data, callback) {
         var code = res.code;
         if (code) {
           req3('customer/wxlogin', 'POST', code, (err, res) => {
+         
             if (res.data.code == 200) {
               wx.setStorageSync('openid', res.data)
               callback(null, res.data)

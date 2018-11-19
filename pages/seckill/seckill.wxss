@@ -1,1 +1,35 @@
 /* pages/seckill/seckill.wxss */
+page{
+  background: #f0f0f0
+}
+.t{
+  padding: 10px;
+}
+.wrap{
+  display: flex;
+  background: #fff;
+  padding: 10px;
+}
+.wrap image{
+  width: 80px;
+  height: 80px;
+} 
+.wrap .xq{
+  flex:1
+}
+.o{
+  text-decoration: line-through;
+  font-size: 12px;
+  color: #888;
+}
+.x{
+  color: red
+}
+.font-13{
+  padding-top: 5px;
+  font-size: 13px;
+  color: #666;
+}
+.font-14{
+  font-size: 14px;
+}
