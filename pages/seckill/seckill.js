@@ -20,7 +20,7 @@ Page({
   },
   getkill(){
     var that=this;
-    request.req4('promotion/crush', 'get',null, (err, res) => {
+    request.req3('promotion/crush', 'get',null, (err, res) => {
       if (res.data.code == '200') {
         that.data.pro = res.object;
         that.data.startpro = [];
