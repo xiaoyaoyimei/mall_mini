@@ -1,15 +1,71 @@
 /* pages/seckilldetail/seckilldetail.wxss */
+page{
+  background: #fafafa;
+}
 .mainImg{
+  background: #fff;
   display: flex;
   justify-content: center;
   position: relative;
 }
 .p{
   background: #f00;
-  position: absolute;
-  bottom:0;
-  left:0;
   width: 100%;
   color: #fff;
-  height: 50px;
+  text-align:center;
+font-size:14px;
+padding-top:10px;
+padding-bottom:10px;
+}
+.x{
+ padding:10px;
+ margin-bottom: 10px;
+}
+.m{
+  color:#f00;
+  padding-bottom: 5px;
+}
+.s{
+  color: #999;
+  text-decoration: line-through;
+  font-size: 12px;
+}
+.addr{
+  border-top:1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.sl{
+  display: flex;
+  align-items: center
+}
+.sl text{
+width:30px;
+height:30px;
+line-height:30px;
+text-align:center;
+font-weight:bold;
+
+}
+.count-down,.count-add{
+  border:1px solid #ccc;
+}
+.addr{
+  padding: 10px;
+  font-size: 12px;
+}
+.f{
+  margin-top:5px;
+}
+.f text{
+  color: #f00;
+}
+.m30{
+  margin-left:30px
+}
+.tab text{
+  width: 33.33%;
+}
+.img-wrap{
+  display: flex;
+  justify-content: center;
 }

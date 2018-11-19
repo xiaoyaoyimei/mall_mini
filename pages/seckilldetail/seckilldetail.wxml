@@ -1,16 +1,57 @@
 <!--pages/seckilldetail/seckilldetail.wxml-->
 <wxs module="filters" src="../filters.wxs"></wxs>
 <view class="mainImg">
-<image src="{{filters.imgurl(detail.productItem.listImg)}}"></image>
-
-<view class="p"><text wx:if="{{detail.switch==0}}">距开始还有</text><text wx:else>距活动结束还剩
-</text>{{day}}天{{hr}}:{{min}}:{{sec}}</view>
+<image src="{{filters.imgurl(detail.productItem.listImg)}}" mode="widthFix"></image>
 </view>
-<text>秒杀价￥{{filters.toFix(detail.crush.salePrice)}}</text>
-<text>原价￥{{filters.toFix(detail.productItem.salePrice)}}</text>
-<view wx:if="hasAddr"><text>{{addressList.person}}</text><text>{{addressList.phone}}</text>
-<view>{{addressList.receiveProvince}}{{addressList.receiveCity}}{{addressList.receiveDistrict}}{{addressList.address}}</view>
-<view>运费:￥{{filters.toFix(freight)}}</view></view>
+<view class="p">
+<block wx:if="{{detail.switch==0}}">距开始还有</block>
+<block wx:else>
+距活动结束还剩
+</block>
+{{day}}天{{hr}}:{{min}}:{{sec}}
+</view>
+<view class="x"><text>{{detail.product.modelName}}</text>
+<view  class="m">
+￥{{filters.toFix(detail.crush.salePrice)}}
+<text class="s">￥{{filters.toFix(detail.productItem.salePrice)}}</text>
+</view>
+	<view class="sl">
+									<text class="count-down" bindtap="minusCount"  >-</text>
+                  <text>{{quantity}}</text>
+									<text class="count-add" bindtap="addCount" >+</text>
+							</view>
+</view>
+
+<view wx:if="hasAddr" class="addr">送至:
+<text>{{address.person}}</text><text>{{address.phone}}</text>
+<view class="m30">{{address.receiveProvince}}{{address.receiveCity}}{{address.receiveDistrict}}{{address.address}}</view>
+<view class="f">运费:￥<text>{{filters.toFix(freight)}}</text><button bindtap="switchAddr" size='mini'>修改地址</button></view></view>
 <view wx:else>请选择收货地址</view>
-<view>{{detail.product.modelName}}</view>
+  <view class="tab">
+<text class="{{tabNum==0?'active':''}}" data-num="0" bindtap='setNum'>商品详情</text>
+<text class="{{tabNum==1?'active':''}}" data-num="1" bindtap='setNum'>商品参数</text>
+<text class="{{tabNum==2?'active':''}}" data-num="2" bindtap='setNum'>评价晒单</text>
+</view>
+<view>
+<block wx:if="{{tabNum==0}}">
+<view wx:for="{{productimg}}" wx:key="{{index}}" class="img-wrap"> 
+<image src="{{filters.imgurl(item.imgUrl)}}" mode="widthFix"></image></view>
+</block>
+<block wx:if="{{tabNum==1}}">
+<view wx:for="{{productDesc}}" wx:key="{{index}}"><text>{{item.attrCode}}:{{item.attrValue}}</text></view>
+</block>
+<block wx:if="{{tabNum==2}}">
+<view><view >全部评价<button size='mini'>全部</button><button size='mini'>部分</button></view>
+<view><view>
+<image src="{{filters.imgurl(item.list.iconUrl)}}"></image>
+<view><view><text>{{(item.list.nickName)}}</text></view>
+<view>{{item.list.commentContent}}</view>
+<view wx:for="item.imgList" wx:key="{{index}}" wx:items="child"><image src="{{filters.imgurl(child)}}"></image></view>
+</view></view></view>
+<view></view>
+</view>
+</block>
+</view>
+
+
 

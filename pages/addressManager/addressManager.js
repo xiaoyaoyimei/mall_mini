@@ -33,6 +33,7 @@ Page({
       })
   },
   addressClick:function(e){
+    //mime=2来自秒杀页面
     let addrForm = JSON.stringify(e.currentTarget.dataset.item);
     let addrDingdang=e.currentTarget.dataset.item;
     if(mime==1){
@@ -40,13 +41,23 @@ Page({
         url: `../addressEdit/addressEdit?addrForm=${addrForm}`,
       })
     }
-    else{
+    else if(mime==2){
+      var pages = getCurrentPages()
+      var prevPage = pages[pages.length - 2]  //上一个页面
+      var that = this
+      prevPage.setData({
+        address: addrDingdang,
+      })
+      wx.navigateBack({//返回
+        delta: 1
+      })
+    }else{
       var pages = getCurrentPages()
       var prevPage = pages[pages.length - 2]  //上一个页面
       var that = this
       prevPage.setData({
         addressInfo: addrDingdang,
-        hasAddress:true
+        hasAddress: true
       })
       wx.navigateBack({//返回
         delta: 1

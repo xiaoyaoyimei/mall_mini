@@ -1,7 +1,6 @@
 var regYear = getRegExp("(y+)", "i");
 
 var filters = {
-
   plusXing:function(str, cha) {
 
     var xing = '';

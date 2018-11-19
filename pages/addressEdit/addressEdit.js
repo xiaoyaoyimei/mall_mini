@@ -124,7 +124,6 @@ Page({
         mask: true
       })
     } else {
-
       request.req2('address/update?id='+that.data.addrForm.id, 'POST', {
         person: that.data.addrForm.person,
         phone: that.data.addrForm.phone,
