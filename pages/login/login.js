@@ -66,8 +66,8 @@ Page({
         disabled: false,
       })
       //保存
-      if (res.data.code =='200') {
-        var result = res.data.object
+      if (res.code =='200') {
+        var result = res.object
         //存储数据
         var CuserInfo = {
           token: result.token,
@@ -112,7 +112,7 @@ Page({
       } else {
         //提示
         that.setData({
-          showToast: res.data.object,
+          showToast: res.object,
           backcolor: 'red',
         })
       }

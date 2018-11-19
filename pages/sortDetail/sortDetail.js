@@ -102,13 +102,13 @@ Page({
   likepro() {
     let id = this.data.productId
     request.req2(`like/insert/${id}`,'post','',(err,res) => {
-        if (res.data.code == '200') {
+        if (res.code == '200') {
           util.showError('收藏成功');
           this.setData({
             likeshow: true
           })
-        } else if (res.data.code == '500') {
-          util.showError(res.data.object);
+        } else if (res.code == '500') {
+          util.showError(res.object);
           this.setData({
             likeshow: true
           })
@@ -126,7 +126,7 @@ Page({
     let id = this.data.shangp.product.id
     request.req2(`/like/queryIsLiked/${id}`, 'post','',(err,res) => {
       this.setData({
-        likeshow:res.data
+        likeshow:res
       })
     })
   },
@@ -141,7 +141,7 @@ Page({
     }
 
     request.req2('/comment/beLike/' + zanid + '/' + Like, 'post','',(err,res) => {
-      if (res.data.code == '200') {
+      if (res.code == '200') {
         this.showcomments()
       }
     })
@@ -253,15 +253,14 @@ Page({
       //				if(v==1){
       //					this.cartList=this.cartList.concat(this.compineList)
       //	
-    var cart = wx.getStorageSync("cart")	
-    console.log(cart)		
+    var cart = wx.getStorageSync("cart")		
       if(cart != undefined){
         wx.removeStorage('cart');
       }
       wx.setStorageSync('cart', JSON.stringify(this.data.cartList));
-      wx.setStorageSync('orderfrom', 'A')
+  
       wx.navigateTo({
-        url: '/pages/orderConfirm/orderConfirm',
+        url: '/pages/orderConfirm/orderConfirm?orderfrom=A',
       });
       
   },
@@ -283,11 +282,11 @@ Page({
           productItemIds: productItemIds,
           quantity: this.data.quantity
         },(err,res) => {
-        if (res.data.code == '200') {
+        if (res.code == '200') {
           wx.switchTab({
             url: '/pages/cartOne/cartOne',
           });
-        } else if (res.data.code == '401'){
+        } else if (res.code == '401'){
           wx.navigateTo({
             url: '/pages/login/login',
           });
@@ -451,10 +450,10 @@ Page({
     return new Promise(function (resolve, reject) {
       _this.videoshow = false;
       request.req3('/product/' + _this.data.productId, 'post',{},(err,res) => {
-        if (res.data.code == '200') {
+        if (res.code == '200') {
           //原始数据用于合并求得的数据=>新数据
           _this.setData({
-            shangp: Object.assign( _this.data.oldshangp, res.data.object)
+            shangp: Object.assign( _this.data.oldshangp, res.object)
           })
           
           if (_this.data.shangp.inventory.length > 0) {
@@ -517,13 +516,13 @@ Page({
     //详情
     request.req3('/product/desc/' + this.data.productId, 'post',{},(err,res) => {
       this.setData({
-        productDesc:res.data
+        productDesc:res
       })
     });
 
     request.req3('/product/img/' + this.data.productId, 'post',{},(err,res) => {
       this.setData({
-        productimg: res.data
+        productimg: res
       })
     });
   },
@@ -536,9 +535,9 @@ Page({
       imgshow = 0
     }
     request.req3('/comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {
-      if (res.data.code == "200" && res.data.object.length > 0) {
+      if (res.code == "200" && res.object.length > 0) {
         this.setData({
-          commentList: res.data.object,
+          commentList: res.object,
           hasPJ:true
         })
       } else {

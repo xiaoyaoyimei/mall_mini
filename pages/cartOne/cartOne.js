@@ -15,11 +15,11 @@ Page({
     self.data.cartList = [];
       request.req('cart','order/shopping/list', 'POST', {}, (err, res) => {
 
-        if (res.data.code == 200) {
+        if (res.code == 200) {
 
             self.setData({
               hasList: true,
-              cartList: res.data.object,
+              cartList: res.object,
               loginhidden: false
             })
             self.getTotalPrice();
@@ -91,7 +91,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
         request.req('cart','order/shopping/deleByIds', 'POST', ids, (err, res) => {
-            if (res.data.code == 200) {
+            if (res.code == 200) {
               that.getCartList();
             }
         })

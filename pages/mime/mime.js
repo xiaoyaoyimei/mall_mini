@@ -34,7 +34,7 @@ Page({
       //获取照片和用户名
     request.req('index','account', 'POST', {}, (err, res) => {
          var user = {}
-          user.phone = res.data.customerMobile;
+          user.phone = res.customerMobile;
           that.setData({
             userInfo: user,
             loginhidden:false
@@ -53,9 +53,9 @@ Page({
     //判断是否登陆，如果没登陆走微信的
 
       request.req('index','customer/logout', 'POST', {}, (err, res) => {
-        if(res.data.code==200){
+        if(res.code==200){
           wx.showToast({
-            title: res.data.msg,
+            title: res.msg,
             icon: 'success',
             duration: 2000
           })

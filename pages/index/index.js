@@ -63,9 +63,9 @@ Page({
   },
   xin:function(){
     request.req3('index/hotitem', 'GET', {}, (err, res) => {
-      if (res.data.code == 200) {
+      if (res.code == 200) {
         this.setData({
-          xin: res.data.object
+          xin: res.object
         })
       }
     })
@@ -141,31 +141,31 @@ Page({
     });
     request.req3("index/hotitem","GET", {}, (err,res) => {
       console.log()
-      if (res.data.code == "200") {
+      if (res.code == "200") {
         this.setData({
-          hotitem: res.data.object,
+          hotitem: res.object,
         })
         
       }
     });
     request.req3("index/poster","GET",{},(err,res) => {
-        if (res.data.code == "200") {
+        if (res.code == "200") {
           this.setData({
-            Items: res.data.object,
+            Items: res.object,
         })
       }
     });
     request.req3("index/basictype","GET",{},(err,res) => {
-        if (res.data.code == "200") {
+        if (res.code == "200") {
           this.setData({
-            basictype: res.data.object,
+            basictype: res.object,
           })
       }
     });
     request.req3('index/gameproduct','GET',{},(err,res) => {
-        if (res.data.code == '200') {
+        if (res.code == '200') {
           this.setData({
-            gameproduct: res.data.object,
+            gameproduct: res.object,
           })
           if(this.data.gameproduct.length > 0) {
             this.setData({
@@ -176,9 +176,9 @@ Page({
         }
     });
     request.req3('index/officeproduct','GET',{},(err,res) => {
-       if (res.data.code == '200') {
+       if (res.code == '200') {
         this.setData({
-          officeproduct: res.data.object,
+          officeproduct: res.object,
         })
         if (this.data.officeproduct.length > 0) {
           this.setData({
@@ -188,9 +188,9 @@ Page({
       }
     });
     request.req3('index/houseproduct','GET',{},(err,res) => {
-         if (res.data.code == '200') {
+         if (res.code == '200') {
         this.setData({
-          houseproduct: res.data.object,
+          houseproduct: res.object,
         })
         if (this.data.houseproduct.length > 0) {
           this.setData({
@@ -200,23 +200,23 @@ Page({
       }
     });
     request.req3('index/tableproduct','GET',{},(err,res) => {
-      if (res.data.code == '200') {
+      if (res.code == '200') {
         this.setData({
-          tableproduct: res.data.object,
+          tableproduct: res.object,
         })
       }
     });
     request.req3('index/cockpitproduct','GET',{},(err,res) => {
-      if (res.data.code == '200') {
+      if (res.code == '200') {
         this.setData({
-          cockpitproduct: res.data.object,
+          cockpitproduct: res.object,
         })
       }
     });
     request.req3( 'index/peripheryproduct','GET',{},(err,res) => {
-      if (res.data.code == '200') {
+      if (res.code == '200') {
         this.setData({
-          peripheryproduct: res.data.object,
+          peripheryproduct: res.object,
         })
       }
     });

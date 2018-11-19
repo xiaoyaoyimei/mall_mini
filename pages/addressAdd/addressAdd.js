@@ -132,7 +132,7 @@ Page({
         address: that.data.detailAddress,
       }, (err, res) => {
 
-        if (res.data.code == 200) { //地址保存成功
+        if (res.code == 200) { //地址保存成功
           wx.navigateBack({
             delta: 1, // 回退前 delta(默认为1) 页面
             success: function (res) {
