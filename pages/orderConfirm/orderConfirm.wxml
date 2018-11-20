@@ -1,4 +1,5 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
+<view class="top_line"></view>
 <view>
   <scroll-view scroll-y="true" scroll-x="false">
   <navigator url="../addressManager/addressManager">

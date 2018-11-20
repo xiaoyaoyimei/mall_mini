@@ -3,7 +3,7 @@
 <wxs module="dateFr" src="../filters.wxs"></wxs>
 	<view>
   	<scroll-view 
-			   bindscrolltolower="bindscrolltolower" scroll-top='{{topNum}}'  bindscroll="scrolltoupper" scroll-y style='height:100vh;' >
+			  scroll-top='{{topNum}}'  bindscroll="scrolltoupper" scroll-y style='height:100vh;' >
 		<view class="clearfix ">
 			<view class="video-wrap">
 				<!-- <view ref="videoWrap" v-show=" 0== videonum" class="video-height" :style="{width:videowidth,height:videowidth}">
@@ -179,5 +179,5 @@
 
 	   </view>
      </scroll-view>
-     <image src='../../images/grayback.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+     <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
 	</view>

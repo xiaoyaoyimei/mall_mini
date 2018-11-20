@@ -3,13 +3,12 @@ var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
 
 //var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
 var util = require('./util.js')
-var auto = 'customer/login';
 //携带TOKEN req req2 都需携带token
 function req(fromurl,url, methodway, data, callback) {
-      
+   
   var fromurl = fromurl;
   var CuserInfo = wx.getStorageSync('CuserInfo');
-  //如果登录凭证为空。微信联合登录
+ 
   if (CuserInfo.token){
     //如果有token，就把token放到header
     wx.request({
@@ -38,13 +37,20 @@ function req(fromurl,url, methodway, data, callback) {
         // ------ 获取凭证 ------
         var code = res.code;
         if (code) {
-          req3('customer/wxlogin', 'POST', code, (err, res) => {
-         
-            if (res.data.code == 200) {
-              wx.setStorageSync('openid', res.data)
-              callback(null, res.data)
+          req3(`customer/wxlogin/${code}`, 'POST', null, (err, res) => {
+            
+            if (res.code == 200) {
+              wx.setStorageSync('openid', res);
+             // 微信联合登录设置用户token
+              var CuserInfo = {
+                token: res.object.token,
+                userId: res.object.userId,
+              };
+              wx.setStorageSync('CuserInfo', CuserInfo);
+
+              callback(null, res)
             } else {
-              util.showError(res.data.msg);
+              util.showError(res.msg);
               wx.removeStorageSync('CuserInfo')
               // wx.navigateTo({
               //   url: '../login/login?fromurl=index'

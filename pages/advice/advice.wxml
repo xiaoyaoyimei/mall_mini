@@ -1,5 +1,6 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
-
+<view class="top_line"></view>
+<view  class="t"><text class="blue">对于您给的支持和帮助，深表感谢</text></view>
 <view>
            <view class="add_item">
         <text class="item_text">姓名:</text>

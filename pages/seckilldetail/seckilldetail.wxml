@@ -55,7 +55,7 @@
 <view>
 
 <view class="pj">
-全部评价<button size='mini' wx:if="{{!onlyimg}}" bindtap="toggleimg">全部</button><button size='mini' wx:else bindtap="toggleimg">部分</button>
+全部评价<button size='mini' wx:if="{{!onlyimg}}" bindtap="toggleimg">全部</button><button size='mini' wx:else bindtap="toggleimg">有图</button>
 </view>
 <view class="pj-wrap" wx:if="{{hasPJ}}">
       <view wx:for="{{commentList}}" wx:key="{{index}}">

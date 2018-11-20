@@ -9,7 +9,7 @@ App({
     wx.login({
       success: function (res) {
         var code=res.code;
-        request.req2('customer/wxlogin', 'POST', code, (err, res) => {
+        request.req2(`customer/wxlogin/${code}`, 'POST',null, (err, res) => {
           if (res.code == 200) {
             var CuserInfo = {
               token: res.object.token,
@@ -58,8 +58,7 @@ App({
   globalData:{
     userInfo:null,
     imgsrc:'//image-shop.dxracer.com.cn/',
-
-    baseorgin:'https://m.shop.dxracer.cn/mall/wap/',
+    baseorgin:'https://m.shop.dxracer.cn/mall/wap/',//用接收验证码
     keyword:''
   }
 })

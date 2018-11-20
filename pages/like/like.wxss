@@ -8,3 +8,6 @@
 .result-list{
   position: relative
 }
+.topline{
+  border-top:1px solid #ddd
+}
