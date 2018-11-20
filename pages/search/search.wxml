@@ -6,7 +6,7 @@
     <text class="search-btn" wx:else bindtap="search">搜索</text>
   </view>
    <view class="result" wx:if="{{showResult}}"> 
-    <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" wx:if="{{result.length > 0}}">
+    <scroll-view scroll-y="true" class="scrollview-list" bindscrolltolower="bindscrolltolower" style="height: {{clientHeight?clientHeight+'px':'auto'}}" wx:if="{{result.length > 0}}" scroll-top='{{topNum}}'  bindscroll="scrolltoupper">
       <view class="result-box">
          <view class="result-list" wx:for="{{result}}" wx:key="index">
           <navigator url="../sortDetail/sortDetail?id={{item.id}}">
@@ -56,5 +56,5 @@
     <text class="loading-font">加载中...</text>
   </loading>
 
-
+   <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
 </view>

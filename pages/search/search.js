@@ -19,6 +19,8 @@ Page({
         moreshow:false,
         clientHeight:0,
         imgurl: imgurl,
+      floorstatus: false,
+      topNum:0
     },
     cancelSearch() {
         this.setData({
@@ -66,7 +68,7 @@ Page({
           app.globalData.keyword = "";
           that.setData({
             loadingHidden: true,
-            result: res.itemsList,
+            result: that.data.result.concat(res.itemsList),
             total: res.total,
           });
         }
@@ -155,5 +157,24 @@ Page({
           }
         });
 
+    },
+  // 获取滚动条当前位置
+  scrolltoupper: function (e) {
+    if (e.detail.scrollTop > 100) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
     }
+  },
+  //回到顶部 
+  goTop: function (e) {
+    // 一键回到顶部 
+    this.setData({
+      topNum: this.data.topNum = 0
+    });
+  },
 })

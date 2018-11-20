@@ -67,7 +67,6 @@ Page({
        }); 
   },
   ok() {
-    console.log(this.data.searchfilter)
       this.setData({
         keyword: '',
         startRow: 0

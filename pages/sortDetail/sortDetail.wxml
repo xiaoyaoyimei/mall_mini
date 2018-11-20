@@ -112,6 +112,15 @@
 			</view>
 		</view>
 
+		<view class="detailfooter">
+			<navigator class='a' catchtap="gohome" url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>
+			<navigator class='a' catchtap="gocart" url="/pages/cartOne/cartOne"> <image class='image' src="../../images/bar-cart-gray.png"></image></navigator>
+			<button catchtap="cartmodal" class='button' style="background-color:#ff0000"> 点击购买</button> 
+	   </view>
+     </scroll-view>
+     <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
+	</view>
+
 		<modal class="cartModal" hidden='{{hidden}}' v-model="cartModal">
     <button class='close' catchtap='closemodal' >x</button>
 
@@ -143,10 +152,10 @@
           <view class='dt'><em class="act">{{choosesp.activityName}}</em></view>
 					<view class="color-black dd">{{choosesp.activityName}} </view>
 				</view>
-				<view  class="noborde dl clerafix" wx:for="{{shangp.productAttrList}}"  wx:key="id"  wx:for-index="i"  wx:for-item='item'>
+				<view  class="noborde dl " wx:for="{{shangp.productAttrList}}"  wx:key="id"  wx:for-index="i"  wx:for-item='item'>
 					<view class='dt'>{{item.attrKey.catalogAttrValue}}</view>
 					<view class='dd' style="overflow: hidden;">
-						<view class="color-sel ul clerafix">
+						<view class="color-sel ul ">
 							<view class="{{choosesp.kucun==0?'disabled':'abled'}} li" wx:for="{{item.attrValues}}"  wx:key="id"  wx:for-index="index"  wx:for-item='child' catchtap="chooseSP" data-titleid="{{child.id}}"  data-i='{{i}}' data-index='{{index}}'>
               <text class="span {{item.attrValues.length==1?'active':''}} {{child.active?'active':''}} " >{{child.modelAttrValue}}</text>
 							</view>
@@ -171,12 +180,3 @@
 			</view>
 </view>
 		</modal> 
-		<view class="detailfooter">
-			<navigator class='a' catchtap="gohome" url="/pages/index/index"><image class='image' src="../../images/bar-home-gray.png"></image></navigator>
-			<navigator class='a' catchtap="gocart" url="/pages/cartOne/cartOne"> <image class='image' src="../../images/bar-cart-gray.png"></image></navigator>
-			<button catchtap="cartmodal" class='button' style="background-color:#ff0000"> 点击购买</button> 
-
-	   </view>
-     </scroll-view>
-     <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
-	</view>

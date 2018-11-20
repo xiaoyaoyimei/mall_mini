@@ -29,7 +29,8 @@ Page({
     hasAddr:true,
     skuId:'',
     hasPJ:true,
-    floorstatus:false
+    floorstatus:false,
+    freight:0
   },
   onPageScroll: function (e) {
     if (e.scrollTop > 100) {//页面距离大于100px,则显示回到顶部控件     
