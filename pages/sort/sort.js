@@ -72,23 +72,7 @@ Page({
         startRow: 0
       })
     this.setData({ loadingHidden: false });
-    request.req3('/product/search?catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
-       'GET',{},
-     (err,res) => {
-      if (res.itemsList.length > 0) {
-        this.setData({
-          productList: res.itemsList,
-          hasShow:true
-        })
-      } else {
-        this.setData({
-          hasShow: false
-        })
-      }
-       this.setData({
-         totalSize: res.total
-       })
-    })
+    this.getproduct()
     this.setData({
       hidden: true,
       loadingHidden: true
@@ -187,30 +171,33 @@ Page({
     }
 
   },
+  getproduct(){
+    request.req3('/product/search?keyWord=' + this.data.keyword + '&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize, 'GET', {},
+      (err, res) => {
+        if (res.total > 0) {
+          this.setData({
+            hasShow: true,
+            productList: res.itemsList,
+            totalSize: res.total
+          })
+        } else {
+          this.setData({
+            hasShow: false
+          })
+        }
+        this.setData({
+          loadingHidden: true
+        })
+        // this.refresh()
+      })
+  },
   fetchData() {
     this.setData({
       productList:[],
       startRow:0,
       loadingHidden: false,
     })
-    request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,'GET',{},
-    (err,res) => {
-      if (res.total > 0) {
-        this.setData({
-          hasShow:true,
-          productList: res.itemsList,
-          totalSize:res.total
-        })
-      } else {
-        this.setData({
-          hasShow: false
-        })
-      }
-      this.setData({
-        loadingHidden: true
-      })
-      // this.refresh()
-    })
+    this.getproduct()
   },
   gosearch: function () {
     wx.navigateTo({
@@ -222,24 +209,7 @@ Page({
     let that = this;
     if (this.data.productList.length < this.data.totalSize) {
       this.data.startRow = this.data.startRow + this.data.pageSize;
-      request.req3('/product/search?keyWord=' + this.data.keyword +'&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize,
-        'GET', {},
-        (err, res) => {
-          if (res.itemsList.length > 0) {
-            this.setData({
-              productList: that.data.productList.concat( res.itemsList),
-              hasShow: true
-            })
-          } else {
-            this.setData({
-              hasShow: false
-            })
-          }
-          this.setData({
-            totalSize: res.total
-          })
-        })
-
+      this.getproduct()
     } else {
       this.setData({
         bottomtext :'已经到底了,没有更多了....'
@@ -250,20 +220,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var keyword = wx.getStorageSync("keyword")
-    var type = wx.getStorageSync("type")
-    if (type != undefined) {
-      this.setData({
-        'searchfilter.type': type
-      })
-    }
-    if (keyword != undefined) {
-      this.setData({
-        keyword: keyword
-      })
-    }
-    this.fetchData();
-    this.getTop()
   },
 
   /**
