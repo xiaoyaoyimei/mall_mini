@@ -16,7 +16,13 @@ Page({
     refundAmount: 0,
     refuseReason: '',
     refundAddress: {},
-    hidden:true
+    hidden:true,
+    tianxieshow:true,
+    addForm: {
+      refundOrderNo: '',
+      expressNo: '',
+      logistics: '',
+    },
   },
   goindex() {
     wx.switchTab({
@@ -53,7 +59,16 @@ Page({
       }
     })
   },
-
+  bindLogisticsInput: function (e) {
+    this.setData({
+      'addForm.logistics': e.detail.value
+    })
+  },
+  bindExpressNoInput: function (e) {
+    this.setData({
+      'addForm.expressNo': e.detail.value
+    })
+  },
   statusfilter(value) {
     for (var i = 0; i < this.data.statusenums.length; i++) {
       if (this.data.statusenums[i].key == value) {
@@ -124,12 +139,49 @@ Page({
 
   },
   tianxie(e) {
-   
+    console.log(e.currentTarget.dataset.total)
+   this.setData({
+     tianxieshow:false,
+     'addForm.refundOrderNo':e.currentTarget.dataset.orderno,
+   })
+
   },
   confirm(){
     this.setData({
       hidden: true
     })
+  },
+  tianxieconfirm(){
+    console.log(this.data.addForm.expressNo)
+    console.log(this.data.addForm.logistics)
+    if (this.data.addForm.expressNo.length == 0) {
+      wx.showToast({
+        title: '物流单号不能为空',
+        icon: 'none',
+        mask: true
+      })
+      return
+    } else if (this.data.addForm.logistics.length == 0){
+      wx.showToast({
+        title: '物流公司不能为空',
+        icon: 'none',
+        mask: true
+      })
+      return
+    }
+    request.req2(`/refund/submitLogisticsInfo?refundOrderNo=${this.data.addForm.refundOrderNo}&expressNo=${this.data.addForm.expressNo}&logistics=${this.data.addForm.logistics}`, 'post', {}, (err, res) => {
+      if (res.code == '200') {
+        this.setData({
+          tianxieshow: true
+        })
+      } else {
+        this.setData({
+          tianxieshow: true
+        })
+      }
+      that.getStatus();
+      that.getData();
+    });
   }
 
 })
