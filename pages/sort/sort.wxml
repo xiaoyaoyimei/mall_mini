@@ -51,7 +51,7 @@
 			<view class="wrap">
 				<view class="dt">分类:</view>
 				<view class="dd clearfix">
-					<view class='span {{typeindex == -1 ? "active":""}}' catchtap="getList('type','',-1)" catchtap="getList" data-value=" " data-catalog ='catalog' data-index="-1">全部</view>
+					<view class='span {{typeindex == -1 ? "active":""}}' catchtap="getList" catchtap="getList" data-value=" " data-catalog ='type' data-index="-1">全部</view>
 					<view class='span {{index ==typeindex ? "active":" "}} {{item.red? "routerActive":""}}' wx:for="{{type}}" wx:key="id"  wx:for-index="index"  wx:for-item='item' data-value="{{item.id}}" data-catalog ='type' data-index="{{index}}" catchtap="getList">{{item.typeName}}</view>
 				</view>
 			</view>
