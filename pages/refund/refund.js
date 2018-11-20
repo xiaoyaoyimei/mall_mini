@@ -76,8 +76,8 @@ Page({
     var that = this;
     request.req2('refund/getRefundCauseList', 'GET', null, (err, res) => {
         that.setData({
-          reasonList: res.data,
-          refundCauseId: res.data[0].causeId
+          reasonList: res,
+          refundCauseId: res[0].causeId
         })
     })
   },
@@ -117,7 +117,7 @@ Page({
             filePath: res.tempFilePath,
           name: 'file',
           success: function (res) {
-            let resdata = JSON.parse(res.data)
+            let resdata = JSON.parse(res)
             if (resdata.code=="200"){
             that.setData({
               refundVideo: resdata.msg
@@ -183,7 +183,7 @@ Page({
           remarks: that.data.remarks,
           refundVideo: that.data.refundVideo
         }, (err, res) => {
-          if (res.data.code == '200') {
+          if (res.code == '200') {
             wx.navigateTo({
               url: "../refundList/refundList",
             });

@@ -7,13 +7,13 @@ var uri = 'customer/login'  //登录接口
 var option = {}
 var uribuy = 'cartapi/addCart' //立即购买
 
-var countdown = 180;
+var countdown = 90;
 var settime = function (that) {
   if (countdown == 0) {
     that.setData({
       is_show: true
     })
-    countdown = 180;
+    countdown = 90;
     return;
   } else {
     that.setData({

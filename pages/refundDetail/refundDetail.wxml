@@ -6,7 +6,7 @@
 	<view>退款金额:￥ {{filters.toFix(refundOrderdetail.shoppingRefundOrder.refundOrderTotalFee)}}</view>
 </view>
       <view class="list-order" wx:for="{{orderdetail.shippingOrderItems}}" wx:key="orderItemsId" wx:for-item="child">
-        <image src="{{filters.imgurl(child.productItemImg)}} " />
+        <image src="{{filters.imgurl(child.productItemImg)}} "  mode="widthFix"/>
         <view  class="xq">
           <text>{{child.productTitle}}</text>
           <text>{{child.productItemNo}}{{child.productAttrs}}</text>
@@ -18,7 +18,7 @@
       <view class="bgorder">
 	<view>订单编号：{{orderdetail.shippingOrder.orderNo}}</view>
 	<view>成交时间：{{filters.formatTime(orderdetail.shippingOrder.createTime)}}</view>
-	<view>商品总价：{{filters.toFix(orderdetail.shippingOrder.productFee)}}</view>
+	<view>商品总价：￥{{filters.toFix(orderdetail.shippingOrder.productFee)}}</view>
 	<view>活动优惠：-￥<text wx:if="{{orderdetail.shippingOrder.discountFee!=''}}">{{filters.toFix(orderdetail.shippingOrder.discountFee)}}</text>
 		<text v-else>0</text>
 	</view>

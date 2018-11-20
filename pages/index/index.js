@@ -62,7 +62,7 @@ Page({
     })
   },
   xin:function(){
-    request.req3('index/hotitem', 'GET', {}, (err, res) => {
+    request.req3('index/hotitem', 'GET', null, (err, res) => {
       if (res.code == 200) {
         this.setData({
           xin: res.object
@@ -126,7 +126,7 @@ Page({
     if (this.token != null) {
       this.loginflag = false;
     }
-    request.req3('promotion/crush/','get',{},
+    request.req3('promotion/crush', 'get', null,
       (err,res) => {
       if (res.code == '200') {
         this.seckilllist = res.object;
@@ -139,7 +139,7 @@ Page({
         this.countdown();
       }
     });
-    request.req3("index/hotitem","GET", {}, (err,res) => {
+    request.req3("index/hotitem", "GET", null, (err,res) => {
       console.log()
       if (res.code == "200") {
         this.setData({
@@ -148,21 +148,21 @@ Page({
         
       }
     });
-    request.req3("index/poster","GET",{},(err,res) => {
+    request.req3("index/poster", "GET", null,(err,res) => {
         if (res.code == "200") {
           this.setData({
             Items: res.object,
         })
       }
     });
-    request.req3("index/basictype","GET",{},(err,res) => {
+    request.req3("index/basictype", "GET", null,(err,res) => {
         if (res.code == "200") {
           this.setData({
             basictype: res.object,
           })
       }
     });
-    request.req3('index/gameproduct','GET',{},(err,res) => {
+    request.req3('index/gameproduct', 'GET', null,(err,res) => {
         if (res.code == '200') {
           this.setData({
             gameproduct: res.object,
@@ -175,7 +175,7 @@ Page({
 
         }
     });
-    request.req3('index/officeproduct','GET',{},(err,res) => {
+    request.req3('index/officeproduct', 'GET', null,(err,res) => {
        if (res.code == '200') {
         this.setData({
           officeproduct: res.object,
@@ -187,7 +187,7 @@ Page({
         }
       }
     });
-    request.req3('index/houseproduct','GET',{},(err,res) => {
+    request.req3('index/houseproduct', 'GET', null,(err,res) => {
          if (res.code == '200') {
         this.setData({
           houseproduct: res.object,
@@ -199,21 +199,21 @@ Page({
         }
       }
     });
-    request.req3('index/tableproduct','GET',{},(err,res) => {
+    request.req3('index/tableproduct', 'GET', null,(err,res) => {
       if (res.code == '200') {
         this.setData({
           tableproduct: res.object,
         })
       }
     });
-    request.req3('index/cockpitproduct','GET',{},(err,res) => {
+    request.req3('index/cockpitproduct', 'GET', null,(err,res) => {
       if (res.code == '200') {
         this.setData({
           cockpitproduct: res.object,
         })
       }
     });
-    request.req3( 'index/peripheryproduct','GET',{},(err,res) => {
+    request.req3('index/peripheryproduct', 'GET', null,(err,res) => {
       if (res.code == '200') {
         this.setData({
           peripheryproduct: res.object,

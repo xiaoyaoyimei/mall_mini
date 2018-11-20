@@ -1,1 +1,4 @@
 /* pages/advice/advice.wxss */
+.t{
+  padding:20px
+}

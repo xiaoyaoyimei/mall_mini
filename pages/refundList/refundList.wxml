@@ -8,8 +8,9 @@
     <navigator url="../refundDetail/refundDetail?refundOrderNo={{item.refundOrder.refundOrderNo}}&orderNo={{item.refundOrder.orderNo}}" >
       <view class="item-headerview">
           <view class="item-text">
-            <text class="fr">{{item.refundOrder.znStatus}}</text>
-          <text>订单号:{{item.refundOrder.refundOrderNo}}</text>
+         
+          <view>退货单号:{{item.refundOrder.refundOrderNo}}</view>
+             <view class="dx-color">{{item.refundOrder.znStatus}}</view>
           </view>
            <view class="item-text">         
            <text class="dx-color" wx:if="{{!item.refundOrder.refundOrderStatus=='01'&&!item.refundOrder.refundOrderStatus=='05'}}">总价:￥{{filters.toFix(item.refundOrder.orderTotalFee)}}</text>
@@ -44,7 +45,7 @@
   </view>
 
 <modal hidden="{{hidden}}" title="审核详情" confirm-text="确定" bindconfirm="confirm" no-cancel>
- <view>退款金额:{{filters.toFix(refundAmount)}}</view>
+ <view>退款金额:￥{{filters.toFix(refundAmount)}}</view>
  <view  wx:if="{{refundStatus=='05'}}"> 拒绝原因:{{refuseReason}}</view>
  <view wx:if="{{refundStatus=='02'}}">
  <view>退货联系人{{refundAddress.name}}</view>
@@ -55,10 +56,11 @@
 <modal hidden="{{tianxieshow}}" title="填写物流单号" confirm-text="提交" bindconfirm="tianxieconfirm" no-cancel>
  <view class='add_item tianxieshow'><text class="item_text tianxieshow" >退货订单号:</text>
     <text class="item_input">{{addForm.refundOrderNo}}</text></view>
+     <view class='add_item tianxieshow'><text class="item_text tianxieshow">物流公司</text>
+   <input  class="item_input" bindinput="bindLogisticsInput" value="{{addrForm.logistics}}"></input></view>
      <view class='add_item tianxieshow'><text class="item_text tianxieshow" >物流单号</text>
   <input  class="item_input" bindinput="bindExpressNoInput" value="{{addrForm.expressNo}}"></input>	</view>
- <view class='add_item tianxieshow'><text class="item_text tianxieshow">物流公司</text>
-   <input  class="item_input" bindinput="bindLogisticsInput" value="{{addrForm.logistics}}"></input></view>
+
 
 
 </modal>

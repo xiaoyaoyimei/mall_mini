@@ -1,5 +1,5 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
-
+<view class="topline"></view>
 <block  wx:if="{{hasLove}}" >
   <view class="result-list" wx:for-items="{{likeList}}"  wx:key="{{item.id}}">
      <image src="../../images/love.png" class="love" bindtap='del' id="{{item.id}}"></image>

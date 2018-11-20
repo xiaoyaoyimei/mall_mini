@@ -179,8 +179,8 @@ Page({
           tianxieshow: true
         })
       }
-      that.getStatus();
-      that.getData();
+      this.getStatus();
+      this.getData();
     });
   }
 
