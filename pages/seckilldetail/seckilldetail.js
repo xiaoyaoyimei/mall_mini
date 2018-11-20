@@ -52,7 +52,9 @@ Page({
    
   },
   toggleimg() {
-    this.data.onlyimg = !this.data.onlyimg;
+    this.setData({
+      onlyimg: !this.data.onlyimg
+    })
     this.showcomments();
   },
   dianzan:function(e){
