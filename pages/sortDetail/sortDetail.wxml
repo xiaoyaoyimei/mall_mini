@@ -128,18 +128,19 @@
 			<view class="imgdetail">
 				<image src="{{imgurl}}{{ImgUrl}}"  mode="widthFix" alt=""></image>
 				<view class="xinxi">
-					<text class="red" wx:if="{{choosesp.price == 0}}">￥{{shangp.product.salePrice}}</text>
+					<text class="red" wx:if="{{choosesp.price == 0}}">￥{{dateFr.toFix(shangp.product.salePrice)}}</text>
 					<text class="red" wx:else> 
 					<text wx:if="{{cxshow}}">
-					<text class="color-red red">￥{{choosesp.cuxiaoprice}} </text>
+					<text class="color-red red">￥{{dateFr.toFix(choosesp.cuxiaoprice)}} </text>
 					<text class="color-origin red">￥{{choosesp.price}}</text>
 					</text>
-					<text class="red" wx:else>￥{{choosesp.price}}</text>
+					<text class="red" wx:else>￥{{dateFr.toFix(choosesp.price)}}</text>
 					</text>
+          <view class="prf10 span">已选：{{shangp.product.modelNo}} </view>
 					<view class='span' wx:show="{{!xiajia}}">
 					库存: {{choosesp.kucun}}件
 					</view>
-					<view class="prf10 span">已选：{{shangp.product.modelNo}} </view>
+					
 					<view wx:if="{{xiajia}}" class="xiajia">
 						<Icon type="information-circled">
 						</Icon>该商品已下架
