@@ -94,6 +94,8 @@ Page({
     player: {},
     topNum: 0,
   },
+
+    
   cartmodal() {
     var CuserInfo = wx.getStorageSync('CuserInfo');
 

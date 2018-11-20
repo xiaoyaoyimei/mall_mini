@@ -28,7 +28,28 @@ Page({
     address: { receiveProvince:''},
     hasAddr:true,
     skuId:'',
-    hasPJ:true
+    hasPJ:true,
+    floorstatus:false
+  },
+  onPageScroll: function (e) {
+    if (e.scrollTop > 100) {//页面距离大于100px,则显示回到顶部控件     
+      this.setData({
+        floorstatus: true
+      });
+    }
+    else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
+  //回到顶部 
+  goTop: function (e) {
+    if (wx.pageScrollTo) { 
+          wx.pageScrollTo({        scrollTop: 0      })   
+       } else {      wx.showModal({        title: '提示',        content: '当前微信版本过低，暂无法使用该功能，请升级后重试。'    
+         })    }
+   
   },
   toggleimg() {
     this.data.onlyimg = !this.data.onlyimg;

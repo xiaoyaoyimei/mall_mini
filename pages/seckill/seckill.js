@@ -21,7 +21,6 @@ Page({
   getkill(){
     var that=this;
     request.req3('promotion/crush', 'get',null, (err, res) => {
-
       if (res.code == '200') {
         that.data.pro = res.object;
         if(res.object.length>0){

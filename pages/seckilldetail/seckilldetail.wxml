@@ -81,5 +81,5 @@
 </block>
 </view>
 
-
+   <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
 

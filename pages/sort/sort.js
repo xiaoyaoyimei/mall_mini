@@ -45,6 +45,7 @@ Page({
     loadingHidden: false,
     items: [],
     topNum: 0,
+    floorstatus:false,
   },
    // 获取滚动条当前位置
   scrolltoupper:function(e){
