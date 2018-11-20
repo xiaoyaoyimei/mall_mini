@@ -6,7 +6,7 @@
      <view wx:else >
   <view class="status {{wentips == true ? 'bg-wentips' : ''}}">{{orderStatus}}
     <view class="wentips" wx:if="{{wentips}}">温馨提示:请于下单 {{min}}:{{sec}} 内完成支付,逾时订单将自动取消</view>
-    <view class='wentips' wx:if="{{wentipsDay}}"> 温馨提示:订单将在 {{day}}:{{hr}}:{{min}}:{{sec}} 内自动确认收货,请及时确认收货~</view>
+    <view class='wentips' wx:if="{{wentipsDay}}"> 温馨提示:订单将在 {{day}}天{{hr}}:{{min}}:{{sec}} 内自动确认收货,请及时确认收货~</view>
   </view>
 <view class="detail">
   <view class="iconaddress">
