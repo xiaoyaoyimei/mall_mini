@@ -22,11 +22,17 @@
 							</view>
 </view>
 
-<view wx:if="hasAddr" class="addr">送至:
+<view wx:if="hasAddr" class="addr">
+<view class="f">运费:<text>￥{{filters.toFix(freight)}}</text><button bindtap="switchAddr" size='mini' class="xg">修改地址</button></view>
+送至:
 <text>{{address.person}}</text><text>{{address.phone}}</text>
 <view class="m30">{{address.receiveProvince}}{{address.receiveCity}}{{address.receiveDistrict}}{{address.address}}</view>
-<view class="f">运费:￥<text>{{filters.toFix(freight)}}</text><button bindtap="switchAddr" size='mini'>修改地址</button></view></view>
+</view>
 <view wx:else>请选择收货地址</view>
+	<view class="foot">
+			<button type="warn" bindtap="confirm" wx:if="{{detail.switch==1}}">马上抢</button>
+			<button disabled="disabled"  wx:else>尚未开始</button>
+		</view>
   <view class="tab">
 <text class="{{tabNum==0?'active':''}}" data-num="0" bindtap='setNum'>商品详情</text>
 <text class="{{tabNum==1?'active':''}}" data-num="1" bindtap='setNum'>商品参数</text>
@@ -38,17 +44,35 @@
 <image src="{{filters.imgurl(item.imgUrl)}}" mode="widthFix"></image></view>
 </block>
 <block wx:if="{{tabNum==1}}">
-<view wx:for="{{productDesc}}" wx:key="{{index}}"><text>{{item.attrCode}}:{{item.attrValue}}</text></view>
+<view wx:for="{{productDesc}}" wx:key="{{index}}" class="dt-wrap">
+<text class="dt">{{item.attrCode}}:</text><text>{{item.attrValue}}</text></view>
 </block>
 <block wx:if="{{tabNum==2}}">
-<view><view >全部评价<button size='mini'>全部</button><button size='mini'>部分</button></view>
-<view><view>
-<image src="{{filters.imgurl(item.list.iconUrl)}}"></image>
-<view><view><text>{{(item.list.nickName)}}</text></view>
-<view>{{item.list.commentContent}}</view>
-<view wx:for="item.imgList" wx:key="{{index}}" wx:items="child"><image src="{{filters.imgurl(child)}}"></image></view>
-</view></view></view>
-<view></view>
+<view>
+
+<view class="pj">
+全部评价<button size='mini' wx:if="{{!onlyimg}}" bindtap="toggleimg">全部</button><button size='mini' wx:else bindtap="toggleimg">部分</button>
+</view>
+<view class="pj-wrap" wx:if="{{hasPJ}}">
+      <view wx:for="{{commentList}}" wx:key="{{index}}">
+        <image src="{{filters.imgurl(item.list.iconUrl)}}"></image>
+          <view class="pj-xq">
+          <view>
+          <text>{{(item.list.nickName)}}</text>
+          </view>
+        <view>{{item.list.commentContent}}</view>
+          <view wx:for="item.imgList" wx:key="{{index}}"  wx:for-item="child">
+          <image src="{{filters.imgurl(child)}}"></image>
+          </view>
+           <view bindtap='dianzan' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
+      </view>
+    </view>
+    </view>
+  <view class="flex-center empty " wx:else>
+    <image src="../../images/pj_empty.png "></image>
+    <text>暂无评论记录~</text>
+  </view>
+    
 </view>
 </block>
 </view>
