@@ -21,7 +21,11 @@
 									<text class="count-add" bindtap="addCount" >+</text>
 							</view>
 </view>
-
+			<view class="fuwu">
+				<text>○ 官方正品</text>
+				<text>○ 极速发货</text>
+				<text>○ 七天无理由退换货</text>
+			</view>
 <view wx:if="hasAddr" class="addr">
 <view class="f">运费:<text>￥{{filters.toFix(freight)}}</text><button bindtap="switchAddr" size='mini' class="xg">修改地址</button></view>
 送至:
