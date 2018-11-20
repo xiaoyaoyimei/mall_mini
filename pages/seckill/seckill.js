@@ -9,7 +9,19 @@ Page({
     hasShow: true,
     list: [],
     startpro: [],
-    nostartpro: []
+    nostartpro: [],
+    day: 0,
+    hr: 0,
+    min: 0,
+    sec: 0,
+    nostartday: 0,
+    nostarthr: 0,
+    nostartmin: 0,
+    nostartsec: 0,
+    starttime: 0,
+    nostarttime: 0,
+    not:'',
+    t:''
   },
 
   /**
@@ -17,6 +29,46 @@ Page({
    */
   onLoad: function (options) {
     this.getkill();
+  },
+  startcountdown: function () {
+    const end = Date.parse(new Date(this.data.starttime));
+    const now = Date.parse(new Date());
+    const msec = end - now;
+    let day = parseInt(msec / 1000 / 60 / 60 / 24);
+    let hr = parseInt(msec / 1000 / 60 / 60 % 24);
+    let min = parseInt(msec / 1000 / 60 % 60);
+    let sec = parseInt(msec / 1000 % 60);
+
+    this.setData({
+      day: day,
+      hr :hr > 9 ? hr : '0' + hr,
+      min: min > 9 ? min : '0' + min,
+      sec: sec > 9 ? sec : '0' + sec,
+    })
+    let self = this;
+    this.data.t = setTimeout(() => {
+      self.startcountdown();
+    }, 1000);
+  },
+  nostartcountdown: function () {
+    const end = Date.parse(new Date(this.data.nostarttime));
+    const now = Date.parse(new Date());
+    const msec = end - now;
+    let nostartday = parseInt(msec / 1000 / 60 / 60 / 24);
+    let nostarthr = parseInt(msec / 1000 / 60 / 60 % 24);
+    let nostartmin = parseInt(msec / 1000 / 60 % 60);
+    let nostartsec = parseInt(msec / 1000 % 60);
+   
+    this.setData({
+      nostartday: nostartday,
+      nostarthr :nostarthr > 9 ? nostarthr : '0' + nostarthr,
+      nostartmin: nostartmin > 9 ? nostartmin : '0' + nostartmin,
+      nostartsec: nostartsec > 9 ? nostartsec : '0' + nostartsec,
+    })
+    let self = this;
+    this.data.not = setTimeout(() => {
+      self.nostartcountdown();
+    }, 1000);
   },
   getkill(){
     var that=this;
@@ -37,7 +89,14 @@ Page({
             that.data.nostartpro.push(item)
           }
         })
-          
+        if (this.data.startpro.length > 0) {
+          this.setData({starttime : this.data.startpro[0].crush["endTime"]})
+          this.startcountdown();
+        }
+        if (this.data.nostartpro.length > 0) {
+          this.setData({ nostarttime: this.data.nostartpro[0].crush["endTime"] })
+          this.nostartcountdown();
+        }  
         that.setData({
           hasShow: that.data.hasShow,
           startpro: that.data.startpro,
