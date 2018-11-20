@@ -188,7 +188,6 @@ Page({
           this.setData({
             jsqtime: this.data.orderdetail.shippingOrder.deliverTime + 7 * 24 * 60 * 60 * 1000,
           })
-          console.log('000')
           this.countdown();
         }
       })

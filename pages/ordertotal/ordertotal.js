@@ -14,9 +14,9 @@ Page({
     status:'00',
     hasShow:true
   },
-  goindex(){
+  goindex:function(){
     wx.switchTab({
-      url: '../index/index',
+      url: '/pages/index/index',
     })
   },
   onLoad(options){

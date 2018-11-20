@@ -88,19 +88,15 @@ Page({
         util.showError('手机号不能为空');
         return;
       } else {
-        request.req6('customer/register/shortmessage', 'POST', `userName=${that.data.username}`,{
-          //搜索过滤     
-          "mobile": that.data.username,
-          "verificationCode": that.data.txm
-        }, (err, res) => {
-          if (res.data.code == 200) {
+        request.req3('customer/validate?userName='+that.data.username, 'POST',{}, (err, res) => {
+          if (res.code == 200) {
              that.data.txv++;
              that.data.verimg = `${baseUrl}customer/${that.data.username}/verification.png?v=${that.data.txv}`;
              that.setData({
                verimg: that.data.verimg,
              })
           } else {
-             util.showError(res.data.msg);
+             util.showError(res.msg);
            }
         });
 
@@ -126,11 +122,12 @@ Page({
         "mobile": that.data.username,
         "verificationCode": that.data.txm
       }, (err, res) => {
-        if (res.data.code == 200) {
+      console.log(res)
+        if (res.code == 200) {
 
         } else {
           that.setData({
-            showToast: res.data.msg,
+            showToast: res.msg,
             backcolor: 'red',
           })
         }
@@ -167,7 +164,7 @@ Page({
               disabled: false,
             })
             //保存
-            if (res.data.code == '200') {
+            if (res.code == '200') {
               util.showSuccess('注册成功');
               //登陆成功 跳转
               wx.navigateTo({   //加个参数  
@@ -176,7 +173,7 @@ Page({
             } else {
               //提示
               that.setData({
-                showToast: res.data.msg,
+                showToast: res.object.shortMessage,
                 backcolor: 'red',
               })
             }
