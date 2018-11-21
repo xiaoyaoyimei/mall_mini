@@ -58,7 +58,6 @@ Page({
   jisuan(value) {
 
     let _this = this;
-    var totalnum = _this.data.total.num;
     var totalPrice = _this.data.total.price;
     var origintotalprice = _this.data.origintotalprice;
 
@@ -67,7 +66,6 @@ Page({
       this.data.cartList.forEach(function (item, index) {
         origintotalprice += item.salePrice * item.quantity;
         totalPrice += item.salePrice * item.quantity;
-        totalnum += item.quantity;
       });
     }
     //使用优惠券
@@ -78,7 +76,7 @@ Page({
       });
       let couponmethod = value;
       if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "" && couponmethod.availableModel == "") {
-        _this.total.price = 0;
+        _this.data.total.price = 0;
         if (couponmethod.couponMode == 'rate') {
           this.data.cartList.forEach(function (item, index) {
             if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
@@ -91,7 +89,7 @@ Page({
         } else {
           this.data.cartList.forEach(function (item, index) {
             if (item.promotionTitle != '' && item.promotionTitle != null && item.promotionTitle != undefined) {
-              _this.total.price += item.salePrice * item.quantity;
+              _this.data.total.price += item.salePrice * item.quantity;
             } else {
               item.salePrice = item.salePrice - couponmethod.modeValue;
               _this.total.price += item.salePrice * item.quantity;
@@ -165,11 +163,15 @@ Page({
           });
         }
       }
+     
     }
 //优惠
-    var preferential = origintotalprice - totalPrice;
     this.setData({
-      total: { num: totalnum, price: totalPrice},
+      'total.price': _this.data.total.price,
+    })
+    console.log(_this.data.total.price);
+    var preferential = origintotalprice - _this.data.total.price ;
+    this.setData({
       origintotalprice: origintotalprice,
       preferential:preferential
     })
@@ -230,7 +232,11 @@ Page({
     });
       $init(this)
     var cartList = JSON.parse(wx.getStorageSync('cart'));
+
     var that = this;
+    that.setData({
+      'total.num': cartList.length
+    })
     that.data.productItemIds = [];
     let n = 0;
  
