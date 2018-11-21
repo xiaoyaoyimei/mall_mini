@@ -231,9 +231,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.typeid!=undefined){
     var t = options.typeid;
     var i = options.typeindex;
-    this.highlight('type',t,i)
+      this.highlight('type', t, i)
+    }
+    
     //typeid = 81d83f7152454b6c99e18d0cb1b113ca & typeindex=7
      // options.indexOf('type') != -1
   },
