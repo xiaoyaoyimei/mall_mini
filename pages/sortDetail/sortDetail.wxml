@@ -87,7 +87,7 @@
 									<view class="zan">{{dateFr.formatTime(item.list.commentTime ,'yyyy-MM-dd') }}
 										<view>
 											颜色分类：{{item.shippingOrderItems.productAttrs}}</view>
-										<view class='zanicon ' :class="{red:item.isZan =='Y'}">
+										<view class='zanicon {{item.isZan == "Y" ? "red": " "}}'>
 													<text>{{item.number}}</text>
 										<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}" data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'     catchtap='zan'></image>
 										<image src="../../images/zan-gray.png" wx:else data-id="{{item.list.id}}" data-isZan ='{{item.isZan}}'                   catchtap='zan'></image>
@@ -95,8 +95,8 @@
 									</view>
 
 									<view class="commentContent">{{item.list.commentContent}}</view>
-									<view class="sz" wx:for="{{item.imgList}}" wx:key="id"  wx:for-index="index"  wx:for-item='child' :key="index" wx:if="item.imgList.length>0">
-												<image src="{{imgurl}}{{child}}"></image>
+									<view class="sz">
+												<image  wx:for="{{item.imgList}}" wx:key="id"  wx:for-index="index"  wx:for-item='child' :key="index" wx:if="item.imgList.length>0" src="{{imgurl}}{{child}}"></image>
 									</view>
 
 								</view>

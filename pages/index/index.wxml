@@ -1,7 +1,6 @@
 
 
 <wxs module="dateFr" src="../filters.wxs"></wxs>
-<view class="top_line"></view>
 	<view class="homepage">
 		<view class="bg-black">
 			<view class="search-wrap">
