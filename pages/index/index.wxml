@@ -90,7 +90,7 @@
 					<view class=" three clearfix list-wrap">
 						<view class=" clearfix  office ">
 							<view class="w594">
-								<navigator  class='a' url="/pages/sortDetail/sortDetail?={{officeproductone.product_id}}">
+								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{officeproductone.product_id}}">
 									<image src="{{imgurl}}{{officeproductone.img_url}}" :ref="officeproductone.product_id"  mode='widthFix'></image>
 									<view class="ad ">
 										 <text class='h5'>{{officeproductone.model_no}}</text> 
