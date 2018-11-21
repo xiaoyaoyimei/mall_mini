@@ -57,6 +57,7 @@ Page({
               showToast: res.msg,
               backcolor: 'green',
             })
+            wx.navigateBack()
           } else {
             //提示
             that.setData({
