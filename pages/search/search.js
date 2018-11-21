@@ -93,11 +93,14 @@ Page({
       })
     },
     keywordHandle(e) {
+
       const text = e.target.dataset.text;
       this.setData({
         value: text,
         showKeywords: false,
-        showResult: true
+        showResult: true,
+        startRow: 0,
+        result: []
       })
       this.historyHandle(text);  
       this.search();
