@@ -1,41 +1,40 @@
 <!--pages/seckill/seckill.wxml-->
 <wxs module="filters" src="../filters.wxs"></wxs>
-<view wx:if="{{hasShow}}">
-          <view class="t"  wx:if="{{startpro.length>0}}" >秒杀已开始  距结束{{day}}天{{hr}}:{{min}}:{{sec}}</view>
-              <view class="search_list_wrap " >
-		            <view   wx:for="{{startpro}}" wx:key='index' class="mb10" >
-		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
-                   <image src='{{filters.imgurl(item.productItem.listImg)}} '></image>
-                   <view class="xq">
-                          <view class="font-13">{{item.product.modelName}}</view>
-                           <view class="font-13">{{item.product.modelNo}}</view>
-                          <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
-                           <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
-                          <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
-		                </view>
-		              
-                       </navigator>
-		            </view>
-	            </view>
-                   <view wx:if="{{nostartpro.length>0}}"  class="t">秒杀未开始  距开始{{nostartday}}天{{nostarthr}}{{nostartmin}}{{nostartsec}}</view>
-                  <view   wx:for="{{nostartpro}}" wx:key='index'  >
-		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
-                   <image src='{{filters.imgurl(item.productItem.listImg)}}'></image>
-		               <view class="xq">
-                          <view class="font-13">{{item.product.modelName}}</view>
-                           <view class="font-13">{{item.product.modelNo}}</view>
-                          <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
-                           <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
-                          <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
-                         
-		                </view>
- </navigator>
-		            </view>
-	            </view>
-        
-
-
-           <view class="flex-center  empty" wx:else>
+    <view wx:if="{{hasShow}}">
+      <view class="t"  wx:if="{{startpro.length>0}}" >秒杀已开始  距结束{{day}}天{{hr}}:{{min}}:{{sec}}</view>
+      <view class="search_list_wrap " >
+        <view   wx:for="{{startpro}}" wx:key='index' class="mb10" >
+          <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
+            <image src='{{filters.imgurl(item.productItem.listImg)}} '></image>
+            <view class="xq">
+                    <view class="font-14">开始时间：{{item.crush.startTime}}</view>
+                    <view class="font-14">结束时间：{{item.crush.endTime}}</view>
+                    <view class="font-13">{{item.product.modelName}}</view>
+                    <view class="font-13">{{item.product.modelNo}}</view>
+                    <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
+                    <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
+                    <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
+            </view>
+          </navigator>
+        </view>
+      </view>
+      <view wx:if="{{nostartpro.length>0}}"  class="t">秒杀未开始  距开始{{nostartday}}天{{nostarthr}}{{nostartmin}}{{nostartsec}}</view>
+      <view   wx:for="{{nostartpro}}" wx:key='index'  >
+        <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
+          <image src='{{filters.imgurl(item.productItem.listImg)}}'></image>
+          <view class="xq">
+            <view class="font-14">开始时间：{{item.crush.startTime}}</view>
+            <view class="font-14">结束时间：{{item.crush.endTime}}</view>
+            <view class="font-13">{{item.product.modelName}}</view>
+            <view class="font-13">{{item.product.modelNo}}</view>
+            <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
+            <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
+            <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
+          </view>
+        </navigator>
+      </view>
+  </view>
+  <view class="flex-center  empty" wx:else>
     <image src="../../images/ms_empty.png"></image>
     <text>暂时没有秒杀活动,敬请期待</text>
   </view>

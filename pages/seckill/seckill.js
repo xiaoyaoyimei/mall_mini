@@ -27,7 +27,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     this.getkill();
   },
   startcountdown: function () {
@@ -71,10 +71,13 @@ Page({
     }, 1000);
   },
   getkill(){
+    console.log('0000')
     var that=this;
     request.req3('promotion/crush', 'get',null, (err, res) => {
+      console.log('0000')
       if (res.code == '200') {
         that.data.pro = res.object;
+        console.log(res.object.length)
         if(res.object.length>0){
           that.data.hasShow=true;
         }else{
@@ -94,7 +97,7 @@ Page({
           this.startcountdown();
         }
         if (this.data.nostartpro.length > 0) {
-          this.setData({ nostarttime: this.data.nostartpro[0].crush["endTime"] })
+          this.setData({ nostarttime: this.data.nostartpro[0].crush["crateTime"] })
           this.nostartcountdown();
         }  
         that.setData({
@@ -102,6 +105,10 @@ Page({
           startpro: that.data.startpro,
           nostartpro: that.data.nostartpro
         }); 
+      }else{
+        that.setData({
+          hasShow: false,
+          })
       }
   
     });

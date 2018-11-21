@@ -1,4 +1,4 @@
-//var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
+// var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
 var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
 var util = require('./util.js')
 //携带TOKEN req req2 都需携带token
