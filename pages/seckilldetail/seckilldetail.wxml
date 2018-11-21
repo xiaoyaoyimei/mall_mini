@@ -62,14 +62,18 @@
       <view wx:for="{{commentList}}" wx:key="{{index}}">
         <image class='iconUrl' src="{{filters.imgurl(item.list.iconUrl)}}"></image>
           <view class="pj-xq clearfix">
-          <view>
-          <text class='name'>{{(item.list.nickName)}}</text>
+          <view class='nickname'>
+          <text class='name'>{{filters.plusXing(item.list.nickName,'*')}}</text>
           </view>
         <view class='commentContent'>{{item.list.commentContent}}</view>
           <view >
           <image wx:for="{{item.imgList}}" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
           </view>
-           <view bindtap='dianzan' class='sz' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
+           <view bindtap='dianzan' class='sz {{item.isZan == "Y" ? "red": " "}}' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">
+              {{item.number}}
+           		<image src="../../images/zan-red.png" wx:if="{{item.isZan =='Y'}}"></image>
+							<image src="../../images/zan-gray.png" wx:else ></image>
+           </view>
       </view>
     </view>
     </view>

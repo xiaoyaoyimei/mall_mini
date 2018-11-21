@@ -17,6 +17,12 @@ Page({
   onLoad: function (options) {
     this.getEvaluate();
   },
+  goindex: function () {
+    //去首页
+    wx.switchTab({
+      url: '../sort/sort'
+    })
+  },
   getEvaluate() {
     request.req2('comment/mysearch', 'GET',null,  (err, res) => {
       if (res.code == 200) {

@@ -60,14 +60,14 @@ Page({
   },
   dianzan:function(e){
     let id = e.target.dataset.id;
-    let iszan = e.target.dataset.iszan;
+    let Like = e.target.dataset.iszan;
 
       if (Like == 'N') {
-        iszan = 'yes'
+        Like = 'yes'
       } else {
-        iszan = 'no'
+        Like = 'no'
       }
-    request.req2(`comment/beLike/${id}/${iszan}`, 'post', null, (err, res) => {
+    request.req2(`comment/beLike/${id}/${Like}`, 'post', null, (err, res) => {
       if (res.code == '200') {
           this.showcomments()
         }

@@ -567,6 +567,7 @@ Page({
     } else {
       imgshow = 0
     }
+
     var CuserInfo = wx.getStorageSync('CuserInfo');
     if (CuserInfo.token) {
     request.req2('/comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {

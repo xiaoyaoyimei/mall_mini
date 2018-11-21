@@ -1,18 +1,6 @@
  <wxs module="filters" src="../pages/filters.wxs"></wxs>
    <!--首页 大列表 -->
-    <template name="listBig">
-    <view class="result-list">
-          <navigator url="../goodsDetail/goodsDetail?specId={{item.id}}">
-            <image src="{{ filters.imgurl(item.list.img_url)}}" mode="widthFix"></image>
-            <view class="result-text">
-              <text>{{item.list.model_no}}</text>
-            </view>
-            <view class="result-text">
-              <text class="dx-color">￥{{filters.toFix(item.list.sale_price)}}</text>
-            </view>
-          </navigator>
-          </view>
-    </template>
+
     <template name="listPrimary">
     <view class="result-list">
 

@@ -6,7 +6,7 @@ Page({
     hasLove: true
   }, 
   goindex: function () {
-    //全部订单
+    //去首页
     wx.switchTab({
       url: '../index/index'
     })

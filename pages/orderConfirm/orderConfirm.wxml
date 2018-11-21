@@ -53,7 +53,7 @@
       <text>商品金额</text>
       <text class="right_text">¥ {{filters.toFix(origintotalprice)}}</text>
     </view>
-        <view class="bottom_text_3">
+        <view class="bottom_text_2">
       <text>运费</text>
       <text class="right_text">￥{{filters.toFix(freight)}}</text>
     </view>

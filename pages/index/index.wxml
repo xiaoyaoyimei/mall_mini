@@ -1,20 +1,27 @@
 
 
-<import src="../../template/mplex.wxml"/>
 <wxs module="dateFr" src="../filters.wxs"></wxs>
 	<view class="homepage">
 		<view class="bg-black">
 			<view class="search-wrap">
-				<!-- <image src="../../images/waplogo.png" mode="scaleToFill" class="logo"></image> -->
 				 <input placeholder="新品" catchtap="gosearch" v-model="keyword"></input> 
 				 <image src='../../images/search_header.png' class="icon-search" ></image>
 			</view>
 		</view>
-		
+		    <template name="listBig">
+
+    </template>
 			<view class="side_nav_wrap clear">
-          <swiper indicator-dots='true'>
-                <template wx:for="{{Items}}" wx:key="id"  is="fslider" data="{{item}}" ></template> 
+      
+      
+          <swiper indicator-dots='true' >
+          <swiper-item wx:for="{{Items}}" wx:key="id" > 
+         <view    bindtap="tz" data-url="{{item.wxURL}}" data-tztype="{{item.tztype}}"> 
+            <image src="{{imgurl}}{{item.phoneUrl}}" mode="widthFix" class="w100"></image>
+          </view>    
+              </swiper-item>
           </swiper>
+            
 				<view class="minipro clearfix">
 					<view class='li'>
 						<view  class='a' catchtap="sort" data-type='f1e3e761ab6b4a659e676e83bae636a4'>

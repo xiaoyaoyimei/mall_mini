@@ -52,12 +52,15 @@ Page({
     //在当前页面的搜索将初始置0
     this.setData({
       value: e.detail.value,
-      startRow:0
+      startRow:0,
+      result:[]
     })
     this.search();
+
   },
     search(){
      var that=this;
+     
       request.req('searchpage', uri, 'GET', {
         //搜索过滤     
         keyWord: that.data.value,
@@ -90,11 +93,14 @@ Page({
       })
     },
     keywordHandle(e) {
+
       const text = e.target.dataset.text;
       this.setData({
         value: text,
         showKeywords: false,
-        showResult: true
+        showResult: true,
+        startRow: 0,
+        result: []
       })
       this.historyHandle(text);  
       this.search();

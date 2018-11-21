@@ -2,8 +2,8 @@
 	<view class="new newsort">
 			<view class="bg-black " style="z-index:10">
 				<view class="search-wrap">
-					<input catchtap="gosearch" v-model="keyword"></input>
-					<image src='../../images/search_header.png' class="icon-search" placeholder="搜索"></image>
+					<input catchtap="gosearch" v-model="keyword" placeholder="搜索"></input>
+					<image src='../../images/search_header.png' class="icon-search" ></image>
 					<span catchtap="xuanzeModal">筛选<image src="../../images/sx.png" class="sx"></image></span>
 				</view>
 			</view>
