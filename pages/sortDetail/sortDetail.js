@@ -158,11 +158,14 @@ Page({
   },
   getlikepro() {
     let id = this.data.shangp.product.id
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    if (CuserInfo.token) {
     request.req2(`/like/queryIsLiked/${id}`, 'post','',(err,res) => {
       this.setData({
         likeshow:res
       })
     })
+    }
   },
   //点赞
   zan(e) {

@@ -248,10 +248,8 @@ Page({
   switchimg(e, listImg, imgid) {
     this.$refs[imgid][0].src = this.global_.imgurl + listImg;
   },
-  onLoad: function () {
-    //调登陆接口
-    var that = this
-  
-    that.getData();
+  onShow: function () {
+      this.getData();
   },
+  
 })

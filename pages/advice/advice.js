@@ -79,8 +79,6 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         //选择5张
-        console.log(res.tempFilePaths);
-
         const images = that.data.images.concat(res.tempFilePaths)
         that.data.images = images.length <= 1 ? images : images.slice(0, 1)
         that.setData({

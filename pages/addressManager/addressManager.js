@@ -97,7 +97,6 @@ Page({
   },
   onLoad:function(options){
       mime = options.mime
-    console.log(mime)
   },
   onReady: function() {
     // Do something when page ready.
