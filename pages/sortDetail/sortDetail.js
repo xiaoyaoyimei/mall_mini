@@ -142,7 +142,7 @@ Page({
           this.setData({
             likeshow: true
           })
-        } else if (es.code == '401'){
+        } else if (res.code == '401'){
           wx.navigateTo({
             url: '/pages/login/login',
           });          

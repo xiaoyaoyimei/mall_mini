@@ -9,7 +9,7 @@ App({
     wx.login({
       success: function (res) {
         var code=res.code;
-        request.req2(`customer/wxlogin/${code}`, 'POST',null, (err, res) => {
+        request.req3(`customer/wxlogin/${code}`, 'POST',null, (err, res) => {
           if (res.code == 200) {
             var CuserInfo = {
               token: res.object.token,
