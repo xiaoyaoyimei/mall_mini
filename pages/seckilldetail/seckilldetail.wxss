@@ -114,3 +114,41 @@ left:10px;
 .fuwu text{
   font-size: 12px
 }
+.pj-wrap{
+  padding: 10px;
+}
+.iconUrl {
+		width: 2.25rem;
+		height: 2.25rem;
+    margin-right: 1rem;
+    float:left;
+		border-radius: 1.2rem;
+		border: 1px solid #ddd;
+}
+.pj-xq {
+  float: left;
+  width: calc(100% - 4rem);
+  position: relative;
+}
+.szimg{
+  margin-top:0.75rem;
+  margin-right: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.name {
+		font-weight: 400;
+		font-size: 0.9rem;
+		line-height: 1.25rem;
+		color: #333333;
+	}
+  .commentContent {
+		margin-top: 1rem;
+		font-weight: 400;
+		font-size: 0.75rem;
+		line-height: 1.25rem;
+		color: #333;
+	}
+  .marginBottom{
+    margin-bottom: 44px;
+  }

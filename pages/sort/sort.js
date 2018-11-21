@@ -171,15 +171,24 @@ Page({
     }
 
   },
-  getproduct(){
+  getproduct(down){
     request.req3('/product/search?keyWord=' + this.data.keyword + '&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize, 'GET', {},
       (err, res) => {
         if (res.total > 0) {
-          this.setData({
-            hasShow: true,
-            productList: res.itemsList,
-            totalSize: res.total
-          })
+          if (!down){
+            this.setData({
+              hasShow: true,
+              productList: res.itemsList,
+              totalSize: res.total
+            })
+          }else{
+            this.setData({
+              hasShow: true,
+              productList: this.data.productList.concat(res.itemsList),
+              totalSize: res.total
+            })
+          }
+
         } else {
           this.setData({
             hasShow: false
@@ -209,7 +218,7 @@ Page({
     let that = this;
     if (this.data.productList.length < this.data.totalSize) {
       this.data.startRow = this.data.startRow + this.data.pageSize;
-      this.getproduct()
+      this.getproduct('down')
     } else {
       this.setData({
         bottomtext :'已经到底了,没有更多了....'

@@ -167,7 +167,7 @@ Page({
   //点赞
   zan(e) {
     var zanid = e.currentTarget.dataset.id;
-    var Like = e.currentTarget.dataset.isZan;
+    var Like = e.currentTarget.dataset.iszan;
     if (Like == 'N') {
       Like = 'yes'
     } else {
@@ -553,8 +553,7 @@ Page({
         productDesc:res
       })
     });
-
-    request.req3('/product/img/' + this.data.productId, 'post',{},(err,res) => {
+    request.req3('/product/img/' + this.data.productId, 'post', {}, (err, res) => {
       this.setData({
         productimg: res
       })
@@ -568,7 +567,9 @@ Page({
     } else {
       imgshow = 0
     }
-    request.req3('/comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    if (CuserInfo.token) {
+    request.req2('/comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {
       if (res.code == "200" && res.object.length > 0) {
         this.setData({
           commentList: res.object,
@@ -580,6 +581,20 @@ Page({
         })
       }
     });
+    } else {
+      request.req3('/comment/search/' + this.data.productId + '/' + imgshow, 'get', {}, (err, res) => {
+        if (res.code == "200" && res.object.length > 0) {
+          this.setData({
+            commentList: res.object,
+            hasPJ: true
+          })
+        } else {
+          this.setData({
+            hasPJ: false
+          })
+        }
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面加载

@@ -302,7 +302,9 @@ Page({
     } else {
       imgshow = 0
     }
-    request.req3(`comment/search/${this.data.proId}/${imgshow}`, 'get', null, (err, res) => {
+    var CuserInfo = wx.getStorageSync('CuserInfo');
+    if (CuserInfo.token) {
+    request.req2(`comment/search/${this.data.proId}/${imgshow}`, 'get', null, (err, res) => {
       if (res.code == "200" && res.object.length > 0) {
         this.data.commentList = res.object;
         this.data.hasPJ = true;
@@ -314,6 +316,20 @@ Page({
         hasPJ: this.data.hasPJ
       });
     })
+    }else{
+      request.req3(`comment/search/${this.data.proId}/${imgshow}`, 'get', null, (err, res) => {
+        if (res.code == "200" && res.object.length > 0) {
+          this.data.commentList = res.object;
+          this.data.hasPJ = true;
+        } else {
+          this.data.hasPJ = false;
+        }
+        this.setData({
+          commentList: this.data.commentList,
+          hasPJ: this.data.hasPJ
+        });
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

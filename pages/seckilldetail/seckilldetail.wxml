@@ -1,5 +1,6 @@
 <!--pages/seckilldetail/seckilldetail.wxml-->
 <wxs module="filters" src="../filters.wxs"></wxs>
+<view class='marginBottom'>
 <view class="mainImg">
 <image src="{{filters.imgurl(detail.productItem.listImg)}}" mode="widthFix"></image>
 </view>
@@ -59,14 +60,14 @@
 </view>
 <view class="pj-wrap" wx:if="{{hasPJ}}">
       <view wx:for="{{commentList}}" wx:key="{{index}}">
-        <image src="{{filters.imgurl(item.list.iconUrl)}}"></image>
+        <image class='iconUrl' src="{{filters.imgurl(item.list.iconUrl)}}"></image>
           <view class="pj-xq">
           <view>
-          <text>{{(item.list.nickName)}}</text>
+          <text class='name'>{{(item.list.nickName)}}</text>
           </view>
-        <view>{{item.list.commentContent}}</view>
-          <view wx:for="item.imgList" wx:key="{{index}}"  wx:for-item="child">
-          <image src="{{filters.imgurl(child)}}"></image>
+        <view class='commentContent'>{{item.list.commentContent}}</view>
+          <view >
+          <image wx:for="item.imgList" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
           </view>
            <view bindtap='dianzan' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
       </view>
@@ -82,4 +83,4 @@
 </view>
 
    <image src='../../images/gt.png' class='goTop' hidden='{{!floorstatus}}' bindtap="goTop"></image>
-
+</view>
