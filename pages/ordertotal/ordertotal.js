@@ -167,7 +167,7 @@ Page({
       content: '确定取消该订单?',
       success: function (res) {
         if (res.confirm) {
-          request.req2('order/cancel', 'POST', orderNo, (err, res) => {
+          request.req2(`order/cancel/${orderNo}`, 'POST', null, (err, res) => {
             if (res.code == 200 || res.code==503) {
               util.showSuccess(res.msg)
               self.getData();
@@ -190,7 +190,7 @@ Page({
       content: '确定签收该订单?',
       success: function (res) {
         if (res.confirm) {
-          request.req2('order/receive', 'POST', orderNo, (err, res) => {
+          request.req2(`order/receive/${orderNo}`, 'POST', null, (err, res) => {
             if (res.code == 200) {
               util.showSuccess(res.msg)
               self.getData();

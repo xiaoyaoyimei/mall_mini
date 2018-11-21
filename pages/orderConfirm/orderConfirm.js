@@ -58,22 +58,19 @@ Page({
   jisuan(value) {
 
     let _this = this;
-    var totalPrice = _this.data.total.price;
+    _this.data.total.price = 0;
     var origintotalprice = _this.data.origintotalprice;
 
     //刚进入购物车页面
     if (value == undefined) {
       this.data.cartList.forEach(function (item, index) {
         origintotalprice += item.salePrice * item.quantity;
-        totalPrice += item.salePrice * item.quantity;
+        _this.data.total.price += item.salePrice * item.quantity;
       });
     }
     //使用优惠券
     else {
-      _this.data.total.num = 0;
-      this.data.cartList.forEach(function (item, index) {
-        _this.data.total.num += item.quantity;
-      });
+
       let couponmethod = value;
       if (couponmethod.availableSku == "" && couponmethod.availableCatalog == "" && couponmethod.availableModel == "") {
         _this.data.total.price = 0;
@@ -169,11 +166,12 @@ Page({
     this.setData({
       'total.price': _this.data.total.price,
     })
-    console.log(_this.data.total.price);
-    var preferential = origintotalprice - _this.data.total.price ;
+    var preferential = origintotalprice - _this.data.total.price;
     this.setData({
+      //原价
       origintotalprice: origintotalprice,
-      preferential:preferential
+     //优惠券节省钱
+      preferential: preferential
     })
    
   },

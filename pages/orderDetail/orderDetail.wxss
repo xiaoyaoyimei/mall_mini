@@ -135,7 +135,7 @@
   padding-top: 20rpx;
   padding-bottom:10rpx;
   padding-left: 20rpx;
-  border-bottom:1px solid #ddd;
+  border-top:1px solid #ddd;
 }
 .bg-wentips{
   background:#f7f7f7;

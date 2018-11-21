@@ -97,13 +97,14 @@ Page({
       });
     },
     cancel() {
+
       var orderNo = this.data.orderNo;
       wx.showModal({
         title: '温馨提示',
         content: '确定取消该订单?',
         success: function (res) {
           if (res.confirm) {
-            request.req2('order/cancel', 'POST', orderNo, (err, res) => {
+            request.req2(`order/cancel/${orderNo}`, 'POST', null, (err, res) => {
               if (res.code == 200) {
                 util.showSuccess('取消成功')
                 self.getOrder();

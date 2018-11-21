@@ -11,12 +11,10 @@
 <view class="detail">
   <view class="iconaddress">
   <view>
-      <image src="../../images/addr_confirm.png" ></image>
+      <image src="../../images/icon-address.png" ></image>
       </view>
       <view class="top_view">
-    <view>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</view>
-    <text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}} {{orderdetail.shippingAddress.receiverDistrict}}
-    {{orderdetail.shippingAddress.receiverAddress}}</text>
+    <view>{{orderdetail.shippingAddress.receiverName}} {{orderdetail.shippingAddress.receiverMobile}}</view><text>{{orderdetail.shippingAddress.receiverState}}{{orderdetail.shippingAddress.receiverCity}}{{orderdetail.shippingAddress.receiverDistrict}}{{orderdetail.shippingAddress.receiverAddress}}</text>
 </view>
 
   </view>
@@ -41,6 +39,10 @@
     <view>发票抬头：{{orderdetail.shippingInvoice.invoiceTitle}}</view>
     <view>发票类型：{{orderdetail.shippingInvoice.invoiceType}} </view>
     <view>收票人：{{orderdetail.shippingInvoice.receivePerson}}</view>
+       <button size='mini' type='primary'  class="editin_btn"
+    wx:if="{{orderdetail.shippingOrder.orderStatus!='04'&&orderdetail.shippingInvoice==''}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
+      新增发票信息
+    </button>
     <button size='mini' type='primary'  class="editin_btn"
     wx:if="{{orderdetail.shippingOrder.orderStatus!='04'&&orderdetail.shippingInvoice.invoiceStatus=='created'}}" catchtap='editInvoice' data-order="{{orderdetail.shippingOrder.orderNo}}">
       编辑发票信息

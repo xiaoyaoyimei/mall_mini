@@ -88,7 +88,7 @@ Page({
       invoiceCode: formData.invoiceCode,
       registerAddress: formData.registerAddress
     }, (err, res) => {
-      if(res.data.code==200){
+      if(res.code==200){
         //将发票信息传到上一个页面
         var pages = getCurrentPages()
         var prevPage = pages[pages.length - 2]  //上一个页面
@@ -136,13 +136,13 @@ Page({
     this.setData({
       orderNo: orderNo
     });
-    request.req2('order', 'GET', orderNo, (err, res) => {
-      if (res.data.shippingInvoice!=""){
+    request.req2(`order/${orderNo}`, 'GET', null, (err, res) => {
+      if (res.shippingInvoice!=""){
       this.setData({
-        invoiceForm: res.data.shippingInvoice,
-        province: res.data.shippingInvoice.receiveProvince,
-        city: res.data.shippingInvoice.receiveCity,
-        county: res.data.shippingInvoice.receiveDistrict,
+        invoiceForm: res.shippingInvoice,
+        province: res.shippingInvoice.receiveProvince,
+        city: res.shippingInvoice.receiveCity,
+        county: res.shippingInvoice.receiveDistrict,
       })
       }
     })
