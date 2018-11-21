@@ -122,10 +122,6 @@ Page({
     }, 1000);
   },
   getData:function() {
-    //判断是否已经登录
-    if (this.token != null) {
-      this.loginflag = false;
-    }
     request.req3('promotion/crush', 'get', null,
       (err,res) => {
       if (res.code == '200') {
