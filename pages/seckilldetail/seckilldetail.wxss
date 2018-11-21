@@ -152,3 +152,8 @@ left:10px;
   .marginBottom{
     margin-bottom: 44px;
   }
+  .sz{
+    position: absolute;
+    top: 1px;
+    right: 1px;
+  }

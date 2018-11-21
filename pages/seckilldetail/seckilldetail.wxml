@@ -61,15 +61,15 @@
 <view class="pj-wrap" wx:if="{{hasPJ}}">
       <view wx:for="{{commentList}}" wx:key="{{index}}">
         <image class='iconUrl' src="{{filters.imgurl(item.list.iconUrl)}}"></image>
-          <view class="pj-xq">
+          <view class="pj-xq clearfix">
           <view>
           <text class='name'>{{(item.list.nickName)}}</text>
           </view>
         <view class='commentContent'>{{item.list.commentContent}}</view>
           <view >
-          <image wx:for="item.imgList" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
+          <image wx:for="{{item.imgList}}" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
           </view>
-           <view bindtap='dianzan' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
+           <view bindtap='dianzan' class='sz' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
       </view>
     </view>
     </view>
