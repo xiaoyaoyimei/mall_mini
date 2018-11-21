@@ -35,3 +35,6 @@ page{
 .font-14{
   font-size: 14px;
 }
+.mb10{
+  margin-bottom: 10px;
+}

@@ -131,6 +131,7 @@ padding-left: 10rpx
 .beizhu {
 padding:10px;
 border-bottom:10px solid #f0f0f0;
+font-size: 12px;
 }
 .beizhu textarea{
  border:1px solid #ccc;

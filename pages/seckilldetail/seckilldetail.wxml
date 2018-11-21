@@ -63,11 +63,11 @@
         <image class='iconUrl' src="{{filters.imgurl(item.list.iconUrl)}}"></image>
           <view class="pj-xq">
           <view>
-          <text class='name'>{{(item.list.nickName)}}</text>
+          <text class='name'>{{filters.plusXing(item.list.nickName,'*')}}</text>
           </view>
         <view class='commentContent'>{{item.list.commentContent}}</view>
           <view >
-          <image wx:for="item.imgList" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
+          <image wx:for="{{item.imgList}}" wx:key="{{index}}"  wx:for-item="child" class='szimg' src="{{filters.imgurl(child)}}"></image>
           </view>
            <view bindtap='dianzan' data-id="{{item.list.id}}" data-iszan="{{item.isZan}}">{{item.number}}</view>
       </view>

@@ -2,8 +2,8 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
 <view wx:if="{{hasShow}}">
           <view class="t"  wx:if="{{startpro.length>0}}" >秒杀已开始  距结束{{day}}天{{hr}}:{{min}}:{{sec}}</view>
-              <view class="search_list_wrap clearfix" >
-		            <view   wx:for="{{startpro}}" wx:key='index'  >
+              <view class="search_list_wrap " >
+		            <view   wx:for="{{startpro}}" wx:key='index' class="mb10" >
 		               <navigator  url="/pages/seckilldetail/seckilldetail?skuId={{item.skuId}}" class="wrap">
                    <image src='{{filters.imgurl(item.productItem.listImg)}} '></image>
                    <view class="xq">
@@ -12,7 +12,6 @@
                           <text wx:if="item.promotionTitle !=null">{{item.promotionTitle}}</text>
                            <text class="x">￥{{filters.toFix(item.crush.salePrice)}}</text>
                           <text class="o">￥{{filters.toFix(item.product.salePrice)}}</text>
-                         
 		                </view>
 		              
                        </navigator>

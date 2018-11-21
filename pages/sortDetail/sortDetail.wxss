@@ -451,7 +451,6 @@
 	}
 	
 	.eval-ul .commentContent {
-		margin-top: 1rem;
 		font-weight: 400;
 		font-size: 0.75rem;
 		line-height: 1.25rem;
@@ -461,6 +460,7 @@
 		margin-top:0.75rem;
 		width: 2.5rem;
 		height: 2.5rem;
+    margin-right: 5px;
 	}
 	
 	.carticon {
@@ -540,3 +540,6 @@
   .cartModalFixed{
     z-index: 10000;
   }
+.zanicon text{
+  margin-right: 10px;
+}
