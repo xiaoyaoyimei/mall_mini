@@ -349,7 +349,7 @@ Page({
             })
             wx.login({
               success: function (res) {
-                request.req2(`order/weixin/browser/${orderNo}`, 'GET', res.code, (err, res) => {
+                request.req2(`order/weixin/browser/${orderNo}/${res.code}`, 'GET', null, (err, res) => {
                   var weval = res.object;
                   wx.requestPayment({
                     timeStamp: weval.timeStamp,

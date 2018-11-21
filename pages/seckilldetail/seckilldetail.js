@@ -95,7 +95,7 @@ Page({
         wx.removeStorageSync('skuId');
         wx.login({
           success: function (res) {
-            request.req2(`order/weixin/browser/${res.object}`, 'GET', res.code, (err, res) => {
+            request.req2(`order/weixin/browser/${res.object}/${res.code}`, 'GET',null , (err, res) => {
               var weval = res.object;
               wx.requestPayment({
                 timeStamp: weval.timeStamp,
