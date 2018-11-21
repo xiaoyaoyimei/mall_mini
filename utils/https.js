@@ -1,5 +1,4 @@
-
-// var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
+//var rootDocment = 'http://10.0.0.28:8080/mall/wap/';//  前缀-测试环境
 var rootDocment ='https://m.shop.dxracer.cn/mall/wap/'
 var util = require('./util.js')
 //携带TOKEN req req2 都需携带token
@@ -20,6 +19,9 @@ function req(fromurl,url, methodway, data, callback) {
           // 清除token
           util.showError(res.data.msg);
           wx.removeStorageSync('CuserInfo')
+          wx.navigateTo({
+            url: `../login/login?fromurl=${fromurl}`
+          })
         } else {
           callback(null, res.data)
         }
@@ -51,9 +53,9 @@ function req(fromurl,url, methodway, data, callback) {
             } else {
               util.showError(res.msg);
               wx.removeStorageSync('CuserInfo')
-              // wx.navigateTo({
-              //   url: '../login/login?fromurl=index'
-              // })
+             wx.navigateTo({
+               url: `../login/login?fromurl=${fromurl}`
+              })
               return;
             }
           })
@@ -80,6 +82,9 @@ if (data == null || data== undefined) {
                 if (res.data.code == 401) {
                   util.showError(res.data.msg);
                   wx.removeStorageSync('CuserInfo')
+                  wx.navigateTo({
+                    url: `../login/login?fromurl=index`
+                  })
                 } else {
                 callback(null, res.data)
                 }
@@ -104,6 +109,9 @@ if (data == null || data== undefined) {
           if (res.data.code == 401) {
             util.showError(res.data.msg);
             wx.removeStorageSync('CuserInfo')
+            wx.navigateTo({
+              url: `../login/login?fromurl=index`
+            })
           } else {
             callback(null, res.data)
           }

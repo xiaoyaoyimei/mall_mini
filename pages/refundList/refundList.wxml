@@ -1,6 +1,6 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
  
-
+<view class="top_line"></view>
 <view  >
 <view class="container" wx:if="{{hasShow}}">
 
