@@ -1,4 +1,7 @@
 /**index.wxss**/
+.w100{
+  width: 100%;
+}
   .search-wrap {
       padding-top: 0.2rem;
       padding-left: 1rem;

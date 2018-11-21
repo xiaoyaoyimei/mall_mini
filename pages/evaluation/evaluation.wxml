@@ -28,5 +28,5 @@
 <view class="flex-center  empty" wx:else >
   <image src="../../images/pj_empty.png" ></image>
   <text>暂无任何评价记录~</text>
-  <text catchtap="goindex"  class="color-dx">去首页</text>
+  <text catchtap="goindex"  class="color-dx">去购物</text>
 </view>

@@ -149,7 +149,20 @@ Page({
       }
     });
     request.req3("index/poster", "GET", null,(err,res) => {
+ 
         if (res.code == "200") {
+          if(res.object.length>0){
+            res.object.map(function(i){
+              var num = i.linkUrl.indexOf('?');
+              if (i.linkUrl.indexOf('Detail') != -1){
+                i.tztype='d';
+                i.wxURL = '../sortDetail/sortDetail'+i.linkUrl.substr(num)
+              }else{
+                i.tztype='s';
+                i.wxURL = '../sort/sort' + i.linkUrl.substr(num)
+              }
+            })
+          }
           this.setData({
             Items: res.object,
         })
@@ -221,6 +234,20 @@ Page({
       }
     });
 
+  },
+  tz(e){
+    var url = e.currentTarget.dataset.url;
+    var tztype = e.currentTarget.dataset.tztype
+    if (tztype=='s'){
+      wx.switchTab({
+        url: url,
+      });
+    }else{
+      wx.navigateTo({
+        url:url
+      })
+    }
+ 
   },
   switchimg(e, listImg, imgid) {
     this.$refs[imgid][0].src = this.global_.imgurl + listImg;

@@ -568,7 +568,7 @@ Page({
     } else {
       imgshow = 0
     }
-    request.req3('/comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {
+    request.req3('comment/search/' + this.data.productId + '/' + imgshow, 'get',{},(err,res) => {
       if (res.code == "200" && res.object.length > 0) {
         this.setData({
           commentList: res.object,

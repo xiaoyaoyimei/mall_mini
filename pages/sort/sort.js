@@ -135,41 +135,43 @@ Page({
     })
   },
   //点击顶部筛选
-  getList:function(e) {
-    let type = e.currentTarget.dataset.catalog
-    let index = e.currentTarget.dataset.index
-    let value = e.currentTarget.dataset.value
-    if (type == 'catalog') {
+  highlight(typ, index, value){
+    if (typ == 'catalog') {
       this.setData({
-        catalogindex:index,
-        'searchfilter.catalog' :value
+        catalogindex: index,
+        'searchfilter.catalog': value
       })
     }
-    if (type == 'type') {
+    if (typ == 'type') {
       this.setData({
         typeindex: index,
         'searchfilter.type': value
       })
-      for (let i = 0; i < this.data .type.length; i++) {
-        let obj = 'type['+i+'].red'
+      for (let i = 0; i < this.data.type.length; i++) {
+        let obj = 'type[' + i + '].red'
         this.setData({
-          obj :false
+          obj: false
         })
       }
     }
-    if (type == 'series') {
+    if (typ == 'series') {
       this.setData({
         seriesindex: index,
         'searchfilter.series': value
       })
     }
-    if (type == 'brand') {
+    if (typ == 'brand') {
       this.setData({
         brandindex: index,
         'searchfilter.brand': value
       })
     }
-
+  },
+  getList:function(e) {
+    let typ = e.currentTarget.dataset.catalog
+    let index = e.currentTarget.dataset.index
+    let value = e.currentTarget.dataset.value
+    this.highlight(typ, index, value)
   },
   getproduct(){
     request.req3('/product/search?keyWord=' + this.data.keyword + '&catalog=' + this.data.searchfilter.catalog + '&series=' + this.data.searchfilter.series + '&type=' + this.data.searchfilter.type + '&brand=' + this.data.searchfilter.brand + '&startRow=' + this.data.startRow + '&pageSize=' + this.data.pageSize, 'GET', {},
@@ -220,6 +222,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var t = options.typeid;
+    var i = options.typeindex;
+    this.highlight('type',t,i)
+    //typeid = 81d83f7152454b6c99e18d0cb1b113ca & typeindex=7
+     // options.indexOf('type') != -1
   },
 
   /**
