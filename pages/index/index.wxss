@@ -178,7 +178,7 @@ border-radius:5px;
 	.w594 {
 		float: left;
 		width: 66.3%;
-    height:9rem;
+    height:11rem;
 		position: relative;
 	}
 	.w594 image{
@@ -195,7 +195,7 @@ border-radius:5px;
 	}
   .office .li{
 		border-right:1px solid #eee;
-    height: 9rem;
+    height: 11rem;
 	}
 	.office .li:nth-child(n+3){
 			border-top: 1px solid #eee;
@@ -230,7 +230,7 @@ border-radius:5px;
 		float: left;
 		width: 49.5%;
 		position: relative;
-    height: 8rem;
+    height: 10rem;
 		background: #fff;
     }
 	.yxzc .a{
