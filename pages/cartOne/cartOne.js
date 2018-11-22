@@ -34,8 +34,14 @@ Page({
           loadingHidden: true
         })
       }); 
+      setTimeout(function(){
+        self.setData({
+          loadingHidden: true
+        })
+      },3000)
   },
   onLoad(){
+
   },
   onShow() {
     var that=this;
