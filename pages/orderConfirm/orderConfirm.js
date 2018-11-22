@@ -33,7 +33,8 @@ Page({
     },
     disabled:false,
     useCouponMsg:'',//使用优惠码提示
-    remark:''
+    remark:'',
+    loadingHidden: false,
   },
   //优惠券
   bindcouponInput: function (e) {
@@ -279,6 +280,11 @@ Page({
       }
     });
     that.jisuan();
+    setTimeout(function(){
+      that.setData({
+        loadingHidden: true
+      })
+    },1000)
   
   },
   getShipPrice(){

@@ -92,6 +92,7 @@ Page({
     compineId: [],
     likeshow: false,
     player: {},
+    loadingHidden: false ,
     topNum: 0,
   },
 
@@ -558,7 +559,8 @@ Page({
     });
     request.req3('/product/img/' + this.data.productId, 'post', {}, (err, res) => {
       this.setData({
-        productimg: res
+        productimg: res,
+        loadingHidden: true 
       })
     });
   },

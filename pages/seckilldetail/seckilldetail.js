@@ -30,7 +30,8 @@ Page({
     skuId:'',
     hasPJ:true,
     floorstatus:false,
-    freight:0
+    freight:0,
+    loadingHidden: false
   },
   onPageScroll: function (e) {
     if (e.scrollTop > 100) {//页面距离大于100px,则显示回到顶部控件     
@@ -338,6 +339,12 @@ Page({
     wx.setStorageSync('skuId', options.skuId);
     this.getDetail();
     this.getAddress();
+    let that = this
+    setTimeout(function(){
+      that.setData({
+        loadingHidden: true
+      })
+    },2000)
    
   },
 

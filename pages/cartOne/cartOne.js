@@ -8,7 +8,8 @@ Page({
     totalPrice: 0,           // 总价，初始为0
     selectAllStatus: false,    // 全选状态，默认全选
     imgurl: imgurl,
-    loginhidden:false
+    loginhidden:false,
+    loadingHidden:false
   },
   getCartList() {
     var self=this;
@@ -29,6 +30,9 @@ Page({
             hasList: false
           });
         }
+        this.setData({
+          loadingHidden: true
+        })
       }); 
   },
   onLoad(){

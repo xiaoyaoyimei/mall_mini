@@ -68,3 +68,6 @@
     <button class="bottom_btn" bindtap="paynow" type="primary" disabled='{{disabled}}'>微信支付</button>
   </scroll-view>
 </view>
+    <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>

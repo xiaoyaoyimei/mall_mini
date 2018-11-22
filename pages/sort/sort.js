@@ -75,7 +75,8 @@ Page({
     this.getproduct()
     this.setData({
       hidden: true,
-      loadingHidden: true
+      loadingHidden: true,
+      topNum: this.data.topNum = 0
     })
   },
   //筛选重置搜索条件

@@ -45,6 +45,7 @@ Page({
     sec: 0,
     currentPlay: 'red',
     percent: 0,
+    loadingHidden: false,
   },
   onShareAppMessage: function () {
     // 用户点击右上角分享
@@ -226,6 +227,9 @@ Page({
       if (res.code == '200') {
         this.setData({
           peripheryproduct: res.object,
+        })
+        this.setData({
+          loadingHidden: true,
         })
       }
     });

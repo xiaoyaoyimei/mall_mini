@@ -42,5 +42,7 @@
     您尚未登录!
     <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
     </view>
-
+    <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
 </view>
