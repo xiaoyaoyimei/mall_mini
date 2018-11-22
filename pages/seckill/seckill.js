@@ -72,7 +72,7 @@ Page({
     }, 1000);
   },
   getkill(){
-    console.log('0000')
+
     var that=this;
     request.req3('promotion/crush', 'get',null, (err, res) => {
       console.log('0000')
