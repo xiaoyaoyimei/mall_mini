@@ -34,7 +34,7 @@
 	</view>
 
     <view class="flex-center empty " wx:else>
-    <image src="../../images/cart_empty.png "></image>
+    <image src="../../images/cart_empty.png"></image>
     <text>购物车是空的哦~</text>
   </view>
 </view>

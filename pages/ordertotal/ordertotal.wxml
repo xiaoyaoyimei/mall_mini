@@ -1,4 +1,5 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
+
 <view wx:if="{{loginhidden}}" class="tips">
   您尚未登录!
   <navigator url="../login/login?fromurl=index" class="color-dx">去登录</navigator>
@@ -55,4 +56,7 @@
     <text catchtap="goindex" class="color-dx ">去购物</text>
   </view>
 
+  <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
 </view>

@@ -1,0 +1,23 @@
+/* pages/auth/auth.wxss */
+.auth{
+   border-top: 1px solid #ddd;
+  padding:0  40px
+}
+.auth image{
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+.w{
+  text-align: center;
+ padding:50px 0;
+ border-bottom: 1px solid #ddd;
+}
+.wd{
+  color: #787878;
+  font-size: 13px;
+  margin:20px 0
+}
+.pt40{
+  padding-top:40px
+}

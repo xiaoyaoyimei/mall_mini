@@ -1,18 +1,16 @@
 //ordertotal.js
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
-
-var statusuri ="order/enums"
 Page({
   data: {
     pageNo: 1,
-    hidden: false,
     list: [],
     newlist: [],
     statusenums:[],
-    loginhidden: true,
+    loadingHidden: false,
     status:'00',
-    hasShow:true
+    hasShow:true,
+    loginhidden:false
   },
   goindex:function(){
     wx.switchTab({
@@ -25,10 +23,8 @@ Page({
     });
   },
   onShow: function () {
-
     //刷新数据
     var that = this;
-    
     var CuserInfo = wx.getStorageSync('CuserInfo');
     //存在Bug .如果token过期
     if (CuserInfo.token) {
@@ -36,21 +32,18 @@ Page({
       that.getData();
     }else{
       that.setData({
-        loginhidden: true,
+        loginhidden: true
       });
     }
    
   },
   getStatus:function(){
     var that = this;
-
-    request.req('index',statusuri, 'GET', {
+    request.req('index','order/enums', 'GET', {
     }, (err, res) => {
       if (res.code == 200) {
           that.setData({
-            hidden: true,
-            statusenums: res.object,
-            loginhidden:false
+            statusenums: res.object
           }) 
       }
     })
@@ -107,11 +100,8 @@ Page({
     this.getData();
   },
    getData: function () {
-   
-     
      var uri = '';
     var that = this;
-   
     var pageNo = that.data.pageNo;
     var CuserInfo = wx.getStorageSync('CuserInfo');
 
@@ -124,14 +114,12 @@ Page({
     }, (err, res) => {
       if (res.code == 200 && res.object.length>0) {
           that.setData({
-            hidden: true,
             list: res.object,
-            loginhidden:false,
+            loadingHidden:true,
             hasShow:true
           })
           //处理数据
           var list = that.data.list;
-
           for (var i = 0; i < list.length; i++) {
             list[i].order.znStatus = that.statusfilter(list[i].order.orderStatus);
             this.maopao(list[i])
@@ -142,9 +130,10 @@ Page({
 
       }
       else{
-
-        that.setData({ hidden: true, 
-         loginhidden: false,hasShow:false })
+        that.setData({ 
+          loadingHidden: true,
+         hasShow:false 
+         })
        
       }
     })

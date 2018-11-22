@@ -38,7 +38,6 @@
 				</view>
 			</view>
 		</scroll-view>
-		<Spin size="large" fix v-if="spinShow"></Spin>
 		<modal class="filterModal" hidden="{{hidden}}" v-model="filterModal" title="筛选条件" confirm-text="搜索" cancel-text="重置" bindcancel="reset" bindconfirm="ok" no-cancel="{{nocancel}}"  catchtouchmove="preventTouchMove">
     <scroll-view scroll-y style="height: 75vh;"  catchtouchmove="preventTouchMove">
 			<view class="wrap">

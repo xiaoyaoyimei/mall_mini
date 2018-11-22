@@ -1,8 +1,6 @@
 //ordertotal.js
 var util = require('../../utils/util.js')
 var request = require('../../utils/https.js')
-var uri = 'refund/getRefundOrderList'
-var statusuri = "refund/enums"
 Page({
   data: {
     pageNo: 1,
@@ -16,13 +14,14 @@ Page({
     refundAmount: 0,
     refuseReason: '',
     refundAddress: {},
-    hidden:true,
+    hidden:true,//审核详情modal
     tianxieshow:true,
     addForm: {
       refundOrderNo: '',
       expressNo: '',
       logistics: '',
     },
+    loadingHidden:false,
   },
   goindex() {
     wx.switchTab({
@@ -30,26 +29,16 @@ Page({
     })
   },
   onLoad() {
-
   },
   onShow: function () {
     //刷新数据
     var that = this;
-
-    var CuserInfo = wx.getStorageSync('CuserInfo');
-    //存在Bug .如果token过期
-    if (CuserInfo.token) {
       that.getStatus();
       that.getData();
-    } else {
-      that.setData({
-        loginhidden: true,
-      });
-    }
   },
   getStatus: function () {
     var that = this;
-    request.req('index', statusuri, 'GET', {
+    request.req('index', 'refund/enums', 'GET', {
     }, (err, res) => {
       if (res.code == 200) {
         that.setData({
@@ -81,14 +70,15 @@ Page({
     var status = "";
     var pageNo = that.data.pageNo;
     var CuserInfo = wx.getStorageSync('CuserInfo');
-    request.req('index', uri, 'GET', {
+    request.req('index', 'refund/getRefundOrderList', 'GET', {
     }, (err, res) => {
       if (res.length >0) {
 
         that.setData({
           list: res,
           loginhidden: false,
-          hasShow:true
+          hasShow:true,
+          loadingHidden:true
         })
         //处理数据
         var list = that.data.list;
@@ -101,7 +91,7 @@ Page({
 
       }
       else {
-        that.setData({  tips: "没有售后订单~", loginhidden: false, hasShow:false })
+        that.setData({ tips: "没有售后订单~", loadingHidden:true,loginhidden: false, hasShow:false })
       }
     })
   },

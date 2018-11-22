@@ -5,8 +5,15 @@ var app = getApp()
 var Info = {}
 Page({
   data: {
-    userInfo: {},
-    loginhidden: true
+    //之前在其他途径登录过该网站（在电脑端或者手机浏览器）
+    hasLogin:true,
+    userInfo: {
+      
+    },
+    loginhidden: true,
+    wxauth:{
+      avatarUrl:''
+    }
   },
   allorder: function () {
     //全部订单
@@ -27,21 +34,24 @@ Page({
     })
   },
   onShow: function () {
+    this.data.wxauth = wx.getStorageSync('wxuser');
+    this.setData({
+      wxauth: this.data.wxauth,
+    });
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
-
     if (CuserInfo.token) {
       //获取照片和用户名
     request.req('index','account', 'POST', {}, (err, res) => {
-         var user = {}
-          user.phone = res.customerMobile;
           that.setData({
-            userInfo: user,
+  
+            userInfo: res,
             loginhidden:false
           })
       })
     } else {
       that.setData({
+
         loginhidden: true,
       });
     }

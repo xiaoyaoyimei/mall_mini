@@ -60,9 +60,9 @@
    <input  class="item_input" bindinput="bindLogisticsInput" value="{{addrForm.logistics}}"></input></view>
      <view class='add_item tianxieshow'><text class="item_text tianxieshow" >物流单号</text>
   <input  class="item_input" bindinput="bindExpressNoInput" value="{{addrForm.expressNo}}"></input>	</view>
-
-
-
 </modal>
 
+  <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
 </view>
