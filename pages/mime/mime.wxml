@@ -1,3 +1,4 @@
+<wxs module="filters" src="../filters.wxs"></wxs>
 <view class="container more">
 
   <!--上部信息-->
@@ -9,15 +10,29 @@
       <text>注册</text></navigator>
   </view>
   <view wx:else>
-    <view class="user flex-wrp">
-      <view class="avatar flex-item">
-        <open-data type="userAvatarUrl" class="userinfo-avatar" background-size="cover"></open-data>
+    <view class="user flex-wrp" wx:if="{{loginhidden}}">
+    <view wx:if="{{wxauth.nickName!=''}}">
+      <view class="avatar flex-item" >
+        <image src="{{wxauth.iconUrl}}" class="wximg"></image>
       </view>
       <view class="user-info flex-item">
-        <open-data type="userNickName" class="userinfo-nickname"></open-data>
-
-        <text class="userinfo-nickname">{{userInfo.phone}}</text>
-        <!-- <text class="edit">查看或编辑个人主页</text> -->
+       <text>{{wxauth.nickName}}</text>
+        <text class="userinfo-nickname">{{wxauth.province}}</text>
+      </view>
+      </view>
+      <view wx:else> 
+      <navigator url="../regi/regi?fromurl=account" class="loginurl">
+      <text>注册</text></navigator>
+      </view>
+    </view>
+ 
+  <view class="user flex-wrp" wx:else>
+      <view class="avatar flex-item">
+        <image src="{{filters.imgurl(userInfo.iconUrl)}}" class="wximg"></image>
+      </view>
+      <view class="user-info flex-item">
+       <text>{{userInfo.nickName}}</text>
+        <text class="userinfo-nickname">{{userInfo.customerMobile}}</text>
       </view>
     </view>
   </view>
