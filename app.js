@@ -4,7 +4,6 @@ App({
   onLaunch: function () {
   },
   getUserInfo:function(cb){
-
     var that = this
     if(this.globalData.userInfo){
       typeof cb == "function" && cb(this.globalData.userInfo)

@@ -1,5 +1,5 @@
 .user {
-  width: 725rpx;
+  width: 100%;
   background: #ffffff;
   padding: 15rpx 25rpx 15rpx 0;
   margin: 15rpx 0 0 0;
@@ -14,9 +14,9 @@
   height: 100rpx;
   border-radius: 80rpx;
 }
-.avatar image{
-  width: 60px;
-  height: 60px;
+.wximg{
+  width: 120rpx;
+  height: 120rpx;
 }
 .user .user-info{
   flex: 5;
