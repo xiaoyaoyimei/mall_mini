@@ -10,10 +10,11 @@ Page({
     userInfo: {
       
     },
-    loginhidden: true,
+    hadUser: true,
     wxauth:{
       avatarUrl:''
-    }
+    },
+    wxAuthShow:true,//为true已授权
   },
   allorder: function () {
     //全部订单
@@ -21,12 +22,6 @@ Page({
       url: "../ordertotal/ordertotal?status=00"
     })
   },
-  //地址管理来自个人中心页面
-  // address_manager: function () {
-  //   wx.navigateTo({
-  //     url: '../addressManager/addressManager?mime=1'
-  //   })
-  // },
   //账户管理
   mimeinfo: function () {
     wx.navigateTo({
@@ -34,25 +29,31 @@ Page({
     })
   },
   onShow: function () {
-    this.data.wxauth = wx.getStorageSync('wxuser');
-    this.setData({
-      wxauth: this.data.wxauth,
-    });
+  
+    var wxauth = wx.getStorageSync('wxuser');
+    if (wxauth.nickName){
+      this.setData({
+        wxauth: wxauth,
+        wxAuthShow:true
+      });
+    }else{
+      wxAuthShow:false
+    }
+
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
+    //已授权且存在该用户
     if (CuserInfo.token) {
       //获取照片和用户名
     request.req('index','account', 'POST', {}, (err, res) => {
           that.setData({
-  
             userInfo: res,
-            loginhidden:false
+            hadUser:true
           })
       })
     } else {
       that.setData({
-
-        loginhidden: true,
+        hadUser: false,
       });
     }
    

@@ -2,16 +2,17 @@
 <view class="container more">
 
   <!--上部信息-->
-  <view wx:if="{{loginhidden}}" class="user  nologin">
-
+  <!-- 未授权 -->
+  <view wx:if="{{!wxAuthShow}}" class="user  nologin">
     <navigator url="../login/login?fromurl=account" class="loginurl"><text>登录</text></navigator>
    <text>/</text> 
     <navigator url="../regi/regi?fromurl=account" class="loginurl">
-      <text>注册</text></navigator>
+      <text>注册</text>
+      </navigator>
   </view>
+  <!-- 已授权 -->
   <view wx:else>
-    <view class="user flex-wrp" wx:if="{{loginhidden}}">
-    <view wx:if="{{wxauth.nickName!=''}}">
+    <view class="user flex-wrp"  wx:if="{{!hadUser}}">
       <view class="avatar flex-item" >
         <image src="{{wxauth.iconUrl}}" class="wximg"></image>
       </view>
@@ -20,12 +21,6 @@
         <text class="userinfo-nickname">{{wxauth.province}}</text>
       </view>
       </view>
-      <view wx:else> 
-      <navigator url="../regi/regi?fromurl=account" class="loginurl">
-      <text>注册</text></navigator>
-      </view>
-    </view>
- 
   <view class="user flex-wrp" wx:else>
       <view class="avatar flex-item">
         <image src="{{filters.imgurl(userInfo.iconUrl)}}" class="wximg"></image>
