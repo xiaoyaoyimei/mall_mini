@@ -1,4 +1,5 @@
 // pages/auth/auth.js
+var request = require('../../utils/https.js')
 Page({
 
   /**
@@ -23,12 +24,29 @@ Page({
       wx.switchTab({
         url: '../index/index'
       })
+      this.queryUsreInfo();
     } else { //用户按了拒绝按钮   
       wx.switchTab({
         url: '../index/index'
       })       
     }
   },
+  queryUsreInfo: function () { 
+    wx.login({
+      success: function (res) {
+        var code = res.code;
+        request.req3(`customer/wxlogin/${code}`, 'POST', null, (err, res) => {
+          if (res.code == 200) {
+            var CuserInfo = {
+              token: res.object.token,
+              userId: res.object.userId,
+            };
+            wx.setStorageSync('CuserInfo', CuserInfo);
+          }
+        })
+      }
+    });
+     },
 
 
   /**
