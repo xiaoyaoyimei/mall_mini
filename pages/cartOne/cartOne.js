@@ -54,7 +54,9 @@ Page({
      this.getCartList();
     }else{
       that.setData({
-        loadingHidden: true,
+        loginhidden: true,
+        loadingHidden: true
+
       });
     }
   },
