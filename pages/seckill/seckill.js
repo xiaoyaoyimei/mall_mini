@@ -21,7 +21,8 @@ Page({
     starttime: 0,
     nostarttime: 0,
     not:'',
-    t:''
+    t:'',
+    loadingHidden: false,
   },
 
   /**
@@ -110,7 +111,11 @@ Page({
           hasShow: false,
           })
       }
-  
+        setTimeout(function(){
+          that.setData({
+            loadingHidden: true
+          })
+        },1000)
     });
   },
   

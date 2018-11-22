@@ -38,4 +38,6 @@
     <image src="../../images/ms_empty.png"></image>
     <text>暂时没有秒杀活动,敬请期待</text>
   </view>
-   
+      <loading class="loading" hidden="{{loadingHidden}}">
+      <text class="loading-font">加载中...</text>
+    </loading>
