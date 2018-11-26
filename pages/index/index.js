@@ -234,11 +234,7 @@ Page({
       }
     });
     let self =this
-    setTimeout(function () {
-      self.setData({
-        loadingHidden: true
-      })
-    }, 3000)
+
   },
   tz(e){
     var url = e.currentTarget.dataset.url;

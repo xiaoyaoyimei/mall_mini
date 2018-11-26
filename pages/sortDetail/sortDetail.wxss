@@ -241,9 +241,9 @@
 	
 	.color-sel  .span {
     display: block;
-    background: #fafafa;
     padding: 3px 8px;
     border: 1px solid #fafafa;
+    background: #f0f0f0;
 	}
 		.color-sel .active {
 	    color: red;
@@ -267,6 +267,7 @@
 		margin-top: 0.5rem;
 		padding-top: 0.5rem;
 		border-top: 1px solid #eee;
+    padding-bottom: 10rpx;
 	}
 	.number{
     float: right;
@@ -304,7 +305,7 @@
 	.xinxi .span {
 		display: block;
 		font-weight: 400;
-		font-size: 0.8rem;
+		font-size: 14px;
 		color: #999999;
 	}
 	

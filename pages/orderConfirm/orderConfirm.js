@@ -228,12 +228,6 @@ Page({
   },
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
-    console.log('000')
-    // setTimeout(function () {
-    //   that.setData({
-    //     loadingHidden: true
-    //   })
-    // }, 1000)
     this.setData({
       orderfrom: options.orderfrom,
     });

@@ -292,8 +292,9 @@ Page({
       //					this.cartList=this.cartList.concat(this.compineList)
       //	
     var cart = wx.getStorageSync("cart")		
+
       if(cart != undefined){
-        wx.removeStorage('cart');
+        wx.removeStorageSync('cart')
       }
       wx.setStorageSync('cart', JSON.stringify(this.data.cartList));
   

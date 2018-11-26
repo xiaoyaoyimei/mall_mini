@@ -22,13 +22,16 @@ Page({
     nostarttime: 0,
     not:'',
     t:'',
-    loadingHidden: false,
+    loadingHidden: true,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onShow: function (options) {
+    this.setData({
+      loadingHidden:false
+    })
     this.getkill();
   },
   startcountdown: function () {
@@ -72,13 +75,13 @@ Page({
     }, 1000);
   },
   getkill(){
-
     var that=this;
     request.req3('promotion/crush', 'get',null, (err, res) => {
-      console.log('0000')
+      this.setData({
+        loadingHidden: true
+      })
       if (res.code == '200') {
         that.data.pro = res.object;
-        console.log(res.object.length)
         if(res.object.length>0){
           that.data.hasShow=true;
         }else{
@@ -111,11 +114,6 @@ Page({
           hasShow: false,
           })
       }
-        setTimeout(function(){
-          that.setData({
-            loadingHidden: true
-          })
-        },1000)
     });
   },
   

@@ -12,8 +12,8 @@
       </radio-group>
     </view>
     	<view class="add_item add_item_gap" wx:if="{{invoiceForm.invoiceType=='增值税普通发票'}}">
-      <view class="item_text" style=''> </view>
-					<radio-group name="headType" bindchange="listenertype">
+      <view class="item_text" > </view>
+					<radio-group name="headType" bindchange="listenertype" class="item_input">
 					   <label>	<radio value="个人" checked="{{invoiceForm.headType=='个人'}}"/> 个人</label>
 					   <label>	<radio value="公司" checked="{{invoiceForm.headType=='公司'}}"/> 公司</label>
 					</radio-group>

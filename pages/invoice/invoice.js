@@ -229,7 +229,6 @@ Page({
   },
   onShow(){
     if (this.data.orderNo == undefined || this.data.orderNo == '') {
-      console.log('00')
       if (wx.getStorageSync("invoiceFormshow") == 'true') {
         let invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'))
         this.setData({
