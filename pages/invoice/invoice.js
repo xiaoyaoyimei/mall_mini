@@ -221,11 +221,17 @@ Page({
   },
   onLoad(options){
     options = options;
-    var orderNo = options.orderNo;
-    this.setData({
-      orderNo: orderNo
-    });
-  },
+    if (options.orderNo == undefined || options.orderNo == ''){
+      this.setData({
+        orderNoshow: false,
+      });
+    }else{
+      this.setData({
+        orderNoshow: true,
+        orderNo: options.orderNo
+      });
+    }
+    },
   onShow(){
     if (this.data.orderNo == undefined || this.data.orderNo == '') {
       if (wx.getStorageSync("invoiceFormshow") == 'true') {
