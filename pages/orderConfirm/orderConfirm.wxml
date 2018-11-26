@@ -44,6 +44,8 @@
       </view>
        <view style="color:red">{{useCouponMsg}}</view>
       </view>
+      <view class="beizhu">发票信息 <navigator class='fapiao' url="../invoice/invoice">编辑发票</navigator>
+      <view wx:if='{{orderInvoiceFormshow}}'> <text>{{orderInvoiceForm.invoiceType}} {{orderInvoiceForm.headType}} {{orderInvoiceForm.invoiceTitle}}...</text> </view></view>
        <view class="beizhu">订单备注:<textarea placeholder='备注信息'  bindblur="bindRemark"></textarea></view>
         <view class="bottom_text_2">
       <text>商品件数</text>
@@ -68,6 +70,6 @@
     <button class="bottom_btn" bindtap="paynow" type="primary" disabled='{{disabled}}'>微信支付</button>
   </scroll-view>
 </view>
-    <loading class="loading" hidden="{{loadingHidden}}">
+    <!-- <loading class="loading" hidden="{{loadingHidden}}">
       <text class="loading-font">加载中...</text>
-    </loading>
+    </loading> -->

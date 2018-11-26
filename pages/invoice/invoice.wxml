@@ -4,10 +4,6 @@
       <view class="item_text">订单编号</view>
       <input name="orderNo"  placeholder="请在这里输入" value="{{orderNo}}"disabled='disabled' class="item_input"/>
     </view>
-    <view class="add_item">
-      <view class="item_text">发票抬头</view>
-      <input name="invoiceTitle"  placeholder="发票抬头" value="{{invoiceForm.invoiceTitle}}" class="item_input"/>
-    </view>
     <view class="add_item add_item_gap">
       <view class="item_text">发票类型</view>
       <radio-group name="invoiceType" bindchange="listenerRadioGroup" class="item_input">
@@ -15,46 +11,64 @@
         <label><radio value="增值税专用发票" checked="{{invoiceForm.invoiceType=='增值税专用发票'}}"/>增值税专用发票</label>
       </radio-group>
     </view>
-       <view class="add_item">
-      <view class="item_text">所在地区</view>
-       <text>{{province}} {{city}} {{county}}</text>
-        <button size="mini" bindtap="translate" class="choose_btn">选择</button>
-        <template is="areaData" data="{{...item}}"  catchtouchmove="preventTouchMove"/>
+    	<view class="add_item add_item_gap" wx:if="{{invoiceForm.invoiceType=='增值税普通发票'}}">
+      <view class="item_text" style=''> </view>
+					<radio-group name="headType" bindchange="listenertype">
+					   <label>	<radio value="个人" checked="{{invoiceForm.headType=='个人'}}"/> 个人</label>
+					   <label>	<radio value="公司" checked="{{invoiceForm.headType=='公司'}}"/> 公司</label>
+					</radio-group>
+
+			</view>
+      <view wx:if="{{invoiceForm.headType=='公司'}}">
+        <view class="add_item" prop='invoiceCode'>
+            <view class="item_text">纳税人识别码</view>
+            <input value="{{invoiceForm.invoiceCode}}" bindinput='bindinvoiceCodeInput' name="invoiceCode" placeholder="纳税人识别码" class="item_input"></input>
+        </view>
+			</view>
+    <view class="add_item">
+      <view class="item_text">发票抬头</view>
+      <input name="invoiceTitle"  placeholder="发票抬头" bindinput='bindinvoiceTitleInput' value="{{invoiceForm.invoiceTitle}}" class="item_input"/>
     </view>
-       <view class="add_item">
-      <view class="item_text">详细地址</view>
-      <input name="receiveAddress"  placeholder="详细地址" value="{{invoiceForm.receiveAddress}}" class="item_input"/>
-    </view>
+
       <view class="add_item">
-      <view class="item_text">收票人姓名</view>
-      <input name="receivePerson"  placeholder="收票人姓名" value="{{invoiceForm.receivePerson}}" class="item_input"/>
-    </view>
-            <view class="add_item">
-      <view class="item_text">收票人手机</view>
-      <input name="receivePhone"  type="number"  maxlength="11" bindblur="bindPhoneInput"  placeholder="收票人手机" value="{{invoiceForm.receivePhone}}" class="item_input"/>
+          <view class="item_text">所在地区</view>
+          <text>{{province}} {{city}} {{county}}</text>
+          <button size="mini" bindtap="translate" class="choose_btn">选择</button>
+          <template is="areaData" data="{{...item}}"  catchtouchmove="preventTouchMove"/>
+      </view>
+      <view class="add_item">
+        <view class="item_text">详细地址</view>
+        <input name="receiveAddress" bindinput='bindreceiveAddressInput'  placeholder="详细地址" value="{{invoiceForm.receiveAddress}}" class="item_input"/>
+      </view>
+      <view class="add_item">
+        <view class="item_text">收票人姓名</view>
+        <input name="receivePerson" bindinput='bindreceivePersonInput' placeholder="收票人姓名" value="{{invoiceForm.receivePerson}}" class="item_input"/>
+      </view>
+    <view class="add_item">
+        <view class="item_text">收票人手机</view>
+        <input name="receivePhone" bindinput='bindreceivePhoneInput' type="number"  maxlength="11" bindblur="bindPhoneInput"  placeholder="收票人手机" value="{{invoiceForm.receivePhone}}" class="item_input"/>
     </view>
       <!-- 专用发票 -->
 
     <view wx:if="{{invoiceForm.invoiceType=='增值税专用发票'}}">
         <view class="add_item">
-      <view class="item_text">开户行名称</view>
-      <input name="bankName"  placeholder="开户行名称" value="{{invoiceForm.bankName}}" class="item_input"/>
-    </view>
+          <view class="item_text">开户行名称</view>
+          <input name="bankName" bindinput='bindbankNameInput' placeholder="开户行名称" value="{{invoiceForm.bankName}}" class="item_input"/>
+        </view>
         <view class="add_item">
-      <view class="item_text">银行账号</view>
-      <input name="bankNo"  placeholder="银行账号" value="{{invoiceForm.bankNo}}" class="item_input"/>
-    </view>
+          <view class="item_text">银行账号</view>
+          <input name="bankNo" bindinput='bindbankNoInput'  placeholder="银行账号" value="{{invoiceForm.bankNo}}" class="item_input"/>
+        </view>
         <view class="add_item">
-      <view class="item_text">纳锐人识别码</view>
-      <input name="invoiceCode"  placeholder="纳锐人识别码" value="{{invoiceForm.invoiceCode}}" class="item_input"/>
-    </view>
+          <view class="item_text">注册地址</view>
+          <input name="registerAddress" bindinput='bindregisterAddressInput'  placeholder="注册地址" value="{{invoiceForm.registerAddress}}" class="item_input"/>
+        </view>
         <view class="add_item">
-      <view class="item_text">注册地址</view>
-      <input name="registerAddress"  placeholder="注册地址" value="{{invoiceForm.registerAddress}}" class="item_input"/>
+              <view class="item_text">注册电话</view>
+          <input name="registerPhone" bindinput='bindregisterPhoneInput' placeholder="注册电话" value="{{invoiceForm.registerPhone}}" class="item_input"/>
+        </view>
+        </view>
+    <view class="addAddress">
+        <button form-type="submit"  class="add">提交</button>
     </view>
-    </view>
-     <view class="add_address">
-      <button form-type="submit"  class="add">提交</button>
-      <!-- <button form-type="reset">重置</button> -->
-    </view>
-    </form>
+  </form>

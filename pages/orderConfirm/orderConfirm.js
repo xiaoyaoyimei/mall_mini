@@ -5,6 +5,8 @@ var request = require('../../utils/https.js')
 var uri_order_confirm = 'order/shopping/confirm' //确认订单
 Page({
   data: {
+    orderInvoiceForm:{},
+    orderInvoiceFormshow:false,
     orderfrom: 'B',	//获取from类型A为立即下单，B为来自购物车1
     freight:0,
     cartList: [],
@@ -34,7 +36,7 @@ Page({
     disabled:false,
     useCouponMsg:'',//使用优惠码提示
     remark:'',
-    loadingHidden: false,
+    // loadingHidden: false,
   },
   //优惠券
   bindcouponInput: function (e) {
@@ -226,11 +228,24 @@ Page({
   },
   // 生命周期函数--监听页面加载
   onLoad: function (options) {
+    console.log('000')
+    // setTimeout(function () {
+    //   that.setData({
+    //     loadingHidden: true
+    //   })
+    // }, 1000)
     this.setData({
       orderfrom: options.orderfrom,
     });
       $init(this)
     var cartList = JSON.parse(wx.getStorageSync('cart'));
+    if (wx.getStorageSync('invoiceFormshow') == 'true'){
+      var invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'));
+      this.setData({
+        orderInvoiceForm: invoiceForm,
+        orderInvoiceFormshow:true,
+      })
+    }
 
     var that = this;
     that.setData({
@@ -280,11 +295,7 @@ Page({
       }
     });
     that.jisuan();
-    setTimeout(function(){
-      that.setData({
-        loadingHidden: true
-      })
-    },1000)
+
   
   },
   getShipPrice(){
@@ -324,6 +335,13 @@ Page({
     //获取默认地址
    
     this.getShipPrice();
+    if (wx.getStorageSync('invoiceFormshow') == 'true') {
+      var invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'));
+      this.setData({
+        orderInvoiceForm: invoiceForm,
+        orderInvoiceFormshow: true,
+      })
+    }
   
 
   },
@@ -345,9 +363,13 @@ Page({
       quantity: that.data.quantitys,
       modelIds: that.data.modelIds,
       remark: that.data.remark,
-      type: that.data.orderfrom
+      type: that.data.orderfrom,
+      orderInvoiceForm: that.data.orderInvoiceForm,
     }, (err, res) => {
+
           if (res.code == 200) {
+            wx.removeStorageSync('invoiceFormshow');
+            wx.removeStorageSync('invoiceForm');
             var orderNo=res.object.order.orderNo;
             wx.removeStorageSync('cart');
             this.setData({
