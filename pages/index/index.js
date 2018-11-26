@@ -62,7 +62,7 @@ Page({
       url: '../goodsDetail/goodsDetail?specId=' + specId,
     })
   },
-  xin:function(){
+  xin: function () {
     request.req3('index/hotitem', 'GET', null, (err, res) => {
       if (res.code == 200) {
         this.setData({
@@ -71,7 +71,7 @@ Page({
       }
     })
   },
-  sort:function(e){
+  sort: function (e) {
     var keyword = wx.getStorageSync("keyword")
     var type = wx.getStorageSync("type")
     if (type != undefined) {
@@ -80,16 +80,16 @@ Page({
     if (keyword != undefined) {
       wx.removeStorageSync('keyword')
     }
-    if (e.currentTarget.dataset.i != undefined){
+    if (e.currentTarget.dataset.i != undefined) {
       wx.setStorageSync('keyword', e.currentTarget.dataset.i);
-    }else{
+    } else {
       wx.setStorageSync('type', e.currentTarget.dataset.type);
     }
     wx.switchTab({
       url: '/pages/sort/sort',
     });
-  }, 
-  gosearch:function() {
+  },
+  gosearch: function () {
     wx.navigateTo({
       url: '/pages/search/search',
     });
@@ -122,71 +122,71 @@ Page({
       self.countdown();
     }, 1000);
   },
-  getData:function() {
+  getData: function () {
     request.req3('promotion/crush', 'get', null,
-      (err,res) => {
-      if (res.code == '200') {
-        this.seckilllist = res.object;
-        if (this.seckilllist[0].switch == '0') {
-          this.jsqtime = this.seckilllist[0].crush["startTime"]
-        } else {
-          this.jsqtime = this.seckilllist[0].crush["endTime"];
+      (err, res) => {
+        if (res.code == '200') {
+          this.seckilllist = res.object;
+          if (this.seckilllist[0].switch == '0') {
+            this.jsqtime = this.seckilllist[0].crush["startTime"]
+          } else {
+            this.jsqtime = this.seckilllist[0].crush["endTime"];
+          }
+          //计时器
+          this.countdown();
         }
-        //计时器
-        this.countdown();
-      }
-    });
-    request.req3("index/hotitem", "GET", null, (err,res) => {
+      });
+    request.req3("index/hotitem", "GET", null, (err, res) => {
       console.log()
       if (res.code == "200") {
         this.setData({
           hotitem: res.object,
         })
-        
+
       }
     });
-    request.req3("index/poster", "GET", null,(err,res) => {
- 
-        if (res.code == "200") {
-          if(res.object.length>0){
-            res.object.map(function(i){
-              var num = i.linkUrl.indexOf('?');
-              if (i.linkUrl.indexOf('Detail') != -1){
-                i.tztype='d';
-                i.wxURL = '../sortDetail/sortDetail'+i.linkUrl.substr(num)
-              }else{
-                i.tztype='s';
-                i.wxURL = '../sort/sort' + i.linkUrl.substr(num)
-              }
-            })
-          }
-          this.setData({
-            Items: res.object,
+    request.req3("index/poster", "GET", null, (err, res) => {
+
+      if (res.code == "200") {
+        if (res.object.length > 0) {
+          res.object.map(function (i) {
+            var num = i.linkUrl.indexOf('?');
+            if (i.linkUrl.indexOf('Detail') != -1) {
+              i.tztype = 'd';
+              i.wxURL = '../sortDetail/sortDetail' + i.linkUrl.substr(num)
+            } else {
+              i.tztype = 's';
+              i.wxURL = '../sort/sort' + i.linkUrl.substr(num)
+            }
+          })
+        }
+        this.setData({
+          Items: res.object,
         })
       }
     });
-    request.req3("index/basictype", "GET", null,(err,res) => {
-        if (res.code == "200") {
-          this.setData({
-            basictype: res.object,
-          })
+    request.req3("index/basictype", "GET", null, (err, res) => {
+      if (res.code == "200") {
+        this.setData({
+          basictype: res.object,
+        })
       }
     });
-    request.req3('index/gameproduct', 'GET', null,(err,res) => {
-        if (res.code == '200') {
+    request.req3('index/gameproduct', 'GET', null, (err, res) => {
+      if (res.code == '200') {
+        this.setData({
+          gameproduct: res.object,
+        })
+        if (this.data.gameproduct.length > 0) {
           this.setData({
-            gameproduct: res.object,
+            gameproductone: this.data.gameproduct[0].list,
           })
-          if(this.data.gameproduct.length > 0) {
-            this.setData({
-              gameproductone: this.data.gameproduct[0].list,
-            })
-          }
-
         }
+
+      }
     });
-    request.req3('index/officeproduct', 'GET', null,(err,res) => {
-       if (res.code == '200') {
+    request.req3('index/officeproduct', 'GET', null, (err, res) => {
+      if (res.code == '200') {
         this.setData({
           officeproduct: res.object,
         })
@@ -197,33 +197,33 @@ Page({
         }
       }
     });
-    request.req3('index/houseproduct', 'GET', null,(err,res) => {
-         if (res.code == '200') {
+    request.req3('index/houseproduct', 'GET', null, (err, res) => {
+      if (res.code == '200') {
         this.setData({
           houseproduct: res.object,
         })
         if (this.data.houseproduct.length > 0) {
           this.setData({
             houseproductone: this.data.houseproduct[0].list,
-          })          
+          })
         }
       }
     });
-    request.req3('index/tableproduct', 'GET', null,(err,res) => {
+    request.req3('index/tableproduct', 'GET', null, (err, res) => {
       if (res.code == '200') {
         this.setData({
           tableproduct: res.object,
         })
       }
     });
-    request.req3('index/cockpitproduct', 'GET', null,(err,res) => {
+    request.req3('index/cockpitproduct', 'GET', null, (err, res) => {
       if (res.code == '200') {
         this.setData({
           cockpitproduct: res.object,
         })
       }
     });
-    request.req3('index/peripheryproduct', 'GET', null,(err,res) => {
+    request.req3('index/peripheryproduct', 'GET', null, (err, res) => {
       if (res.code == '200') {
         this.setData({
           peripheryproduct: res.object,
@@ -233,28 +233,28 @@ Page({
         })
       }
     });
-    let self =this
+    let self = this
 
   },
-  tz(e){
+  tz(e) {
     var url = e.currentTarget.dataset.url;
     var tztype = e.currentTarget.dataset.tztype
-    if (tztype=='s'){
+    if (tztype == 's') {
       wx.switchTab({
         url: url,
       });
-    }else{
+    } else {
       wx.navigateTo({
-        url:url
+        url: url
       })
     }
- 
+
   },
   switchimg(e, listImg, imgid) {
     this.$refs[imgid][0].src = this.global_.imgurl + listImg;
   },
   onShow: function () {
-      this.getData();
+    this.getData();
   },
-  
+
 })
