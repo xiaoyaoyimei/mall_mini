@@ -1,6 +1,6 @@
  <import src="../../model/model.wxml"/>
 <form class="page_bd" bindsubmit="invoiceFormSubmit" bindreset="formReset">
-    <view class="add_item" wx:if="{{orderNoshow}}">
+    <view class="add_item">
       <view class="item_text">订单编号</view>
       <input name="orderNo"  placeholder="请在这里输入" value="{{orderNo}}"disabled='disabled' class="item_input"/>
     </view>
