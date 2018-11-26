@@ -1,7 +1,10 @@
 <!--pages/auth/auth.wxml-->
+<view wx:if="{{canIUse}}">
 <view class="auth">
 <view  class="w"><image src="../../images/de-tx.jpg"></image></view>
 <view class="pt40">申请获取以下权限</view>
 <view class="wd">获得您的公开信息(昵称,头像等)</view>
 <button type='primary' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
 </view>
+</view>
+<view wx:else>请升级微信版本</view>

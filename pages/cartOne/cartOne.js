@@ -56,6 +56,7 @@ Page({
       that.setData({
         loginhidden: true,
         loadingHidden: true
+
       });
     }
   },

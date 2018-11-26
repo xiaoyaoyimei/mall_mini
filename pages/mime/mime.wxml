@@ -3,7 +3,7 @@
 
   <!--上部信息-->
   <!-- 未授权 -->
-  <view wx:if="{{!wxAuthShow}}" class="user  nologin">
+  <view wx:if="{{!hadUser}}" class="user  nologin">
     <navigator url="../login/login?fromurl=account" class="loginurl"><text>登录</text></navigator>
    <text>/</text> 
     <navigator url="../regi/regi?fromurl=account" class="loginurl">
@@ -11,16 +11,7 @@
       </navigator>
   </view>
   <!-- 已授权 -->
-  <view wx:else>
-    <view class="user flex-wrp"  wx:if="{{!hadUser}}">
-      <view class="avatar flex-item" >
-        <image src="{{wxauth.iconUrl}}" class="wximg"></image>
-      </view>
-      <view class="user-info flex-item">
-       <text>{{wxauth.nickName}}</text>
-        <text class="userinfo-nickname">{{wxauth.province}}</text>
-      </view>
-      </view>
+
   <view class="user flex-wrp" wx:else>
       <view class="avatar flex-item">
         <image src="{{filters.imgurl(userInfo.iconUrl)}}" class="wximg"></image>
@@ -30,7 +21,7 @@
         <text class="userinfo-nickname">{{userInfo.customerMobile}}</text>
       </view>
     </view>
-  </view>
+
   <view class="myorder">
     <view class="mt">
       <text>我的订单</text>

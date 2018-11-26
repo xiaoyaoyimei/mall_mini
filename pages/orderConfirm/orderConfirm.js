@@ -284,7 +284,8 @@ Page({
         let addressInfo = res[0]
         that.setData({
           addressInfo: addressInfo,//接数组
-          hasAddress: true
+          hasAddress: true,
+          loadingHidden:true
         }) 
         this.getShipPrice();
 
@@ -295,8 +296,6 @@ Page({
       }
     });
     that.jisuan();
-
-  
   },
   getShipPrice(){
     if (this.data.addressInfo.receiveProvince!=''){
