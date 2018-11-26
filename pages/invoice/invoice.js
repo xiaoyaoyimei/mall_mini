@@ -224,13 +224,33 @@ Page({
     this.setData({
       orderNo: orderNo
     });
-    if(orderNo == undefined || orderNo == ''){
-      var invoiceForm = wx.getStorageSync("invoiceForm")
-      if (invoiceForm != undefined){
-        wx.removeStorageSync('invoiceForm')
+
+
+  },
+  onShow(){
+    if (this.data.orderNo == undefined || this.data.orderNo == '') {
+      console.log('00')
+      if (wx.getStorageSync("invoiceFormshow") == 'true') {
+        let invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'))
+        this.setData({
+          'invoiceForm.invoiceTitle': invoiceForm.invoiceTitle || '',
+          'invoiceForm.invoiceType': invoiceForm.invoiceType || '',
+          'invoiceForm.receivePerson': invoiceForm.receivePerson || '',
+          'invoiceForm.receivePhone': invoiceForm.receivePhone || '',
+          'invoiceForm.receiveAddress': invoiceForm.receiveAddress || '',
+          'invoiceForm.bankName': invoiceForm.bankName || '',
+          'invoiceForm.bankNo': invoiceForm.bankNo || '',
+          'invoiceForm.invoiceCode': invoiceForm.invoiceCode || '',
+          'invoiceForm.registerAddress': invoiceForm.registerAddress || '',
+          'invoiceForm.registerPhone': invoiceForm.registerPhone || '',
+          'invoiceForm.headType': invoiceForm.headType || '',
+          'province': invoiceForm.receiveProvince || '',
+          'city': invoiceForm.receiveCity || '',
+          'county': invoiceForm.receiveDistrict || '',
+        })
       }
 
-    }else{
+    } else {
       request.req2(`order/${orderNo}`, 'GET', null, (err, res) => {
         if (res.shippingInvoice != "") {
           this.setData({
@@ -253,6 +273,5 @@ Page({
         }
       })
     }
-
   }
 })
