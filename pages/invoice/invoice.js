@@ -11,6 +11,7 @@ Page({
       show: show
     },
     orderNo: '',
+    orderNoshow:false,
     invoiceForm: {  
       headType: '个人',  
        invoiceTitle: '',
@@ -224,14 +225,13 @@ Page({
     this.setData({
       orderNo: orderNo
     });
-
-
   },
   onShow(){
     if (this.data.orderNo == undefined || this.data.orderNo == '') {
       if (wx.getStorageSync("invoiceFormshow") == 'true') {
         let invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'))
         this.setData({
+          orderNoshow:false,
           'invoiceForm.invoiceTitle': invoiceForm.invoiceTitle || '',
           'invoiceForm.invoiceType': invoiceForm.invoiceType || '',
           'invoiceForm.receivePerson': invoiceForm.receivePerson || '',
@@ -250,9 +250,10 @@ Page({
       }
 
     } else {
-      request.req2(`order/${orderNo}`, 'GET', null, (err, res) => {
+      request.req2(`order/${this.data.orderNo}`, 'GET', null, (err, res) => {
         if (res.shippingInvoice != "") {
           this.setData({
+            orderNoshow:true,
             'invoiceForm.orderNo': res.shippingInvoice.orderNo,
             'invoiceForm.invoiceTitle': res.shippingInvoice.invoiceTitle,
             'invoiceForm.invoiceType': res.shippingInvoice.invoiceType,
