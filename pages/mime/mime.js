@@ -30,7 +30,6 @@ Page({
     })
   },
   onShow: function () {
-console.log("onshow")
     var that = this;
     var CuserInfo = wx.getStorageSync('CuserInfo');
     //判断授权
