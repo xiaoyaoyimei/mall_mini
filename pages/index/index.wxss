@@ -127,7 +127,8 @@ border-radius:5px;
 			width: 49.5%;
 			text-align: center;
 			border-left: 1px solid transparent;
-			border-top:1px solid transparent;}
+			border-top:1px solid transparent;
+      height: 320rpx}
 	.two .li		image{
 				max-width: 53.5%;
 			}
@@ -179,6 +180,7 @@ border-radius:5px;
 		float: left;
 		width: 66.3%;
 		position: relative;
+    height:350rpx;
 	}
 	.w594 image{
 		width: 100%;
@@ -210,6 +212,7 @@ border-radius:5px;
   }
 	.floor .a{
 		display: block;
+    font-size: 0
 	}
 	.officeproduct image {
 		max-width:60%;
@@ -230,7 +233,8 @@ border-radius:5px;
 		float: left;
 		width: 49.5%;
 		position: relative;
-    height: 10rem;
+    height: 250rpx;
+    overflow: hidden;
 		background: #fff;
     }
 	.yxzc .a{
