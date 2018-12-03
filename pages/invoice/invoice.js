@@ -4,45 +4,45 @@ var model = require('../../model/model.js')
 var request = require('../../utils/https.js')
 var show = false;
 var item = {};
-var orderStatus='';
+var orderStatus = '';
 Page({
-  data:{
+  data: {
     item: {
       show: show
     },
     orderNo: '',
-    orderNoshow:false,
-    invoiceForm: {  
-      headType: '个人',  
-       invoiceTitle: '',
-       invoiceType: '增值税普通发票',
-       receivePerson: '',
-      invoiceCode:"",
-       receivePhone: '',
-       selectedOptionsAddr: [],
-       bankName: '',
-       bankNo: '',
-       receiveAddress: '',
-       registerAddress: '',
-       registerPhone: '',
+    orderNoshow: false,
+    invoiceForm: {
+      headType: '个人',
+      invoiceTitle: '',
+      invoiceType: '增值税普通发票',
+      receivePerson: '',
+      invoiceCode: "",
+      receivePhone: '',
+      selectedOptionsAddr: [],
+      bankName: '',
+      bankNo: '',
+      receiveAddress: '',
+      registerAddress: '',
+      registerPhone: '',
       //  province: '请选择省市区',
-     },
+    },
     province: '',
-    city:'',
+    city: '',
     county: '',
-   
+
   },
   /**
  * 弹出框蒙层截断touchmove事件
  */
-   preventTouchMove(){
+  preventTouchMove() {
   },
   listenerRadioGroup: function (e) {
-    if (e.detail.value =='增值税普通发票'){
+    if (e.detail.value == '增值税普通发票') {
       this.setData({
         ["invoiceForm.invoiceType"]: '增值税普通发票'
       });
-    }else{
+    } else {
       this.setData({
         ["invoiceForm.invoiceType"]: '增值税专用发票'
       });
@@ -122,7 +122,7 @@ Page({
     })
   },
   bindreceiveAddressInput: function (e) {
-   
+
     this.setData({
       ["invoiceForm.receiveAddress"]: e.detail.value
     })
@@ -137,27 +137,27 @@ Page({
       ["invoiceForm.invoiceCode"]: e.detail.value
     })
   },
-  invoiceFormSubmit(e){
+  invoiceFormSubmit(e) {
 
     var that = this;
     var formData = e.detail.value;
 
-    if (formData.receivePhone == "" || that.data.province == "" || that.data.city == "" || that.data.county == "" || formData.receiveAddress == "" || formData.receivePerson == "" ){
+    if (formData.receivePhone == "" || that.data.province == "" || that.data.city == "" || that.data.county == "" || formData.receiveAddress == "" || formData.receivePerson == "") {
       wx.showToast({
         title: '请完善发票信息',
         icon: 'none',
         duration: 1000
       })
-      return 
+      return
     }
-    else{
-    that.setData({
-      'invoiceForm.receiveProvince': this.data.province,
-      'invoiceForm.receiveCity': this.data.city,
-      'invoiceForm.receiveDistrict': this.data.county,
-    })
-      if (this.data.invoiceForm.orderNo == undefined || this.data.invoiceForm.orderNo == '' ){
-        if (wx.getStorageSync('invoiceFormshow') == 'true'){
+    else {
+      that.setData({
+        'invoiceForm.receiveProvince': this.data.province,
+        'invoiceForm.receiveCity': this.data.city,
+        'invoiceForm.receiveDistrict': this.data.county,
+      })
+      if (this.data.invoiceForm.orderNo == undefined || this.data.invoiceForm.orderNo == '') {
+        if (wx.getStorageSync('invoiceFormshow') == 'true') {
           wx.removeStorageSync('invoiceForm');
         }
         wx.setStorageSync('invoiceForm', JSON.stringify(this.data.invoiceForm));
@@ -171,25 +171,25 @@ Page({
         wx.navigateBack({//返回
           delta: 1
         })
-    }else{
+      } else {
         let orderInvoiceForm = that.data.invoiceForm
         delete orderInvoiceForm['selectedOptionsAddr']
-        request.req('invoice', 'order/invoice/save', 'POST',  orderInvoiceForm, (err, res) => {
-        if (res.code == 200) {
-          //将发票信息传到上一个页面
-          var pages = getCurrentPages()
-          var prevPage = pages[pages.length - 2]  //上一个页面
-          var that = this
-          prevPage.setData({
-            ["orderdetail.shippingInvoice"]: that.data.invoiceForm
-          })
-          wx.navigateBack({//返回
-            delta: 1
-          })
+        request.req('invoice', 'order/invoice/save', 'POST', orderInvoiceForm, (err, res) => {
+          if (res.code == 200) {
+            //将发票信息传到上一个页面
+            var pages = getCurrentPages()
+            var prevPage = pages[pages.length - 2]  //上一个页面
+            var that = this
+            prevPage.setData({
+              ["orderdetail.shippingInvoice"]: that.data.invoiceForm
+            })
+            wx.navigateBack({//返回
+              delta: 1
+            })
 
-        }
-      });
-    }
+          }
+        });
+      }
 
     }
   },
@@ -219,25 +219,25 @@ Page({
       county: item.countys[item.value[2]]
     });
   },
-  onLoad(options){
+  onLoad(options) {
     options = options;
-    if (options.orderNo == undefined || options.orderNo == ''){
+    if (options.orderNo == undefined || options.orderNo == '') {
       this.setData({
         orderNoshow: false,
       });
-    }else{
+    } else {
       this.setData({
         orderNoshow: true,
         orderNo: options.orderNo
       });
     }
-    },
-  onShow(){
+  },
+  onShow() {
     if (this.data.orderNo == undefined || this.data.orderNo == '') {
       if (wx.getStorageSync("invoiceFormshow") == 'true') {
         let invoiceForm = JSON.parse(wx.getStorageSync('invoiceForm'))
         this.setData({
-          orderNoshow:false,
+          orderNoshow: false,
           'invoiceForm.invoiceTitle': invoiceForm.invoiceTitle || '',
           'invoiceForm.invoiceType': invoiceForm.invoiceType || '',
           'invoiceForm.receivePerson': invoiceForm.receivePerson || '',
@@ -259,7 +259,7 @@ Page({
       request.req2(`order/${this.data.orderNo}`, 'GET', null, (err, res) => {
         if (res.shippingInvoice != "") {
           this.setData({
-            orderNoshow:true,
+            orderNoshow: true,
             'invoiceForm.orderNo': res.shippingInvoice.orderNo,
             'invoiceForm.invoiceTitle': res.shippingInvoice.invoiceTitle,
             'invoiceForm.invoiceType': res.shippingInvoice.invoiceType,

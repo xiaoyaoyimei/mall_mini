@@ -98,8 +98,8 @@
 						<view class=" clearfix  office ">
 							<view class="w594">
 								<navigator  class='a' url="/pages/sortDetail/sortDetail?id={{officeproductone.product_id}}">
-									<image src="{{imgurl}}{{officeproductone.img_url}}" :ref="officeproductone.product_id"  mode='aspectFill'></image>
-									<view class="ad ">
+									<image src="{{imgurl}}{{officeproductone.img_url}}"   mode='aspectFill'></image>
+									<view class="ad">
 										 <text class='h5'>{{officeproductone.model_no}}</text> 
 										 <text class='h6'>{{officeproductone.describe1}}</text> 
 										 <text class='h6'>{{officeproductone.describe2}}</text> 

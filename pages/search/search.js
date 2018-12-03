@@ -60,8 +60,7 @@ Page({
   },
     search(){
      var that=this;
-     
-      request.req('searchpage', uri, 'GET', {
+      request.req3( uri, 'GET', {
         //搜索过滤     
         keyWord: that.data.value,
         startRow: that.data.startRow,
