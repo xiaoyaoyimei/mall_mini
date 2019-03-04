@@ -1,6 +1,5 @@
 <wxs module="filters" src="../filters.wxs"></wxs>
 <view class="container more">
-
   <!--上部信息-->
   <!-- 未授权 -->
   <view wx:if="{{!hadUser}}" class="user  nologin">
@@ -13,6 +12,7 @@
   <!-- 已授权 -->
 
   <view class="user flex-wrp" wx:else>
+  
       <view class="avatar flex-item">
         <image src="{{filters.imgurl(userInfo.iconUrl)}}" class="wximg"></image>
       </view>

@@ -54,6 +54,13 @@ Page({
                           hadUser: true
                         })
                       })
+                    }else{
+
+                      that.setData({
+                        userInfo: res,
+                        hadUser: false
+                      })
+                      util.showError(res.object)
                     }
                   })
                 }
